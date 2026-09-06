@@ -13,7 +13,7 @@ COPY projects/ ./projects/
 COPY models/ ./models/
 RUN mkdir -p /app/data && chown -R appuser:appuser /app
 USER appuser
-ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 CHEMAI_DATA_DIR=/app/data
+ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 CHEMAI_DATA_DIR=/app/data CHEMAI_MODEL_PATH=/app/models/soft_sensor.pkl
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=40s --retries=3 \
     CMD python -c "import urllib.request,json,sys; d=json.loads(urllib.request.urlopen('http://localhost:8000/health').read()); sys.exit(0 if d['model_fitted'] else 1)"
