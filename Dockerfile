@@ -10,6 +10,7 @@ RUN useradd --create-home --uid 1000 appuser
 WORKDIR /app
 COPY --from=builder /install /usr/local
 COPY projects/ ./projects/
+COPY models/ ./models/
 RUN mkdir -p /app/data && chown -R appuser:appuser /app
 USER appuser
 ENV PYTHONUNBUFFERED=1 PYTHONDONTWRITEBYTECODE=1 CHEMAI_DATA_DIR=/app/data

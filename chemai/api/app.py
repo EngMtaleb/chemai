@@ -14,7 +14,10 @@ Design notes worth reading before changing anything:
     to decide whether the container is ready to receive traffic.
 """
 from contextlib import asynccontextmanager
+from pathlib import Path
 import logging
+import os
+import pickle
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
@@ -31,7 +34,23 @@ log = logging.getLogger(__name__)
 _state: dict = {"model": None, "rows": None}
 
 
+MODEL_PATH = Path(os.getenv("CHEMAI_MODEL_PATH", "models/soft_sensor.pkl"))
+
+
 def _fit_model(cfg: SoftSensorConfig) -> tuple[SoftSensor, int]:
+    """Load a serialised model if one exists; otherwise fit from data.
+
+    Deployments ship the fitted model, not the data. The model is a set of
+    coefficients and a covariance matrix - it is not the raw records, and it
+    is what a served endpoint actually needs. Fitting at startup remains the
+    path for local development, where the data is present.
+    """
+    if MODEL_PATH.exists():
+        with open(MODEL_PATH, "rb") as fh:
+            model = pickle.load(fh)
+        log.info("loaded serialised model from %s", MODEL_PATH)
+        return model, -1
+
     df = add_periods(load_distillation_tower(cfg=cfg), cfg)
     train, _ = split_by_period(df, cfg)
     return SoftSensor(cfg).fit(train), len(train)
