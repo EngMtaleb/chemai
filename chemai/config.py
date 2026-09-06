@@ -1,9 +1,15 @@
 """Configuration - one place for every constant, so nothing is buried in code."""
+import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DATA_DIR = PROJECT_ROOT / "data"
+
+# Path comes from the environment first. When the package is INSTALLED
+# (in a container, for example) __file__ points into site-packages and the
+# source-tree default is wrong. Configuration belongs in the environment,
+# not in the module's location on disk.
+DATA_DIR = Path(os.getenv("CHEMAI_DATA_DIR", str(PROJECT_ROOT / "data")))
 
 
 @dataclass(frozen=True)
