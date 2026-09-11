@@ -25,13 +25,34 @@ The relationship is thermodynamic, not operational — which is why it survives 
 
 ---
 
+## Project 2 — Control Loop Performance *(in progress — week 1 of 7)*
+
+PI loop simulator for flow, pressure and level, with valve stiction, tight and sluggish tuning and
+external oscillation — and the **valve position (MV) recorded**, which plant data lacks.
+
+```bash
+pip install -e ".[viz]"
+python projects/p02_control_loops/week1.py     # simulator + Harris study; SACAC part needs data/sacac/
+```
+
+First finding: the Harris index rates tight-tuned pressure and level loops **above** healthy ones.
+📄 `projects/p02_control_loops/VALIDATION.md`
+
+**Explicit limits**
+- Cascade loops are **diagnosed** — which loop is the source — but not **scored**. Assessing the joint
+  performance of master and slave with a cascade-specific Harris index is advanced research that
+  would take weeks, and is out of scope.
+
+---
+
 ## Structure
 
 ```
 chemai/
 ├── config.py        every constant in one place
 ├── data/            loading · derived-column detection · campaign split
-├── features/        the form the physics requires
+│                    SACAC loader · control-loop simulator
+├── features/        the form the physics requires · loop performance indices
 ├── models/          estimator + uncertainty + envelope
 ├── evaluation/      metrics, including the ones usually skipped
 └── api/             FastAPI service
@@ -43,7 +64,7 @@ chemai/
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q                              # 21 tests, no data needed
+pytest tests -q                              # 69 tests, no data needed
 python projects/p01_soft_sensor/train.py     # needs data/ populated
 ```
 
