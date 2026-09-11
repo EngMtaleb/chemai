@@ -274,6 +274,8 @@ pass oscillation detection will skip at least one labelled stiction case.
 | The three coherent `horch` loops reported **as one event** | §11.6 |
 | ISDB loops already in SACAC counted **once**; label conflicts reported, not resolved | §12.3 |
 | Cascade slaves are **diagnosed, not scored** with Harris | §13.3 |
+| Every loop passes the five data-quality checks **before** diagnosis; flags, never repairs | §14 |
+| PI-law R² is a **note**, never an exclusion | §14.5 |
 | Loader returns a sampling time **only when description and data agree** | §11.6 |
 | Stiction index used as a **feature**, not as a label | §7 |
 | Detrend against `SP` before shape analysis | §8 |
@@ -581,6 +583,94 @@ refinery tags 23, 26, 27): the master is not recorded, or the moves are operator
 
 ---
 
+## 14. Week 2, part 1 — data-quality checks before any diagnosis
+
+Code: `chemai/features/data_quality.py` · thresholds in `DataQualityConfig` · ISDB reader
+`chemai/data/isdb.py`. Evidence: `projects/p02_control_loops/week2_data_quality.py`, run on
+**141 distinct real loops** (43 SACAC files + 98 ISDB loops not already in SACAC).
+Teaching version: notebook `p02_week2_data_quality`.
+
+### 14.1 Five traps, five rules
+
+| Trap | How it deceives | Rule | Threshold |
+|---|---|---|---|
+| **Frozen sensor** | looks like the best loop — and the integral drives the process away | PV flat **while OP moves** | 300 samples |
+| **Manual / inactive** | assessing a controller that is not acting | OP flat, or never moving | 200 samples |
+| **Saturation** | looks like bad tuning | OP *staying* (≥ 3 samples) at its recorded limit | > 5 % of samples |
+| **Quantisation** | looks like a sticky valve (staircase PV) | distinct PV values | < 20 |
+| **Moving setpoint** | SP steps counted as oscillation | SP changes in most samples → flag; few changes → longest constant segment | > 50 % of samples |
+
+Plus one **note, never an exclusion**: *PI law not confirmed* when R² of `ΔOP ~ Δe, e` is below 0.5.
+
+Two guards that the real data forced:
+
+- **Coarsely recorded OP** (< 50 distinct values) skips the OP-based checks. ISDB `chem9` is a
+  stiction loop whose OP has 28 values and flat stretches of 339 samples — without the guard it would
+  be flagged *manual* and *saturated*, both wrong.
+- **A frozen sensor needs OP to move.** PV flat with OP flat is a stopped unit or manual, not a stuck
+  transmitter.
+
+### 14.2 How the thresholds were set — and one that changed
+
+Thresholds sit **above what normal loops do**, measured on the real set, never on the simulation.
+The simulation gives the extremes (a 1500 s freeze, R² = 0 in manual), not the boundary.
+
+| Quantity | Median | 95 % | 99 % | Max in an expert-labelled normal loop |
+|---|---:|---:|---:|---:|
+| Longest PV flat run (samples) | 1 | 39 | 202 | **275** (`buildings.8`, "no oscillation") |
+| Distinct PV values | 793 | — | — | quantised files: 8 · 9 · 18 |
+
+**The PV flat-run threshold moved from 200 to 300.** 200 was chosen on 150 loops including
+duplicates, where the 99th percentile was 185. On the 141 distinct loops it is 202, and a room
+temperature loop labelled *no oscillation* reaches 275 — most likely an archive deadband, not a stuck
+transmitter. 300 clears every expert-labelled normal loop; a real freeze lasts far longer.
+
+**Limitation:** counts are in samples. 300 samples is 5 minutes at 1 s but 100 minutes at 20 s.
+
+### 14.3 Results on the real set
+
+| Flag | Loops | Comment |
+|---|---:|---|
+| `moving_setpoint` | **40** | 28 % of real loops — DB runs, cascade slaves. Harris cannot be applied as-is |
+| `op_constant` | 9 | OP never moves: manual, or OP not truly recorded (five SE Asian refinery tags) |
+| `saturated` | 5 | both SACAC saturation files, plus three unlabelled ISDB loops |
+| `op_inactive` | 4 | overlaps saturation: OP pinned at its limit is also flat |
+| `quantised_pv` | 3 | both SACAC quantisation files with PV, plus ISDB `chem3` — labelled *quantisation* in ISDB |
+| `op_coarse` | 3 | ISDB `chem7`, `chem8`, `chem9` |
+| `no_op` / `short_regulatory_segment` | 1 / 1 | |
+| `frozen_sensor` | 0 | (1 at the old threshold of 200 — see 14.2) |
+
+**Every illustrative file is caught:** both quantisation files with a PV (`quantised_pv`) and both
+saturation files (`saturated`). ISDB `chem3`, labelled *quantisation* by its contributor, is caught
+without having been used to set anything.
+
+**One miss, stated:** `quantisation-F-minerals-bauer-2017` has 271 distinct PV values — the
+normalisation removed the quantisation fingerprint. It is flagged instead as `op_constant`: its OP
+never moves in the whole record.
+
+### 14.4 ⚠️ A third description conflict
+
+`unknown-F-paper-horch-2003` is described as *"The loop was in manual control"*. The data says
+otherwise: OP follows a PI law on the error with **R² = 1.00** (Kc ≈ 0.12). Its SP also moves in
+almost every sample — the signature of a cascade slave. Possibly the *master* was in manual, possibly
+the description is wrong. The loop is not treated as manual.
+
+### 14.5 PI-law fit is a note, not a detector
+
+R² across the real set: 10th percentile 0.015, 25th 0.53, median 0.96. The low values have causes
+that are **not** manual: OP never recorded (constant), OP archived coarsely, controllers that are not
+a plain PI (thickness control in the metals set). Excluding every loop below 0.5 would discard a
+quarter of the real data for the wrong reason.
+
+### 14.6 ISDB reader
+
+`load_isdb` reproduces the label counts of §12.2 exactly (15 stated stiction, 1 stiction + tight
+tuning, 9 likely stiction, 8 likely disturbance, …). Building it caught one bug worth recording:
+ISDB `buildings.7` reads *"after **detuning** the controller"*, and a substring match read it as a
+tuning diagnosis. The label rule now matches whole words.
+
+---
+
 ## Open questions
 
 - Does the shape test survive **detrending and cycle isolation** on all thirteen stiction files,
@@ -600,5 +690,5 @@ refinery tags 23, 26, 27): the master is not recorded, or the moves are operator
 
 ---
 
-*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1. Every constraint came from
+*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, section 14 in Week 2. Every constraint came from
 reading the data or the physics, not from a metric.*

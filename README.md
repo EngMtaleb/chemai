@@ -25,15 +25,19 @@ The relationship is thermodynamic, not operational — which is why it survives 
 
 ---
 
-## Project 2 — Control Loop Performance *(in progress — week 1 of 7)*
+## Project 2 — Control Loop Performance *(in progress — week 2 of 7)*
 
 PI loop simulator for flow, pressure and level, with valve stiction, tight and sluggish tuning and
 external oscillation — and the **valve position (MV) recorded**, which plant data lacks.
 
 ```bash
 pip install -e ".[viz]"
-python projects/p02_control_loops/week1.py     # simulator + Harris study; SACAC part needs data/sacac/
+python projects/p02_control_loops/week1.py                 # simulator + Harris study
+python projects/p02_control_loops/week2_data_quality.py     # data-quality checks on every real loop
 ```
+
+Data (not committed): SACAC repository in `data/sacac/`; ISDB `isdb10.mat` in `data/isdb/`
+(from `sites.ualberta.ca/~bhuang/ISDB.zip` — cite Jelali & Huang, 2010).
 
 First finding: the Harris index rates tight-tuned pressure and level loops **above** healthy ones.
 📄 `projects/p02_control_loops/VALIDATION.md`
@@ -51,8 +55,8 @@ First finding: the Harris index rates tight-tuned pressure and level loops **abo
 chemai/
 ├── config.py        every constant in one place
 ├── data/            loading · derived-column detection · campaign split
-│                    SACAC loader · control-loop simulator
-├── features/        the form the physics requires · loop performance indices
+│                    SACAC and ISDB loaders · control-loop simulator
+├── features/        the form the physics requires · loop performance · data quality
 ├── models/          estimator + uncertainty + envelope
 ├── evaluation/      metrics, including the ones usually skipped
 └── api/             FastAPI service
@@ -64,7 +68,7 @@ chemai/
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q                              # 69 tests, no data needed
+pytest tests -q                              # 91 tests, no data needed
 python projects/p01_soft_sensor/train.py     # needs data/ populated
 ```
 

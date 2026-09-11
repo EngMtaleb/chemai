@@ -170,3 +170,24 @@ SACAC_DEAD_TIME: dict[str, tuple[float, float]] = {
     "other-F-paper-horch-2003": (3.0, 8.0),
     "other-L-paper-horch-2003": (4.0, 4.0),
 }
+
+
+@dataclass(frozen=True)
+class DataQualityConfig:
+    """Thresholds for the data-quality checks that run before any diagnosis.
+
+    Every value was set against 150 real loops (SACAC + ISDB): see
+    projects/p02_control_loops/VALIDATION.md, section 14. Counts are in
+    SAMPLES, not seconds - freezing and coarse recording happen sample by
+    sample. 200 samples is 3 minutes at 1 s sampling but over an hour at 20 s.
+    """
+    pv_flat_run: int = 300          # above every flat run in an expert-labelled normal loop
+                                    # (ISDB buildings.8, 'no oscillation', reaches 275)
+    op_flat_run: int = 200
+    op_levels_min: int = 50         # fewer distinct OP values = coarsely recorded OP
+    pv_levels_min: int = 20         # fewer distinct PV values = quantised sensor
+    saturation_fraction: float = 0.05
+    saturation_min_run: int = 3     # a touch of the limit is not saturation; a stay is
+    moving_sp_fraction: float = 0.5 # SP changing in most samples = likely cascade slave
+    pi_r2_min: float = 0.5          # below: 'PI law not confirmed' - a note, not an exclusion
+    min_segment: int = 150          # shortest regulatory segment worth analysing (5 x AR order)
