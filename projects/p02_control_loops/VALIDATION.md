@@ -306,6 +306,9 @@ pass oscillation detection will skip at least one labelled stiction case.
 
 Code: `chemai/data/loop_sim.py` · `chemai/features/loop_performance.py` · `chemai/data/sacac.py`.
 Numbers below: `projects/p02_control_loops/week1.py` → `results.json`, seeded, 120 plants × 2 seeds.
+**Reference environment:** Python 3.14, NumPy 2.5.3, aarch64 (WSL). Other environments reproduce the
+conclusions, but borderline runs near the oscillation threshold can flip — a few fractions differ by
+up to ~0.1. Published numbers come from this environment only.
 
 ### 11.1 Design decisions the simulator forced
 
@@ -323,7 +326,7 @@ Fraction of runs with a regular oscillation (regularity > 1), and median Harris 
 | Condition | Oscillating F · P · L | Harris F | Harris P | Harris L |
 |---|---|---|---|---|
 | healthy | 0 · 0 · 0 | 0.60 [0.36–0.83] | 0.43 [0.36–0.67] | 0.45 [0.25–0.58] |
-| stiction | 0.56 · 0.44 · 0.56 | 0.17 [0.09–0.42] | 0.25 [0.11–0.41] | 0.14 [0.08–0.25] |
+| stiction | 0.56 · 0.50 · 0.56 | 0.17 [0.09–0.42] | 0.25 [0.11–0.41] | 0.14 [0.08–0.25] |
 | tuning_tight | 1.00 · 0.69 · 0.69 | 0.29 [0.18–0.45] | **0.62** [0.47–0.70] | **0.60** [0.50–0.75] |
 | tuning_sluggish | 0 · 0.19 · 0.13 | 0.18 [0.09–0.54] | 0.11 [0.02–0.18] | 0.02 [0.00–0.19] |
 | external_oscillation | 1.00 · 0.88 · 1.00 | 0.07 [0.01–0.30] | 0.04 [0.01–0.09] | 0.02 [0.01–0.04] |
@@ -336,14 +339,14 @@ Fraction of runs with a regular oscillation (regularity > 1), and median Harris 
 
 ### 11.3 ⚠️ A sticky valve does not always oscillate
 
-Only 44–56% of simulated stiction runs produce a regular oscillation. What decides it is the slip
+Only 50–56% of simulated stiction runs produce a regular oscillation. What decides it is the slip
 jump `J` against the load-noise standard deviation:
 
 | J / σ_load | F | P | L |
 |---|---|---|---|
 | < 1 | 0.00 (n=6) | 0.00 (n=7) | 0.00 (n=1) |
-| 1–2 | 0.15 (n=13) | 0.43 (n=14) | 0.20 (n=5) |
-| > 2 | 0.86 (n=21) | 0.63 (n=19) | 0.65 (n=34) |
+| 1–2 | 0.23 (n=13) | 0.36 (n=14) | 0.20 (n=5) |
+| > 2 | 0.95 (n=21) | 0.68 (n=19) | 0.65 (n=34) |
 
 Below the noise, the valve is dithered by the disturbance and the limit cycle never forms. **The
 fault exists but is not visible in OP or PV — only in MV, which plants do not record.** This is the
