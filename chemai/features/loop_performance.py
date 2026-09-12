@@ -14,6 +14,14 @@ from __future__ import annotations
 import numpy as np
 
 
+def cycles_in_record(n: int, period: float) -> float:
+    """How many oscillation periods the record holds. Below about ten, the
+    regularity index is unreliable however clean the signal is (VALIDATION.md
+    15.1): the same sine in noise is detected in half the runs at 10 cycles
+    and in all of them at 20."""
+    return float(n / period) if period and np.isfinite(period) else 0.0
+
+
 def delay_samples(theta: float, ts: float) -> int:
     """Discrete time delay d, in samples, for dead time `theta` at sampling `ts`.
 
@@ -79,9 +87,14 @@ def oscillation_regularity(x: np.ndarray) -> tuple[float, float]:
     (after Thornhill, Huang & Zhang, 2003).
 
     Returns (period_in_samples, r) with r = mean(T) / (3 std(T)), T being the
-    intervals between successive ACF zero crossings, doubled. r > 1 is
-    taken as a regular oscillation. Fewer than four zero crossings gives
-    (nan, 0.0): nothing periodic to measure.
+    intervals between successive ACF zero crossings, doubled. Fewer than four
+    zero crossings gives (nan, 0.0): nothing periodic to measure - usually a
+    record too short for its own period, not a quiet loop.
+
+    r is a CONFIDENCE SCORE, not a gate. The published r > 1 does not separate
+    the real data: seven runs of one sticky valve score 0.98 to 3.15 with no
+    gap (VALIDATION.md 15.2). Carry r into the diagnosis; never use it to
+    decide which loops get diagnosed.
 
     The ACF is taken to half the record length. Detrend before calling.
     """

@@ -254,9 +254,8 @@ same signal:
 > The moving `SP` and the irregular sampling are properties of the data; **not handling them**
 > was the plotting choice.
 
-**One stiction run fails the oscillation gate:** `stiction-P-oilgas-DB-6` has regularity 0.98 (< 1),
-and `DB-1`, `DB-2`, `DB-5` sit at 1.2–1.3. A pipeline that runs shape analysis only on loops that
-pass oscillation detection will skip at least one labelled stiction case.
+**One stiction run sits below the published threshold:** `stiction-P-oilgas-DB-6` has regularity 0.98,
+and `DB-1`, `DB-2`, `DB-5` sit at 1.2–1.3. Pursued in §15: the gate was removed.
 
 ---
 
@@ -276,6 +275,8 @@ pass oscillation detection will skip at least one labelled stiction case.
 | Cascade slaves are **diagnosed, not scored** with Harris | §13.3 |
 | Every loop passes the five data-quality checks **before** diagnosis; flags, never repairs | §14 |
 | PI-law R² is a **note**, never an exclusion | §14.5 |
+| Oscillation regularity is a **confidence score**, never a gate before diagnosis | §15.3 |
+| Records shorter than ten periods report **"insufficient data"**, not a negative result | §15.1 |
 | Loader returns a sampling time **only when description and data agree** | §11.6 |
 | Stiction index used as a **feature**, not as a label | §7 |
 | Detrend against `SP` before shape analysis | §8 |
@@ -671,6 +672,79 @@ tuning diagnosis. The label rule now matches whole words.
 
 ---
 
+## 15. Week 2, part 2 — oscillation detection is a score, not a gate
+
+Code: `oscillation_regularity` and `cycles_in_record` in `chemai/features/loop_performance.py`.
+Evidence: `projects/p02_control_loops/week2_oscillation.py`, run on **76 labelled real loops**
+(SACAC + ISDB, duplicates removed). Teaching version: notebook `p02_week2_oscillation`.
+
+### 15.1 The index needs cycles, not cleanliness
+
+A sine buried in noise, 1200 samples (20 periods): detected in **100 %** of runs at noise = 0.5 ×
+amplitude, **83 %** at noise = amplitude, **0 %** at 1.5 ×. But the same signal at noise = 0.8 ×
+amplitude is detected in half the runs at 600 samples (10 periods) and in all of them at 1200. The
+autocorrelation pools evidence across periods, so **record length matters more than noise**.
+
+> **Working rule: at least ten periods in the record**, twenty preferred (`min_cycles = 10`).
+
+### 15.2 ⭐ The published threshold does not separate the real classes
+
+| Label | Loops | Above r = 1 | Median r |
+|---|---:|---:|---:|
+| stiction | 36 | 0.78 | 3.28 |
+| tuning (tight, marginal) | 4 | 0.75 | 5.03 |
+| external disturbance | 12 | 0.58 | 1.49 |
+| no stiction | 7 | **0.43** | 0.77 |
+| no oscillation · healthy | 5 | 0.00 | 0.35 |
+| tuning_sluggish | 12 | 0.00 | 0.15 |
+
+**Eight of 36 labelled stiction loops score at or below 1.** Six of them have a record shorter than
+ten periods (§15.1) — `chem8`, `chem9`, `pulp1`, `chem20` all hold about four periods. `DB-6` does
+not: 32 periods, score 0.98.
+
+**Three loops labelled "no stiction" score above 1** (`chem73`, `chem75`, `pulp9`). Correctly so:
+"no stiction" answers one question only (§12.2), and a loop oscillating from tuning or an upstream
+disturbance is still "no stiction".
+
+**The decisive evidence — seven runs of ONE physical valve:**
+
+    DB-6  0.98 | DB-2  1.18 | DB-1  1.32 | DB-5  1.33 | DB-4  1.70 | DB-7  1.91 | DB-3  3.15
+
+Same plant, same valve, same fault. The scores form a continuum with no gap, and r = 1 cuts through
+the middle of it. Plotting DB-6 against DB-3 shows both oscillating plainly to the eye; what differs
+is how *equal* the cycle lengths are — which is what the index measures.
+
+This matches Week 1: as the slip jump J approaches the load noise, the limit cycle weakens
+gradually (§11.3). Oscillation is continuous, so a binary gate on it is a modelling choice, not a
+fact about the plant.
+
+### 15.3 ⚠️ Decision — the earlier plan is revised
+
+The Week 2 plan was: detect oscillation, then run shape analysis on the oscillating loops only. The
+open question of §11 asked whether `DB-6` should be excluded. **It should not, and neither should any
+loop: the gate is removed.**
+
+| Option | Cost |
+|---|---|
+| Lower the threshold until `DB-6` passes | Tuning a threshold on one known answer — fitting the test set. And loops that do not oscillate would pass with it |
+| Keep the gate at r = 1 | Loses 22 % of labelled stiction loops before they are ever diagnosed |
+| **No gate: carry r as a confidence score** | Some diagnoses are reported with low confidence — which is the honest outcome |
+
+**Adopted:** every loop that passes the data-quality checks (§14) is diagnosed. `r` travels with the
+result as a confidence band: a strong regular oscillation means a trustworthy shape and a confident
+diagnosis; a weak one means *likely*, not *confirmed*.
+
+**One exception, and it is not a diagnosis:** fewer than four ACF zero crossings, or fewer than
+`min_cycles` periods in the record, is reported as **"insufficient data"** — a request for a longer
+record, not a negative finding. Six labelled loops fall here, `other-F-horch-2` and
+`tuning-L-paper-horch` among them.
+
+**A zero score means two different things**, and the report must not confuse them: a record too short
+to judge (the six above), or a loop that genuinely does not oscillate over a long enough record (the
+twelve sluggish DB files, 14 periods each). Only the second is evidence about the loop.
+
+---
+
 ## Open questions
 
 - Does the shape test survive **detrending and cycle isolation** on all thirteen stiction files,
@@ -683,12 +757,10 @@ tuning diagnosis. The label rule now matches whole words.
   tight quality loop, or neither?
 - Should the week-2 classifier's positive class be *stiction* or *stiction that produces a limit
   cycle* — given that below J/σ ≈ 1 the fault is invisible in OP and PV (§11.3)?
-- Should shape analysis run on every loop, or only on those that pass oscillation detection —
-  given that `DB-6` fails the gate?
 - Do the twelve sluggish files belong in the study at all, or are they a separate problem —
   **loop not oscillating but not controlling either**?
 
 ---
 
-*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, section 14 in Week 2. Every constraint came from
+*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–15 in Week 2. Every constraint came from
 reading the data or the physics, not from a metric.*

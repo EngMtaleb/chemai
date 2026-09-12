@@ -3,7 +3,7 @@ derived analytically, not taken from a previous run."""
 import numpy as np
 import pytest
 
-from chemai.features import (delay_samples, harris_index, harris_sensitivity,
+from chemai.features import (cycles_in_record, delay_samples, harris_index, harris_sensitivity,
                              oscillation_regularity)
 
 
@@ -60,3 +60,19 @@ def test_regularity_sine_vs_noise():
     _, r_noise = oscillation_regularity(np.random.default_rng(0).normal(size=3000))
     assert r_noise < 1
     assert oscillation_regularity(np.ones(100)) == (pytest.approx(np.nan, nan_ok=True), 0.0)
+
+
+def test_cycles_in_record():
+    assert cycles_in_record(1200, 60) == 20.0
+    assert cycles_in_record(849, 212) == pytest.approx(4.0, abs=0.01)   # ISDB pulpPapers.1
+    assert cycles_in_record(1000, float("nan")) == 0.0                  # no period found
+
+
+def test_regularity_needs_enough_cycles():
+    """A clean sine is missed when the record holds only a few periods -
+    the limitation behind the four real loops that score exactly 0."""
+    t = np.arange(700)
+    long_record = np.sin(2 * np.pi * t / 60)                            # ~12 cycles
+    short_record = np.sin(2 * np.pi * t[:180] / 60)                     # 3 cycles
+    assert oscillation_regularity(long_record)[1] > 1
+    assert oscillation_regularity(short_record) == (pytest.approx(np.nan, nan_ok=True), 0.0)

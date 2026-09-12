@@ -34,6 +34,7 @@ external oscillation — and the **valve position (MV) recorded**, which plant d
 pip install -e ".[viz]"
 python projects/p02_control_loops/week1.py                 # simulator + Harris study
 python projects/p02_control_loops/week2_data_quality.py     # data-quality checks on every real loop
+python projects/p02_control_loops/week2_oscillation.py      # is the loop oscillating at all?
 ```
 
 Data (not committed): SACAC repository in `data/sacac/`; ISDB `isdb10.mat` in `data/isdb/`
@@ -68,7 +69,7 @@ chemai/
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q                              # 91 tests, no data needed
+pytest tests -q                              # 93 tests, no data needed
 python projects/p01_soft_sensor/train.py     # needs data/ populated
 ```
 

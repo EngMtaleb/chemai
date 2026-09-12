@@ -134,7 +134,12 @@ class ControlLoopConfig:
 
     # --- performance and oscillation indices
     harris_ar_order: int = 30
-    regularity_threshold: float = 1.0   # Thornhill et al. (2003)
+    # Thornhill et al. (2003) call r > 1 a regular oscillation. Used as a
+    # CONFIDENCE band in reports, never as a gate before diagnosis: on real
+    # data the classes straddle it (VALIDATION.md 15). Below min_cycles the
+    # index is not reported at all - the record is too short to judge.
+    regularity_threshold: float = 1.0
+    min_cycles: float = 10.0
 
     random_state: int = 42
 
