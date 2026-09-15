@@ -277,6 +277,7 @@ and `DB-1`, `DB-2`, `DB-5` sit at 1.2–1.3. Pursued in §15: the gate was remov
 | PI-law R² is a **note**, never an exclusion | §14.5 |
 | Oscillation regularity is a **confidence score**, never a gate before diagnosis | §15.3 |
 | Records shorter than ten periods report **"insufficient data"**, not a negative result | §15.1 |
+| Shape index is evidence, never a verdict; **baseline 14/19 at precision 0.88** must be beaten | §16.2 |
 | Loader returns a sampling time **only when description and data agree** | §11.6 |
 | Stiction index used as a **feature**, not as a label | §7 |
 | Detrend against `SP` before shape analysis | §8 |
@@ -745,6 +746,76 @@ twelve sluggish DB files, 14 periods each). Only the second is evidence about th
 
 ---
 
+## 16. Week 2, part 3 — shape index: triangular or sinusoidal?
+
+Code: `chemai/features/shape.py`. Evidence: `projects/p02_control_loops/week2_shape.py`.
+Teaching version: notebook `p02_week2_shape`.
+
+Method: He, Wang, Pottmann & Qin (2007). Each half cycle between zero crossings is fitted with a half
+sine and with a free-apex triangle; `SI = MSE_sine / (MSE_sine + MSE_triangle)`, near 1 triangular,
+near 0 sinusoidal.
+
+### 16.1 Three limits, measured
+
+| Limit | Evidence | Consequence |
+|---|---|---|
+| **A square wave reads as a sine** | clean waveforms: sine 0.14 · triangle 0.88 · sawtooth 0.79 · **square 0.44** | fast loops are measured on **OP** (the integral ramps it into a triangle), level loops on **PV** (the vessel integrates the square into a triangle) |
+| **Noise collapses every shape onto 0.5** | at noise = 0.3 × amplitude: sine 0.49, triangle 0.53 — a gap of 0.04 | low-pass filter first (`prepare_for_shape`): the gap becomes 0.46 vs 0.65 |
+| **The triangle travels** | `other-F-horch`, labelled *external disturbance*, scores 0.73 | it is one of the three coherent Horch loops (§11.6): it inherited the fingerprint of a sticky valve elsewhere |
+
+**The filter is our decision, not part of the published method.** Seven harmonics, a drift window of
+4 periods, a minimum half cycle of 6 samples. Filtering also rounds a clean triangle from 0.88 to
+0.81 — the price of robustness. Every reported index carries these settings.
+
+### 16.2 ⭐ The baseline
+
+52 labelled real loops hold at least ten periods (24 are skipped for §15.1). Of those, 31 oscillate
+regularly (r > 1). Shape index alone, stiction against everything else:
+
+| Threshold | Caught | False alarms | Precision |
+|---:|---:|---:|---:|
+| 0.50 | 17 of 19 | 7 | 0.71 |
+| 0.55 | 14 of 19 | 7 | 0.67 |
+| **0.60** | **14 of 19** | **2** | **0.88** |
+| 0.65 | 12 of 19 | 2 | 0.86 |
+| 0.70 | 10 of 19 | 2 | 0.83 |
+
+**Adopted: 0.60 — 74 % recall at 88 % precision.** This is the number the Week 2 classifier must
+beat. A classifier that does not beat one threshold on one feature does not earn its complexity.
+
+Medians by label behave as the physics predicts: stiction 0.72, sluggish tuning 0.63, no stiction
+0.62, tuning 0.49, **tight tuning 0.34**. But the ranges overlap heavily, which is why the index is
+evidence and not a verdict.
+
+### 16.3 What the misses teach
+
+**Stiction read as sinusoidal (5):**
+
+- `buildings.6` is labelled *stiction **and tight tuning*** — the sinusoidal component of the tuning
+  problem pulls the index down (0.46). Mixed faults blur the fingerprint.
+- `chem32` (0.22) has an extremely regular oscillation (r = 35) — a near-perfect sine, which is
+  evidence *against* the stiction label rather than against the index.
+- `chem35` (r = 1.04) is barely oscillating: a weak fingerprint, as Week 1 predicted when the slip
+  jump approaches the noise (§11.3).
+
+**Not stiction, read as triangular (2):** the travelling fingerprint above, and `chem73`, a level
+loop labelled *no stiction* — which answers only the stiction question (§12.2).
+
+**And a third data point in an old dispute:** `chem25`, labelled *stiction* by SACAC and *possible
+marginal stability* by ISDB (§12.3), scores 0.77 — triangular, leaning toward the SACAC label.
+Evidence, not a ruling.
+
+### 16.4 Carried into the classifier
+
+| Rule | Basis |
+|---|---|
+| Loop type selects the signal: F/P/Q/T → OP, L → PV | §16.1 |
+| Shape is measured only where the record holds ≥ 10 periods | §15.1 |
+| Filter settings reported with every index | §16.1 |
+| **Baseline to beat: 14 of 19 at precision 0.88** | §16.2 |
+
+---
+
 ## Open questions
 
 - Does the shape test survive **detrending and cycle isolation** on all thirteen stiction files,
@@ -762,5 +833,5 @@ twelve sluggish DB files, 14 periods each). Only the second is evidence about th
 
 ---
 
-*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–15 in Week 2. Every constraint came from
+*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–16 in Week 2. Every constraint came from
 reading the data or the physics, not from a metric.*

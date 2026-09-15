@@ -35,6 +35,7 @@ pip install -e ".[viz]"
 python projects/p02_control_loops/week1.py                 # simulator + Harris study
 python projects/p02_control_loops/week2_data_quality.py     # data-quality checks on every real loop
 python projects/p02_control_loops/week2_oscillation.py      # is the loop oscillating at all?
+python projects/p02_control_loops/week2_shape.py            # triangular or sinusoidal? (baseline)
 ```
 
 Data (not committed): SACAC repository in `data/sacac/`; ISDB `isdb10.mat` in `data/isdb/`
@@ -57,7 +58,7 @@ chemai/
 ├── config.py        every constant in one place
 ├── data/            loading · derived-column detection · campaign split
 │                    SACAC and ISDB loaders · control-loop simulator
-├── features/        the form the physics requires · loop performance · data quality
+├── features/        the form the physics requires · loop performance · data quality · shape
 ├── models/          estimator + uncertainty + envelope
 ├── evaluation/      metrics, including the ones usually skipped
 └── api/             FastAPI service
@@ -69,7 +70,7 @@ chemai/
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q                              # 93 tests, no data needed
+pytest tests -q                              # 107 tests, no data needed
 python projects/p01_soft_sensor/train.py     # needs data/ populated
 ```
 

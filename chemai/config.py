@@ -140,6 +140,12 @@ class ControlLoopConfig:
     # index is not reported at all - the record is too short to judge.
     regularity_threshold: float = 1.0
     min_cycles: float = 10.0
+    # shape index (He et al., 2007): >0.6 triangular, <0.4 sinusoidal. 0.6 on
+    # 31 real oscillating loops catches 15 of 20 stiction cases with 3 false
+    # alarms - the BASELINE any classifier must beat (VALIDATION.md 16).
+    shape_triangular: float = 0.6
+    shape_sinusoidal: float = 0.4
+    shape_harmonics: int = 7
 
     random_state: int = 42
 
