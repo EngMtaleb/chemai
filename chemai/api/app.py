@@ -20,6 +20,7 @@ import os
 import pickle
 
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from chemai import __version__
@@ -90,6 +91,12 @@ def create_app(cfg: SoftSensorConfig | None = None) -> FastAPI:
         lifespan=lifespan,
     )
     app.state.cfg = cfg
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_methods=["GET", "POST"],
+        allow_headers=["*"],
+    )
 
     @app.exception_handler(ValueError)
     async def value_error_handler(request: Request, exc: ValueError):
