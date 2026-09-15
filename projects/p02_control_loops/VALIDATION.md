@@ -278,6 +278,8 @@ and `DB-1`, `DB-2`, `DB-5` sit at 1.2–1.3. Pursued in §15: the gate was remov
 | Oscillation regularity is a **confidence score**, never a gate before diagnosis | §15.3 |
 | Records shorter than ten periods report **"insufficient data"**, not a negative result | §15.1 |
 | Shape index is evidence, never a verdict; **baseline 14/19 at precision 0.88** must be beaten | §16.2 |
+| **Baseline adopted** over the classifier until the simulation gap closes | §17.3 |
+| Buried stiction stays in training; its cost is **measured, not hidden** | §17.1 |
 | Loader returns a sampling time **only when description and data agree** | §11.6 |
 | Stiction index used as a **feature**, not as a label | §7 |
 | Detrend against `SP` before shape analysis | §8 |
@@ -816,6 +818,85 @@ Evidence, not a ruling.
 
 ---
 
+## 17. Week 2, part 4 — the classifier, and a negative result
+
+Code: `chemai/models/loop_classifier.py`. Evidence:
+`projects/p02_control_loops/week2_classifier.py`. Teaching version: notebook
+`p02_week2_classifier`.
+
+Five conditions, three features per loop (Harris · regularity · shape), plus `cycles` and a
+`shape_missing` flag. Random forest, `GroupKFold` by simulated loop. Loop type selects the shape
+signal and is never a feature (§6). **Every rule was fixed before any result was seen.**
+
+### 17.1 On simulation — and the answer to the Week 1 open question
+
+Cross-validated accuracy **0.83**. The weakest class is the one that matters: **stiction recall
+0.67**, with the misses going mostly to `tuning_sluggish` and `healthy`.
+
+Splitting stiction by how far the slip jump J stands above the load noise:
+
+| Visibility | Loops | Recall |
+|---|---:|---:|
+| buried (J < noise) | 12 | **0.50** |
+| marginal (1–2 ×) | 12 | 0.50 |
+| visible (J > 2 × noise) | 24 | 0.83 |
+
+> **This settles the open question of §11.3.** Buried stiction loops stay in the training set, and
+> their cost is measured rather than hidden: **half of them cannot be recovered from OP and PV by any
+> model**, because the fingerprint is not in the data. Logging the valve position would recover them.
+> This is the project's strongest engineering recommendation, now quantified.
+
+### 17.2 ⚠️ On plant data — the classifier does not beat the baseline
+
+Trained on all simulation, applied **once** to 57 labelled real loops. On the 22 loops the baseline
+was measured on (§16.2):
+
+| | Caught | False alarms | Precision |
+|---|---:|---:|---:|
+| Baseline (shape > 0.6) | **12 of 14** | **2** | **0.86** |
+| Classifier | 11 of 14 | 3 | 0.79 |
+
+Worse on both counts. And the errors are not random: **eight real stiction loops are called
+`tuning_sluggish`.**
+
+**The cause, measured:**
+
+| Median feature | Simulation | Real |
+|---|---:|---:|
+| **Harris** | **0.22** | **0.07** |
+| regularity | 0.89 | 1.32 |
+| cycles | 52 | 22 |
+| shape | 0.61 | 0.63 |
+
+Harris is three times lower on plant data. Two reasons, both known in advance: the dead time is
+unknown in a plant, so the minimum delay (2 samples) is used for every loop — and §11.4 measured that
+an understated delay **lowers** the index; and averaging level loops score near zero by design
+(§11.5). The model learned from simulation that a low Harris means sluggish tuning, so it reads real
+stiction loops as sluggish. Feature importances confirm the exposure: regularity 0.37, cycles 0.23,
+**Harris 0.21**, shape 0.18 — most of the decision rests on the two features with the largest
+simulation-to-plant gap.
+
+### 17.3 What is adopted, and what is not
+
+**Adopted: the baseline.** A regular oscillation with a triangular shape is stiction; everything else
+is *undetermined*. `baseline_predict` in the model module. Simpler, more honest, and better.
+
+**Not done, deliberately:** no retraining on real data, no feature tuning after seeing the result.
+The external test was spent; spending it again would make it training data and every later number a
+fiction (§6).
+
+**Three routes, each to be developed on simulation alone and tested once:**
+
+1. **Drop Harris** — the feature most exposed to the unknown dead time.
+2. **Estimate the dead time from the data** (OP-PV cross-correlation) instead of assuming it.
+3. **Close the simulation gap** — setpoint changes, cascade, coarse archiving. Already scheduled as
+   Weeks 4 and 6.
+
+> A negative result with its cause measured is the outcome the external test set exists to produce.
+> The gap between 0.83 on simulation and a baseline loss on plant data **is** the finding.
+
+---
+
 ## Open questions
 
 - Does the shape test survive **detrending and cycle isolation** on all thirteen stiction files,
@@ -826,12 +907,10 @@ Evidence, not a ruling.
 - `stiction-P-oilgas` is stiction in SACAC and possible marginal stability in ISDB: which stands?
 - Which of the three coherent `horch` loops (§11.6) is the source — the sticky flow valve, the
   tight quality loop, or neither?
-- Should the week-2 classifier's positive class be *stiction* or *stiction that produces a limit
-  cycle* — given that below J/σ ≈ 1 the fault is invisible in OP and PV (§11.3)?
 - Do the twelve sluggish files belong in the study at all, or are they a separate problem —
   **loop not oscillating but not controlling either**?
 
 ---
 
-*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–16 in Week 2. Every constraint came from
+*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2. Every constraint came from
 reading the data or the physics, not from a metric.*

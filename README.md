@@ -36,15 +36,20 @@ python projects/p02_control_loops/week1.py                 # simulator + Harris 
 python projects/p02_control_loops/week2_data_quality.py     # data-quality checks on every real loop
 python projects/p02_control_loops/week2_oscillation.py      # is the loop oscillating at all?
 python projects/p02_control_loops/week2_shape.py            # triangular or sinusoidal? (baseline)
+python projects/p02_control_loops/week2_classifier.py       # classifier vs baseline
 ```
 
 Data (not committed): SACAC repository in `data/sacac/`; ISDB `isdb10.mat` in `data/isdb/`
 (from `sites.ualberta.ca/~bhuang/ISDB.zip` — cite Jelali & Huang, 2010).
 
-First finding: the Harris index rates tight-tuned pressure and level loops **above** healthy ones.
+Findings so far: the Harris index rates tight-tuned pressure and level loops **above** healthy ones;
+half of all stiction that sits below the load noise is unrecoverable from OP and PV alone; and a
+five-class classifier trained on simulation does **not** beat a single-feature baseline on plant data.
 📄 `projects/p02_control_loops/VALIDATION.md`
 
 **Explicit limits**
+- Diagnoses stiction and valve saturation. Other actuator faults (positioner hysteresis, air-supply
+  leaks, wrong valve sizing) are out of scope: no labelled data exists to test them against.
 - Cascade loops are **diagnosed** — which loop is the source — but not **scored**. Assessing the joint
   performance of master and slave with a cascade-specific Harris index is advanced research that
   would take weeks, and is out of scope.
@@ -70,7 +75,7 @@ chemai/
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q                              # 107 tests, no data needed
+pytest tests -q                              # 116 tests, no data needed
 python projects/p01_soft_sensor/train.py     # needs data/ populated
 ```
 
