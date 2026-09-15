@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Distillation Soft Sensor — Live Demo</title>
+<style>
+:root{
+  --bg:#F5F8FA; --card:#FFFFFF; --line:#DCE6EC; --ink:#12222E;
+  --dim:#5A7488; --cy:#0E7C99; --am:#B96C0A; --rd:#C0392B; --gr:#2E8B62;
+  --f:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  --m:"SF Mono",Menlo,Consolas,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);font-family:var(--f);color:var(--ink);
+     min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:40px 20px}
+.wrap{width:min(920px,100%)}
+
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:34px}
+.brand{display:flex;align-items:center;gap:13px}
+.mark{width:34px;height:34px;border:1.5px solid var(--cy);border-radius:6px;
+      display:grid;place-items:center;font:600 12px var(--m);color:var(--cy)}
+.bname{font:500 11px var(--f);letter-spacing:2.4px;color:var(--dim);text-transform:uppercase}
+#dot{display:flex;align-items:center;gap:8px;font:500 11px var(--f);
+     letter-spacing:1.4px;color:var(--dim);text-transform:uppercase}
+.led{width:8px;height:8px;border-radius:50%;background:#C8D4DC}
+.led.ok{background:var(--gr)} .led.bad{background:var(--rd)}
+
+h1{font:600 34px/1.2 var(--f);letter-spacing:-.8px;margin-bottom:10px}
+.sub{font:400 17px/1.6 var(--f);color:var(--dim);max-width:62ch;margin-bottom:32px}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;
+       padding:28px 30px;margin-bottom:20px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
+label{display:block;font:600 10px var(--f);letter-spacing:2px;color:var(--dim);
+      text-transform:uppercase;margin-bottom:8px}
+input{width:100%;font:400 22px var(--m);padding:13px 15px;border:1px solid var(--line);
+      border-radius:8px;background:#FBFDFE;color:var(--ink)}
+input:focus{outline:none;border-color:var(--cy);background:#fff}
+.hint{font:400 12px var(--f);color:#8DA3B2;margin-top:7px}
+
+.btns{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+button{font:600 13px var(--f);letter-spacing:.4px;padding:13px 24px;border:0;
+       border-radius:8px;cursor:pointer;background:var(--cy);color:#fff}
+button:hover{background:#0B6880}
+button.ghost{background:#EDF3F6;color:var(--dim);font-weight:500;padding:11px 16px;font-size:12px}
+button.ghost:hover{background:#DFEAF0;color:var(--ink)}
+.presets{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.plabel{font:600 10px var(--f);letter-spacing:2px;color:#9AAFBC;text-transform:uppercase;margin-bottom:10px}
+
+#out{display:none}
+#out.on{display:block;animation:in .3s ease}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.value{text-align:center;padding:14px 0 26px}
+.vnum{font:200 76px/1 var(--f);letter-spacing:-3px;color:var(--ink)}
+.vunit{font:400 15px var(--f);color:var(--dim);margin-top:10px}
+
+.band{display:flex;align-items:center;justify-content:center;gap:14px;
+      padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.bend{font:400 20px var(--m);color:var(--dim)}
+.bbar{flex:1;max-width:220px;height:5px;background:linear-gradient(90deg,#DCE9EF,var(--cy),#DCE9EF);border-radius:3px}
+.blab{font:600 10px var(--f);letter-spacing:2px;color:#9AAFBC;text-transform:uppercase;
+      text-align:center;margin-top:12px}
+
+.verdict{display:flex;gap:14px;align-items:flex-start;padding:20px 22px;
+         border-radius:10px;margin-top:22px}
+.verdict.ok{background:#EEF8F3;border:1px solid #BFE3D2}
+.verdict.warn{background:#FDF6EA;border:1px solid #EDD9B6}
+.verdict.bad{background:#FDF0EE;border:1px solid #F0C9C3}
+.vicon{font-size:20px;line-height:1.2}
+.vtitle{font:600 15px var(--f);margin-bottom:5px}
+.vtext{font:400 14px/1.65 var(--f);color:var(--dim)}
+.verdict.ok .vtitle{color:var(--gr)}
+.verdict.warn .vtitle{color:var(--am)}
+.verdict.bad .vtitle{color:var(--rd)}
+
+.meta{display:flex;gap:26px;margin-top:20px;flex-wrap:wrap}
+.mitem{font:400 12px var(--f);color:#8DA3B2}
+.mitem b{font-family:var(--m);color:var(--dim);font-weight:500}
+
+footer{font:400 12px/1.8 var(--f);color:#8DA3B2;text-align:center;margin-top:16px;max-width:62ch}
+footer b{color:var(--dim);font-weight:600}
+a{color:var(--cy);text-decoration:none}
+a:hover{text-decoration:underline}
+@media(max-width:620px){.row{grid-template-columns:1fr}.vnum{font-size:58px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="mark">MT</div>
+      <div class="bname">Engineering in Motion</div>
+    </div>
+    <div id="dot"><span class="led" id="led"></span><span id="dtxt">checking…</span></div>
+  </header>
+
+  <h1>Distillation Soft Sensor</h1>
+  <p class="sub">
+    Estimates the laboratory vapour pressure of the bottoms product from two process
+    measurements — and tells you when not to trust the answer.
+  </p>
+
+  <div class="panel">
+    <div class="row">
+      <div>
+        <label for="t">Temperature · Temp9</label>
+        <input id="t" type="number" value="450" step="0.1">
+        <div class="hint">absolute scale · training range 400 – 507</div>
+      </div>
+      <div>
+        <label for="p">Pressure · PressureC1</label>
+        <input id="p" type="number" value="228" step="0.1">
+        <div class="hint">training range 200 – 255</div>
+      </div>
+    </div>
+
+    <div class="btns">
+      <button onclick="go()">Estimate</button>
+    </div>
+
+    <div class="presets">
+      <div class="plabel">Try these</div>
+      <div class="btns">
+        <button class="ghost" onclick="set(450,228)">Normal operation</button>
+        <button class="ghost" onclick="set(520,200)">Outside the envelope</button>
+        <button class="ghost" onclick="set(45,228)">Celsius by mistake</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="out">
+    <div class="value">
+      <div class="vnum" id="vnum">—</div>
+      <div class="vunit">estimated vapour pressure</div>
+    </div>
+
+    <div id="bandWrap">
+      <div class="band">
+        <span class="bend" id="lo">—</span>
+        <span class="bbar"></span>
+        <span class="bend" id="hi">—</span>
+      </div>
+      <div class="blab">95% prediction interval</div>
+    </div>
+
+    <div class="verdict" id="verdict">
+      <div class="vicon" id="vicon">✓</div>
+      <div>
+        <div class="vtitle" id="vtitle"></div>
+        <div class="vtext" id="vtext"></div>
+      </div>
+    </div>
+
+    <div class="meta">
+      <span class="mitem">envelope distance · <b id="mdist">—</b></span>
+      <span class="mitem">threshold · <b>3.035</b></span>
+      <span class="mitem">residual σ · <b>1.508</b></span>
+    </div>
+  </div>
+
+  <footer>
+    Trained on 163 rows from one operating campaign, tested on 67 from another with one third
+    the reboiler duty. <b>R² 0.980 · MAE 0.645 · interval coverage 94%.</b><br><br>
+    This is an interpolating estimate between laboratory samples — <b>not an off-specification
+    alarm</b>, because it under-predicts high values.<br><br>
+    Free hosting · the first request after idle may take up to a minute to wake ·
+    <a href="https://chemai-tr2c.onrender.com/docs" target="_blank">API documentation</a>
+  </footer>
+</div>
+
+<script>
+const API = "https://chemai-tr2c.onrender.com";
+
+function set(t, p){
+  document.getElementById('t').value = t;
+  document.getElementById('p').value = p;
+  go();
+}
+
+async function health(){
+  const led = document.getElementById('led'), txt = document.getElementById('dtxt');
+  try{
+    const r = await fetch(API + "/health");
+    const d = await r.json();
+    if(d.model_fitted){ led.className = 'led ok'; txt.textContent = 'service live'; }
+    else { led.className = 'led bad'; txt.textContent = 'degraded'; }
+  }catch(e){ led.className = 'led bad'; txt.textContent = 'unreachable'; }
+}
+
+function show(kind, icon, title, text){
+  const v = document.getElementById('verdict');
+  v.className = 'verdict ' + kind;
+  document.getElementById('vicon').textContent = icon;
+  document.getElementById('vtitle').textContent = title;
+  document.getElementById('vtext').textContent = text;
+  document.getElementById('out').classList.add('on');
+}
+
+async function go(){
+  const t = parseFloat(document.getElementById('t').value);
+  const p = parseFloat(document.getElementById('p').value);
+  document.getElementById('vnum').textContent = '…';
+  document.getElementById('out').classList.add('on');
+
+  try{
+    const r = await fetch(API + "/predict", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({temperature: t, pressure: p})
+    });
+    const d = await r.json();
+
+    if(r.status === 422){
+      document.getElementById('vnum').textContent = '—';
+      document.getElementById('bandWrap').style.display = 'none';
+      document.getElementById('mdist').textContent = '—';
+      const msg = (d.detail && d.detail[0] && d.detail[0].msg) || 'invalid input';
+      show('bad', '✕', 'Rejected before reaching the model',
+           msg.replace(/^Value error, /, '') +
+           " — the request never reached the estimator.");
+      return;
+    }
+
+    document.getElementById('bandWrap').style.display = 'block';
+    document.getElementById('vnum').textContent = d.vapour_pressure;
+    document.getElementById('lo').textContent = d.interval_lower;
+    document.getElementById('hi').textContent = d.interval_upper;
+    document.getElementById('mdist').textContent = d.distance;
+
+    if(d.in_envelope){
+      show('ok', '✓', 'Inside the validated envelope',
+           'These conditions resemble the data the model was trained and tested on.');
+    } else {
+      show('warn', '⚠', 'Outside the validated envelope',
+           'The model still returns a number, but this combination of temperature and pressure ' +
+           'was never seen. On the test set, error on flagged points was 7.8× worse. Do not rely on it.');
+    }
+  }catch(e){
+    document.getElementById('vnum').textContent = '—';
+    show('bad', '✕', 'Could not reach the service',
+         'Free hosting sleeps after idle. Wait a moment and try again.');
+  }
+}
+
+health();
+</script>
+</body>
+</html>
