@@ -280,6 +280,9 @@ and `DB-1`, `DB-2`, `DB-5` sit at 1.2–1.3. Pursued in §15: the gate was remov
 | Shape index is evidence, never a verdict; **baseline 14/19 at precision 0.88** must be beaten | §16.2 |
 | **Baseline adopted** over the classifier until the simulation gap closes | §17.3 |
 | Buried stiction stays in training; its cost is **measured, not hidden** | §17.1 |
+| Location weights come from the **plant**, never invented; their absence is declared | §18.1 |
+| Severity is compared **only within one plant**, in its own units | §18.5 |
+| Data-quality flags outrank the shape in the diagnosis | §18.1 |
 | Loader returns a sampling time **only when description and data agree** | §11.6 |
 | Stiction index used as a **feature**, not as a label | §7 |
 | Detrend against `SP` before shape analysis | §8 |
@@ -897,6 +900,107 @@ fiction (§6).
 
 ---
 
+## 18. Week 3 — from diagnosis to a report
+
+Code: `chemai/evaluation/loop_report.py` · weights and actions in `ReportConfig` and `ACTIONS`.
+Evidence: `projects/p02_control_loops/week3_report.py`. Teaching version: notebook
+`p02_week3_report`.
+
+A plant has hundreds of loops and one question: **which ten do I fix this week, and who fixes them?**
+
+    priority = severity x location weight x fault weight x confidence
+
+### 18.1 Where each factor comes from
+
+| Factor | Source | Why |
+|---|---|---|
+| Severity | data — std of the control error | how far the loop is from its target |
+| **Location weight** | **the plant** — an engineer grades each loop 1–3 once | how much that costs |
+| Fault weight | declared constants | the repair differs in cost and owner |
+| Confidence | data — oscillation regularity (§15) | do not send maintenance after weak evidence |
+
+**Location grades: 3 sets specification or safety · 2 consumes energy · 1 utility or storage.**
+Three, not five, because the table must be fillable in one sitting; five invites an argument that
+ends with no table at all.
+
+**Fault weights: stiction 1.0 · saturation 0.8 · tuning 0.6 · external oscillation 0.4 ·
+undetermined 0.2.** Engineering judgement, **not measured** — no repair cost has been logged in any
+plant. Stiction degrades with time and needs maintenance and possibly a shutdown; bad tuning is an
+hour from the control room. External oscillation is low *not* because it is harmless but because
+**fixing that loop is the wrong action** — it is a victim, and when the source is found it appears at
+full weight. The first site to record what repairs actually cost should replace these constants.
+
+**Two rules that protect the engineer:** every factor stays in its own column, because a ranking
+whose reasons are invisible is not trusted twice; and with no location table the report still runs on
+severity and diagnosis alone and **says so at the top** — no weights are invented.
+
+**Data-quality flags outrank the shape.** A frozen sensor or a loop in manual is not a control
+diagnosis, and calling it stiction would send maintenance after the wrong equipment (§14).
+
+### 18.2 Confidence changes the action, never the appearance
+
+A loop with a large problem and medium confidence must still reach the engineer. Confidence sets
+what is asked for: high → open a work order; medium → **field-check first**; low → collect a longer
+record.
+
+### 18.3 Continuity applies to the action, not to the listing
+
+A loop that oscillated for one week may be a feed upset or a start-up. So a loop appears from its
+first week marked **new — watch**, and becomes **confirmed** with a work order only when it returns.
+**One exception: a frozen sensor is never only watched** — the integral is driving the process away
+while the screen looks calm (§14.1).
+
+### 18.4 ⭐ Eastman — the report finds the published root cause
+
+30 loops from one plant, recorded together, with a schematic to grade locations from. Published root
+cause (Thornhill, Cox & Paulonis, 2003): **tag 22, LC2, sticking valve**, whose oscillation spread
+plant-wide.
+
+| Rank | Loop | Diagnosis | Evidence | Priority |
+|---:|---|---|---|---:|
+| 1 | **22** | **stiction** | period 112 min · regularity 4.79 · shape 0.71 | **2.00** |
+| 2 | 23 | undetermined | period 8 min · regularity 0.77 · shape 0.73 | 0.16 |
+
+**Thirteen times the priority of the second loop**, from three independent indices, with nothing told
+to the program. Location weights were graded from the published schematic; tag 22 was given 2 (a
+level loop feeding the column) and column 3 got 3 — the root cause was **not** favoured by its weight.
+
+**And 29 of 30 loops read `undetermined`.** That is correct behaviour, not a failure: only one loop
+clears the regularity threshold. The report says *"one loop confirmed, the rest I cannot judge"*,
+which is far more honest than ranking thirty loops with manufactured confidence. The reason is the
+subject of Week 5: tag 22's oscillation **propagated**, so the others are shaking with a motion that
+is not theirs.
+
+### 18.5 ⚠️ Severity is only comparable inside one plant
+
+Two independent reasons, both found in the data:
+
+- **Eastman is normalised.** All 30 loops have an error standard deviation of exactly 1.00 — the
+  publishers scaled it to hide plant numbers. Severity carries no information at all.
+- **The single-loop archive mixes units.** SACAC and ISDB loops come from different plants in
+  different engineering units, several already normalised. Ranking their standard deviations would
+  rank by unit, not by cost. One loop scored 55 against 1.0 for the rest purely because of its scale.
+
+So severity is dropped in both runs and the report says so. **A cost ranking is only possible inside
+a plant, with numbers in their own units** — the same confidentiality rule that governs this project,
+applied to us.
+
+### 18.6 The archive run — what a plant sees before it fills the table
+
+76 labelled single loops, no location weights. Diagnoses: 46 undetermined · 16 stiction · 13 tuning ·
+1 manual. **All ten loops in the top ten are stiction, all owned by maintenance** — with no severity
+and no location weights, the ranking reduces to *confident diagnosis × fault weight*, and stiction
+carries the heaviest weight.
+
+**This is the report at its weakest, and it is worth showing.** It is exactly why the location table
+matters: without plant knowledge the output is a stiction list, not a priority list.
+
+Against the published labels: of 36 loops labelled stiction, 14 are read as stiction, 5 as tuning and
+17 as undetermined — consistent with the baseline of §16.2 and with the buried-stiction limit of
+§17.1.
+
+---
+
 ## Open questions
 
 - Does the shape test survive **detrending and cycle isolation** on all thirteen stiction files,
@@ -912,5 +1016,5 @@ fiction (§6).
 
 ---
 
-*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2. Every constraint came from
+*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2, section 18 in Week 3. Every constraint came from
 reading the data or the physics, not from a metric.*

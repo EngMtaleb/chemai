@@ -202,3 +202,67 @@ class DataQualityConfig:
     moving_sp_fraction: float = 0.5 # SP changing in most samples = likely cascade slave
     pi_r2_min: float = 0.5          # below: 'PI law not confirmed' - a note, not an exclusion
     min_segment: int = 150          # shortest regulatory segment worth analysing (5 x AR order)
+
+
+@dataclass(frozen=True)
+class ReportConfig:
+    """Weekly loop report: how loops are ranked, and who is asked to act.
+
+    priority = severity x location weight x fault weight x confidence
+
+    Severity and confidence come from the data; the location weight comes from
+    the PLANT (an engineer fills a table once); the fault weights below are
+    declared constants. See projects/p02_control_loops/VALIDATION.md, 18.
+    """
+
+    # --- fault weights. Engineering judgement, NOT measured: no repair cost has
+    # been recorded in any plant yet. The first site to log what fixes actually
+    # cost should replace them. Stiction degrades, needs maintenance and possibly
+    # a shutdown; bad tuning is an hour of a control engineer's time from the
+    # control room. External oscillation is low NOT because it is harmless, but
+    # because fixing that loop is the wrong action - the loop is a victim.
+    fault_weights: tuple[tuple[str, float], ...] = (
+        ("stiction", 1.0),
+        ("saturation", 0.8),
+        ("tuning", 0.6),
+        ("external_oscillation", 0.4),
+        ("undetermined", 0.2),
+    )
+
+    # --- location weights, written by the plant. 3 = sets specification or
+    # safety, 2 = consumes energy, 1 = utility or storage. Three grades, because
+    # an engineer must be able to fill the table in one sitting; five invites an
+    # argument that ends with no table at all.
+    default_location_weight: int = 1
+    location_grades: tuple[str, ...] = ("utility or storage", "energy", "specification or safety")
+
+    # --- confidence, from the oscillation regularity (VALIDATION.md 15.3)
+    confidence_full: float = 3.0        # regularity at which confidence reaches 1
+    confidence_high: float = 0.7        # above: open a work order
+    confidence_medium: float = 0.4      # above: field check first
+
+    top_n: int = 10
+    consecutive_weeks_to_confirm: int = 2
+
+    def fault_weight(self, diagnosis: str) -> float:
+        return dict(self.fault_weights).get(diagnosis, 0.2)
+
+
+# What the plant should do about each diagnosis, and who owns it. The reasoning
+# is the physics of Week 1, not a lookup invented for the report.
+ACTIONS: dict[str, tuple[str, str]] = {
+    "stiction": ("Field-test the valve: step it in manual and watch the stem",
+                 "maintenance"),
+    "saturation": ("Valve is undersized for the load, or the load has changed",
+                   "process engineering"),
+    "tuning": ("Retune from the control room - no shutdown needed",
+               "control engineering"),
+    "external_oscillation": ("Do NOT retune this loop: find the source first",
+                             "control engineering"),
+    "frozen_sensor": ("URGENT: transmitter stuck while the controller kept acting",
+                      "instrumentation"),
+    "manual": ("Loop is not in automatic - confirm with operations",
+               "operations"),
+    "undetermined": ("Not enough evidence: longer record, or check the loop by hand",
+                     "control engineering"),
+}

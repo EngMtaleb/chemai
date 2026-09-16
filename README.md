@@ -25,7 +25,7 @@ The relationship is thermodynamic, not operational — which is why it survives 
 
 ---
 
-## Project 2 — Control Loop Performance *(in progress — week 2 of 7)*
+## Project 2 — Control Loop Performance *(in progress — week 3 of 7)*
 
 PI loop simulator for flow, pressure and level, with valve stiction, tight and sluggish tuning and
 external oscillation — and the **valve position (MV) recorded**, which plant data lacks.
@@ -37,6 +37,7 @@ python projects/p02_control_loops/week2_data_quality.py     # data-quality check
 python projects/p02_control_loops/week2_oscillation.py      # is the loop oscillating at all?
 python projects/p02_control_loops/week2_shape.py            # triangular or sinusoidal? (baseline)
 python projects/p02_control_loops/week2_classifier.py       # classifier vs baseline
+python projects/p02_control_loops/week3_report.py           # the weekly report
 ```
 
 Data (not committed): SACAC repository in `data/sacac/`; ISDB `isdb10.mat` in `data/isdb/`
@@ -65,7 +66,7 @@ chemai/
 │                    SACAC and ISDB loaders · control-loop simulator
 ├── features/        the form the physics requires · loop performance · data quality · shape
 ├── models/          estimator + uncertainty + envelope
-├── evaluation/      metrics, including the ones usually skipped
+├── evaluation/      metrics, including the ones usually skipped · weekly loop report
 └── api/             FastAPI service
 ```
 
@@ -75,7 +76,7 @@ chemai/
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q                              # 116 tests, no data needed
+pytest tests -q                              # 132 tests, no data needed
 python projects/p01_soft_sensor/train.py     # needs data/ populated
 ```
 
