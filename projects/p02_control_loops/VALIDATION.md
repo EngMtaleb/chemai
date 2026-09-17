@@ -285,6 +285,8 @@ and `DB-1`, `DB-2`, `DB-5` sit at 1.2–1.3. Pursued in §15: the gate was remov
 | Data-quality flags outrank the shape in the diagnosis | §18.1 |
 | Cascade pairs stay **candidates** until a plant engineer confirms them | §19.1 |
 | An innocent slave is attributed to its source, not listed as its own fault | §19.4 |
+| Loops sharing one period are **one event**; victims get no work orders | §20.1, §20.6 |
+| Source ranking is a **candidate filter**, never a verdict | §20.3 |
 | Loader returns a sampling time **only when description and data agree** | §11.6 |
 | Stiction index used as a **feature**, not as a label | §7 |
 | Detrend against `SP` before shape analysis | §8 |
@@ -1085,6 +1087,100 @@ the propagation problem that Week 5 takes on in the plant at large, where the co
 
 ---
 
+## 20. Week 5 — plant-wide propagation
+
+Code: `chemai/features/propagation.py`. Evidence: `projects/p02_control_loops/week5_propagation.py`.
+Teaching version: notebook `p02_week5_propagation`.
+
+One sticking valve makes a flow oscillate; the flow feeds a column, whose temperature oscillates,
+whose quality loop oscillates. On the engineer's screen: ten faulty loops, nine of them victims.
+This is the problem behind §18.4, where 29 of 30 Eastman loops read `undetermined`.
+
+Unlike a cascade (§19), the connections are unknown. The only fingerprint is **shared frequency**.
+
+### 20.1 Clustering — adopted
+
+Thirteen Eastman loops peak at **exactly the same period, 113.8 minutes**. Eleven carry more than
+30 % of their oscillation power in that band. In a plant, that is one event, not eleven faults.
+
+### 20.2 Ranking by band share — adopted as a first filter only
+
+Near the source the oscillation is nearly everything the loop does; further away it mixes with local
+noise and upsets, so the share falls.
+
+| Rank | Loop | Band share |
+|---:|---|---:|
+| 1 | **tag22** | **0.90** |
+| 2 | tag13 | 0.81 |
+| 3 | tag12 | 0.81 |
+| … | (8 more) | 0.34 – 0.68 |
+
+**The leading candidate is the published root cause** (Thornhill, Cox & Paulonis, 2003: tag 22, LC2,
+sticking valve), with a clear margin.
+
+### 20.3 ⚠️ But it orders by NEARNESS, not by guilt — two measured biases
+
+**A noisy source loses.** In the simulated plant (one known source, three victims through
+first-order filters with local noise), the source leads the nearest victim by **0.441 to 0.442** —
+i.e. the victim wins by 0.001 when the period is estimated from the cluster rather than from the
+source. A tie, not a win.
+
+**A non-linear source is penalised by its own fingerprint.** A sticking valve produces a square-ish
+limit cycle whose power is spread into harmonics, so *less* of it sits in the fundamental band than
+in a victim that received a filtered, purer version. Reproduced as a unit test
+(`test_a_nonlinear_source_is_penalised_by_its_own_fingerprint`). **The very evidence that identifies
+a sticky valve (§16) works against it here.**
+
+### 20.4 The horch trio — where the ranking gets it wrong
+
+The three coherent loops of §11.6, one 29 s oscillation, three published labels:
+
+| Loop | Label | Band share |
+|---|---|---:|
+| `tuning-Q-paper-horch` | tight tuning | **0.99** |
+| `other-F-paper-horch` | external disturbance | 0.84 |
+| `stiction-F-paper-horch` | **stiction** | 0.65 |
+
+Band share leads to the tuning loop; the waveform shapes in §11.6 pointed at the stiction loop.
+**They disagree, and there is no published root cause to settle it.** The non-linearity bias of §20.3
+explains the direction of the disagreement exactly: the stiction loop's harmonics are counted against
+it. This is why the ranking is reported as a candidate list and never as a verdict.
+
+### 20.5 ❌ Rejected: ranking by non-linearity
+
+Thornhill's principle — the waveform is most distorted at the source and is smoothed by every process
+it passes through — was tried with the simplest possible measure: **harmonic distortion**, the power
+at 2f, 3f… relative to the fundamental.
+
+| | Source | Near victim | Mid victim | Far victim |
+|---|---:|---:|---:|---:|
+| Simulation | **0.002** | 0.003 | 0.089 | **0.572** |
+
+**Exactly inverted.** On Eastman it ranks tag 22 — the documented root cause — **last** (0.005),
+and tag 11, with half its band share, first.
+
+**Why:** the measure tracks the **noise floor**, not non-linearity. In a distant victim the
+fundamental is nearly filtered away, so any noise at the harmonics dominates the ratio. The published
+method separates the two with **surrogate-data testing** (Thornhill et al., 2005) — generate signals
+with the same spectrum but randomised phases and compare — which is a study of its own and is out of
+scope.
+
+> **A simple measure that looks reasonable can measure something else entirely.** Had it not been
+> tested on a case with a known answer, it would have been published upside down.
+
+### 20.6 Into the report
+
+The weekly report stops listing eleven independent faults and says instead:
+
+> **Propagation event:** 11 loops oscillating at 114 min.
+> **Nearest source candidate:** tag 22 (band share 0.90) — stiction, high confidence.
+> **The other ten:** likely victims. **No work orders until the source is repaired.**
+> *Candidate ordering is approximate — confirm the valve in the field before working on the others.*
+
+One work order instead of ten, and a re-measurement after the repair.
+
+---
+
 ## Open questions
 
 - Does the shape test survive **detrending and cycle isolation** on all thirteen stiction files,
@@ -1095,12 +1191,12 @@ the propagation problem that Week 5 takes on in the plant at large, where the co
 - `stiction-P-oilgas` is stiction in SACAC and possible marginal stability in ISDB: which stands?
 - Does the attribution rule hold on more than one labelled pair, and what happens when both loops
   are faulty (§19.3)?
-- Which of the three coherent `horch` loops (§11.6) is the source — the sticky flow valve, the
-  tight quality loop, or neither?
+- Which of the three coherent `horch` loops is the source? Band share and waveform shape now
+  **disagree** (§20.4), and no published root cause settles it.
 - Do the twelve sluggish files belong in the study at all, or are they a separate problem —
   **loop not oscillating but not controlling either**?
 
 ---
 
-*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2, section 18 in Week 3, section 19 in Week 4. Every constraint came from
+*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2, section 18 in Week 3, section 19 in Week 4, section 20 in Week 5. Every constraint came from
 reading the data or the physics, not from a metric.*
