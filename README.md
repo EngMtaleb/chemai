@@ -43,6 +43,16 @@ python projects/p02_control_loops/week5_propagation.py      # plant-wide propaga
 python projects/p02_control_loops/week6_compression.py      # what the historian throws away
 ```
 
+**Service** — the diagnosis is served alongside the soft sensor, under `/loops`:
+
+```bash
+python -m chemai.api.run          # http://localhost:8000/loops/docs
+```
+
+`POST /loops/analyse/loop` diagnoses one loop; `POST /loops/analyse/plant` takes a whole unit and
+finds what they share — ten faults are often one fault and nine victims. Every answer carries its
+evidence, a confidence band, an action and an owner; `GET /loops/health` serves the limits.
+
 Data (not committed): SACAC repository in `data/sacac/`; ISDB `isdb10.mat` in `data/isdb/`
 (from `sites.ualberta.ca/~bhuang/ISDB.zip` — cite Jelali & Huang, 2010).
 
@@ -70,7 +80,7 @@ chemai/
 ├── features/        the form the physics requires · loop performance · data quality · shape · cascade · propagation
 ├── models/          estimator + uncertainty + envelope
 ├── evaluation/      metrics, including the ones usually skipped · weekly loop report
-└── api/             FastAPI service
+└── api/             FastAPI services: soft sensor, and loop diagnosis under /loops
 ```
 
 ---
@@ -79,7 +89,7 @@ chemai/
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q                              # 165 tests, no data needed
+pytest tests -q                              # 186 tests, no data needed
 python projects/p01_soft_sensor/train.py     # needs data/ populated
 ```
 

@@ -28,6 +28,7 @@ from chemai.config import SoftSensorConfig
 from chemai.data import load_distillation_tower, add_periods, split_by_period
 from chemai.models import SoftSensor
 from chemai.api.schemas import PredictionRequest, PredictionResponse, HealthResponse
+from chemai.api.loop_app import create_loop_app
 
 log = logging.getLogger(__name__)
 
@@ -137,6 +138,11 @@ def create_app(cfg: SoftSensorConfig | None = None) -> FastAPI:
             distance=p.distance,
             warning=p.warning,
         )
+
+    # Project 2 rides along on the same deployment, under /loops. It holds no
+    # model and no state, so it costs nothing at startup and cannot make this
+    # service fail to boot.
+    app.mount("/loops", create_loop_app())
 
     return app
 

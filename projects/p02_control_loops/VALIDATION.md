@@ -288,6 +288,7 @@ and `DB-1`, `DB-2`, `DB-5` sit at 1.2–1.3. Pursued in §15: the gate was remov
 | Loops sharing one period are **one event**; victims get no work orders | §20.1, §20.6 |
 | Source ranking is a **candidate filter**, never a verdict | §20.3 |
 | No shape diagnosis below **10 samples per oscillation cycle** | §21.3 |
+| Harris is **not** part of the diagnosis — it ranks only | §22.1 |
 | Loader returns a sampling time **only when description and data agree** | §11.6 |
 | Stiction index used as a **feature**, not as a label | §7 |
 | Detrend against `SP` before shape analysis | §8 |
@@ -1252,6 +1253,47 @@ Adopted guard: **`min_samples_per_cycle = 10`**, added to the data-quality check
 
 ---
 
+## 22. Week 7 — one pipeline, one service
+
+Code: `chemai/pipeline.py` · `chemai/api/loop_app.py` · `chemai/api/loop_schemas.py`.
+
+### 22.1 The order of the pipeline is the order of the weeks
+
+`analyse_loop` runs the six weeks in sequence, and the sequence is the finding:
+
+1. **data quality first** (§14, §21) — a frozen sensor, a loop in manual or an archive too coarse to
+   carry a shape is not a control diagnosis;
+2. **indices second** (§11, §15, §16) — regularity and shape;
+3. **the adopted baseline third** (§16.2, §17.3) — a regular oscillation with a triangular waveform
+   is stiction, everything else is `undetermined`;
+4. **the plant view last** (§19, §20) — loops sharing one oscillation are one event.
+
+**Harris is computed nowhere in the diagnosis.** It ranks, it does not diagnose (§11.2), and it needs
+a dead time a plant rarely knows (§17.2). Including it would have carried its bias into every answer.
+
+### 22.2 The service
+
+Two endpoints, mounted under `/loops` on the same deployment as Project 1:
+
+| Endpoint | Answers |
+|---|---|
+| `POST /loops/analyse/loop` | one loop: diagnosis · evidence · confidence · action · owner |
+| `POST /loops/analyse/plant` | a unit: the ranked report, the propagation event, cascade candidates |
+| `GET /loops/health` | the diagnoses it can make, and **the limits**, served not hidden |
+
+**No model is loaded.** The adopted diagnosis is the baseline, which beat the trained classifier on
+plant data (§17.3), so the service is stateless and starts instantly — and Project 1 cannot fail to
+boot because of it.
+
+**Design rules carried into the API:**
+
+- no endpoint returns a bare verdict: evidence and confidence travel with every diagnosis;
+- a record shorter than ten samples, or with mismatched signals, is **refused** (422), not guessed;
+- `ranking_note` states when the plant supplied no location weights;
+- victims of a propagation event are marked as such in the ranking, with no work order of their own.
+
+---
+
 ## Open questions
 
 - Does the shape test survive **detrending and cycle isolation** on all thirteen stiction files,
@@ -1269,5 +1311,5 @@ Adopted guard: **`min_samples_per_cycle = 10`**, added to the data-quality check
 
 ---
 
-*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2, section 18 in Week 3, section 19 in Week 4, section 20 in Week 5, section 21 in Week 6. Every constraint came from
+*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2, section 18 in Week 3, section 19 in Week 4, section 20 in Week 5, section 21 in Week 6, section 22 in Week 7. Every constraint came from
 reading the data or the physics, not from a metric.*
