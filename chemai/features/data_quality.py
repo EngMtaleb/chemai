@@ -9,6 +9,7 @@ VALIDATION.md, section 14; the teaching notebook p02_week2_data_quality):
     saturation        OP staying at its recorded limit
     quantisation      PV taking only a handful of distinct values
     moving setpoint   the indices assume a constant SP
+    coarse archive    fewer than ten samples per oscillation cycle (Week 6)
 
 Checks FLAG; they do not repair. Downstream code decides what a flag means
 for its own purpose (a quantised PV spoils PV-shape analysis but not OP-shape
@@ -21,6 +22,7 @@ from dataclasses import dataclass, field
 import numpy as np
 
 from chemai.config import DataQualityConfig
+from chemai.data.compression import samples_per_cycle
 
 
 # ------------------------------------------------------------- primitives
@@ -111,15 +113,20 @@ class QualityReport:
 
     @property
     def ok_for_pv_shape(self) -> bool:
-        return not {"frozen_sensor", "quantised_pv"} & set(self.flags)
+        return not {"frozen_sensor", "quantised_pv", "coarse_archive"} & set(self.flags)
 
     @property
     def ok_for_op_shape(self) -> bool:
-        return not {"frozen_sensor", "op_constant", "op_coarse", "no_op"} & set(self.flags)
+        return not {"frozen_sensor", "op_constant", "op_coarse", "no_op",
+                    "coarse_archive"} & set(self.flags)
 
 
-def assess(sp, pv, op, cfg: DataQualityConfig | None = None) -> QualityReport:
-    """Run all five checks on one loop. OP may be all-NaN (not recorded)."""
+def assess(sp, pv, op, cfg: DataQualityConfig | None = None,
+           period: float | None = None) -> QualityReport:
+    """Run the checks on one loop. OP may be all-NaN (not recorded).
+
+    Pass `period` (in samples, from `oscillation_regularity`) to also check that
+    the archive is fine enough to read a waveform shape - Week 6."""
     cfg = cfg or DataQualityConfig()
     sp, pv, op = (np.asarray(v, dtype=float) for v in (sp, pv, op))
     flags, notes = [], []
@@ -161,6 +168,13 @@ def assess(sp, pv, op, cfg: DataQualityConfig | None = None) -> QualityReport:
                 notes.append(f"PV frozen for {pv_run} samples while OP moved - URGENT: check the transmitter")
         if lv_op > 1 and r2 < cfg.pi_r2_min:
             notes.append(f"PI law not confirmed (R2 = {r2:.2f}) - note only")
+
+    if period is not None and np.isfinite(period):
+        per_cycle = samples_per_cycle(period)
+        if per_cycle and per_cycle < cfg.min_samples_per_cycle:
+            flags.append("coarse_archive")
+            notes.append(f"only {per_cycle:.1f} samples per oscillation cycle - the archive is "
+                         "too coarse to read the waveform shape (Week 6)")
 
     n_ch, frac_ch, seg = sp_segments(sp)
     if frac_ch > cfg.moving_sp_fraction:

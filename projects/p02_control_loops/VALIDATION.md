@@ -287,6 +287,7 @@ and `DB-1`, `DB-2`, `DB-5` sit at 1.2–1.3. Pursued in §15: the gate was remov
 | An innocent slave is attributed to its source, not listed as its own fault | §19.4 |
 | Loops sharing one period are **one event**; victims get no work orders | §20.1, §20.6 |
 | Source ranking is a **candidate filter**, never a verdict | §20.3 |
+| No shape diagnosis below **10 samples per oscillation cycle** | §21.3 |
 | Loader returns a sampling time **only when description and data agree** | §11.6 |
 | Stiction index used as a **feature**, not as a label | §7 |
 | Detrend against `SP` before shape analysis | §8 |
@@ -1181,6 +1182,76 @@ One work order instead of ten, and a re-measurement after the repair.
 
 ---
 
+## 21. Week 6 — archive compression
+
+Code: `chemai/data/compression.py`, plus the `coarse_archive` check in `data_quality`.
+Evidence: `projects/p02_control_loops/week6_compression.py`. Teaching version: notebook
+`p02_week6_compression`.
+
+Every index in this project reads the **shape** of a signal. A historian changes the shape on
+purpose: it lowers the logging rate, applies a deadband, or fits lines between turning points,
+because keeping hundreds of thousands of tags at one second for years is expensive.
+
+### 21.1 The real archives are already compressed
+
+Across the 141 real loops: half show no repeated samples, but the top quartile repeats **9 %** of
+samples or more, and the worst three repeat **72–86 %** — six of every seven values are not a new
+measurement. Logging intervals run from 0.004 s to **60 s**. The "1 s vs 20 s" comparison in the
+project scope is not hypothetical; it is the archive we already hold.
+
+### 21.2 ⭐ What compression costs — twelve known-stiction loops
+
+| Logging every | Samples per cycle | Stiction found | **Read as tuning** | Undetermined |
+|---:|---:|---:|---:|---:|
+| 1 s | 21.5 | 9 | 1 | 2 |
+| 2 s | 10.7 | 8 | 0 | 4 |
+| 5 s | 4.3 | **1** | 3 | 8 |
+| 10 s | 2.1 | 0 | 1 | 11 |
+| 20 s | 1.1 | 0 | 0 | 12 |
+
+| Deadband | Stiction found | **Read as tuning** | Undetermined |
+|---:|---:|---:|---:|
+| 0.25 × std | 9 | 1 | 2 |
+| 0.5 × std | 7 | 2 | 3 |
+| **1.0 × std** | **0** | **8** | 4 |
+| 2.0 × std | 0 | 2 | 10 |
+
+**A deadband is worse than a slow rate, and this is the finding of the week.** A slower rate mostly
+produces *undetermined* — the report admits it does not know. A deadband of one standard deviation
+produces a **confident wrong answer** in eight of twelve loops: stiction read as **tuning**, which
+sends the control engineer instead of maintenance. And retuning does not fix a sticking valve; it
+only slows the limit cycle (§11.3).
+
+**Why:** the stiction fingerprint is its corners — a triangle in OP, a square in PV. Compression
+rounds corners first, and a rounded triangle is a sine.
+
+### 21.3 The limit, in samples per cycle
+
+The diagnosis survives down to about **11 samples per oscillation cycle** and collapses below five.
+Adopted guard: **`min_samples_per_cycle = 10`**, added to the data-quality checks as
+`coarse_archive`, which blocks shape-based diagnosis rather than letting it return a wrong answer.
+
+**Two different requirements, both necessary:**
+
+| Requirement | Value | Purpose | Section |
+|---|---|---|---|
+| record LENGTH | ≥ 10 cycles | to detect the oscillation at all | §15.1 |
+| record RESOLUTION | ≥ 10 samples per cycle | to read the waveform shape | §21.3 |
+
+### 21.4 Recommendations to the plant
+
+1. **Log at least ten samples per expected oscillation cycle.** A one-minute cycle needs logging at
+   six seconds or faster. This is a historian setting, not an algorithm.
+2. **Check the deadband before the logging rate.** Many engineers know their logging rate and do not
+   know a deadband is applied — and its effect is the more damaging of the two.
+3. **Where the archive is too coarse, say so.** `coarse_archive` produces "insufficient resolution",
+   never a diagnosis.
+
+> With the MV recommendation of §17.1, this completes the pair: **what the archive stores sets the
+> ceiling on what can be diagnosed, before any algorithm is chosen.**
+
+---
+
 ## Open questions
 
 - Does the shape test survive **detrending and cycle isolation** on all thirteen stiction files,
@@ -1198,5 +1269,5 @@ One work order instead of ten, and a re-measurement after the repair.
 
 ---
 
-*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2, section 18 in Week 3, section 19 in Week 4, section 20 in Week 5. Every constraint came from
+*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2, section 18 in Week 3, section 19 in Week 4, section 20 in Week 5, section 21 in Week 6. Every constraint came from
 reading the data or the physics, not from a metric.*

@@ -202,6 +202,9 @@ class DataQualityConfig:
     moving_sp_fraction: float = 0.5 # SP changing in most samples = likely cascade slave
     pi_r2_min: float = 0.5          # below: 'PI law not confirmed' - a note, not an exclusion
     min_segment: int = 150          # shortest regulatory segment worth analysing (5 x AR order)
+    # Week 6: below ten samples per oscillation cycle the waveform shape is gone
+    # and stiction comes back as 'tuning' - a wrong answer, not an uncertain one.
+    min_samples_per_cycle: float = 10.0
 
 
 @dataclass(frozen=True)

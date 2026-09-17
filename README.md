@@ -25,7 +25,7 @@ The relationship is thermodynamic, not operational — which is why it survives 
 
 ---
 
-## Project 2 — Control Loop Performance *(in progress — week 5 of 7)*
+## Project 2 — Control Loop Performance *(in progress — week 6 of 7)*
 
 PI loop simulator for flow, pressure and level, with valve stiction, tight and sluggish tuning and
 external oscillation — and the **valve position (MV) recorded**, which plant data lacks.
@@ -40,6 +40,7 @@ python projects/p02_control_loops/week2_classifier.py       # classifier vs base
 python projects/p02_control_loops/week3_report.py           # the weekly report
 python projects/p02_control_loops/week4_cascade.py          # cascade: structure and source
 python projects/p02_control_loops/week5_propagation.py      # plant-wide propagation
+python projects/p02_control_loops/week6_compression.py      # what the historian throws away
 ```
 
 Data (not committed): SACAC repository in `data/sacac/`; ISDB `isdb10.mat` in `data/isdb/`
@@ -65,7 +66,7 @@ five-class classifier trained on simulation does **not** beat a single-feature b
 chemai/
 ├── config.py        every constant in one place
 ├── data/            loading · derived-column detection · campaign split
-│                    SACAC and ISDB loaders · control-loop simulator
+│                    SACAC and ISDB loaders · control-loop simulator · archive compression
 ├── features/        the form the physics requires · loop performance · data quality · shape · cascade · propagation
 ├── models/          estimator + uncertainty + envelope
 ├── evaluation/      metrics, including the ones usually skipped · weekly loop report
@@ -78,7 +79,7 @@ chemai/
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q                              # 155 tests, no data needed
+pytest tests -q                              # 165 tests, no data needed
 python projects/p01_soft_sensor/train.py     # needs data/ populated
 ```
 
