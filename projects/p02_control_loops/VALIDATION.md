@@ -283,6 +283,8 @@ and `DB-1`, `DB-2`, `DB-5` sit at 1.2–1.3. Pursued in §15: the gate was remov
 | Location weights come from the **plant**, never invented; their absence is declared | §18.1 |
 | Severity is compared **only within one plant**, in its own units | §18.5 |
 | Data-quality flags outrank the shape in the diagnosis | §18.1 |
+| Cascade pairs stay **candidates** until a plant engineer confirms them | §19.1 |
+| An innocent slave is attributed to its source, not listed as its own fault | §19.4 |
 | Loader returns a sampling time **only when description and data agree** | §11.6 |
 | Stiction index used as a **feature**, not as a label | §7 |
 | Detrend against `SP` before shape analysis | §8 |
@@ -1001,6 +1003,88 @@ Against the published labels: of 36 loops labelled stiction, 14 are read as stic
 
 ---
 
+## 19. Week 4 — cascade loops
+
+Code: `chemai/features/cascade.py`. Evidence: `projects/p02_control_loops/week4_cascade.py`.
+Teaching version: notebook `p02_week4_cascade`.
+
+A cascade is standard in refineries: a slow master (level, temperature) writes the **setpoint** of a
+fast slave (usually flow), and only the slave moves a valve. When both oscillate, the common mistake
+is to retune the master while the fault is the slave's valve.
+
+**This is also why §14 flagged `moving_setpoint` on 28 % of real loops** — many of them are slaves,
+and every index up to here assumed a fixed setpoint.
+
+### 19.1 Detection — from the data alone
+
+No file description in SACAC or ISDB mentions a cascade. The structure was found from its
+fingerprint: **the slave's setpoint IS the master's output.**
+
+| Plant | Loops | Candidate pairs | Correlation |
+|---|---:|---:|---|
+| Eastman chemical plant | 30 | 5 | 0.9995 – 0.9999 |
+| South-East Asian refinery | 30 | 2 | 0.9919, 0.9999 |
+| Refinery separation unit | 5 | 1 | 0.9994 |
+
+**Eight pairs from three plants.** In Eastman that is 5 out of 870 possible comparisons, every one
+above 0.999 — structure, not statistical coincidence. Two are textbook: **steam-drum level → feedwater
+flow**, and **temperature → flow** in the separation unit.
+
+> ⚠️ **Candidates, not conclusions.** `scale` (the ratio of the two ranges) is ≈ 1.0 for all eight,
+> as it must be if one signal *is* the other. **Ratio control leaves the same correlation** with a
+> scale far from 1, which the column exposes but does not settle. A plant engineer confirms the pair.
+
+### 19.2 ⭐ Attribution — which loop is the source
+
+Both loops of a cascade oscillate together; they are closed on each other. So the test is **not
+whether the setpoint moves, but whether it moves regularly:**
+
+| Slave error | Slave setpoint | Source | Owner |
+|---|---|---|---|
+| oscillates regularly | does not | **slave** — it cannot follow what it is given | maintenance |
+| oscillates regularly | same regularity | **master** — the slave executes a bad order faithfully | control engineering |
+
+Against the simulator, where the fault is injected and therefore known:
+
+| Case | Slave error | Slave setpoint | Verdict |
+|---|---:|---:|---|
+| healthy | 0.51 | 0.23 | none ✓ |
+| slave valve sticks | 2.03 | 0.35 | **slave** ✓ |
+| master tuned too tight | 8.78 | **8.78** | **master** ✓ |
+
+The exact equality in the third case is not a coincidence: one oscillation passing through both loops.
+
+**On the one real labelled pair** — `chemicals.14`, a flow slave labelled *faulty steam sensor*, under
+temperature master `chemicals.17`: slave error 1.09, setpoint 0.15 → **slave**, which is where the
+published fault is.
+
+> **But read the plot before believing the number.** That setpoint **does** oscillate, clearly. The
+> rule pointed at the slave because the setpoint's oscillation is **irregular** (0.15), not because it
+> is quiet. Physically that is expected: the flow feeds the temperature, so the slave's fault shakes
+> the master, whose output is the slave's setpoint. **The rule separates by regularity, not by quiet.**
+
+### 19.3 Limits, recorded before any use
+
+1. **Two levels only.** Three-level structures exist and were not tested.
+2. **One labelled real pair.** Eight pairs, one with a published fault. Not enough to judge the rule.
+3. **It names the loop, not the fault.** Telling a sticking valve from a faulty transmitter inside the
+   slave is the Week 2 data-quality work, not this rule.
+4. ⚠️ **A fault in BOTH loops reads as `master`** — the slave's valve would be left unrepaired. Same
+   failure as the mixed-fault case of §16.3 (`buildings.6`, stiction *and* tight tuning): mixed faults
+   blur every tool we have.
+5. **No joint performance score.** A cascade-specific Harris index is out of scope and is stated in
+   the README (§13.3). Slaves are **diagnosed**, never **scored** — their setpoint moves, and the
+   minimum-variance benchmark assumes it does not (§14).
+
+### 19.4 Into the report
+
+An innocent slave is **attributed to its source** rather than listed as a fault of its own; otherwise
+one sticking valve fills the top of the weekly report with its victims. This is the cascade case of
+the propagation problem that Week 5 takes on in the plant at large, where the connections are unknown
+— as in Eastman, where tag 22 left 29 of 30 loops reading `undetermined` (§18.4).
+
+---
+
 ## Open questions
 
 - Does the shape test survive **detrending and cycle isolation** on all thirteen stiction files,
@@ -1009,6 +1093,8 @@ Against the published labels: of 36 loops labelled stiction, 14 are read as stic
 - Do the 17 "likely" ISDB labels (one contributor) enter the test set, as a separate weaker tier,
   or stay out?
 - `stiction-P-oilgas` is stiction in SACAC and possible marginal stability in ISDB: which stands?
+- Does the attribution rule hold on more than one labelled pair, and what happens when both loops
+  are faulty (§19.3)?
 - Which of the three coherent `horch` loops (§11.6) is the source — the sticky flow valve, the
   tight quality loop, or neither?
 - Do the twelve sluggish files belong in the study at all, or are they a separate problem —
@@ -1016,5 +1102,5 @@ Against the published labels: of 36 loops labelled stiction, 14 are read as stic
 
 ---
 
-*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2, section 18 in Week 3. Every constraint came from
+*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2, section 18 in Week 3, section 19 in Week 4. Every constraint came from
 reading the data or the physics, not from a metric.*
