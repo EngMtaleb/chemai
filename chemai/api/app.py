@@ -22,13 +22,16 @@ import sklearn
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse
+from chemai.api.index_page import INDEX
+from chemai.api.loop_app import create_loop_app
 
 from chemai import __version__
 from chemai.config import SoftSensorConfig
 from chemai.data import load_distillation_tower, add_periods, split_by_period
 from chemai.models import SoftSensor, load_model
 from chemai.api.schemas import PredictionRequest, PredictionResponse, HealthResponse
+from chemai.api.index_page import INDEX
 from chemai.api.loop_app import create_loop_app
 
 log = logging.getLogger(__name__)
@@ -143,6 +146,12 @@ def create_app(cfg: SoftSensorConfig | None = None) -> FastAPI:
             distance=p.distance,
             warning=p.warning,
         )
+
+    @app.get("/", response_class=HTMLResponse, include_in_schema=False)
+    def index() -> str:
+        """A front door: two projects share this deployment, and a visitor who
+        opens the root URL should land somewhere rather than on a 404."""
+        return INDEX
 
     # Project 2 rides along on the same deployment, under /loops. It holds no
     # model and no state, so it costs nothing at startup and cannot make this

@@ -82,3 +82,11 @@ def test_service_starts_degraded_without_data(monkeypatch):
         assert h["status"] == "degraded"
         assert h["model_fitted"] is False
         assert c.post("/predict", json={"temperature": 455.0, "pressure": 230.0}).status_code == 503
+
+
+def test_the_root_url_lands_somewhere(client):
+    """Two projects share one deployment; a visitor opening the root must not
+    meet a 404."""
+    r = client.get("/")
+    assert r.status_code == 200
+    assert "loops/" in r.text and "docs" in r.text
