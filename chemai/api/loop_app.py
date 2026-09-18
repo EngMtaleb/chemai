@@ -15,19 +15,22 @@ Design notes worth reading before changing anything:
     "faults" are one oscillation with nine victims, which is the finding that
     changes what the plant does on Monday.
 
-  * The limits are served, not hidden: /health lists them, and every response
-    that rests on missing plant knowledge says so in `ranking_note`.
+  * The limits are served, not hidden: /health lists them, the demo page prints
+    them, and every response that rests on missing plant knowledge says so in
+    `ranking_note`.
 """
 from __future__ import annotations
 
 import logging
 
 from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 
 from chemai import __version__
 from chemai.api.loop_schemas import (CascadePair, LoopDiagnosis, LoopHealthResponse, LoopRequest,
                                      PlantRequest, PlantResponse, PropagationSummary)
+from chemai.api.loop_examples import build_example, example_index
+from chemai.api.loop_page import PAGE
 from chemai.config import ControlLoopConfig, DataQualityConfig, ReportConfig
 from chemai.pipeline import analyse_loop, analyse_plant
 
@@ -89,6 +92,21 @@ def create_loop_app(cfg: ControlLoopConfig | None = None) -> FastAPI:
             diagnoses=["stiction", "tuning", "saturation", "frozen_sensor", "manual",
                        "undetermined"],
             limits=LIMITS)
+
+    @app.get("/", response_class=HTMLResponse, include_in_schema=False)
+    def page() -> str:
+        """One page, no build step, no third-party script. It calls the same
+        endpoints an engineer would call, and prints the limits it works under."""
+        return PAGE
+
+    @app.get("/examples", tags=["demo"])
+    def examples() -> list[dict]:
+        """Worked examples whose fault is known because it was injected."""
+        return example_index()
+
+    @app.get("/examples/{key}", tags=["demo"])
+    def example(key: str) -> dict:
+        return build_example(key)
 
     @app.post("/analyse/loop", response_model=LoopDiagnosis, tags=["diagnosis"])
     def analyse_one(req: LoopRequest) -> LoopDiagnosis:

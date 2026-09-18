@@ -96,3 +96,36 @@ def test_the_soft_sensor_service_still_mounts_it(sticky):
     from chemai.api.app import create_app
     with TestClient(create_app()) as c:
         assert c.get("/loops/health").json()["status"] == "ok"
+
+
+# ------------------------------------------------------------- demo page
+
+def test_the_page_is_served(client):
+    r = client.get("/")
+    assert r.status_code == 200 and "Control Loop Diagnosis" in r.text
+    assert "analyse/loop" in r.text                       # it calls the real endpoint
+    assert "<script" in r.text and "cdn" not in r.text.lower()   # no third-party script
+
+
+def test_examples_are_listed_and_fetchable(client):
+    listing = client.get("/examples").json()
+    assert {e["key"] for e in listing} == {"stiction", "tuning", "healthy", "frozen"}
+    for entry in listing:
+        loop = client.get(f"/examples/{entry['key']}").json()
+        assert len(loop["pv"]) == len(loop["sp"]) == len(loop["op"]) > 100
+        assert loop["ts"] > 0 and loop["loop_type"] in set("FPLTQ")
+
+
+def test_an_unknown_example_is_refused(client):
+    assert client.get("/examples/nonsense").status_code == 422
+
+
+@pytest.mark.parametrize("key,expected", [("stiction", "stiction"), ("tuning", "tuning"),
+                                          ("frozen", "frozen_sensor")])
+def test_each_example_shows_what_it_promises(client, key, expected):
+    """The page's worked examples must actually demonstrate their fault -
+    otherwise the demo teaches the wrong thing."""
+    loop = client.get(f"/examples/{key}").json()
+    body = {"loop": {"name": loop["name"], "loop_type": loop["loop_type"],
+                     "sp": loop["sp"], "pv": loop["pv"], "op": loop["op"]}, "ts": loop["ts"]}
+    assert client.post("/analyse/loop", json=body).json()["diagnosis"] == expected

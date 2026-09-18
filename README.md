@@ -49,7 +49,8 @@ python projects/p02_control_loops/week6_compression.py      # what the historian
 python -m chemai.api.run          # http://localhost:8000/loops/docs
 ```
 
-`POST /loops/analyse/loop` diagnoses one loop; `POST /loops/analyse/plant` takes a whole unit and
+`/loops/` is a one-page demo: four worked examples whose fault is known, or upload a CSV with
+`sp,pv,op`. `POST /loops/analyse/loop` diagnoses one loop; `POST /loops/analyse/plant` takes a whole unit and
 finds what they share — ten faults are often one fault and nine victims. Every answer carries its
 evidence, a confidence band, an action and an owner; `GET /loops/health` serves the limits.
 
@@ -89,7 +90,7 @@ chemai/
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q                              # 186 tests, no data needed
+pytest tests -q                              # 192 tests, no data needed
 python projects/p01_soft_sensor/train.py     # needs data/ populated
 ```
 
