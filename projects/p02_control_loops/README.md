@@ -25,7 +25,7 @@ examples whose fault is known, or upload your own CSV.
 | Stiction caught by the adopted rule, precision 0.88 | **12 of 14** |
 | Eastman plant-wide root cause, found among 30 loops unaided | **tag 22**, 13× the next priority |
 | Cascade pairs discovered from structure alone, across 3 plants | 8 |
-| Tests | 196 (whole repository) |
+| Tests | 197 (whole repository) |
 
 Simulation is used for training and for anything needing a known answer. **Plant data is an external
 test set, spent once.** Nothing was retuned after seeing how it scored.
