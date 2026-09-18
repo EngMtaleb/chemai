@@ -17,7 +17,8 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 import logging
 import os
-import pickle
+
+import sklearn
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -26,14 +27,14 @@ from fastapi.responses import JSONResponse
 from chemai import __version__
 from chemai.config import SoftSensorConfig
 from chemai.data import load_distillation_tower, add_periods, split_by_period
-from chemai.models import SoftSensor
+from chemai.models import SoftSensor, load_model
 from chemai.api.schemas import PredictionRequest, PredictionResponse, HealthResponse
 from chemai.api.loop_app import create_loop_app
 
 log = logging.getLogger(__name__)
 
 # Module-level state, populated at startup.
-_state: dict = {"model": None, "rows": None}
+_state: dict = {"model": None, "rows": None, "model_meta": {}}
 
 
 MODEL_PATH = Path(os.getenv("CHEMAI_MODEL_PATH", "models/soft_sensor.pkl"))
@@ -48,9 +49,10 @@ def _fit_model(cfg: SoftSensorConfig) -> tuple[SoftSensor, int]:
     path for local development, where the data is present.
     """
     if MODEL_PATH.exists():
-        with open(MODEL_PATH, "rb") as fh:
-            model = pickle.load(fh)
-        log.info("loaded serialised model from %s", MODEL_PATH)
+        model, meta = load_model(MODEL_PATH)
+        _state["model_meta"] = meta
+        log.info("loaded serialised model from %s (scikit-learn %s, match=%s)",
+                 MODEL_PATH, meta.get("sklearn_version"), meta.get("version_match"))
         return model, -1
 
     df = add_periods(load_distillation_tower(cfg=cfg), cfg)
@@ -114,6 +116,9 @@ def create_app(cfg: SoftSensorConfig | None = None) -> FastAPI:
             features=[cfg.temperature_col, cfg.pressure_col],
             training_rows=_state["rows"],
             residual_sigma=round(m.residual_sigma_, 3) if m else None,
+            sklearn_version=sklearn.__version__,
+            model_sklearn_version=_state["model_meta"].get("sklearn_version"),
+            version_match=_state["model_meta"].get("version_match"),
         )
 
     @app.post("/predict", response_model=PredictionResponse, tags=["inference"])

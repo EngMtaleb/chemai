@@ -46,7 +46,7 @@ python projects/p02_control_loops/week6_compression.py      # what the historian
 **Service** — the diagnosis is served alongside the soft sensor, under `/loops`:
 
 ```bash
-python -m chemai.api.run          # http://localhost:8000/loops/docs
+python -m chemai.api.run          # http://localhost:8000/loops/
 ```
 
 `/loops/` is a one-page demo: four worked examples whose fault is known, or upload a CSV with
@@ -90,7 +90,7 @@ chemai/
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q                              # 192 tests, no data needed
+pytest tests -q                              # 196 tests, no data needed
 python projects/p01_soft_sensor/train.py     # needs data/ populated
 ```
 

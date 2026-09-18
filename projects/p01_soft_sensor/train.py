@@ -9,13 +9,14 @@ from pathlib import Path
 from chemai.config import SoftSensorConfig
 from chemai.data import load_distillation_tower, add_periods, split_by_period
 from chemai.data.loaders import check_derived_columns
-from chemai.models import SoftSensor
+from chemai.models import SoftSensor, save_model
 from chemai.evaluation import evaluate, envelope_report, interval_coverage
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("p01")
 
 OUT = Path(__file__).parent / "results.json"
+MODEL_PATH = Path("models/soft_sensor.pkl")
 
 
 def main() -> dict:
@@ -47,6 +48,11 @@ def main() -> dict:
         "envelope": envelope_report(model, test),
         "uncertainty": interval_coverage(model, test),
     }
+
+    # Ship the fitted model with the versions that produced it: a pickled
+    # estimator is only valid for the scikit-learn that wrote it, and the
+    # service reports a mismatch through /health.
+    results["serialised"] = save_model(model, MODEL_PATH)
 
     OUT.write_text(json.dumps(results, indent=2))
     print(json.dumps(results, indent=2))

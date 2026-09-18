@@ -56,9 +56,21 @@ class PredictionResponse(BaseModel):
 
 
 class HealthResponse(BaseModel):
+    """Includes the scikit-learn version the model was fitted under.
+
+    A pickled estimator is only valid for the library version that wrote it, and
+    a warning printed to a log nobody reads is not a safeguard. `version_match`
+    false means the served numbers are not guaranteed to match the validated ones.
+    """
+
     status: str
     model_fitted: bool
     version: str
     features: list[str]
     training_rows: int | None = None
     residual_sigma: float | None = None
+    sklearn_version: str | None = Field(None, description="scikit-learn in this environment")
+    model_sklearn_version: str | None = Field(
+        None, description="scikit-learn the served model was fitted under")
+    version_match: bool | None = Field(
+        None, description="False: the model was fitted under a different library version")
