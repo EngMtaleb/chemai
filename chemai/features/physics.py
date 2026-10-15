@@ -22,8 +22,9 @@ def antoine_form(temperature: np.ndarray | pd.Series, scale: float = 1000.0):
     structure appears in the Wilson K-value correlation and in most of
     the vapour-pressure equations published since 1841.
 
-    On the industrial dataset this form reduces residual error by roughly
-    40% against raw temperature, with no additional variable.
+    On the industrial dataset this form cuts the out-of-regime error by about
+    a third against raw temperature (MAE 0.953 -> 0.645), with no additional
+    variable.
 
     Note: this feature has a very small variance (~0.08 against ~14 for
     pressure). Any penalised regressor MUST be preceded by a scaler, or
