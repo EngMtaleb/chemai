@@ -8,7 +8,9 @@ Physics-formed features, calibrated uncertainty, and systems that say where they
 
 | | |
 |---|---|
-| **Live** | [chemai-tr2c.onrender.com](https://chemai-tr2c.onrender.com) |
+| **Project pages** | [engmtaleb.github.io/chemai](https://engmtaleb.github.io/chemai/) |
+| Soft sensor — page and demo | [/soft-sensor/](https://engmtaleb.github.io/chemai/soft-sensor/) |
+| **Live service** | [chemai-tr2c.onrender.com](https://chemai-tr2c.onrender.com) |
 | Soft sensor API | [`/docs`](https://chemai-tr2c.onrender.com/docs) |
 | Loop diagnosis | [`/loops/`](https://chemai-tr2c.onrender.com/loops/) |
 
@@ -18,13 +20,14 @@ Physics-formed features, calibrated uncertainty, and systems that say where they
 
 ## Project 1 — Distillation Soft Sensor
 
-Laboratory vapour pressure takes 4 to 8 hours. This estimates it from two process measurements, so
-the operator stops steering the one thing he can see to control the one thing he cannot.
+Vapour pressure is measured in the lab, about once a shift — a change in the column shows up in the
+result hours later. This estimates it from two process measurements, so the operator stops steering
+the one thing he can see to control the one thing he cannot.
 
 | | |
 |---|---:|
 | **R² on a different operating campaign** | **0.980** |
-| Interval coverage (95% nominal) | 94% |
+| Interval coverage (95% nominal) | 94% service · 95.5% full bootstrap |
 | Error ratio outside the validated envelope | 7.8× |
 | Inputs | **2** |
 
@@ -32,7 +35,9 @@ the operator stops steering the one thing he can see to control the one thing he
 `T` — cut error by 32% with no new variable. Two inputs beat all twenty-one. And the envelope
 detector was *tested*: error on the points it flags is 7.8× worse, so the refusal is real.
 
-📄 [Full write-up](projects/p01_soft_sensor/README.md) · `docs/VALIDATION.md`
+📄 [Project page](https://engmtaleb.github.io/chemai/soft-sensor/) ·
+[Full write-up](projects/p01_soft_sensor/README.md) ·
+[Validation record](docs/VALIDATION.md) · [Exploratory analysis](docs/EDA.md)
 
 ---
 

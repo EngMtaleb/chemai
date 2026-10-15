@@ -1,9 +1,12 @@
 # Project 1 — Distillation Soft Sensor
 
+**Project page and live demo:** [engmtaleb.github.io/chemai/soft-sensor](https://engmtaleb.github.io/chemai/soft-sensor/)
+
 ## The problem
 
 The bottoms product of a distillation column carries a vapour pressure specification — an upper
-limit. That property is measured in a laboratory, and the result takes 4 to 8 hours.
+limit. That property is measured in a laboratory, usually once a shift. The result comes 1–3 hours
+after sampling, so a change in the column shows up in a lab result about 4–8 hours later.
 
 The operator cannot set vapour pressure. He sets a temperature on a selected tray, and the
 controller holds it by moving steam to the reboiler:
@@ -31,11 +34,11 @@ every hour.
 | **R² out-of-regime** | **0.980** |
 | MAE out-of-regime | 0.645 |
 | MAE inside the envelope | 0.495 |
-| Interval coverage (95% nominal) | 94% |
+| Interval coverage (95% nominal) | 94% service · 95.5% full bootstrap |
 | Error ratio outside the envelope | 7.8× |
 | Inputs | **2** — `1000/Temp9`, `PressureC1` |
 
-Trained on one operating campaign, evaluated on another with **one third the reboiler duty**. The
+Trained on one operating campaign, evaluated on a later one at **less than half the reboiler duty**. The
 relationship learned is thermodynamic, not operational — which is why it survives the regime change.
 
 ---
@@ -88,8 +91,9 @@ Every response carries three fields, not one:
 {"vapour_pressure": 38.8, "interval_95": [35.84, 41.75], "in_envelope": true}
 ```
 
-**Prediction interval** — from 500 bootstrap refits. Claimed 95%, measured 94% on the held-out
-campaign.
+**Prediction interval** — from 500 bootstrap refits. Claimed 95%. The service uses the residual
+scatter only and covered 94% (63 of 67) on the held-out campaign; adding the model's own spread, as
+in the [validation record](../../docs/VALIDATION.md), covers 95.5% (64 of 67).
 
 **Operating envelope** — Mahalanobis distance, so it flags implausible *combinations*, not only
 individually extreme values. A temperature of 460 is normal and a pressure of 235 is normal; their
@@ -109,8 +113,8 @@ lower-section temperature. The exact stage cannot be identified — the near-per
 correlation is partly definitional, and with seven discrete components the bottom stream is purer
 than a real column's.
 
-📄 `docs/EDA.md` — what was found in the data
-📄 `docs/VALIDATION.md` — where the model fails, and why
+📄 [docs/EDA.md](../../docs/EDA.md) — what was found in the data
+📄 [docs/VALIDATION.md](../../docs/VALIDATION.md) — where the model fails, and why
 
 ---
 
@@ -160,10 +164,12 @@ will trust it unconditionally.
 calibration, less maintenance, fewer failure points.
 
 **The inverse-temperature form.** Antoine's equation makes vapour pressure a function of `1/T`.
-Using that form instead of raw temperature reduces residual error by ~40% with no new variable.
+Using that form instead of raw temperature cuts the error by about a third (MAE 0.953 → 0.645,
+RMSE 1.764 → 1.118) with no new variable.
 
 **Scaling is not optional.** `1000/T` has 165× less variance than pressure; without a scaler,
-Ridge suppresses it and R² falls from 0.98 to 0.52.
+Ridge suppresses it and R² falls from 0.98 to 0.52 — and to −0.50 if the feature is written as `1/T`,
+as in the video: the smaller the numbers, the harder the penalty bites.
 
 **Split by operating campaign, never randomly.** A random split would place samples from the
 same campaign on both sides and report a score that does not reflect a new regime.
@@ -184,7 +190,7 @@ on accepted ones — it identifies exactly where the model fails.
 5. **The exhaustive pair search over 210 combinations is itself selection on the test set.** The
    ranking is consistent with the physics; 0.950 is not an unbiased estimate.
 
-Full detail in `docs/VALIDATION.md`.
+Full detail in the [validation record](../../docs/VALIDATION.md).
 
 ---
 
