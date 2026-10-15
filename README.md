@@ -1,75 +1,54 @@
 # chemai
 
-Reusable toolkit for chemical engineering AI projects.
-Physics-formed features, calibrated uncertainty, and systems that say where they stop working.
+AI for process problems, built by a chemical engineer. Each project starts from a question a plant
+actually asks, lets the physics shape what the model sees, and says where its answer stops being
+reliable.
 
-**Eng. Mohammed Taleb** — chemical engineer ·
-[LinkedIn](https://www.linkedin.com/in/mohammed-taleb-4b4195115/)
+**Eng. Mohammed Taleb** · [LinkedIn](https://www.linkedin.com/in/mohammed-taleb-4b4195115/) ·
+[Project pages](https://engmtaleb.github.io/chemai/)
 
-| | |
-|---|---|
-| **Project pages** | [engmtaleb.github.io/chemai](https://engmtaleb.github.io/chemai/) |
-| Soft sensor — page and demo | [/soft-sensor/](https://engmtaleb.github.io/chemai/soft-sensor/) |
-| **Live service** | [chemai-tr2c.onrender.com](https://chemai-tr2c.onrender.com) |
-| Soft sensor API | [`/docs`](https://chemai-tr2c.onrender.com/docs) |
-| Loop diagnosis | [`/loops/`](https://chemai-tr2c.onrender.com/loops/) |
+## Distillation soft sensor
 
-*Free hosting — the first request after idle takes up to a minute to wake.*
+[![Distillation soft sensor](soft-sensor/og.png)](https://engmtaleb.github.io/chemai/soft-sensor/)
 
----
+The lab checks the vapour pressure of the bottoms product about once a shift, and the result comes
+1–3 hours after the sample. This estimates it from two readings the plant already has — one tray
+temperature and the column pressure — with a 95% range and a warning when the conditions are outside
+what it was tested on.
 
-## Project 1 — Distillation Soft Sensor
+**[Try it live](https://engmtaleb.github.io/chemai/soft-sensor/#try)** ·
+[Project page](https://engmtaleb.github.io/chemai/soft-sensor/) ·
+[Write-up](projects/p01_soft_sensor/README.md) ·
+[Validation record](docs/VALIDATION.md) ·
+[Data exploration](docs/EDA.md)
 
-Vapour pressure is measured in the lab, about once a shift — a change in the column shows up in the
-result hours later. This estimates it from two process measurements, so the operator stops steering
-the one thing he can see to control the one thing he cannot.
+Tested on a later operating campaign that ran at less than half the reboiler duty — never a random
+split:
 
-| | |
+| Measure | Result |
 |---|---:|
-| **R² on a different operating campaign** | **0.980** |
-| Interval coverage (95% nominal) | 94% service · 95.5% full bootstrap |
-| Error ratio outside the validated envelope | 7.8× |
-| Inputs | **2** |
+| R² | **0.980** |
+| Mean absolute error | **0.645** |
+| Interval coverage (95% nominal) | 94% |
+| Error on points it flags as outside the tested conditions | 7.8× the rest |
 
-**What it found:** writing temperature in the form Antoine's equation requires — `1/T` instead of
-`T` — cut error by 32% with no new variable. Two inputs beat all twenty-one. And the envelope
-detector was *tested*: error on the points it flags is 7.8× worse, so the refusal is real.
+**What it found**
 
-📄 [Project page](https://engmtaleb.github.io/chemai/soft-sensor/) ·
-[Full write-up](projects/p01_soft_sensor/README.md) ·
-[Validation record](docs/VALIDATION.md) · [Exploratory analysis](docs/EDA.md)
+- **The physics changed the input, not the model.** Writing temperature as `1/T`, the form Antoine's
+  equation uses, cut the error by about a third (MAE 0.953 → 0.645). A simple Ridge model then beat
+  Random Forest and XGBoost, and two inputs beat all twenty-one (R² 0.980 against 0.884).
+- **Pressure needs temperature.** On its own, pressure scores R² −0.50; next to temperature it is
+  essential.
+- **The refusal is real.** The envelope check was tested, not assumed: the points it flags have a
+  7.8× larger error.
+- **Its main limit:** it under-predicts high values, so it is not an off-spec alarm.
 
----
-
-## Project 2 — Control Loop Performance
-
-A sticking valve makes a loop oscillate; the oscillation spreads; ten loops look faulty. This says
-which one to fix, and who fixes it — or says the data cannot support an answer.
-
-| | |
-|---|---:|
-| Real plant loops tested against published labels | **141** |
-| Stiction caught by the adopted rule (precision 0.88) | 12 of 14 |
-| Eastman root cause found among 30 loops, unaided | **tag 22**, 13× the next candidate |
-| Stiction below the load noise, unrecoverable from OP and PV | **~50%** |
-
-**What it found, and most of it is negative:** the Harris index rates tight-tuned loops *above*
-healthy ones. A five-class classifier trained on simulation does **not** beat a single-feature
-baseline on plant data — and the cause was measured, not guessed. A historian deadband turns
-stiction into "tuning": a confident wrong answer, which sends the control engineer instead of
-maintenance.
-
-📄 [Full write-up](projects/p02_control_loops/README.md) ·
-[22-section validation record](projects/p02_control_loops/VALIDATION.md)
-
----
-
-## Quick start
+## Run it
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q                              # 197 tests, no data needed
-python -m chemai.api.run                     # http://localhost:8000
+pytest tests -q            # 197 tests, no data needed
+python -m chemai.api.run   # http://localhost:8000
 ```
 
 ```bash
@@ -83,52 +62,36 @@ curl -X POST localhost:8000/predict \
  "in_envelope": true, "distance": 1.26, "warning": null}
 ```
 
-**No endpoint returns a bare number.** A caller who sees only a value will trust it unconditionally,
-so every answer carries its interval, its confidence, or the reason it cannot be given.
+No endpoint returns a bare number: every answer carries its interval and the envelope check. The
+deployed API is at [chemai-tr2c.onrender.com/docs](https://chemai-tr2c.onrender.com/docs) — free
+hosting, so the first request after a quiet spell can take a minute.
 
-Data is not committed. See each project's write-up for where to obtain it.
+Data is not committed. The soft sensor uses the public
+[distillation-tower dataset](https://openmv.net/info/distillation-tower) from OpenMV.net.
 
----
-
-## Structure
+## What's in the repository
 
 ```
-chemai/
-├── config.py        every constant in one place, with the reason beside it
-├── data/            loaders · campaign split · control-loop simulator · archive compression
-├── features/        physics-formed features · loop indices · data quality · shape · cascade · propagation
-├── models/          estimator · uncertainty · envelope · loop classifier · serialisation
-├── evaluation/      metrics, including the ones usually skipped · the weekly loop report
-├── pipeline.py      raw loop data in, diagnosis and owner out
-└── api/             FastAPI: soft sensor, and loop diagnosis under /loops
-projects/            one folder per project: scripts, validation record, write-up
-tests/               197 tests — they run without any dataset
+chemai/        the package: physics features, models, uncertainty, envelope check, API
+projects/      one folder per project: training script and write-up
+docs/          validation record and data exploration
+tests/         197 tests that run without any dataset
+soft-sensor/   the project page, served by GitHub Pages
 ```
 
----
+## How it is built
 
-## How this is built
+- **Limits are published.** Each tool states what it cannot do, next to the answer it gives.
+- **Negative results are kept.** A model that lost to a simpler one is recorded with the number that
+  shows it.
+- **Every error found became a test.** `test_coefficient_sign_is_physical` fails if the model
+  inverts against thermodynamics, `test_split_is_not_random` fails on leakage, and
+  `test_rejects_celsius_temperature` catches the silent unit error.
+- **A model carries its provenance.** The saved estimator records the library version that fitted
+  it, and `/health` reports a mismatch.
 
-**Every limit is published, not hidden.** `GET /loops/health` serves the five things the diagnosis
-cannot do. The demo page prints them under the result.
+These are deployed prototypes, not plant systems: no historian connection, no authentication, no
+monitoring, no automatic retraining, no field validation.
 
-**Negative results are kept.** A classifier that lost to a one-feature baseline, a non-linearity
-measure that ranked the known root cause last, an index that flatters aggressive tuning — each is
-recorded with the number that shows it.
-
-**Every error found became a test.** `coefficient_sign_is_physical` fails if the model inverts
-against thermodynamics. `split_is_not_random` fails on leakage. `rejects_celsius_temperature`
-catches the silent unit error. `test_a_deadband_turns_stiction_into_tuning` pins a wrong answer that
-looks confident.
-
-**A model carries its provenance.** The serialised estimator records the library version that fitted
-it, and `/health` reports a mismatch — a warning printed to a log nobody reads is not a safeguard.
-
-**What these are:** deployed prototypes, complete from raw data to a service anyone can call.
-**What they are not:** plant systems. No historian connection, no authentication, no monitoring, no
-automatic retraining, and no field validation.
-
----
-
-*Implementation assisted by AI tools. Engineering framing, interpretation and validation are the
+*Implementation assisted by AI tools. The engineering framing, interpretation and validation are the
 author's.*
