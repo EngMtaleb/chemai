@@ -269,3 +269,169 @@ ACTIONS: dict[str, tuple[str, str]] = {
     "undetermined": ("Not enough evidence: longer record, or check the loop by hand",
                      "control engineering"),
 }
+
+
+# ============================================================ Project 3
+# RO membrane fouling and cleaning (CIP). Every value below is either physics
+# with a stated source, a vendor convention named as such, or a modelling choice
+# reported with the results; see projects/p03_ro_fouling/VALIDATION.md.
+
+@dataclass(frozen=True)
+class RODepositConfig:
+    """The public deposit used as the external test set.
+
+    Data CC-BY-4.0: cite the article and the deposit wherever a number from it
+    is shown. The plant owner is not named by the authors and is not named here.
+    Not committed to the repository: `chemai.data.ro_deposit.download_deposit`
+    fetches it and checks the published md5.
+    """
+    record: str = "21055948"                      # Zenodo record, deposit v1.3
+    concept_doi: str = "10.5281/zenodo.21003996"
+    zip_name: str = "ESWRT_reproducibility_deposit_v1.3-20260630.zip"
+    md5: str = "68b0223978f0e674d51cfc4c24e95435"  # as published on the record page
+    daily_file: str = "derived_daily_indicator_table.csv"
+    ledger_file: str = "cip_campaign_ledger.csv"
+    folder: str = "ro_deposit"
+    # Cleaning legs closer than this are one campaign (acid + alkaline stages).
+    # The deposit's own ledger uses the same rule and lists 18 campaigns.
+    campaign_gap_days: int = 7
+    # 10-min logging: a day cannot hold more than 144 samples. More means
+    # duplicated or re-gridded records - flagged, never repaired.
+    max_samples_per_day: int = 144
+    citation: str = (
+        "Su, Y.H., Meng, F.C. and Chang, P.Y. (2026) Auditable clean-in-place "
+        "decision support from routine SWRO SCADA. Membranes 16(8), 257. "
+        "doi:10.3390/membranes16080257 - data: doi:10.5281/zenodo.21055948 (CC-BY-4.0)")
+
+    @property
+    def url(self) -> str:
+        return f"https://zenodo.org/records/{self.record}/files/{self.zip_name}?download=1"
+
+
+@dataclass(frozen=True)
+class ROConfig:
+    """Physics, forecast and planning settings for the RO project (Project 3)."""
+
+    # --- reference temperature for every normalised quantity
+    t_ref_c: float = 25.0
+
+    # --- temperature correction of permeability, TCF = exp(E (1/298.15 - 1/T)).
+    # Vendor convention, not a law: 2640 K for water is a common one; salt
+    # passage rises roughly twice as fast with temperature (~6 %/K). Vendors
+    # publish different constants - use the installed membrane's.
+    tcf_e_water: float = 2640.0
+    tcf_e_salt: float = 5000.0
+
+    # --- feed-channel pressure drop: dP ~ Q_avg^(2-m) * mu^m * gap^-n.
+    # With a friction factor f ~ Re^-m, the flow exponent is 2 - m and the
+    # viscosity exponent is m. Schock & Miquel (1987) give m = 0.3, CFD on
+    # spacer channels ~0.2 (Fluids 3, 12, 2018): the physics says 1.7-1.8.
+    dp_flow_exponent: float = 1.75
+    dp_visc_exponent: float = 0.25
+    # Vendors normalise dP with a flow ratio raised to 1.0-1.5. Kept to show
+    # what that costs when production changes (VALIDATION.md section 6).
+    vendor_flow_exponent: float = 1.5
+    # How dP grows as the open gap closes. Slit or Schock-Miquel scaling gives
+    # 3; CFD on a spacer channel gives ~2.2 (10 % gap loss -> +26 % dP).
+    gap_exponent: float = 2.2
+
+    # --- manufacturer limits. Typical 8-inch values (1.0 bar per element,
+    # 3.4 bar per vessel); replace with the installed element's datasheet.
+    dp_max_element_bar: float = 1.0
+    dp_max_vessel_bar: float = 3.4
+
+    # --- forecast. Chosen on simulation (development plants only) and frozen
+    # before the external test; see VALIDATION.md sections 8-10.
+    review_level: float = 1.15          # DP_norm: vendor "+15 % since start-up"
+    law: str = "linear"                 # 'linear' | 'blockage' - see VALIDATION.md 9
+    fit_window_days: int = 42           # trailing window; whole cycle if shorter
+    skip_after_cip_days: int = 3        # flushing transient right after a cleaning
+    min_points: int = 10
+    min_span_days: int = 14
+    horizon_max_days: int = 180         # beyond this a crossing is "not in sight"
+    extrapolation_ratio_max: float = 2.0  # days ahead / days observed; beyond: flagged
+    smooth_days: int = 7                # trailing median used for "now"
+    interval: float = 0.80              # P10-P90: a planning interval
+    n_draws: int = 400                  # plausible lines drawn around the fit
+    interval_inflation: float = 2.0     # calibrated on simulated development plants: 80 % coverage
+    random_state: int = 42
+
+    # --- weekly plan
+    plan_weeks: int = 4                 # "plan a CIP" when the P50 date falls inside this many weeks...
+    # ...or when the 7-day median is already within this margin of the review level.
+    # Added AFTER the external test, where the margin rule beat the forecast; checked
+    # on simulated development and test plants before adoption (VALIDATION.md 12).
+    plan_margin: float = 0.03
+    # A cleaning that removes less than this share of the rise since the
+    # previous cleaning is called ineffective - the procedure, not the
+    # schedule, needs attention.
+    min_recovery_share: float = 0.25
+    min_trains_online: int = 2          # never schedule two trains in the same week below this
+
+
+@dataclass(frozen=True)
+class ROSimConfig:
+    """Ranges for the simulated RO plants (Project 3).
+
+    Each plant draws once from these ranges; its trains share the plant's
+    water and fouling law and differ a little, as trains on one intake do.
+    The simulator exists to provide what no public data set has: the true
+    fouling state, and how it would have continued had nobody cleaned.
+    """
+    days: int = 770
+    trains: int = 3
+    vessels: int = 3
+    elements: int = 8
+    element_area_m2: float = 37.2             # 8-inch, 400 ft2
+    flux_lmh: tuple[float, float] = (10.0, 14.0)
+    recovery: tuple[float, float] = (0.40, 0.45)
+    feed_tds_g_l: tuple[float, float] = (34.0, 37.0)
+    temp_mean_c: tuple[float, float] = (22.0, 28.0)
+    temp_amp_c: tuple[float, float] = (2.0, 6.0)
+    perm_pressure_bar: float = 1.0
+    a_w_lmh_bar: tuple[float, float] = (0.9, 1.3)       # water permeability, 25 C
+    b_s_lmh: tuple[float, float] = (0.02, 0.05)         # salt permeability, 25 C
+    conc_polarisation: tuple[float, float] = (1.05, 1.15)
+    dp_clean_bar: tuple[float, float] = (0.8, 1.6)      # vessel dP, design flow, 25 C
+    friction_m: tuple[float, float] = (0.19, 0.30)      # f ~ Re^-m
+    gap_exponent: tuple[float, float] = (2.0, 3.0)
+    lead_share: tuple[float, float] = (0.15, 0.25)      # lead element's share of clean dP
+    rest_fouling_ratio: tuple[float, float] = (0.05, 0.40)
+    # fouling laws for the lead element's blocked gap fraction
+    laws: tuple[str, ...] = ("linear", "biofilm", "asymptotic")
+    linear_rate: tuple[float, float] = (0.0003, 0.0020)  # gap fraction per day at 25 C
+    biofilm_k: tuple[float, float] = (0.008, 0.030)      # 1/day, exponential phase
+    biofilm_seed: tuple[float, float] = (0.01, 0.04)
+    biofilm_cap: tuple[float, float] = (0.45, 0.70)
+    asym_level: tuple[float, float] = (0.05, 0.25)
+    asym_tau_days: tuple[float, float] = (30.0, 120.0)
+    q10: tuple[float, float] = (1.5, 2.5)               # rate x q10 per +10 K
+    rate_noise: float = 0.25                            # day-to-day lognormal sigma
+    upsets_per_year: float = 3.0                        # blooms, pretreatment upsets
+    upset_size: tuple[float, float] = (0.01, 0.04)      # extra gap fraction per upset
+    permeability_loss: tuple[float, float] = (0.1, 0.5) # A / (1 + a*phi)
+    compaction: tuple[float, float] = (0.03, 0.12)
+    # cleaning
+    cip_efficiency: tuple[float, float] = (0.55, 0.95)  # share of the removable layer
+    irreversible_share: tuple[float, float] = (0.02, 0.10)
+    relax_share: tuple[float, float] = (0.0, 0.5)       # loosened, flushed out over days
+    relax_days: tuple[float, float] = (5.0, 20.0)
+    two_leg_probability: float = 0.4
+    # the operator, whose decisions are endogenous to what the screen shows
+    operator_level: tuple[float, float] = (1.15, 1.35)
+    operator_delay_days: tuple[int, int] = (0, 14)
+    max_days_without_cip: tuple[int, int] = (150, 260)
+    min_days_between_cip: int = 18
+    other_reason_cip_per_year: float = 1.0
+    # availability: a train is on or off in blocks; a day is recorded only when
+    # at least two trains run (the deposit's supply-mode filter)
+    on_block_days: float = 12.0
+    off_block_days: float = 6.0
+    baseline_days: int = 14
+    # measurement
+    dp_noise_rel: tuple[float, float] = (0.008, 0.03)  # daily median, DP transmitter
+    pt_noise_bar: float = 0.03                          # daily median, one pressure transmitter
+    pt_drift_bar_per_day: float = 0.004                 # zero drift, random walk
+    outlier_probability: float = 0.05
+    outlier_scale: float = 4.0
+    random_state: int = 42

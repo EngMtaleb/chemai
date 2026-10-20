@@ -1,0 +1,342 @@
+{
+ "frozen": {
+  "law": "linear",
+  "window": 42,
+  "inflation": 2.0,
+  "ratio_max": 2.0,
+  "plan_days": 28
+ },
+ "data": "Su, Y.H., Meng, F.C. and Chang, P.Y. (2026) Auditable clean-in-place decision support from routine SWRO SCADA. Membranes 16(8), 257. doi:10.3390/membranes16080257 - data: doi:10.5281/zenodo.21055948 (CC-BY-4.0)",
+ "primary": {
+  "crossing": {
+   "1.15": {
+    "decisions": 110,
+    "cycles": 11,
+    "observed_crossings": 75,
+    "dated_of_those": 25,
+    "median_abs_err_days": 36.4,
+    "mae_days": 42.5,
+    "coverage_uncensored": 0.853,
+    "censored": 19,
+    "censored_consistent": 1.0,
+    "flagged": 13,
+    "median_err_inside": 11.6,
+    "median_err_flagged": 67.5
+   },
+   "1.2": {
+    "decisions": 135,
+    "cycles": 13,
+    "observed_crossings": 76,
+    "dated_of_those": 29,
+    "median_abs_err_days": 24.7,
+    "mae_days": 36.4,
+    "coverage_uncensored": 0.921,
+    "censored": 43,
+    "censored_consistent": 0.744,
+    "flagged": 11,
+    "median_err_inside": 13.2,
+    "median_err_flagged": 57.0
+   }
+  },
+  "crossing_all": {
+   "decisions": 245,
+   "cycles": 13,
+   "observed_crossings": 151,
+   "dated_of_those": 54,
+   "median_abs_err_days": 28.4,
+   "mae_days": 39.2,
+   "coverage_uncensored": 0.887,
+   "censored": 62,
+   "censored_consistent": 0.823,
+   "flagged": 24,
+   "median_err_inside": 12.5,
+   "median_err_flagged": 59.2
+  },
+  "level": {
+   "14": {
+    "n": 113,
+    "cycles": 15,
+    "mae_forecast": 0.0338,
+    "mae_persistence": 0.0342,
+    "difference_ci90": [
+     -0.0086,
+     0.0094
+    ],
+    "forecast_better_share": 0.407
+   },
+   "28": {
+    "n": 85,
+    "cycles": 7,
+    "mae_forecast": 0.0525,
+    "mae_persistence": 0.0558,
+    "difference_ci90": [
+     -0.0236,
+     0.0278
+    ],
+    "forecast_better_share": 0.494
+   }
+  },
+  "decisions": {
+   "n": 213,
+   "positives": 61,
+   "cycles": 11,
+   "forecast_p50": {
+    "14": [
+     10,
+     3,
+     51,
+     0.164,
+     0.769
+    ],
+    "28": [
+     13,
+     5,
+     48,
+     0.213,
+     0.722
+    ],
+    "42": [
+     16,
+     10,
+     45,
+     0.262,
+     0.615
+    ]
+   },
+   "margin": {
+    "0.01": [
+     11,
+     1,
+     50,
+     0.18,
+     0.917
+    ],
+    "0.02": [
+     21,
+     1,
+     40,
+     0.344,
+     0.955
+    ],
+    "0.03": [
+     26,
+     2,
+     35,
+     0.426,
+     0.929
+    ],
+    "0.05": [
+     41,
+     7,
+     20,
+     0.672,
+     0.854
+    ],
+    "0.08": [
+     47,
+     19,
+     14,
+     0.77,
+     0.712
+    ]
+   },
+   "post_hoc_union_0_03": [
+    31,
+    6,
+    30,
+    0.508,
+    0.838
+   ]
+  }
+ },
+ "secondary_blockage": {
+  "crossing_all": {
+   "decisions": 245,
+   "cycles": 13,
+   "observed_crossings": 151,
+   "dated_of_those": 53,
+   "median_abs_err_days": 26.5,
+   "mae_days": 35.9,
+   "coverage_uncensored": 0.881,
+   "censored": 62,
+   "censored_consistent": 0.823,
+   "flagged": 23,
+   "median_err_inside": 13.7,
+   "median_err_flagged": 58.6
+  },
+  "level": {
+   "14": {
+    "n": 113,
+    "cycles": 15,
+    "mae_forecast": 0.034,
+    "mae_persistence": 0.0342,
+    "difference_ci90": [
+     -0.0088,
+     0.0102
+    ],
+    "forecast_better_share": 0.389
+   },
+   "28": {
+    "n": 85,
+    "cycles": 7,
+    "mae_forecast": 0.0574,
+    "mae_persistence": 0.0558,
+    "difference_ci90": [
+     -0.0217,
+     0.0401
+    ],
+    "forecast_better_share": 0.494
+   }
+  }
+ },
+ "plan_before_each_cleaning": [
+  {
+   "episode": "A#1",
+   "day": 579,
+   "plan_week_before": "review",
+   "level_now": 1.2219
+  },
+  {
+   "episode": "A#2",
+   "day": 727,
+   "plan_week_before": "review",
+   "level_now": 1.2339
+  },
+  {
+   "episode": "A#3",
+   "day": 765,
+   "plan_week_before": "review",
+   "level_now": 1.201
+  },
+  {
+   "episode": "B#1",
+   "day": 456,
+   "plan_week_before": "review",
+   "level_now": 1.3973
+  },
+  {
+   "episode": "B#2",
+   "day": 482,
+   "plan_week_before": "review",
+   "level_now": 1.4024
+  },
+  {
+   "episode": "B#3",
+   "day": 524,
+   "plan_week_before": "review",
+   "level_now": 1.3903
+  },
+  {
+   "episode": "B#4",
+   "day": 544,
+   "plan_week_before": "wait",
+   "level_now": null
+  },
+  {
+   "episode": "B#5",
+   "day": 584,
+   "plan_week_before": "none",
+   "level_now": 1.0959
+  },
+  {
+   "episode": "B#6",
+   "day": 629,
+   "plan_week_before": "none",
+   "level_now": 1.0397
+  },
+  {
+   "episode": "B#7",
+   "day": 726,
+   "plan_week_before": "review",
+   "level_now": 1.1638
+  },
+  {
+   "episode": "B#8",
+   "day": 767,
+   "plan_week_before": "plan",
+   "level_now": 1.1476
+  },
+  {
+   "episode": "C#1",
+   "day": 344,
+   "plan_week_before": "watch",
+   "level_now": 1.0285
+  },
+  {
+   "episode": "C#2",
+   "day": 481,
+   "plan_week_before": "review",
+   "level_now": 1.4233
+  },
+  {
+   "episode": "C#3",
+   "day": 523,
+   "plan_week_before": "review",
+   "level_now": 1.467
+  },
+  {
+   "episode": "C#4",
+   "day": 546,
+   "plan_week_before": "wait",
+   "level_now": null
+  },
+  {
+   "episode": "C#5",
+   "day": 586,
+   "plan_week_before": "review",
+   "level_now": 1.1558
+  },
+  {
+   "episode": "C#6",
+   "day": 725,
+   "plan_week_before": "review",
+   "level_now": 1.3137
+  },
+  {
+   "episode": "C#7",
+   "day": 769,
+   "plan_week_before": "review",
+   "level_now": 1.2043
+  }
+ ],
+ "plan_category_share": {
+  "data": 0.317,
+  "review": 0.218,
+  "none": 0.206,
+  "wait": 0.138,
+  "plan": 0.068,
+  "watch": 0.052
+ },
+ "plan_at_end": {
+  "day": 770,
+  "rows": [
+   {
+    "day": 770,
+    "train": "A",
+    "category": "wait",
+    "week": NaN,
+    "level_now": NaN,
+    "p50": NaN,
+    "flags": 2
+   },
+   {
+    "day": 770,
+    "train": "B",
+    "category": "wait",
+    "week": NaN,
+    "level_now": NaN,
+    "p50": NaN,
+    "flags": 1
+   },
+   {
+    "day": 770,
+    "train": "C",
+    "category": "wait",
+    "week": NaN,
+    "level_now": NaN,
+    "p50": NaN,
+    "flags": 2
+   }
+  ]
+ }
+}

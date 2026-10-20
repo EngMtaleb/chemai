@@ -1,0 +1,354 @@
+{
+ "variant": {
+  "dp_noise_rel": [
+   0.004,
+   0.012
+  ],
+  "outlier_probability": 0.02,
+  "operator_level": [
+   1.1,
+   1.25
+  ],
+  "max_days_without_cip": [
+   45,
+   120
+  ],
+  "min_days_between_cip": 14,
+  "other_reason_cip_per_year": 2.0
+ },
+ "plants": 30,
+ "seed": 5005,
+ "shape": {
+  "real": {
+   "length": [
+    23.0,
+    38.5,
+    42.0,
+    71.0,
+    137.8
+   ],
+   "jump": [
+    0.0061,
+    0.008,
+    0.0113,
+    0.0146,
+    0.0181
+   ],
+   "scatter": [
+    0.0099,
+    0.012,
+    0.0147,
+    0.0272,
+    0.032
+   ],
+   "slope": [
+    -0.0024,
+    -0.0,
+    0.003,
+    0.0066,
+    0.0138
+   ]
+  },
+  "matched": {
+   "length": [
+    27.0,
+    43.0,
+    54.0,
+    77.0,
+    96.0
+   ],
+   "jump": [
+    0.0,
+    0.0027,
+    0.0112,
+    0.0167,
+    0.0218
+   ],
+   "scatter": [
+    0.0,
+    0.0039,
+    0.0181,
+    0.0312,
+    0.0429
+   ],
+   "slope": [
+    0.0,
+    0.0,
+    0.0057,
+    0.0152,
+    0.0265
+   ]
+  }
+ },
+ "own fit": {
+  "summary": {
+   "forecasts": 10511,
+   "cycles": 1009,
+   "truth_inside_horizon": 8084,
+   "dated": 5393,
+   "missed_in_sight": 2691,
+   "mae_days": 32.3,
+   "median_abs_err_days": 22.5,
+   "p90_abs_err_days": 76.4,
+   "bias_days": 10.8,
+   "coverage": 0.686,
+   "flagged": 2631,
+   "median_err_inside": 12.1,
+   "median_err_flagged": 40.9,
+   "flag_ratio": 3.38,
+   "precision_at_recall_0.5": {
+    "forecast": 0.778,
+    "margin": 0.809
+   }
+  },
+  "curves": {
+   "n": 10540,
+   "cycles": 1009,
+   "positive_share": 0.181,
+   "forecast_p50": [
+    [
+     7,
+     0.088,
+     0.944
+    ],
+    [
+     14,
+     0.223,
+     0.891
+    ],
+    [
+     21,
+     0.376,
+     0.849
+    ],
+    [
+     28,
+     0.495,
+     0.782
+    ],
+    [
+     35,
+     0.592,
+     0.705
+    ],
+    [
+     42,
+     0.67,
+     0.644
+    ],
+    [
+     56,
+     0.778,
+     0.55
+    ]
+   ],
+   "margin": [
+    [
+     0.0,
+     0.007,
+     1.0
+    ],
+    [
+     0.01,
+     0.035,
+     1.0
+    ],
+    [
+     0.02,
+     0.105,
+     0.971
+    ],
+    [
+     0.03,
+     0.182,
+     0.954
+    ],
+    [
+     0.04,
+     0.285,
+     0.935
+    ],
+    [
+     0.05,
+     0.395,
+     0.881
+    ],
+    [
+     0.065,
+     0.56,
+     0.768
+    ],
+    [
+     0.08,
+     0.668,
+     0.632
+    ],
+    [
+     0.12,
+     0.821,
+     0.354
+    ]
+   ]
+  },
+  "coverage_by_law": {
+   "asymptotic": 0.781,
+   "biofilm": 0.585,
+   "linear": 0.689
+  }
+ },
+ "plan_triggers": {
+  "matched (own fit)": {
+   "forecast": {
+    "recall": 0.495,
+    "precision": 0.782
+   },
+   "margin": {
+    "recall": 0.182,
+    "precision": 0.954
+   },
+   "union": {
+    "recall": 0.513,
+    "precision": 0.787
+   }
+  },
+  "development (own fit)": {
+   "forecast": {
+    "recall": 0.487,
+    "precision": 0.753
+   },
+   "margin": {
+    "recall": 0.319,
+    "precision": 0.781
+   },
+   "union": {
+    "recall": 0.581,
+    "precision": 0.739
+   }
+  },
+  "test (own fit)": {
+   "forecast": {
+    "recall": 0.508,
+    "precision": 0.78
+   },
+   "margin": {
+    "recall": 0.297,
+    "precision": 0.784
+   },
+   "union": {
+    "recall": 0.599,
+    "precision": 0.761
+   }
+  }
+ },
+ "vendor 1.5": {
+  "summary": {
+   "forecasts": 10353,
+   "cycles": 998,
+   "truth_inside_horizon": 7359,
+   "dated": 3662,
+   "missed_in_sight": 3697,
+   "mae_days": 38.6,
+   "median_abs_err_days": 28.4,
+   "p90_abs_err_days": 90.2,
+   "bias_days": 1.7,
+   "coverage": 0.852,
+   "flagged": 1660,
+   "median_err_inside": 20.4,
+   "median_err_flagged": 43.5,
+   "flag_ratio": 2.14,
+   "precision_at_recall_0.5": {
+    "forecast": 0.403,
+    "margin": 0.551
+   }
+  },
+  "curves": {
+   "n": 10682,
+   "cycles": 1016,
+   "positive_share": 0.175,
+   "forecast_p50": [
+    [
+     7,
+     0.086,
+     0.546
+    ],
+    [
+     14,
+     0.177,
+     0.513
+    ],
+    [
+     21,
+     0.265,
+     0.494
+    ],
+    [
+     28,
+     0.324,
+     0.466
+    ],
+    [
+     35,
+     0.387,
+     0.45
+    ],
+    [
+     42,
+     0.441,
+     0.433
+    ],
+    [
+     56,
+     0.501,
+     0.402
+    ]
+   ],
+   "margin": [
+    [
+     0.0,
+     0.153,
+     0.866
+    ],
+    [
+     0.01,
+     0.209,
+     0.807
+    ],
+    [
+     0.02,
+     0.26,
+     0.735
+    ],
+    [
+     0.03,
+     0.316,
+     0.679
+    ],
+    [
+     0.04,
+     0.374,
+     0.635
+    ],
+    [
+     0.05,
+     0.424,
+     0.599
+    ],
+    [
+     0.065,
+     0.527,
+     0.534
+    ],
+    [
+     0.08,
+     0.628,
+     0.478
+    ],
+    [
+     0.12,
+     0.792,
+     0.339
+    ]
+   ]
+  }
+ }
+}
