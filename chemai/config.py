@@ -341,9 +341,9 @@ class ROConfig:
     dp_max_vessel_bar: float = 3.4
 
     # --- forecast. Chosen on simulation (development plants only) and frozen
-    # before the external test; see VALIDATION.md sections 8-10.
+    # before the external test; see VALIDATION.md sections 7-10.
     review_level: float = 1.15          # DP_norm: vendor "+15 % since start-up"
-    law: str = "linear"                 # 'linear' | 'blockage' - see VALIDATION.md 9
+    law: str = "linear"                 # 'linear' | 'blockage' - see VALIDATION.md 7 and 9
     fit_window_days: int = 42           # trailing window; whole cycle if shorter
     skip_after_cip_days: int = 3        # flushing transient right after a cleaning
     min_points: int = 10

@@ -19,8 +19,8 @@ whose cause is known, or upload your own `day,dp_norm` CSV.
 
 ## ⭐ The headline: on the real plant, the forecast did not win
 
-Tested once, after a written declaration, on the only public plant record of its kind (three
-trains, 18 cleanings — Su, Meng & Chang 2026):
+Tested once, after a written declaration, on the only public plant record of this kind we could
+find (three trains, 18 cleanings — Su, Meng & Chang 2026):
 
 | "Will this train reach the review level within 28 days?" | Recall | Precision |
 |---|---:|---:|
@@ -29,12 +29,14 @@ trains, 18 cleanings — Su, Meng & Chang 2026):
 | both, as the weekly plan now uses them (chosen after this test) | 0.51 | 0.84 |
 
 Level forecasts 14 days ahead were **no better than assuming the level stays where it is** (mean
-error 0.034 for both). The declaration had said this could happen, and why: the deposit's pressure
-drop carries a vendor normalisation, and its cycles are short and quiet — a train close to the
-level crosses on its day-to-day swings before any trend matters.
+error 0.034 for both). The declaration had said this could happen, and named one reason: the
+deposit's pressure drop carries a vendor normalisation. A second reason was found afterwards: its
+cycles are short and quiet, so a train close to the level crosses on its day-to-day swings before
+any trend matters.
 
 The margin rule is now part of the plan. That change was made after seeing the real result, so the
-last row is optimistic; it was checked on simulated plants, where it raised recall by 2–9 points at
+last row is optimistic. It was checked on simulated plants — the development and test plants
+reused, plus new, quieter ones — where it raised recall by 2–9 points (2 on the new plants) at
 nearly the same precision. A second plant is what would settle it.
 
 ---
@@ -45,14 +47,15 @@ nearly the same precision. A second plant is what would settle it.
 |---|---:|
 | Real plant: trains · cleanings · complete cycles | 3 · 18 · 15 |
 | Simulated plants: development · test · checks | 30 · 30 · 45 |
-| Error ratio, dates it flags as too far ahead vs the rest (real plant) | **59 vs 12 days** |
+| Median error, the dates it flags vs the rest (real plant) | **59 vs 12.5 days** |
 | Median error of the crossing date, test plants · real plant | 19 days · 28 days |
 | P10–P90 coverage: test plants · real plant · quieter simulation | 0.78 · 0.89 · 0.69 |
 | The operators' 18 cleanings the plan had at "review" or "plan" the week before | 13 |
 | Tests | 269 (whole repository) |
 
 Simulation is used for everything that needs a known answer: the true crossing day without the
-cleaning. **The real deposit is an external test set, spent once.** Nothing was tuned on it.
+cleaning. **The real deposit is an external test set, spent once.** No forecast setting was tuned
+on it; one plan rule was added after seeing it, and is labelled that way.
 
 ---
 
@@ -82,10 +85,11 @@ transmitters instead of one differential transmitter raised the forecast error f
   sitting at its clean baseline, and a trend that has not started cannot be extended.
 - On accelerating, biofilm-like fouling a straight line is **late by a median 23 days**
   (simulation). Plan by the P10 date for a train with that history.
-- The extrapolation flag works on both: dates further ahead than twice the days the line has seen
-  missed by a median **59 days on the real plant**, the rest by 12.
+- The flag works on both: dates it flags — further ahead than twice the days the line has seen,
+  or from a window mostly at the baseline — missed by a median **59 days on the real plant**, the
+  rest by 12.5.
 
-### The gap law is right, and worth about a day
+### The gap law is right, and worth a day or two
 
 As fouling closes the channel the pressure drop accelerates (ΔP ∝ gap^−2.2). But between 1.00 and
 1.30, where plants clean, it bends less than 0.015 from a straight line. Fitting through it gained
@@ -94,7 +98,7 @@ one to two days, in simulation and on the real plant; not adopted, kept as an op
 ### Three real cleanings had no hydraulic reason
 
 Replaying the weekly plan over two years, 13 of the operators' 18 cleanings came when the plan said
-"review" or "plan". Three came at DP_norm 1.03–1.10. Before one of them, salt passage had been
+"review" or "plan". Three came with the last week's DP_norm at 1.04–1.11. Before one of them, salt passage had been
 about 60 % above its baseline for a month — a reason a pressure-drop plan cannot see. Before the
 other two, none of the four published indicators had moved. The data do not say why they were done.
 

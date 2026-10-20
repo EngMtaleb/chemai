@@ -20,7 +20,9 @@ are not named here.
 **Order of work.** Simulated plants were split by plant and by seed before anything was scored:
 development plants (seed 1001) chose every setting; test plants (seed 2002) checked them once; the
 real deposit was scored once, after a written declaration. A further seed (3003) is used only for
-illustrations, and one more (5005) for a check made after the external test (section 13).
+illustrations, and one more (5005) for a check made after the external test (section 13). One plan
+rule was added after the external test; section 12 says which, and how far its scores can be
+trusted.
 
 | Step | Script | Writes |
 |---|---|---|
@@ -28,6 +30,7 @@ illustrations, and one more (5005) for a check made after the external test (sec
 | 2 · physics | `step2_physics.py` | `results/step2_physics.json`, two figures |
 | 3 · simulator against the deposit | `step3_simulator.py` | `results/step3_simulator.json`, two figures |
 | 4 · choices, development plants | `step4_forecast_dev.py` | `results/step4_forecast_dev.json` |
+| 4b · why the interval is drawn (recorded re-run) | `step4b_interval_check.py` | `results/step4b_interval_check.json` |
 | 5 · test plants, once | `step5_forecast_test.py` | `results/step5_forecast_test.json` |
 | 6 · real deposit, once | `step6_external_test.py` | `results/step6_external_test.json`, two figures |
 | 7 · post hoc: a quieter simulator | `step7_matched_simulator.py` | `results/step7_matched_simulator.json` |
@@ -60,7 +63,7 @@ confidence and an owner. The forecast date is one input to it, never the answer 
 | `wait` | too soon after the last cleaning to judge | – |
 
 **The review level is the plant's, not the model's.** The default, DP_norm 1.15, is the common
-vendor rule of "+15 % since start-up". It is a parameter of every endpoint; the results below are
+vendor rule of "+15 % since start-up". It is a parameter of `/forecast` and `/plan`; the results below are
 scored at both 1.15 and 1.20.
 
 ---
@@ -77,7 +80,7 @@ scored at both 1.15 and 1.20.
 Four daily indicators per train, each a fractional deviation from a baseline: net driving pressure
 (`ndp_pct`), normalised feed-channel pressure drop (`dp_pct`), temperature-corrected specific flux
 (`flux_pct`) and salt passage (`sp_pct`). The raw 10-minute SCADA series, the calendar dates and
-the membrane element model are withheld by the authors; their hashes are published.
+the membrane element model are withheld by the authors; hashes are published for the raw series.
 
 **What the article says about the pressure drop.** Normalised with a vendor flow ratio raised to
 **1.5**, computed separately for each operating mode (the number of trains running), corrected
@@ -95,6 +98,9 @@ pressure vessels of eight elements.
 
 Half the calendar is missing for train A. Any method that needs a continuous record fails here
 before it starts; that is why "too few recorded days" is a plan category of its own.
+
+The deposit's own README names the journal the manuscript was first submitted to; the article
+appeared in *Membranes* 16(8) 257 (doi:10.3390/membranes16080257, checked at the publisher).
 
 The download is checked against the md5 printed on the record page
 (`68b0223978f0e674d51cfc4c24e95435`); a different file is refused, not used.
@@ -118,8 +124,10 @@ therefore reads **DP_norm = 1 + dp_pct**, on the fixed baseline (`figures/step1_
 
 Every indicator is clipped to [0, 1]. **A zero means "at or below the commissioning baseline"**,
 not "clean": the value is censored there. 15 % of all train-days are zeros for `dp_pct` (36 % for
-`ndp_pct`, 67 % for `flux_pct`). The forecast treats censored days as lower bounds and warns when
-more than a fifth of its window is censored.
+`ndp_pct`, 67 % for `flux_pct`). A recorded 1.00 is therefore an **upper bound** on the true value.
+The forecast fits censored days at 1.00 like any other day; when more than a fifth of its window is
+censored it warns that the level is an upper bound, and the date is marked as outside its tested
+envelope (flagged).
 
 ### 3.2 Legs are not cleanings
 
@@ -161,7 +169,8 @@ Scoring them as independent samples would multiply the evidence by about thirty.
   different simulated plants with different seeds.
 - **Decisions are taken weekly** inside each cycle (day 14, 21, 28, …), as a planner would.
 - **Real-data intervals are bootstrapped by cycle**, never by day.
-- **The deposit is spent once.** Nothing was tuned on it.
+- **The deposit is spent once.** No forecast setting was tuned on it; one plan rule was added after
+  seeing it (section 12).
 
 ---
 
@@ -237,7 +246,7 @@ transmitter is worth more than any model in this project.
 
 ---
 
-## 7. The gap law: physically right, worth about a day
+## 7. The gap law: physically right, worth a day or two
 
 As fouling closes the feed channel, the pressure drop accelerates: ΔP ∝ gap^(−n). With n = 2.2,
 losing 10 % of the gap raises ΔP by 26 %. If fouling starts on the lead element, the curve is more
@@ -316,18 +325,30 @@ flushing days after a cleaning; the crossing date of the review level is read of
 The window barely matters: 42 days dated 10 % more crossings than 28 at the same error. The law is
 section 7.
 
-**The interval.** The first version bootstrapped the residuals. Against Monte Carlo, it reproduced
-only **74 %** of the slope's true spread (independent resampling) and **47 %** (blocks of seven
-days): a cycle is too short and too autocorrelated to bootstrap. Replaced by drawing plausible
-lines around the fit, with the sample size shrunk for lag-1 autocorrelation, and one inflation
-factor calibrated on development plants:
+**The interval.** The first version bootstrapped the residuals. An exploratory Monte Carlo check
+rejected it; that run was not saved, so `step4b_interval_check.py` repeats it on record (written
+after the external test; no plant data). A known straight line plus AR(1) noise, fitted on days
+3–42 like the forecast; the share of the true slope spread each method recovers:
+
+| Lag-1 autocorrelation | 0 | 0.3 | 0.6 |
+|---|---:|---:|---:|
+| residual bootstrap, independent draws | 84 % | 63 % | 41 % |
+| residual bootstrap, blocks of seven days | 66 % | 68 % | 58 % |
+| drawn lines, AR(1) sample size, no inflation | 93 % | 88 % | 78 % |
+
+A cycle is too short and too autocorrelated to bootstrap. Replaced by drawing plausible lines
+around the fit, with the sample size shrunk for lag-1 autocorrelation, and one inflation factor
+calibrated on development plants — on **crossing dates**, not slopes. On a pure straight line the
+factor of 2.0 widens the slope spread to 1.6–1.9 times the truth; the extra covers what a straight
+line cannot see (curvature, the wrong fouling law):
 
 | Inflation | 1.0 | 1.5 | **2.0** | 2.5 | 3.0 |
 |---|---:|---:|---:|---:|---:|
 | P10–P90 coverage (target 0.80) | 0.658 | 0.738 | **0.800** | 0.851 | 0.886 |
 
-**The extrapolation flag.** A date further ahead than twice the days the line has seen is
-flagged. Section 10 shows why.
+**The flag.** A date is flagged — marked outside the tested envelope — when it lies further ahead
+than twice the days the line has seen, or when more than a fifth of the window is censored.
+Section 10 shows why.
 
 **The decision rule.** "Plan a CIP when the P50 date is within 28 days", compared with the simplest
 rival: "plan when the 7-day median is within a margin of the level". For "will it cross within 28
@@ -343,7 +364,9 @@ lost. **Frozen:** linear law, 42-day window, inflation 2.0, flag at 2×, plan at
 
 ---
 
-## 10. Test plants (30 plants, seed 2002) — scored once
+## 10. Test plants (30 plants, seed 2002) — scored once for the forecast
+
+(Their saved scores were reused after the external test to check the plan rule of section 12.)
 
 | Normalisation | Median error | Dated / crossed | Coverage | Precision at recall 0.5: forecast · margin |
 |---|---:|---:|---:|---|
@@ -376,7 +399,8 @@ the window the line has seen):
 | forecasts | 1,177 | 1,108 | 875 | 608 | 822 | 680 | 200 |
 | median error, days | 6.3 | 11.9 | 20.0 | 28.8 | **41.4** | **71.5** | **80.2** |
 
-Flagged forecasts missed by a median of 51.8 days; unflagged by 12.2 (4.2×).
+Flagged dates (either reason) missed by a median of 51.8 days, the rest by 12.2. By the
+twice-the-window rule alone: 55.2 against 12.5 days.
 
 ---
 
@@ -412,7 +436,9 @@ a median of 75 days later. A forecast cannot see a rise that has not started.
 
 **The dates it gave were late.** 69 % of dated crossings came before the P50 (median +18 days). The
 lateness sits in the flagged dates: unflagged ones were nearly unbiased (+3 days, n = 30), flagged
-ones +59 days (n = 24). The flag did its job here too.
+ones +59 days (n = 24; 18 of them for looking beyond twice the window, 6 only for a mostly censored
+window). By the twice-the-window rule alone: 75 days against 17 (n = 18 / 36). The flag did its job
+here too.
 
 **And 41 % of all weekly decisions had too few recorded days to forecast at all** — the gaps of
 section 2.
@@ -441,9 +467,10 @@ section 2.
 | margin 0.05 | 41 | 7 | 0.67 | 0.85 |
 | margin 0.08 | 47 | 19 | 0.77 | 0.71 |
 
-**The forecast lost to the margin rule at every operating point.** As declared: the deposit's
-pressure drop carries a vendor normalisation, and the real cycles are short and quiet — a train
-near the level crosses on its day-to-day swings before any trend matters.
+**The forecast lost to the margin rule at every operating point.** The declaration had named one
+reason in advance: the deposit's pressure drop carries a vendor normalisation. A second was found
+afterwards (sections 8 and 13): the real cycles are short and quiet, so a train near the level
+crosses on its day-to-day swings before any trend matters.
 
 ### 11.5 The weekly plan, replayed against the operators
 
@@ -455,15 +482,16 @@ cleanings:
 |---|---:|
 | review (at or above the level) | 12 |
 | plan | 1 |
-| wait (a second leg 3 weeks after the previous campaign) | 2 |
-| watch | 1 (C#1, DP_norm 1.03) |
-| none — falling | 2 (B#5 at 1.10, B#6 at 1.04) |
+| wait (a separate campaign 18 and 21 days after the previous one) | 2 |
+| watch | 1 (C#1; last week’s median 1.08) |
+| none — no crossing in sight (slope slightly negative) | 2 (B#5 at 1.11, B#6 at 1.04) |
 
 **Three cleanings had no hydraulic reason.** The deposit does not record why a train was cleaned.
 A look at the other indicators, made after the test, over the month before each: before C#1, salt
-passage stood a median 59 % above its baseline (48–100 % on all 15 recorded days) and specific flux
-up to 18 % off — a reason the plan, which reads only the pressure drop, cannot see. Before B#5 and
-B#6, none of the four deposited indicators had moved (salt passage median +6 %, flux unchanged).
+passage stood a median 59 % above its baseline (48–100 % on all 15 recorded days), with specific
+flux a median 7 % and at most 18 % off — a reason the plan, which reads only the pressure drop,
+cannot see. Before B#5 and B#6 the medians had not moved (salt passage +6 %, flux 0), though single
+days reached 12 % on flux and 19 % on net driving pressure before B#6.
 
 Over the whole replay, a third of weekly rows (32 %) said `data` — check logging and
 transmitters — because of the gaps.
@@ -476,8 +504,11 @@ transmitters — because of the gaps.
 **or** a 7-day median within **0.03** of the review level ("day-to-day swings will reach it",
 planned within two weeks).
 
-**Why it is honest to keep it.** The change is a rule a planner can read, not a fit; and it was
-checked on the simulated plants, where nothing about the deposit is known:
+**Why it is honest to keep it.** The change is a rule a planner can read, not a fit, and it was
+checked on simulated plants — with a caveat. The development and test plants were **reused** for
+this check, and the simulator's fouling rates were set from the deposit's slopes (section 8); the
+quieter variant was built to resemble the deposit (section 13). Only the quieter plants are new to
+the combined rule, and there it gained 2 points of recall:
 
 | "Crosses within 28 days" | Forecast alone | Margin alone | **Both (adopted)** |
 |---|---|---|---|
@@ -486,9 +517,10 @@ checked on the simulated plants, where nothing about the deposit is known:
 | quieter simulator (section 13) | R 0.50 · P 0.78 | R 0.18 · P 0.95 | **R 0.51 · P 0.79** |
 | real deposit (post hoc) | R 0.21 · P 0.72 | R 0.43 · P 0.93 | R 0.51 · P 0.84 |
 
-On every simulated set, adding the margin raised recall — by 9 points on the development and test
-plants, 2 on the quieter variant — at nearly the same precision. **The real-data row is optimistic:** the rule exists because of the deposit's result,
-so the deposit is no longer an untouched test of the plan. It needs a second plant.
+On every simulated set, adding the margin raised recall — by 9 points on the reused development
+and test plants, 2 on the new quieter plants — at nearly the same precision. **The real-data row is
+optimistic:** the rule exists because of the deposit's result, so the deposit is no longer an
+untouched test of the plan. It needs a second plant.
 
 `test_a_train_hovering_just_below_the_level_is_planned` keeps it from disappearing.
 
@@ -513,7 +545,7 @@ operators cleaning earlier (near 1.10–1.25, at most 45–120 days apart). New 
 | precision at recall 0.5: forecast · margin | **0.78 · 0.74** | **0.78 · 0.81** |
 | vendor 1.5, same | never · 0.61 | 0.40 · 0.55 |
 
-**What survives:** normalisation matters as much as before; the extrapolation flag still separates
+**What survives:** normalisation matters as much as before; the flag still separates
 good dates from bad. **What does not:** the forecast's edge over the margin rule — in a world as
 quiet as the deposit, the margin rule edges ahead, as it did on the real data. **And the interval
 calibration does not transfer:** 0.78 on the test plants, 0.69 here, 0.89 on the deposit. The

@@ -5,7 +5,7 @@ Design notes worth reading before changing anything:
   * There is NO trained model to load. The forecast is a robust straight line
     through the current cycle, chosen on simulated development plants. The one
     alternative tested - the same line through the gap-law transform - gained
-    about a day, there and on the real plant, and was not adopted
+    one to two days, there and on the real plant, and was not adopted
     (VALIDATION.md sections 7 and 9). The service is stateless and starts
     instantly, so it cannot stop Projects 1 and 2 from booting on the same
     deployment.
@@ -52,8 +52,9 @@ LIMITS = [
     "(mean error 0.034 for both).",
     "The P10-P90 band is rough: it held 78 % of outcomes on simulated test plants, 89 % on the "
     "real plant and 69 % on a quieter simulated variant.",
-    "Looking further ahead than twice the observed window is flagged: on the real plant flagged "
-    "dates missed by a median of 59 days, unflagged ones by 12.",
+    "A date is flagged when it looks further ahead than twice the days it has seen, or when most "
+    "of its window sits on the baseline: on the real plant flagged dates missed by a median of "
+    "59 days, the rest by 12.5.",
     "Reads the hydraulic signal only - normalised feed-channel pressure drop. Scaling of the tail "
     "elements and membrane damage show in permeate flow and salt passage first; review those "
     "separately. An upset (a bloom, a pretreatment failure) changes the rate overnight and no "

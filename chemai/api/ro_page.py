@@ -167,7 +167,7 @@ function draw(cycle, f) {
   }
   for (var j = 0; j < cycle.day.length; j++)
     svg.appendChild(el('circle', { cx: X(cycle.day[j]), cy: Y(cycle.dp_norm[j]), r: 2.6, fill: '#3d6f80' }));
-  $('window').textContent = cycle.day.length + ' days recorded, last on day ' + tMax;
+  $('window').textContent = (cycle.name ? cycle.name + ' · ' : '') + cycle.day.length + ' days recorded, last on day ' + tMax;
   $('chartCard').hidden = false;
 }
 
@@ -210,7 +210,8 @@ function plan(payload) {
   fetch('plan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
     .then(function (r) { return r.json(); })
     .then(function (p) {
-      draw(payload.trains[0], null);
+      var first = p.rows.length ? p.rows[0].train : null;     // draw the most urgent train
+      draw(payload.trains.filter(function (t) { return t.name === first; })[0] || payload.trains[0], null);
       $('planBody').innerHTML = p.rows.map(function (r) {
         return '<tr><td><b>' + r.train + '</b></td><td>' + r.action + '<br><span style="color:#5b6d77">' +
           r.evidence + '</span>' + (r.flags.length ? '<small>' + r.flags.join('<br>') + '</small>' : '') +

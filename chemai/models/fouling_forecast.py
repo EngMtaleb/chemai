@@ -6,15 +6,16 @@ days of the current cleaning cycle - in DP_norm itself (`law='linear'`), or in
 DP_norm^(-1/n), which the gap law says is straight when the foulant layer grows
 steadily (`law='blockage'`). Which one ships was decided on simulated plants,
 where the answer is known, before the real deposit was touched
-(projects/p03_ro_fouling/VALIDATION.md, sections 8-10).
+(projects/p03_ro_fouling/VALIDATION.md, sections 7-10).
 
 Three things travel with every number:
 
   * a P10-P90 interval. The line's uncertainty is widened for day-to-day
     correlation (an effective sample size from the lag-1 autocorrelation of the
     residuals) and by one factor calibrated on simulated development plants.
-    A residual bootstrap was tried first and rejected: it under-stated the
-    slope's spread by a quarter to a half (VALIDATION.md section 9);
+    A residual bootstrap was tried first and rejected: it recovered only
+    41-84 % of the slope's true spread, depending on the autocorrelation
+    (VALIDATION.md section 9; projects/p03_ro_fouling/step4b_interval_check.py);
   * the extrapolation ratio, days ahead over days observed. A forecast that
     looks further ahead than twice what it has seen is flagged, and the flag
     was tested: flagged forecasts are the ones that miss;

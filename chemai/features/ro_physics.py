@@ -86,7 +86,7 @@ def log_mean_concentration_factor(recovery) -> np.ndarray:
     """Feed-to-concentrate average concentration over feed concentration.
 
     For a concentration that rises exponentially along the vessel, the mean is
-    -ln(1 - R) / R (1.25 at 40 % recovery). ASTM D4516's arithmetic feed-brine
+    -ln(1 - R) / R (1.277 at 40 % recovery). ASTM D4516's arithmetic feed-brine
     average gives a similar number; either is fine if used consistently.
     """
     r = np.asarray(recovery, dtype=float)

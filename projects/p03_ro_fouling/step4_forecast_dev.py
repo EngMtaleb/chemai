@@ -89,7 +89,7 @@ def main():
         s = summarise(sc)
         res["calibration"][k] = s
         print(f"inflation {k}: coverage {s['coverage']:.3f}  flag ratio {s.get('flag_ratio')}", flush=True)
-        if k == 1.0:
+        if k == base.interval_inflation:          # keep the scores at the frozen setting
             sc.to_pickle(OUT / "step4_dev_scores.pkl")
     (OUT / "step4_forecast_dev.json").write_text(json.dumps(res, indent=1, default=str))
     print(f"done in {time.time() - t0:.0f}s")
