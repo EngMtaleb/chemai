@@ -604,7 +604,23 @@ the noise. **Treat P10–P90 as a rough band, not a calibrated one.**
 
 ---
 
-## 16. What this is, and what it is not
+## 16. Beside the published rule (descriptive)
+
+`step8_head_to_head.py` → `results/step8_head_to_head.json`, from the step 6 decisions. A crossing
+counts when a weekly decision sat before it in the same cycle with an uncensored answer; the plan
+warns when its P50 is within 28 days or its last 7 days are within 0.03 of the level (the margin
+rule is post hoc, section 12).
+
+| Level | Cycles reaching it | Crossings with a decision before | Plan warned | Median notice (range) | Rule acts after crossing, median | Plan precision · recall |
+|---|---:|---:|---:|---|---:|---|
+| 1.20 | 10 | 7 | 6 | 22.5 days (2–38) | 4 days | 0.81 · 0.54 |
+| 1.15 | 14 | 9 | 8 | 11.5 days (3–39) | 3.5 days | 0.86 · 0.49 |
+
+The published rule never warns, so it has no false warnings and no notice. The table does not say
+which cleans at the better time: the deposit holds no record of what an earlier or later cleaning
+would have recovered.
+
+## 17. What this is, and what it is not
 
 **What this is:** a deployed prototype, complete from a public deposit to a service anyone can
 call — physics-based normalisation, a forecast that says how far it can see, and a weekly plan with

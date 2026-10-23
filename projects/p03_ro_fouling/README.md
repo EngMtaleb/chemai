@@ -102,6 +102,26 @@ Replaying the weekly plan over two years, 13 of the operators' 18 cleanings came
 about 60 % above its baseline for a month — a reason a pressure-drop plan cannot see. Before the
 other two, none of the four published indicators had moved. The data do not say why they were done.
 
+### Beside the published rule: it acts at the level; the plan gives notice
+
+The deposit's authors propose an objective trigger — clean when DP_norm reaches 1.20 — and show it
+would clean less often than the operators or the vendor rules. That rule acts once the level is
+reached. The weekly plan tries to say it in advance. Side by side on the same real decisions
+(`step8_head_to_head.py`):
+
+| Level 1.20 (the published trigger) | Published rule | Weekly plan |
+|---|---:|---:|
+| Crossings it saw coming (7 with a decision before them) | 0 — it acts at the level | **6** |
+| Notice before the crossing, median | — (acts ~4 days after, at the next weekly check) | **22.5 days** (2–38) |
+| Warnings that did not come true within 28 days | none — it never warns | 3 of 16 (precision 0.81) |
+
+The two are complementary, not rivals: the threshold says *when it is time*; the plan says *how
+long until then, and which train first*, so a cleaning can be booked with crew, chemicals and the
+other trains in mind. Seven crossings rank nothing, and the plan's margin rule was added after the
+real test (above), so its column is optimistic. On simulated plants, where the answer is known, the
+plant's own normalisation exponent also removes most of the fouling a vendor exponent invents —
+an error that a fixed 1.20 trigger inherits as much as any forecast.
+
 ---
 
 ## How it works
