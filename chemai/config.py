@@ -269,3 +269,59 @@ ACTIONS: dict[str, tuple[str, str]] = {
     "undetermined": ("Not enough evidence: longer record, or check the loop by hand",
                      "control engineering"),
 }
+
+
+# ============================================================ Project 4
+# Tide and membrane fouling. Public UF pilot record (CC0): Zenodo 4630769,
+# also Dryad doi:10.5068/D1310B. Only the record's DOI is cited; the site is
+# never named in this repository.
+
+@dataclass(frozen=True)
+class UFPilotConfig:
+    """Where the UF pilot record lives and which run files are trusted."""
+
+    record: str = "4630769"
+    archive: str = "data_in_UF-RO_system.rar"
+    archive_md5: str = "317ba90d029d86fd7d69208c53b3c4d6"   # printed on the record page
+    folder: str = "uf_pilot"                                  # under DATA_DIR
+    inner: str = "data in UF-RO system"                       # folder inside the archive
+
+    # A run's logged clock is trusted only if its first sample falls on the
+    # day its file is named for: [0, 1) days after the filename date. Six
+    # files fail (one is a year off, one has day and month swapped).
+    clock_window_days: tuple[float, float] = (0.0, 1.0)
+    min_run_hours: float = 6.0              # shorter runs cannot hold half a tidal cycle
+    episode_gap_minutes: float = 30.0       # files closer than this are one continuous episode
+
+    # The logger runs on local civil time (the daily temperature peak sits at
+    # 15-17 h in every long run). Daylight saving is removed so that all runs
+    # share one clock: -1 h from the second Sunday of March 02:00 to the first
+    # Sunday of November 02:00. Sensitivity run: no correction.
+    remove_daylight_saving: bool = True
+
+    @property
+    def url(self) -> str:
+        return f"https://zenodo.org/records/{self.record}/files/{self.archive}?download=1"
+
+
+@dataclass(frozen=True)
+class UFSegmentConfig:
+    """How a filtration segment is cut and how its fouling rate is measured.
+
+    A segment is a stretch of steady filtration with the same set of elements
+    online. Its fouling rate is the slope of ln(R) against time, where
+    R = TMP / (viscosity * flow) is a resistance index (membrane area is not
+    in the record, so R is relative - it cancels in a log slope).
+    """
+
+    element_on_gpm: float = 5.0             # an element with more flow than this is filtering
+    debounce_s: float = 60.0                # a configuration change must persist this long
+    flow_band: float = 0.15                 # steady: total flow within +-15 % of the run median
+    min_tmp_psi: float = 0.5
+    trim_start_s: float = 180.0             # switching and backwash-pulse transients
+    trim_end_s: float = 60.0
+    min_minutes: float = 10.0
+    min_points: int = 5                     # binned medians left after trimming
+    bin_s: float = 60.0                     # slopes are fitted on 1-minute medians, or on the
+                                            # logging interval where it is coarser (60-120 s in 2013)
+    feed_turbidity_min_ntu: float = 0.20    # a run whose median is lower reads filtrate, not feed
