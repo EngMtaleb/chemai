@@ -103,7 +103,7 @@ def test_interval_with_no_rise(client):
     j = client.post("/interval", json={"day": list(range(1, 40)), "live_cost": [0.0] * 39,
                                        "fixed_cost": 1.0}).json()
     assert j["t_star_days"] is None
-    assert "never rose" in j["verdict"]
+    assert "no rising trend" in j["verdict"]
 
 
 def test_law(client):

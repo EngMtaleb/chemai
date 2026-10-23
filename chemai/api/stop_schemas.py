@@ -92,7 +92,7 @@ class IntervalResponse(BaseModel):
     verdict: str
     length_days: float
     slope_per_day: float | None
-    t_star_days: float | None = Field(description="Square-root law: sqrt(2 F / slope); null if the cost never rose")
+    t_star_days: float | None = Field(description="Square-root law: sqrt(2 F / slope); null if the cost had no rising trend")
     rule_day: float | None = Field(description="First day the smoothed live cost reached the average cost")
     implied_fixed_cost: float | None = Field(description="What a cleaning would have to cost for this interval to be the best")
     average_cost_at_end: float

@@ -191,7 +191,7 @@ costing $1 per m³/day of train capacity.
 | Any of the 216 grid cases | 0 of 15 in 156 cases; 2–4 in 57; 6 in 3 (price $0.15, no energy recovery, cheap cleaning) | | |
 | **D4** cycle length vs pressure drop left after the closing cleaning | Spearman **0.63**, p = 0.016, 14 cycles | reported | |
 
-- **In 9 of the 15 cycles the energy penalty did not rise at all** (Theil–Sen slope ≤ 0): `ndp_pct`
+- **In 9 of the 15 cycles the energy penalty had no rising trend at all** (Theil–Sen slope ≤ 0): `ndp_pct`
   sits at its floor 15–65 % of the days. In the 6 that rose, the energy-optimal interval was 3.2–110
   times the actual one (median 4.6); 1.0–36 (median 1.6) in the corner case.
 - The penalty at the moment of cleaning was **0.01–0.59 US cents per m³** in the mid case. A cleaning

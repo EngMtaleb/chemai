@@ -102,8 +102,8 @@ PAGE = r"""<!doctype html>
         <td>The resistance doubles between cleans; energy alone puts the clean at 1.1&ndash;1.3&times; the
         interval actually run.</td></tr>
       <tr><td>Clean an RO train</td><td>weeks&ndash;months</td><td class="no">No</td>
-        <td>In 15 cycles of a seawater plant the energy penalty never paid for a cleaning; in 9 it did not
-        rise at all. Longer cycles left more pressure drop behind.</td></tr>
+        <td>In 15 cycles of a seawater plant the energy penalty never paid for a cleaning; in 9 it had no
+        rising trend at all. Longer cycles left more pressure drop behind.</td></tr>
     </table>
   </div>
 

@@ -143,7 +143,7 @@ def create_stop_app() -> FastAPI:
             verdict = (f"waiting paid: the live cost never reached the average within {e.length:g} days; "
                        f"the square-root law puts the best interval at {e.t_star:.0f} days")
         else:
-            verdict = "the live cost never rose: on this cost alone there is no reason to clean"
+            verdict = "the live cost had no rising trend: on this cost alone there is no reason to clean"
         m = rolling_median(day * 86400.0, cost, req.smooth_days * 86400.0, min_periods=1)
         avg = average_cost(req.fixed_cost, cumulative(day, cost), day)
         return IntervalResponse(
