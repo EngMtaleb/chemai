@@ -1,6 +1,6 @@
 """The service's front door.
 
-Three projects share one deployment, and a visitor who opens the root URL should
+Four projects share one deployment, and a visitor who opens the root URL should
 land somewhere, not on a 404. This lists what is running and links to each.
 """
 
@@ -29,8 +29,16 @@ INDEX = r"""<!doctype html>
 <body>
 <div class="wrap">
   <h1>chemai</h1>
-  <p class="sub">Industrial AI services for chemical engineering problems. Three projects, one
+  <p class="sub">Industrial AI services for chemical engineering problems. Four projects, one
   deployment. Every answer carries its uncertainty, or the reason it cannot be given.</p>
+
+  <a class="card" href="sun/">
+    <div class="t">Desalination on the sun &mdash; and the moon</div>
+    <div class="d">Does a seawater membrane foul differently with the hour, after a restart, or
+      with the tide? Declared tests on 5,106 hours of a public pilot, a solar and tidal design
+      explorer, and the tide test run on your own log.</div>
+    <div class="m">Open the demo &rarr;</div>
+  </a>
 
   <a class="card" href="ro/">
     <div class="t">RO fouling and cleaning</div>

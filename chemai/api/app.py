@@ -26,6 +26,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from chemai.api.index_page import INDEX
 from chemai.api.loop_app import create_loop_app
 from chemai.api.ro_app import create_ro_app
+from chemai.api.sun_app import create_sun_app
 
 from chemai import __version__
 from chemai.config import SoftSensorConfig
@@ -160,6 +161,8 @@ def create_app(cfg: SoftSensorConfig | None = None) -> FastAPI:
     app.mount("/loops", create_loop_app())
     # Project 3, under /ro: stateless for the same reason - no model file, no data.
     app.mount("/ro", create_ro_app())
+    # Project 4, under /sun: a table of numbers and a test that runs on the caller's data.
+    app.mount("/sun", create_sun_app())
 
     return app
 
