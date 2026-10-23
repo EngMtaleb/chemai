@@ -10,7 +10,8 @@ between. The median over the record is the estimate of S. A healthy valve also
 shows some travel, because the process takes time to answer; the classifier
 learns to tell the two apart from the other features. On the simulated
 development set the estimate follows the true S with a rank correlation of 0.86
-(0.94 where the slip stands clearly above the load noise).
+(0.94 where the slip stands clearly above the load noise); on new plants, touched
+once, 0.72 with a median error of 0.5 % of travel (VALIDATION.md 23.2).
 
 `fit_valve` - REJECTED at development, kept for the record. The Hammerstein
 approach (e.g. Jelali, 2008): pass CO through the stiction model for a grid of
