@@ -1,8 +1,17 @@
-# Project 4 — Does the tide foul the membrane?
+# Project 4 — The moon, the sun and a seawater membrane
 
-**No — not at this intake, and not by more than about 10 % of the fouling rate.**
-A test declared before it was run found no tide-locked component in the
-fouling of a seawater ultrafiltration pilot over 2012–2015 (p = 0.24), with
+**The record clears solar operation.** Over 5,106 hours of a seawater
+ultrafiltration pilot, the fouling rate does not depend on the hour of the day
+(daylight hours within −2.6 % to +1.2 % of the rest) or on a daily stop and
+restart (first 3 hours within −3.9 % to +10.0 %). A solar-run pre-treatment can
+produce in daylight and stop at night, at its usual flux, without fouling
+faster. Both tests were declared before they were run, with positive controls,
+placebos and power analyses.
+
+**And the moon does not matter here.** The first question was the tide:
+not at this intake, and not by more than about 10 % of the fouling rate. A test
+declared before it was run found no tide-locked component in the fouling of
+the pilot over 2012–2015 (p = 0.24), with
 the power to find one whose swing is 10 % of the median rate (found in 99.5 %
 of simulated trials). Calibration held; the out-of-time confirmation failed.
 The pilot's pump hydraulics carry a faint, steady tidal signature (exploratory),
@@ -17,6 +26,10 @@ so the feed did feel the tide — the fouling did not follow it.
 | Pump hydraulics (declared controls) | p = 0.349 and 0.015 — not passed |
 | Pump hydraulics, per-episode phase check (exploratory) | M2-locked, opposite phases for speed and pressure, stable across both halves |
 | Feed turbidity, 2013 only | p = 0.063 — undecided |
+| **Fouling follows the hour of the day** (declared, H2) | **no** — p = 0.746; daylight hours −0.8 % (−2.6 % to +1.2 %) |
+| Temperature follows the hour (positive control) | yes — p = 0.001, the clock and the test work |
+| **First 3 h after a restart foul differently** (declared, H3) | **no** — p = 0.382; +3.1 % (−3.9 % to +10.0 %) |
+| Pretend restart 24 h in (placebo) | p = 0.842 |
 
 ![The real clock against 999 clocks moved by whole weeks](figures/fig4_test.png)
 
@@ -62,7 +75,8 @@ area is not in the record. Turbidity covers 2013 only.
 
 | | |
 |---|---|
-| [DECLARED_BEFORE_RUN.md](DECLARED_BEFORE_RUN.md) | the test, fixed before it ran (commit `1989858`) |
+| [DECLARED_BEFORE_RUN.md](DECLARED_BEFORE_RUN.md) | the tide test, fixed before it ran (commit `1989858`) |
+| [DECLARED_BEFORE_RUN_2.md](DECLARED_BEFORE_RUN_2.md) | the sun tests, fixed before they ran (commit `6d3dd6e`) |
 | [VALIDATION.md](VALIDATION.md) | every number, with its source |
 | `step1_audit.py` … `step4_tide_test.py` | the pipeline |
 | `results/` | audit, segments (1.9 MB parquet), power, test |
@@ -77,6 +91,8 @@ python projects/p04_tide_fouling/step1_audit.py
 python projects/p04_tide_fouling/step2_segments.py
 python projects/p04_tide_fouling/step3_power.py
 python projects/p04_tide_fouling/step4_tide_test.py
+python projects/p04_tide_fouling/step5_sun_power.py
+python projects/p04_tide_fouling/step6_sun_tests.py
 ```
 
 `results/segments.parquet` is committed, so steps 3–4 run without the 356 MB

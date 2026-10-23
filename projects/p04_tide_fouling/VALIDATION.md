@@ -139,3 +139,44 @@ Run after step 4, to understand the controls. Treat as hints, not results.
   differ. The same test runs on any timestamped plant log.
 - Turbidity (2013 only, 11 long episodes) stays undecided: p = 0.063 declared,
   0.07 exploratory.
+
+## 7. Part 2 — the sun, as declared and run
+
+Declaration: commit `6d3dd6e` (DECLARED_BEFORE_RUN_2.md), pushed before step 6
+ran. Power: `results/step5_sun_power.json`. Results: `results/step6_sun_tests.json`.
+
+| test | number | p | verdict |
+|---|---|---|---|
+| **H2** fouling rate follows the time of day | variance explained 0.028 % (null 95th pct 0.092 %) | **0.746** | no daily pattern |
+| C3 positive control: temperature follows the time of day | 43.8 % (null 9.8 %) | 0.001 | the clock and the test work |
+| H2 placebo periods | 0.060 % (null 0.097 %) | 0.330 | calibrated |
+| H2 confirmation, fit 2012–13 → score 2014–15 | −0.27 % | 0.897 | nothing to confirm |
+| H2 with temperature in the base model | — | 0.385 | same |
+| **Solar-hours contrast** (09–15 h against the rest) | −0.8 % of the median fouling rate, 95 % interval **−2.6 % to +1.2 %** | — | not relevant (line: ±10 %) |
+| **H3** first 3 h after a restart (81 restarts, 2,503 segments) | +3.1 % of the median, 95 % interval **−3.9 % to +10.0 %** | **0.382** | no restart effect |
+| H3 placebo, pretend restart at 24 h | −1.3 % | 0.842 | calibrated |
+| H3 in 2012–13 / 2014–15 | +0.34 / +0.25 %/h | 0.74 / 0.72 | no replication needed — nothing to replicate |
+| H3 idle 2–12 h / over 12 h (exploratory) | +1.63 / +0.41 %/h | 0.38 / 0.42 | — |
+
+**Checked end to end on the real data.** A daily wave of 10 % of the median
+added to the real fouling rates is found at p = 0.001 (5 %: p = 0.032); an
+early-hours step of 10 % added to the real restart windows is found at
+p = 0.0007.
+
+**What it means for a plant run on the sun.** The record clears the two
+fouling worries about solar operation, with intervals rather than hopes:
+
+- Running only in daylight does not change the fouling rate: the hours 09–15
+  foul within −2.6 % to +1.2 % of the rest of the day.
+- Stopping every night and restarting every morning does not change it either:
+  the first 3 h after a restart are within −3.9 % to +10.0 %; a price of 20 %
+  would have been caught 98 % of the time.
+- The warm-water bonus is real but small here: the daily temperature swing is
+  0.7 °C, and the hours 09–15 average only 0.13 °C warmer than the rest — a
+  0.3 % viscosity gain. Not a reason to run in daylight, not a reason against.
+
+So a seawater pre-treatment can be run on solar hours, with daily stops, at
+the same flux it runs at around the clock, without fouling faster. The price
+of going solar is membrane area and storage — sized in part 3 — not fouling.
+The limits of section 7 of the second declaration stand: one pilot, and its
+restarts were the operators' choice.
