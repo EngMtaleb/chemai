@@ -79,8 +79,8 @@ Public UF pilot record, Zenodo 4630769 (CC0), also Dryad
 pre-treating seawater for a reverse-osmosis pilot. The site is not named here.
 After the audit (VALIDATION.md 1): 107 runs with a trusted clock, 5,106 h, cut
 into 14,998 filtration segments. The audit also found that the depositors'
-`test/` folder is not separated in time from `training/`: three test files
-continue a training run without a break.
+`test/` folder is not separated in time from `training/`: two test files sit
+inside continuous training episodes, minutes from training data.
 
 ## What this is not
 

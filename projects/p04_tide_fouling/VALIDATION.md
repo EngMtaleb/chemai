@@ -25,10 +25,13 @@ seawater for a reverse-osmosis pilot. 180 run files in the depositors'
 - **Turbidity is often not feed turbidity.** The tag reads −2.5 (no signal) in
   63 kept runs and about 0.03 NTU (filtrate) in 25. Only 19 runs, all in 2013,
   read the feed (median ≥ 0.20 NTU): 1,517.9 h.
-- **The depositors' split is not separated in time.** Three `test/` files
-  continue a `training/` run without a break (episodes found by chaining files
-  whose start follows the previous end within 30 min). A model scored on that
-  split has seen the minutes just before its test data.
+- **The depositors' split is not separated in time.** Two `test/` files sit
+  inside continuous `training/` episodes (episodes found by chaining files
+  whose start follows the previous end within 30 min): one starts 28 minutes
+  after a training run ends, the other is followed by a training run 10
+  seconds after it ends. A model scored on that split has seen the minutes
+  next to its test data. (An earlier version of this note said three files;
+  the episode table shows two.)
 
 ## 2. Filtration segments
 
