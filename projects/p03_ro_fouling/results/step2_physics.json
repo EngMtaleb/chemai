@@ -1,0 +1,69 @@
+{
+ "plants": 15,
+ "seed": 3003,
+ "normalisation_error": {
+  "linear ratio (1.0)": {
+   "p5_p95_percent": [
+    -16.59,
+    22.37
+   ],
+   "sd_percent": 12.55
+  },
+  "vendor sheet (1.5)": {
+   "p5_p95_percent": [
+    -6.43,
+    7.98
+   ],
+   "sd_percent": 4.81
+  },
+  "vendor, no viscosity": {
+   "p5_p95_percent": [
+    -7.34,
+    6.99
+   ],
+   "sd_percent": 4.77
+  },
+  "physics (1.75)": {
+   "p5_p95_percent": [
+    -3.87,
+    3.92
+   ],
+   "sd_percent": 2.74
+  },
+  "plant's own fit": {
+   "p5_p95_percent": [
+    -3.94,
+    4.0
+   ],
+   "sd_percent": 2.75
+  }
+ },
+ "exponent_fit": {
+  "trains": 45,
+  "true_range": [
+   1.707,
+   1.809
+  ],
+  "dp_transmitter_mae": 0.032,
+  "two_pressure_transmitters_mae": 0.077,
+  "two_pt_failed": 0
+ },
+ "gap_law": {
+  "exponent": 2.2,
+  "phi_at_1_30": 0.113,
+  "max_bend_below_1_30": 0.0145,
+  "note": "largest gap between the curve and its chord from 1.00 to 1.30, in DP_norm units"
+ },
+ "viscosity": {
+  "mu_ratio_20_30": [
+   1.125,
+   1.0,
+   0.895
+  ],
+  "dp_swing_percent": [
+   2.99,
+   0.0,
+   -2.73
+  ]
+ }
+}

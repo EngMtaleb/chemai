@@ -1,0 +1,32 @@
+{
+ "window_days": [
+  3,
+  42
+ ],
+ "slope_per_day": 0.0016,
+ "noise_sd": 0.005,
+ "monte_carlo": 2000,
+ "estimated_on": 300,
+ "note": "ratio = median estimated slope spread / true (Monte Carlo) slope spread; 1.00 is right",
+ "rho 0.0": {
+  "true_slope_sd": 7.2e-05,
+  "bootstrap_iid": 0.84,
+  "bootstrap_block7": 0.66,
+  "drawn_no_inflation": 0.93,
+  "drawn_inflation_2": 1.87
+ },
+ "rho 0.3": {
+  "true_slope_sd": 9.31e-05,
+  "bootstrap_iid": 0.63,
+  "bootstrap_block7": 0.68,
+  "drawn_no_inflation": 0.88,
+  "drawn_inflation_2": 1.77
+ },
+ "rho 0.6": {
+  "true_slope_sd": 0.0001275,
+  "bootstrap_iid": 0.41,
+  "bootstrap_block7": 0.58,
+  "drawn_no_inflation": 0.78,
+  "drawn_inflation_2": 1.56
+ }
+}

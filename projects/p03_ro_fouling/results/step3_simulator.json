@@ -1,0 +1,80 @@
+{
+ "note": "Rate ranges in ROSimConfig were set after looking at the deposit's slopes (step 1). This comparison was written after the external test (step 6); it uses no forecast outcome. Lengths, scatter and jumps were NOT matched to the deposit before the settings were frozen.",
+ "quantiles": [
+  0.1,
+  0.25,
+  0.5,
+  0.75,
+  0.9
+ ],
+ "real": {
+  "cycles": 15,
+  "length_days": [
+   23.0,
+   38.5,
+   42.0,
+   71.0,
+   137.8
+  ],
+  "slope_per_week": [
+   -0.0024,
+   -0.0,
+   0.003,
+   0.0066,
+   0.0138
+  ],
+  "scatter": [
+   0.0099,
+   0.012,
+   0.0147,
+   0.0272,
+   0.032
+  ],
+  "day_to_day_jump": [
+   0.0061,
+   0.008,
+   0.0113,
+   0.0146,
+   0.0181
+  ]
+ },
+ "simulated": {
+  "cycles": 254,
+  "length_days": [
+   54.0,
+   74.0,
+   118.0,
+   164.0,
+   185.4
+  ],
+  "slope_per_week": [
+   -0.0053,
+   0.0,
+   0.005,
+   0.0143,
+   0.0268
+  ],
+  "scatter": [
+   0.002,
+   0.019,
+   0.0347,
+   0.046,
+   0.0631
+  ],
+  "day_to_day_jump": [
+   0.0073,
+   0.0144,
+   0.0243,
+   0.0341,
+   0.0438
+  ]
+ },
+ "ratio_of_medians_sim_over_real": {
+  "length": 2.81,
+  "slope": 1.67,
+  "scatter": 2.37,
+  "day_to_day_jump": 2.16
+ },
+ "real_share_falling": 0.27,
+ "sim_share_falling": 0.19
+}

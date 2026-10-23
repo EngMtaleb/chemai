@@ -1,6 +1,6 @@
 """The service's front door.
 
-Two projects share one deployment, and a visitor who opens the root URL should
+Three projects share one deployment, and a visitor who opens the root URL should
 land somewhere, not on a 404. This lists what is running and links to each.
 """
 
@@ -29,8 +29,16 @@ INDEX = r"""<!doctype html>
 <body>
 <div class="wrap">
   <h1>chemai</h1>
-  <p class="sub">Industrial AI services for chemical engineering problems. Two projects, one
+  <p class="sub">Industrial AI services for chemical engineering problems. Three projects, one
   deployment. Every answer carries its uncertainty, or the reason it cannot be given.</p>
+
+  <a class="card" href="ro/">
+    <div class="t">RO fouling and cleaning</div>
+    <div class="d">When will each reverse-osmosis train reach its review level for a cleaning?
+      A forecast from the normalised pressure drop with a P10-P90 range, and a weekly plan with
+      an action and an owner per train.</div>
+    <div class="m">Open the demo &rarr;</div>
+  </a>
 
   <a class="card" href="loops/">
     <div class="t">Control loop diagnosis</div>
