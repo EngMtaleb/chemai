@@ -307,3 +307,20 @@ def assign_episodes(runs: pd.DataFrame, cfg: UFPilotConfig | None = None) -> pd.
         ids[i] = ep
         last_end = row.t_end if last_end is None or row.t_end > last_end else last_end
     return pd.Series(ids).reindex(runs.index)
+
+
+def episode_starts(runs: pd.DataFrame, audit: pd.DataFrame) -> pd.DataFrame:
+    """Per episode: when it started and how long the unit had stood idle before.
+
+    `runs` are the kept runs (with an `episode` column); `audit` is the full
+    file audit, so a short run that was dropped from the analysis still counts
+    as the unit having run (it shortens the idle time, it does not hide it).
+    """
+    clocked = audit[audit.clock_trusted].sort_values("t_start")
+    rows = []
+    for e, g in runs.groupby("episode"):
+        start = g.t_start.min()
+        before = clocked[clocked.t_start < start]
+        idle = (start - before.t_end.max()).total_seconds() / 3600 if len(before) else np.inf
+        rows.append({"episode": e, "episode_start": start, "idle_before_h": max(idle, 0.0)})
+    return pd.DataFrame(rows)

@@ -10,7 +10,7 @@ from chemai.evaluation.tide_test import (
 
 
 def synthetic_segments(seed=0, n_episodes=24, signal=None, phase_per_episode=False,
-                       clock_wave=0.0, noise=1.0):
+                       clock_wave=0.0, noise=1.0, day=1.5):
     """Segments every 30 min in multi-day episodes spread over two years."""
     rng = np.random.default_rng(seed)
     rows = []
@@ -21,7 +21,7 @@ def synthetic_segments(seed=0, n_episodes=24, signal=None, phase_per_episode=Fal
         th = (t - pd.Timestamp("2000-01-01")) / pd.Timedelta(hours=1)
         y = 10 + rng.normal(0, noise, len(t)) + 0.02 * np.arange(len(t)) / 48
         tod = t.hour + t.minute / 60
-        y += 1.5 * np.cos(2 * np.pi * tod / 24) + clock_wave * np.cos(2 * np.pi * tod / 12)
+        y += day * np.cos(2 * np.pi * tod / 24) + clock_wave * np.cos(2 * np.pi * tod / 12)
         if signal:
             ph = rng.uniform(0, 2 * np.pi) if phase_per_episode else 0.7
             y += signal * np.cos(2 * np.pi * th / CONSTITUENTS["M2"] - ph)
@@ -101,3 +101,41 @@ def test_shift_blocks_merge_close_episodes():
     ep = np.array([1, 1, 2, 2, 3, 3])
     b = shift_blocks(t, ep, gap_hours=72)
     assert b[0] == b[2] and b[4] != b[0]
+
+
+# ------------------------------------------------------------- the sun's clock
+
+from chemai.evaluation.tide_test import DAY_HARMONICS  # noqa: E402
+
+
+def with_day_wave(seed, amp, phase_per_episode=False, tide=0.0):
+    seg = synthetic_segments(seed=seed, n_episodes=30, day=0.0)      # no built-in daily wave
+    rng = np.random.default_rng(seed + 1)
+    tod = seg.t_std.dt.hour + seg.t_std.dt.minute / 60
+    ph = {e: (rng.uniform(0, 2 * np.pi) if phase_per_episode else 1.0) for e in seg.episode.unique()}
+    seg["y"] = seg["y"] + amp * np.cos(2 * np.pi * tod / 24 - seg.episode.map(ph))
+    th = (seg.t_std - pd.Timestamp("2000-01-01")) / pd.Timedelta(hours=1)
+    seg["y"] = seg["y"] + tide * np.cos(2 * np.pi * th / CONSTITUENTS["M2"])
+    return seg
+
+
+def sun_prep(seg):
+    return prepare(seg, "y", TideTestConfig(n_surrogates=199), covariates=False, tod=False)
+
+
+def test_sun_clock_finds_a_daily_wave_with_one_phase():
+    res = tide_test(sun_prep(with_day_wave(20, amp=0.8)), DAY_HARMONICS, TideTestConfig(n_surrogates=199),
+                    with_ranges=False, shift="hours")
+    assert res.p_value <= 0.01
+
+
+def test_sun_clock_ignores_a_daily_wave_whose_phase_wanders():
+    res = tide_test(sun_prep(with_day_wave(21, amp=0.8, phase_per_episode=True)), DAY_HARMONICS,
+                    TideTestConfig(n_surrogates=199), with_ranges=False, shift="hours")
+    assert res.p_value > 0.05
+
+
+def test_sun_clock_ignores_the_moon():
+    res = tide_test(sun_prep(with_day_wave(22, amp=0.0, tide=1.0)), DAY_HARMONICS,
+                    TideTestConfig(n_surrogates=199), with_ranges=False, shift="hours")
+    assert res.p_value > 0.05

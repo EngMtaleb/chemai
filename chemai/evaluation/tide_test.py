@@ -35,6 +35,8 @@ CONSTITUENTS: dict[str, float] = {
 }
 # Periods no known forcing sits on; a calibrated test must not find them.
 PLACEBO: dict[str, float] = {"P11.0": 11.0, "P13.5": 13.5, "P27.0": 27.0, "P5.3": 5.3}
+# The sun's clock: the first four harmonics of the day (hours since a local midnight).
+DAY_HARMONICS: dict[str, float] = {"D24": 24.0, "D12": 12.0, "D8": 8.0, "D6": 6.0}
 
 EPOCH = pd.Timestamp("2000-01-01")
 
@@ -150,8 +152,14 @@ def winsorise_within(y: np.ndarray, group: np.ndarray, lo: float, hi: float) -> 
 
 
 def prepare(seg: pd.DataFrame, response: str, cfg: TideTestConfig | None = None,
-            time_col: str = "t_std", covariates: bool = True) -> Prepared:
-    """Build the base design and residualise the response on it."""
+            time_col: str = "t_std", covariates: bool = True, tod: bool = True,
+            temperature: bool = True, trend: bool = True) -> Prepared:
+    """Build the base design and residualise the response on it.
+
+    Defaults are the tide test's declared base model. The sun test drops the
+    time-of-day block (it is what is tested) and, in its primary form, the
+    temperature term (DECLARED_BEFORE_RUN_2.md explains why).
+    """
     cfg = cfg or TideTestConfig()
     seg = seg.dropna(subset=[response]).reset_index(drop=True)
     run = seg["run"].to_numpy()
@@ -159,12 +167,16 @@ def prepare(seg: pd.DataFrame, response: str, cfg: TideTestConfig | None = None,
     t_hours = hours_since_epoch(seg[time_col])
     y = winsorise_within(seg[response].to_numpy(float), run, *cfg.winsor)
 
-    parts = [dummies(run), episode_spline(t_hours, episode, cfg.knot_hours),
-             time_of_day_block(seg[time_col], cfg.tod_harmonics)]
+    parts = [dummies(run)]
+    if trend:
+        parts.append(episode_spline(t_hours, episode, cfg.knot_hours))
+    if tod:
+        parts.append(time_of_day_block(seg[time_col], cfg.tod_harmonics))
     if covariates:
         dev = lambda v: v - pd.Series(v).groupby(run).transform("mean").to_numpy()
-        parts += [dev(seg["temp_c"].to_numpy(float))[:, None],
-                  dev(np.log(seg["q_gpm"].to_numpy(float)))[:, None],
+        if temperature:
+            parts.append(dev(seg["temp_c"].to_numpy(float))[:, None])
+        parts += [dev(np.log(seg["q_gpm"].to_numpy(float)))[:, None],
                   np.log(seg["minutes"].to_numpy(float))[:, None],
                   dummies(seg["config"].to_numpy(), drop_first=True)]
     x0 = np.column_stack(parts)
@@ -237,8 +249,17 @@ def _fit(design: TideDesign, zy: np.ndarray, m: np.ndarray) -> tuple[float, np.n
 
 
 def block_shifts(n_blocks: int, rng: np.random.Generator, weeks: int) -> np.ndarray:
+    """Whole weeks: keep the day and the week, scramble the moon (the tide test)."""
     k = rng.integers(1, weeks + 1, n_blocks) * rng.choice([-1, 1], n_blocks)
     return k * 7 * 24.0
+
+
+def hour_shifts(n_blocks: int, rng: np.random.Generator, weeks: int = 0) -> np.ndarray:
+    """1 to 23 hours: scramble the time of day (the sun test). `weeks` is ignored."""
+    return rng.uniform(1.0, 23.0, n_blocks)
+
+
+SHIFTS = {"weeks": block_shifts, "hours": hour_shifts}
 
 
 @dataclass
@@ -275,8 +296,10 @@ def component_range(beta: np.ndarray, periods: dict[str, float]) -> float:
 
 def tide_test(prep: Prepared, periods: dict[str, float] | None = None,
               cfg: TideTestConfig | None = None, response: str = "y",
-              design: TideDesign | None = None, with_ranges: bool = True) -> TideResult:
+              design: TideDesign | None = None, with_ranges: bool = True,
+              shift: str = "weeks") -> TideResult:
     cfg = cfg or TideTestConfig()
+    shifter = SHIFTS[shift]
     periods = periods or CONSTITUENTS
     design = design or tide_design(prep, periods)
     zy = design.zcat.T @ prep.y_res
@@ -287,7 +310,7 @@ def tide_test(prep: Prepared, periods: dict[str, float] | None = None,
     null_ss, null_rng = np.empty(cfg.n_surrogates), np.full(cfg.n_surrogates, np.nan)
     synth = harmonic_block(_SYNTH_T, periods)[0] if with_ranges else None
     for b in range(cfg.n_surrogates):
-        m = rotation_stack(design, block_shifts(k, rng, cfg.shift_weeks))
+        m = rotation_stack(design, shifter(k, rng, cfg.shift_weeks))
         null_ss[b], beta_b = _fit(design, zy, m)
         if with_ranges:
             lo, hi = np.quantile(synth @ beta_b, [0.05, 0.95])
@@ -311,7 +334,7 @@ def tide_test(prep: Prepared, periods: dict[str, float] | None = None,
 
 
 def confirm_out_of_sample(fit_prep: Prepared, test_prep: Prepared, periods: dict[str, float] | None = None,
-                          cfg: TideTestConfig | None = None) -> dict:
+                          cfg: TideTestConfig | None = None, shift: str = "weeks") -> dict:
     """Freeze the tide component fitted on one set of runs; does it explain another?
 
     Statistic: the share of the test runs' residual variance removed by the
@@ -333,7 +356,7 @@ def confirm_out_of_sample(fit_prep: Prepared, test_prep: Prepared, periods: dict
     k = len(d.blocks)
     obs = gain(rotation_stack(d, np.zeros(k)))
     rng = np.random.default_rng(cfg.seed + 1)
-    null = np.array([gain(rotation_stack(d, block_shifts(k, rng, cfg.shift_weeks)))
+    null = np.array([gain(rotation_stack(d, SHIFTS[shift](k, rng, cfg.shift_weeks)))
                      for _ in range(cfg.n_surrogates)])
     p = (1 + np.sum(null >= obs)) / (1 + cfg.n_surrogates)
     return {"oos_variance_share": obs, "p_value": float(p),
@@ -362,7 +385,8 @@ def ar1_noise(resid: np.ndarray, group: np.ndarray, rng: np.random.Generator) ->
 
 
 def power_curve(prep: Prepared, relative_ranges=(0.05, 0.10, 0.20, 0.40), n_sim: int = 200,
-                cfg: TideTestConfig | None = None) -> dict:
+                cfg: TideTestConfig | None = None, periods: dict[str, float] | None = None,
+                wave_period: float | None = None, shift: str = "weeks") -> dict:
     """How often the test finds an M2 wave of a given size in noise shaped like the data.
 
     The wave's 5-95 % range is a fraction of the median response; its phase is
@@ -371,13 +395,15 @@ def power_curve(prep: Prepared, relative_ranges=(0.05, 0.10, 0.20, 0.40), n_sim:
     alignment with the tide is never used.
     """
     cfg = cfg or TideTestConfig()
+    periods = periods or CONSTITUENTS
+    wave_period = wave_period or CONSTITUENTS["M2"]
     rng = np.random.default_rng(cfg.seed + 2)
-    design = tide_design(prep, CONSTITUENTS)
+    design = tide_design(prep, periods)
     k = len(design.blocks)
     m0 = rotation_stack(design, np.zeros(k))
     fitted = prep.y - prep.y_res
     med = abs(float(np.median(prep.y)))
-    w = 2 * np.pi * prep.t_hours / CONSTITUENTS["M2"]
+    w = 2 * np.pi * prep.t_hours / wave_period
     out = {}
     for rr in relative_ranges:
         amp = rr * med / (2 * np.cos(0.05 * np.pi))       # 5-95 % range of A cos = 1.975 A
@@ -386,7 +412,7 @@ def power_curve(prep: Prepared, relative_ranges=(0.05, 0.10, 0.20, 0.40), n_sim:
             ysim = fitted + ar1_noise(prep.y_res, prep.run, rng) + amp * np.cos(w - rng.uniform(0, 2 * np.pi))
             zy = design.zcat.T @ prep.residualise(ysim)
             ss_obs, _ = _fit(design, zy, m0)
-            null = np.array([_fit(design, zy, rotation_stack(design, block_shifts(k, rng, cfg.shift_weeks)))[0]
+            null = np.array([_fit(design, zy, rotation_stack(design, SHIFTS[shift](k, rng, cfg.shift_weeks)))[0]
                              for _ in range(cfg.n_surrogates)])
             p = (1 + np.sum(null >= ss_obs)) / (1 + cfg.n_surrogates)
             hits += p <= cfg.alpha
