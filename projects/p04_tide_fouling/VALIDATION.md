@@ -201,7 +201,7 @@ follow the sun without changing the flux. For each design (production
 capacity 1–3× the average demand, product-water tank 2–24 h, PV 0.3–1.3 kWp
 per m³/day), a linear programme over 8,760 hours finds the least grid energy
 any controller could achieve (perfect foresight); a simple rule with no
-forecast is replayed beside it. 216 designs × 2 weathers.
+forecast is replayed beside it. 192 designs × 2 weathers (capacity 1.0× is not paired with tanks over 4 h: it runs all day and cannot fill them).
 
 **Smallest designs reaching a solar share** (sunny year; per m³/day of demand):
 
