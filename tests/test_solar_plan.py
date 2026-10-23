@@ -32,3 +32,18 @@ def test_the_rule_never_beats_the_plan(pv):
 def test_running_faster_costs_fouling_only_above_n_equal_1():
     assert flux_penalty(2.5, 1.0) == pytest.approx(1.0)
     assert flux_penalty(2.5, 1.5) == pytest.approx(2.5 ** 0.5)
+
+
+def test_tidal_turbine_is_typical_and_runs_on_the_moon():
+    from chemai.models.solar_plan import tidal_year
+    td = tidal_year(days=60)
+    assert 0.30 < td.mean() < 0.40                      # typical tidal-stream capacity factor
+    assert td.reshape(-1, 24)[:, :6].mean() > 0.2       # it delivers before dawn
+
+
+def test_a_second_supply_never_lowers_the_renewable_share(pv):
+    from chemai.models.solar_plan import tidal_year
+    td = tidal_year(days=60)
+    a = plan_lp(pv, 2.0, 8, 0.5).solar_fraction
+    b = plan_lp(pv, 2.0, 8, 0.5, other=td * 0.1).solar_fraction
+    assert b >= a - 1e-9

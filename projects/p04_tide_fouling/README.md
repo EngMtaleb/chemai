@@ -14,7 +14,11 @@ needs, per m³/day of water: 3× production capacity, a 16-hour tank and 0.7 kWp
 of PV for 94 % solar energy (grid electricity 3.12 → 0.19 kWh/m³). A simple
 rule with no forecast does as well as a perfect-foresight plan once the tank is
 that big. Getting the capacity by pushing flux instead of adding modules would
-raise fouling per m³ — the design study is in VALIDATION.md 8.
+raise fouling per m³ — the design study is in VALIDATION.md 8. Where a strong
+tidal current exists, a turbine supplying about a quarter of the energy lets
+the plant reach 90 % renewable with 2× capacity and an 8-hour tank
+(VALIDATION.md 9): the moon does not foul the membrane, but it can run it at
+night.
 
 ![What capacity and storage buy](figures/fig7_solar_share.png)
 

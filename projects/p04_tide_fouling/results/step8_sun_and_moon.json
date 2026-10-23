@@ -1,0 +1,72 @@
+{
+  "tidal_capacity_factor": 0.349476202359698,
+  "smallest_tank": {
+    "90% with tidal 0.00 kW": {
+      "capacity": 2.5,
+      "storage_h": 12,
+      "pv_kwp": 0.9,
+      "renewable_fraction": 0.9139189856330898
+    },
+    "90% with tidal 0.05 kW": {
+      "capacity": 2.5,
+      "storage_h": 12,
+      "pv_kwp": 0.7,
+      "renewable_fraction": 0.94042412270903
+    },
+    "90% with tidal 0.10 kW": {
+      "capacity": 2.0,
+      "storage_h": 8,
+      "pv_kwp": 0.7,
+      "renewable_fraction": 0.9010836338940323
+    },
+    "90% with tidal 0.15 kW": {
+      "capacity": 2.0,
+      "storage_h": 8,
+      "pv_kwp": 0.5,
+      "renewable_fraction": 0.9123052996348763
+    },
+    "95% with tidal 0.00 kW": {
+      "capacity": 3.0,
+      "storage_h": 16,
+      "pv_kwp": 0.9,
+      "renewable_fraction": 0.9729309759377115
+    },
+    "95% with tidal 0.05 kW": {
+      "capacity": 2.5,
+      "storage_h": 12,
+      "pv_kwp": 0.9,
+      "renewable_fraction": 0.9646776399864285
+    },
+    "95% with tidal 0.10 kW": {
+      "capacity": 2.5,
+      "storage_h": 12,
+      "pv_kwp": 0.7,
+      "renewable_fraction": 0.9668314639677947
+    },
+    "95% with tidal 0.15 kW": {
+      "capacity": 2.0,
+      "storage_h": 12,
+      "pv_kwp": 0.7,
+      "renewable_fraction": 0.953202452385618
+    },
+    "99% with tidal 0.00 kW": null,
+    "99% with tidal 0.05 kW": {
+      "capacity": 3.0,
+      "storage_h": 24,
+      "pv_kwp": 0.9,
+      "renewable_fraction": 0.9963696899115326
+    },
+    "99% with tidal 0.10 kW": {
+      "capacity": 3.0,
+      "storage_h": 16,
+      "pv_kwp": 0.9,
+      "renewable_fraction": 0.9932180078260828
+    },
+    "99% with tidal 0.15 kW": {
+      "capacity": 2.5,
+      "storage_h": 16,
+      "pv_kwp": 0.9,
+      "renewable_fraction": 0.9941563973219791
+    }
+  }
+}

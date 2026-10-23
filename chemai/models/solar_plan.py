@@ -64,6 +64,21 @@ def pv_year(cfg: SolarPlanConfig | None = None, days: int = 365) -> np.ndarray:
     return out
 
 
+def tidal_year(days: int = 365, rated_speed: float = 1.1, seed: int = 2026) -> np.ndarray:
+    """Hourly output of a tidal-stream turbine, kWh per kW rated, for one year.
+
+    The current follows M2 and S2 (spring and neap from their beat); power goes
+    with speed cubed up to the rated speed, then holds. The default rating gives
+    a capacity factor of 0.35, typical of tidal-stream turbines. Generic - no site. The
+    point it makes does not depend on the site: the moon delivers at night and
+    on cloudy days, on a timetable known years ahead.
+    """
+    t = np.arange(days * 24) + 0.5
+    m2, s2 = 360.0 / 28.9841042, 12.0
+    v = np.abs(np.cos(2 * np.pi * t / m2) + 0.35 * np.cos(2 * np.pi * t / s2 + 0.7))
+    return np.clip(v / rated_speed, 0, 1) ** 3
+
+
 @dataclass
 class PlanResult:
     capacity: float          # production capacity / average demand rate
@@ -97,11 +112,14 @@ def _summary(p, g, pv, cfg, capacity, storage_h, pv_kwp, method) -> PlanResult:
 
 
 def plan_lp(pv: np.ndarray, capacity: float, storage_h: float, pv_kwp: float,
-            cfg: SolarPlanConfig | None = None, series: bool = False):
+            cfg: SolarPlanConfig | None = None, series: bool = False,
+            other: np.ndarray | None = None):
     """The least grid energy any controller could achieve (perfect foresight).
 
     With `series=True` also returns the hourly production, grid energy and
-    tank level (for plotting a week)."""
+    tank level (for plotting a week). `other` is a second renewable supply in
+    kWh per hour (a tidal turbine, say); the solar fraction then reads as the
+    renewable fraction."""
     cfg = cfg or SolarPlanConfig()
     n = len(pv)
     d = 1 / 24                          # demand per hour, m3 (1 m3/day)
@@ -118,7 +136,8 @@ def plan_lp(pv: np.ndarray, capacity: float, storage_h: float, pv_kwp: float,
         t1 = (t + 1) % n
         rows += [r, r, r]; cols += [i_s + t1, i_s + t, ip + t]; vals += [1.0, -1.0, -1.0]; b.append(-d); r += 1
     a_eq = coo_matrix((vals, (rows, cols)), shape=(r, 4 * n)).tocsr()
-    bounds = ([(0, pmax)] * n + [(0, float(pv[t] * pv_kwp)) for t in range(n)]
+    supply = pv * pv_kwp + (other if other is not None else 0.0)
+    bounds = ([(0, pmax)] * n + [(0, float(supply[t])) for t in range(n)]
               + [(0, None)] * n + [(0, smax)] * n)
     res = linprog(c, A_eq=a_eq, b_eq=np.array(b), bounds=bounds, method="highs")
     if not res.success:

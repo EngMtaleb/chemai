@@ -235,3 +235,23 @@ Cloudier year: 90 % needs 3.0×, 16 h, 0.9 kWp (94 %); 95 % needs a 24 h tank.
 PV are traded in physical units only), a site design (the year is synthetic),
 or evidence about the RO membrane under daily cycling (only the UF
 pre-treatment was tested).
+
+## 9. The moon as a power source
+
+Run: `step8_sun_and_moon.py`; results: `results/step8_sun_and_moon.{parquet,json}`.
+Same design study, with a generic tidal-stream turbine beside the PV: current
+from M2 and S2 (so spring and neap), power ∝ speed³ up to the rated speed,
+capacity factor 0.35 (typical for tidal stream). It delivers at night and on
+cloudy days, on a timetable known years ahead. Part 1 says the tide does not
+foul the membrane, part 2 that the membrane does not mind when it runs — so
+the plant can follow either supply.
+
+| renewable share | PV only | + tidal 0.10 kW per m³/day (≈ 27 % of the energy) | + tidal 0.15 kW (≈ 40 %) |
+|---|---|---|---|
+| 90 % | 2.5× capacity, 12 h tank, 0.9 kWp | 2.0×, 8 h, 0.7 kWp | 2.0×, 8 h, 0.5 kWp |
+| 95 % | 3.0×, 16 h, 0.9 kWp | 2.5×, 12 h, 0.7 kWp | 2.0×, 12 h, 0.7 kWp |
+| 99 % | not reached up to 0.9 kWp | 3.0×, 16 h, 0.9 kWp | 2.5×, 16 h, 0.9 kWp |
+
+(Smallest tank first, then least capacity, then least PV.) A tidal turbine
+needs a strong current at the site — most sites have none; where one exists,
+it buys a smaller plant and a smaller tank.
