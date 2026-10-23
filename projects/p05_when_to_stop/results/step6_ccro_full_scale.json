@@ -1,0 +1,103 @@
+{
+  "kind": "model-based translation, after the test; no pass mark",
+  "development_batches": 424,
+  "k_pi_bar_per_ms_cm": 0.492,
+  "loop_volume_l": 20.3,
+  "beta_brine_over_loop": 0.8,
+  "live_slope_kwh_m3_per_m3": {
+    "testbed_median": 12.11,
+    "at_eta_1": 1.48
+  },
+  "testbed_marginal_efficiency": 0.122,
+  "full_scale": {
+    "eta": 0.8,
+    "first_batch_conductivity": "equal to the feed (a complete drain)",
+    "table": [
+      {
+        "feed_ms_cm": 1.0,
+        "b_kwh_per_m3_brine": 1.0,
+        "V_star_over_V_loop": 9.7,
+        "end_conductivity_ms_cm": 10.7,
+        "batch_recovery": 0.923
+      },
+      {
+        "feed_ms_cm": 1.0,
+        "b_kwh_per_m3_brine": 3.0,
+        "V_star_over_V_loop": 16.8,
+        "end_conductivity_ms_cm": 17.8,
+        "batch_recovery": 0.954
+      },
+      {
+        "feed_ms_cm": 1.0,
+        "b_kwh_per_m3_brine": 10.0,
+        "V_star_over_V_loop": 30.67,
+        "end_conductivity_ms_cm": 31.7,
+        "batch_recovery": 0.974
+      },
+      {
+        "feed_ms_cm": 1.0,
+        "b_kwh_per_m3_brine": 30.0,
+        "V_star_over_V_loop": 53.12,
+        "end_conductivity_ms_cm": 54.1,
+        "batch_recovery": 0.985
+      },
+      {
+        "feed_ms_cm": 2.0,
+        "b_kwh_per_m3_brine": 1.0,
+        "V_star_over_V_loop": 6.86,
+        "end_conductivity_ms_cm": 15.7,
+        "batch_recovery": 0.895
+      },
+      {
+        "feed_ms_cm": 2.0,
+        "b_kwh_per_m3_brine": 3.0,
+        "V_star_over_V_loop": 11.88,
+        "end_conductivity_ms_cm": 25.8,
+        "batch_recovery": 0.937
+      },
+      {
+        "feed_ms_cm": 2.0,
+        "b_kwh_per_m3_brine": 10.0,
+        "V_star_over_V_loop": 21.69,
+        "end_conductivity_ms_cm": 45.4,
+        "batch_recovery": 0.964
+      },
+      {
+        "feed_ms_cm": 2.0,
+        "b_kwh_per_m3_brine": 30.0,
+        "V_star_over_V_loop": 37.56,
+        "end_conductivity_ms_cm": 77.1,
+        "batch_recovery": 0.979
+      },
+      {
+        "feed_ms_cm": 3.5,
+        "b_kwh_per_m3_brine": 1.0,
+        "V_star_over_V_loop": 5.18,
+        "end_conductivity_ms_cm": 21.6,
+        "batch_recovery": 0.866
+      },
+      {
+        "feed_ms_cm": 3.5,
+        "b_kwh_per_m3_brine": 3.0,
+        "V_star_over_V_loop": 8.98,
+        "end_conductivity_ms_cm": 34.9,
+        "batch_recovery": 0.918
+      },
+      {
+        "feed_ms_cm": 3.5,
+        "b_kwh_per_m3_brine": 10.0,
+        "V_star_over_V_loop": 16.39,
+        "end_conductivity_ms_cm": 60.9,
+        "batch_recovery": 0.953
+      },
+      {
+        "feed_ms_cm": 3.5,
+        "b_kwh_per_m3_brine": 30.0,
+        "V_star_over_V_loop": 28.4,
+        "end_conductivity_ms_cm": 102.9,
+        "batch_recovery": 0.972
+      }
+    ]
+  },
+  "caveat": "NaCl-only feed: real brackish water reaches a scaling limit (gypsum, silica) first; the table gives the energy-and-brine optimum to compare with that limit"
+}
