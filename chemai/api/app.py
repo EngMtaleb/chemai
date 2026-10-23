@@ -26,6 +26,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from chemai.api.index_page import INDEX
 from chemai.api.loop_app import create_loop_app
 from chemai.api.ro_app import create_ro_app
+from chemai.api.stop_app import create_stop_app
 from chemai.api.sun_app import create_sun_app
 
 from chemai import __version__
@@ -163,6 +164,8 @@ def create_app(cfg: SoftSensorConfig | None = None) -> FastAPI:
     app.mount("/ro", create_ro_app())
     # Project 4, under /sun: a table of numbers and a test that runs on the caller's data.
     app.mount("/sun", create_sun_app())
+    # Project 5, under /stop: the stopping rule on the caller's own batch or cleaning cycle.
+    app.mount("/stop", create_stop_app())
 
     return app
 

@@ -1,0 +1,106 @@
+{
+  "declaration_commit": "cdf64b7566c6ff1eabdf8f297343d6e6466a0c9b",
+  "runs": 107,
+  "runs_used_for_backwash": 104,
+  "backwash_share_of_feed_median": 0.287,
+  "B_mid": {
+    "price": 0.1,
+    "water": 0.05,
+    "eff": 0.7
+  },
+  "B_corner": {
+    "price": 0.15,
+    "water": 0.01,
+    "eff": 0.5
+  },
+  "B1": {
+    "median_ratio": 15.66,
+    "q10_q90": [
+      11.61,
+      21.01
+    ],
+    "pass": true
+  },
+  "B2": {
+    "median_ratio": 6.94,
+    "pass": true
+  },
+  "B_grid_median_ratio": {
+    "min": 6.94,
+    "max": 30.03
+  },
+  "B_by_year": [
+    {
+      "year": 2012,
+      "runs": 14,
+      "median_ratio": 10.827,
+      "v_cycle_m3": 2.508,
+      "F_usd": 0.027
+    },
+    {
+      "year": 2013,
+      "runs": 33,
+      "median_ratio": 17.186,
+      "v_cycle_m3": 1.204,
+      "F_usd": 0.022
+    },
+    {
+      "year": 2014,
+      "runs": 45,
+      "median_ratio": 16.319,
+      "v_cycle_m3": 1.372,
+      "F_usd": 0.023
+    },
+    {
+      "year": 2015,
+      "runs": 12,
+      "median_ratio": 15.071,
+      "v_cycle_m3": 1.413,
+      "F_usd": 0.017
+    }
+  ],
+  "C_cleaning_days": [
+    "2013-10-09",
+    "2014-03-18",
+    "2014-07-28"
+  ],
+  "C_mid": {
+    "price": 0.1,
+    "eff": 0.7,
+    "F": 0.3
+  },
+  "C_intervals": [
+    {
+      "from": "2013-10-09",
+      "to": "2014-03-18",
+      "length_d": 160.0,
+      "logged_days": 73,
+      "tmp_clean_psi": 6.9739,
+      "lnr_rise": 0.8552,
+      "slope_usd_m3_d": 0.0,
+      "t_star_d": 171.557,
+      "rule_day": null,
+      "implied_F": 0.2026
+    },
+    {
+      "from": "2014-03-18",
+      "to": "2014-07-28",
+      "length_d": 132.0,
+      "logged_days": 59,
+      "tmp_clean_psi": 8.4444,
+      "lnr_rise": 0.6739,
+      "slope_usd_m3_d": 0.0,
+      "t_star_d": 169.5412,
+      "rule_day": null,
+      "implied_F": 0.138
+    }
+  ],
+  "C_t_star_over_actual_mid": [
+    1.07,
+    1.28
+  ],
+  "C_grid_median": {
+    "min": 0.3319532693789813,
+    "max": 3.042401968234496
+  }
+}
