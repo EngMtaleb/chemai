@@ -152,7 +152,7 @@ ran. Power: `results/step5_sun_power.json`. Results: `results/step6_sun_tests.js
 | H2 placebo periods | 0.060 % (null 0.097 %) | 0.330 | calibrated |
 | H2 confirmation, fit 2012–13 → score 2014–15 | −0.27 % | 0.897 | nothing to confirm |
 | H2 with temperature in the base model | — | 0.385 | same |
-| **Solar-hours contrast** (09–15 h against the rest) | −0.8 % of the median fouling rate, 95 % interval **−2.6 % to +1.2 %** | — | not relevant (line: ±10 %) |
+| **Solar-hours contrast** (09–15 h against the rest) | −0.8 % of the median fouling rate, 95 % interval **−2.5 % to +1.2 %** | — | not relevant (line: ±10 %) |
 | **H3** first 3 h after a restart (81 restarts, 2,503 segments) | +3.1 % of the median, 95 % interval **−3.9 % to +10.0 %** | **0.382** | no restart effect |
 | H3 placebo, pretend restart at 24 h | −1.3 % | 0.842 | calibrated |
 | H3 in 2012–13 / 2014–15 | +0.34 / +0.25 %/h | 0.74 / 0.72 | no replication needed — nothing to replicate |
@@ -167,7 +167,7 @@ p = 0.0007.
 fouling worries about solar operation, with intervals rather than hopes:
 
 - Running only in daylight does not change the fouling rate: the hours 09–15
-  foul within −2.6 % to +1.2 % of the rest of the day.
+  foul within −2.5 % to +1.2 % of the rest of the day.
 - Stopping every night and restarting every morning does not change it either:
   the first 3 h after a restart are within −3.9 % to +10.0 %; a price of 20 %
   would have been caught 98 % of the time.
@@ -184,15 +184,16 @@ restarts were the operators' choice.
 ## 8. Part 3 — sizing a plant that runs on the sun
 
 Code: `chemai/models/solar_plan.py`; tests: `tests/test_solar_plan.py`; run:
-`step7_solar_plan.py`; results: `results/step7_solar_plan.{parquet,json}`.
+`step7a_uf_energy.py`, then `step7_solar_plan.py`; results:
+`results/step7a_uf_energy.json`, `results/step7_solar_plan.{parquet,json}`.
 This part is a **design study on a synthetic year**, not a measurement. What
 comes from the record and what is assumed:
 
 | input | value | from |
 |---|---|---|
 | fouling per m³ in daylight-only, stop-start operation at design flux | same as round-the-clock | part 2 (H2, H3) |
-| UF energy | 0.12 kWh/m³ (0.083 hydraulic, median of 105 runs, ÷ pump efficiency 0.7) | the record + assumption |
-| seawater RO energy | 3.0 kWh/m³ | literature range 2.5–3.5 |
+| UF energy | 0.26 kWh per m³ of product: 0.083 kWh hydraulic per m³ of UF feed (median of 106 runs; filtration pressure × feed flow plus backwash pressure × backwash flow), ÷ pump efficiency 0.7, ÷ RO recovery 0.45 | the record + assumptions |
+| seawater RO energy | 3.0 kWh/m³ — the plant uses 3.26 kWh/m³ in all | literature range 2.5–3.5 |
 | weather | synthetic: day length 10.4–13.6 h, clear-day 6.2 kWh/kWp ± 16 % by season, daily cloud draw; mean 5.26 kWh/kWp/day ("sunny"), 4.73 ("cloudier") | assumption, no site |
 | RO under daily stop-start | flushed at each stop | literature (lab study, 2025: a daily rinse recovered permeability) — not tested here |
 
@@ -203,24 +204,36 @@ per m³/day), a linear programme over 8,760 hours finds the least grid energy
 any controller could achieve (perfect foresight); a simple rule with no
 forecast is replayed beside it. 192 designs × 2 weathers (capacity 1.0× is not paired with tanks over 4 h: it runs all day and cannot fill them).
 
-**Smallest designs reaching a solar share** (sunny year; per m³/day of demand):
+**Correction (after this section was first written).** The first version
+added the UF figure per m³ of UF *feed* (0.12 kWh/m³) to the RO figure per m³
+of *product*. Per m³ of product it is 0.26 kWh/m³ — 0.37 if the backwash water
+were drawn from the RO feed (the pilot kept filtering at full flow while one
+element backwashed, so it is taken here as not). The plant's energy went from
+3.12 to 3.26 kWh/m³, and every design was rerun. The conclusions held: the
+90 % design below reached 94 % before and 93 % now. `step7a_uf_energy.py` now
+regenerates `uf_volumes.parquet`, which had been written by hand-run code.
+
+**Smallest designs reaching a solar share** (sunny year; per m³/day of demand;
+fewest kWp first, then least capacity, then least tank):
 
 | solar share | capacity | tank | PV | reached | PV curtailed |
 |---|---|---|---|---|---|
-| 50 % | 2.0× | 8 h | 0.3 kWp | 51 % | 0 % |
-| 75 % | 2.5× | 12 h | 0.5 kWp | 78 % | 7 % |
-| 90 % | 3.0× | 16 h | 0.7 kWp | 94 % | 20 % |
-| 95 % | 3.0× | 16 h | 0.9 kWp | 97 % | 36 % |
+| 50 % | 1.5× | 4 h | 0.5 kWp | 55 % | 31 % |
+| 75 % | 2.5× | 12 h | 0.5 kWp | 76 % | 6 % |
+| 90 % | 3.0× | 16 h | 0.7 kWp | 93 % | 18 % |
+| 95 % | 3.0× | 16 h | 0.9 kWp | 97 % | 33 % |
 
-Cloudier year: 90 % needs 3.0×, 16 h, 0.9 kWp (94 %); 95 % needs a 24 h tank.
+Cloudier year: 90 % needs 3.0×, 16 h, 0.9 kWp (93 %); 95 % needs 1.1 kWp (96 %).
 
 - **Round-the-clock capacity cannot go far on the sun**: at 1.0× capacity the
   plant must run all night, and the solar share stops near 46 % however much
   PV is added. Capacity and a tank are what buy the rest.
 - **A forecast is worth little once the tank is big enough**: the simple rule
-  is within 0.2 percentage points of the perfect-foresight plan in the median
-  design. The gap reaches 8 points only with a 2 h tank — there, knowing
-  tomorrow's sun replaces storage.
+  is within 0.1–0.2 percentage points of the perfect-foresight plan in the
+  median design. With a small tank foresight pays: the median gap is 8 points
+  with a 2 h tank, 7 with 4 h and 1.5 with 8 h, and nil from 12 h up (a few
+  12 h designs still lose up to 8; at 16 h the largest gap is 1 point) —
+  knowing tomorrow's sun replaces storage.
 - **Add modules, do not push flux.** Getting 2.5× capacity by running the same
   membrane 2.5× faster would raise fouling per m³ by 2.5^(n−1): ×1.2 at n = 1.2,
   ×1.6 at n = 1.5, ×2.5 at n = 2 (fouling rate ∝ flux^n). The record cannot pin
@@ -228,7 +241,7 @@ Cloudier year: 90 % needs 3.0×, 16 h, 0.9 kWp (94 %); 95 % needs a 24 h tank.
   measurement; any n above 1 says the same thing.
 - **For every 1,000 m³/day**, the 90 % design (700 kWp, a 670 m³ tank, a
   3,000 m³/day plant running about 8 h a day) cuts grid electricity from
-  3.12 to 0.19 kWh/m³: about 1.07 GWh a year, 430–750 t of CO₂ at a grid
+  3.26 to 0.23 kWh/m³: about 1.1 GWh a year, 440–770 t of CO₂ at a grid
   intensity of 0.4–0.7 kg/kWh.
 
 **What this is not**: a cost optimum (no prices are used: capacity, tanks and
@@ -246,12 +259,59 @@ cloudy days, on a timetable known years ahead. Part 1 says the tide does not
 foul the membrane, part 2 that the membrane does not mind when it runs — so
 the plant can follow either supply.
 
-| renewable share | PV only | + tidal 0.10 kW per m³/day (≈ 27 % of the energy) | + tidal 0.15 kW (≈ 40 %) |
+| renewable share | PV only | + tidal 0.10 kW per m³/day (≈ 26 % of the energy) | + tidal 0.15 kW (≈ 39 %) |
 |---|---|---|---|
-| 90 % | 2.5× capacity, 12 h tank, 0.9 kWp | 2.0×, 8 h, 0.7 kWp | 2.0×, 8 h, 0.5 kWp |
-| 95 % | 3.0×, 16 h, 0.9 kWp | 2.5×, 12 h, 0.7 kWp | 2.0×, 12 h, 0.7 kWp |
+| 90 % | 2.5× capacity, 12 h tank, 0.9 kWp | 2.0×, 8 h, 0.9 kWp | 2.0×, 8 h, 0.5 kWp |
+| 95 % | 3.0×, 16 h, 0.9 kWp | 2.5×, 12 h, 0.7 kWp | 2.0×, 12 h, 0.9 kWp |
 | 99 % | not reached up to 0.9 kWp | 3.0×, 16 h, 0.9 kWp | 2.5×, 16 h, 0.9 kWp |
 
 (Smallest tank first, then least capacity, then least PV.) A tidal turbine
 needs a strong current at the site — most sites have none; where one exists,
 it buys a smaller plant and a smaller tank.
+
+## 10. The service — the same test on anyone's log
+
+Code: `chemai/api/sun_app.py` (mounted at `/sun`), `series_test` in
+`chemai/evaluation/tide_test.py`; tests: `tests/test_sun_api.py`.
+
+`POST /sun/test` takes a timestamped signal (`t`, `value`, optional `run`) and
+runs the declared method on it. A run is the caller's label, or else a gap
+over 6 h starts one. Each run is cut into pieces of at most 14 days, counted
+from its own start, and every piece is shifted on its own in the null — whole
+weeks for the tide, 1–23 h for the clock. The base model is a spline per piece
+and, for the tide, the time of day. The placebo periods (11, 13.5, 27, 5.3 h)
+run beside every answer, and the verdict is "locked" only when the main p is
+at most 0.01 **and** the placebos are quiet. Fewer than 100 points, 72 hours or
+4 pieces is answered "insufficient", not guessed.
+
+**One change from the pilot analysis.** In the service the placebos always
+carry the time of day in their base, for the clock test too. In the declared
+sun test (section 7) they did not, and it made no difference: the pilot had
+no daily wave. On a log that has one, the wave leaks into the 27-hour placebo
+whenever runs start near multiples of nine days (the beat of 24 and 27 hours);
+without the change, a real daily wave was flagged as untrustworthy
+(placebo p = 0.005 on the nine-day test log below).
+
+**Check on made-up logs** (20 seeds each; 10 runs of 6 days, 30-minute
+samples, red noise; a wave of amplitude 0.25 — about the noise's own standard
+deviation; 199 surrogates, so the smallest possible p is 0.005):
+
+| log | test | called "locked" | median p | placebo p ≤ 0.01 |
+|---|---|---:|---:|---:|
+| no wave | tide | 0 / 20 | 0.56 | 0 |
+| daily wave | tide | 0 / 20 | 0.56 | 0 |
+| tide wave (M2) | tide | 20 / 20 | 0.005 | 0 |
+| daily wave | clock | 20 / 20 | 0.005 | 0 |
+| no wave | clock | 0 / 20 | 0.63 | 0 |
+| tide wave | clock | 0 / 20 | 0.95 | 0 |
+
+A daily rhythm — the one a solar plant has by design — never came out as a
+tide. What the service does not do: a power analysis. "Not locked" on a short
+or noisy log is not evidence of absence; the response gives the share of the
+variance a wave would have needed to beat chance (`null_partial_r2_q95`), and
+section 3 shows how the pilot's power was measured before its test.
+
+`GET /sun/design` reads the design sweep of sections 8 and 9 (624 designs,
+generated by `make_sun_designs.py` from the step 7 and 8 results). The
+per-1,000 m³/day figures are the same numbers scaled; CO₂ on the page uses
+0.4–0.7 kg per grid kWh.

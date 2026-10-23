@@ -1,44 +1,44 @@
 {
-  "sec_kwh_m3": 3.12,
+  "sec_kwh_m3": 3.26,
   "weather": {
     "sunny": {
       "mean_daily_yield_kwh_per_kwp": 5.25824915803512,
       "smallest_design": {
         "50%": {
-          "capacity": 2.0,
-          "storage_h": 8,
-          "pv_kwp": 0.3,
-          "solar_fraction": 0.505478978472055,
-          "curtailed_share": 0.0002411034334137696,
-          "run_hours_per_day": 12.0
+          "capacity": 1.5,
+          "storage_h": 4,
+          "pv_kwp": 0.5,
+          "solar_fraction": 0.5543076419999868,
+          "curtailed_share": 0.3126826597181619,
+          "run_hours_per_day": 16.0
         },
         "75%": {
           "capacity": 2.5,
           "storage_h": 12,
           "pv_kwp": 0.5,
-          "solar_fraction": 0.7795531692841944,
-          "curtailed_share": 0.07489895778330047,
+          "solar_fraction": 0.7612049883637574,
+          "curtailed_share": 0.05613895900165533,
           "run_hours_per_day": 9.6
         },
         "90%": {
           "capacity": 3.0,
           "storage_h": 16,
           "pv_kwp": 0.7,
-          "solar_fraction": 0.9393026343403512,
-          "curtailed_share": 0.20380227305356557,
+          "solar_fraction": 0.9299476449888623,
+          "curtailed_share": 0.17636100872879656,
           "run_hours_per_day": 8.0
         },
         "95%": {
           "capacity": 3.0,
           "storage_h": 16,
           "pv_kwp": 0.9,
-          "solar_fraction": 0.9729309759377115,
-          "curtailed_share": 0.35856455601828574,
+          "solar_fraction": 0.9686487429481667,
+          "curtailed_share": 0.3327320754907759,
           "run_hours_per_day": 8.0
         }
       },
-      "rule_vs_plan_max_gap": 0.08316695508061833,
-      "rule_vs_plan_median_gap": 0.0018313246155623464
+      "rule_vs_plan_max_gap": 0.08310546694047816,
+      "rule_vs_plan_median_gap": 0.0014314933229030435
     },
     "cloudier": {
       "mean_daily_yield_kwh_per_kwp": 4.734918934812053,
@@ -47,37 +47,37 @@
           "capacity": 1.5,
           "storage_h": 4,
           "pv_kwp": 0.5,
-          "solar_fraction": 0.5310092761709695,
-          "curtailed_share": 0.30019965939746884,
+          "solar_fraction": 0.5243807919587451,
+          "curtailed_share": 0.27792580809902945,
           "run_hours_per_day": 16.0
         },
         "75%": {
-          "capacity": 3.0,
-          "storage_h": 16,
-          "pv_kwp": 0.5,
-          "solar_fraction": 0.7505866411803963,
-          "curtailed_share": 0.01082559058604371,
-          "run_hours_per_day": 8.0
+          "capacity": 2.5,
+          "storage_h": 12,
+          "pv_kwp": 0.7,
+          "solar_fraction": 0.8120540087709458,
+          "curtailed_share": 0.20128484169878436,
+          "run_hours_per_day": 9.6
         },
         "90%": {
           "capacity": 3.0,
           "storage_h": 16,
           "pv_kwp": 0.9,
-          "solar_fraction": 0.9361371985888944,
-          "curtailed_share": 0.31460798665106393,
+          "solar_fraction": 0.9286404418393649,
+          "curtailed_share": 0.2895882503597015,
           "run_hours_per_day": 8.0
         },
         "95%": {
           "capacity": 3.0,
-          "storage_h": 24,
-          "pv_kwp": 0.9,
-          "solar_fraction": 0.954061628513706,
-          "curtailed_share": 0.3014846313001419,
-          "run_hours_per_day": 8.0
+          "storage_h": 16,
+          "pv_kwp": 1.1,
+          "solar_fraction": 0.9566867364343173,
+          "curtailed_share": 0.4011995475023097,
+          "run_hours_per_day": 7.999999999999999
         }
       },
-      "rule_vs_plan_max_gap": 0.0830993066595177,
-      "rule_vs_plan_median_gap": 0.0024723316911295368
+      "rule_vs_plan_max_gap": 0.08293131073804727,
+      "rule_vs_plan_median_gap": 0.00222178589260863
     }
   },
   "run_faster_instead": {

@@ -20,7 +20,7 @@ Frisch-Waugh-Lovell: residualise y and the tide block on the base design once
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 import numpy as np
 import pandas as pd
@@ -417,4 +417,72 @@ def power_curve(prep: Prepared, relative_ranges=(0.05, 0.10, 0.20, 0.40), n_sim:
             p = (1 + np.sum(null >= ss_obs)) / (1 + cfg.n_surrogates)
             hits += p <= cfg.alpha
         out[str(rr)] = hits / n_sim
+    return out
+
+
+# ------------------------------------------------------------- any plant log
+
+def prepare_series(df: pd.DataFrame, cfg: TideTestConfig | None = None, gap_hours: float = 6.0,
+                   block_days: float = 14.0, tod: bool = True) -> Prepared:
+    """A plant's own log -> the same base model, ready for the tide or the clock test.
+
+    `df` needs columns `t` (local standard time) and `value`; `run` is optional.
+    Without it, a gap longer than `gap_hours` starts a new run. A long
+    continuous record is cut into pieces of `block_days`, each shifted on its
+    own in the null - one unbroken year would otherwise be a single block, and
+    rotating a single block's phase changes nothing.
+    """
+    cfg = cfg or TideTestConfig()
+    d = df.dropna(subset=["t", "value"]).sort_values("t").reset_index(drop=True)
+    t = pd.DatetimeIndex(pd.to_datetime(d["t"]))
+    th = hours_since_epoch(t)
+    if "run" in d and d["run"].notna().all():
+        run = d["run"].astype(str).to_numpy()
+    else:
+        run = np.cumsum(np.r_[True, np.diff(th) > gap_hours]).astype(str)
+    run_start = pd.Series(th).groupby(run).transform("min").to_numpy()
+    piece = np.floor((th - run_start) / (24 * block_days)).astype(int)     # counted from each run's start
+    episode = np.array([f"{r}|{p}" for r, p in zip(run, piece)])
+    seg = pd.DataFrame({"t_std": t, "y": d["value"].to_numpy(float), "run": episode, "episode": episode})
+    prep = prepare(seg, "y", replace(cfg, block_gap_hours=0.0), covariates=False, tod=tod)
+    return prep
+
+
+def series_test(df: pd.DataFrame, kind: str = "tide", n_surrogates: int = 499,
+                block_days: float = 14.0) -> dict:
+    """The declared test, pointed at any timestamped plant signal.
+
+    kind='tide': M2, N2, O1, M4 against whole-week shifts, time of day in the base.
+    kind='clock': harmonics of the day against 1-23 h shifts, no time of day in the base.
+    The placebo periods run beside it on the same data as a calibration check.
+    """
+    cfg = TideTestConfig(n_surrogates=n_surrogates)
+    tide = kind == "tide"
+    prep = prepare_series(df, cfg, block_days=block_days, tod=tide)
+    n_blocks = len(np.unique(prep.block))
+    span_h = float(prep.t_hours.max() - prep.t_hours.min())
+    notes = []
+    if n_blocks < 4 or span_h < 72 or len(prep.y) < 100:
+        return {"status": "insufficient", "n": int(len(prep.y)), "n_blocks": int(n_blocks),
+                "span_hours": round(span_h, 1),
+                "notes": ["needs at least 100 points over 72 hours, in at least 4 blocks of up to "
+                          f"{block_days:g} days - fewer cannot tell a tide from chance"]}
+    if n_blocks < 8:
+        notes.append(f"only {n_blocks} blocks: the null has little room; treat p as rough")
+    periods, shift = (CONSTITUENTS, "weeks") if tide else (DAY_HARMONICS, "hours")
+    res = tide_test(prep, periods, cfg, "value", shift=shift)
+    # The placebos always run with the time of day in the base. For the clock test this
+    # differs from the declared pilot analysis (which had no daily wave to leak): a real,
+    # strong daily wave leaks into the 27-h placebo whenever runs start near multiples of
+    # nine days (the 24/27-h beat) and would otherwise flag a true answer as untrustworthy.
+    prep_placebo = prep if tide else prepare_series(df, cfg, block_days=block_days, tod=True)
+    plac = tide_test(prep_placebo, PLACEBO, cfg, "value", with_ranges=False, shift=shift)
+    if plac.p_value <= cfg.alpha:
+        notes.append("the placebo periods also came out significant: something in this record "
+                     "fools the null; do not trust the main p")
+    verdict = ("locked" if res.p_value <= cfg.alpha and plac.p_value > cfg.alpha else "not locked")
+    out = res.as_dict()
+    out.update(status="ok", kind=kind, verdict=verdict, placebo_p_value=plac.p_value,
+               span_hours=round(span_h, 1), notes=notes)
+    out.pop("beta", None)
     return out

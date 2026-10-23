@@ -31,7 +31,8 @@ from scipy.sparse import coo_matrix
 @dataclass(frozen=True)
 class SolarPlanConfig:
     sec_ro_kwh_m3: float = 3.0           # seawater RO, literature range 2.5-3.5
-    sec_uf_kwh_m3: float = 0.12          # pilot: 0.083 kWh/m3 hydraulic (median of 105 runs) / pump eff. 0.7
+    sec_uf_kwh_m3: float = 0.26          # pilot: 0.083 kWh/m3 of UF feed, hydraulic (step7a), / pump eff. 0.7
+                                         # / RO recovery 0.45 -> per m3 of product
     clear_day_yield: float = 6.2         # kWh per kWp on a clear day, yearly mean
     seasonal_amp: float = 0.16           # summer/winter swing of the clear-day yield
     day_length_mean: float = 12.0        # h

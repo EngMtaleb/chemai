@@ -1,0 +1,25 @@
+{
+  "runs": 107,
+  "runs_used": 106,
+  "kwh_per_m3_uf_feed_hydraulic": {
+    "median": 0.08302627878360708,
+    "iqr": [
+      0.0752565101105338,
+      0.0889091927710726
+    ]
+  },
+  "backwash_volume_share": {
+    "median": 0.28895186555828156,
+    "iqr": [
+      0.22711148874156917,
+      0.3271444923981667
+    ]
+  },
+  "backwash_energy_share_median": 0.13626169042200842,
+  "assumed": {
+    "pump_efficiency": 0.7,
+    "ro_recovery": 0.45
+  },
+  "kwh_per_m3_product": 0.2635754882019272,
+  "kwh_per_m3_product_if_backwash_from_ro_feed": 0.37068585857253433
+}

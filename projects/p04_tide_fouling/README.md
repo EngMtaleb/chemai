@@ -1,8 +1,12 @@
 # Project 4 — The moon, the sun and a seawater membrane
 
+**Live:** [chemai-tr2c.onrender.com/sun/](https://chemai-tr2c.onrender.com/sun/) — the results, a
+design explorer for solar and tidal supply, and the declared tide (or time-of-day) test run on your
+own `t,value` CSV.
+
 **The record clears solar operation.** Over 5,106 hours of a seawater
 ultrafiltration pilot, the fouling rate does not depend on the hour of the day
-(daylight hours within −2.6 % to +1.2 % of the rest) or on a daily stop and
+(daylight hours within −2.5 % to +1.2 % of the rest) or on a daily stop and
 restart (first 3 hours within −3.9 % to +10.0 %). A solar-run pre-treatment can
 produce in daylight and stop at night, at its usual flux, without fouling
 faster. Both tests were declared before they were run, with positive controls,
@@ -11,7 +15,7 @@ placebos and power analyses.
 **What it takes to run on the sun.** With modules switched on and off at their
 usual flux — so the record's no-penalty result applies — a synthetic sunny year
 needs, per m³/day of water: 3× production capacity, a 16-hour tank and 0.7 kWp
-of PV for 94 % solar energy (grid electricity 3.12 → 0.19 kWh/m³). A simple
+of PV for 93 % solar energy (grid electricity 3.26 → 0.23 kWh/m³). A simple
 rule with no forecast does as well as a perfect-foresight plan once the tank is
 that big. Getting the capacity by pushing flux instead of adding modules would
 raise fouling per m³ — the design study is in VALIDATION.md 8. Where a strong
@@ -40,7 +44,7 @@ so the feed did feel the tide — the fouling did not follow it.
 | Pump hydraulics (declared controls) | p = 0.349 and 0.015 — not passed |
 | Pump hydraulics, per-episode phase check (exploratory) | M2-locked, opposite phases for speed and pressure, stable across both halves |
 | Feed turbidity, 2013 only | p = 0.063 — undecided |
-| **Fouling follows the hour of the day** (declared, H2) | **no** — p = 0.746; daylight hours −0.8 % (−2.6 % to +1.2 %) |
+| **Fouling follows the hour of the day** (declared, H2) | **no** — p = 0.746; daylight hours −0.8 % (−2.5 % to +1.2 %) |
 | Temperature follows the hour (positive control) | yes — p = 0.001, the clock and the test work |
 | **First 3 h after a restart foul differently** (declared, H3) | **no** — p = 0.382; +3.1 % (−3.9 % to +10.0 %) |
 | Pretend restart 24 h in (placebo) | p = 0.842 |
@@ -92,14 +96,34 @@ area is not in the record. Turbidity covers 2013 only.
 | [DECLARED_BEFORE_RUN.md](DECLARED_BEFORE_RUN.md) | the tide test, fixed before it ran (commit `1989858`) |
 | [DECLARED_BEFORE_RUN_2.md](DECLARED_BEFORE_RUN_2.md) | the sun tests, fixed before they ran (commit `6d3dd6e`) |
 | [VALIDATION.md](VALIDATION.md) | every number, with its source |
-| `step1_audit.py` … `step4_tide_test.py` | the pipeline |
-| `results/` | audit, segments (1.9 MB parquet), power, test |
-| `chemai/data/uf_pilot.py`, `chemai/features/uf_segments.py`, `chemai/evaluation/tide_test.py` | the code |
+| `step1_audit.py` … `step4_tide_test.py` | the tide: audit, segments, power, test |
+| `step5_sun_power.py`, `step6_sun_tests.py` | the sun: power, then the daylight and restart tests |
+| `step7a_uf_energy.py` | what the UF pre-treatment costs in energy, from the record |
+| `step7_solar_plan.py`, `step8_sun_and_moon.py` | the design study: PV, tank, capacity, then a tidal turbine |
+| `make_figures.py`, `make_sun_designs.py` | the figures, and the design table the service reads |
+| `results/` | audit, segments (1.9 MB parquet), power, tests, designs |
+| `chemai/data/uf_pilot.py`, `chemai/features/uf_segments.py` | reading the record, cutting the segments |
+| `chemai/evaluation/tide_test.py`, `chemai/evaluation/restart_test.py`, `chemai/models/solar_plan.py` | the tests and the plan |
+| `chemai/api/sun_app.py` | the service at `/sun` (VALIDATION.md 10) |
+| `notebooks/` | five Colab notebooks that run from the committed segments |
+
+## Notebooks
+
+The same steps cell by cell, runnable in Google Colab with nothing installed. They read
+the committed tables, so nothing needs downloading.
+
+| | |
+|---|---|
+| [01 · Read the record before testing it](notebooks/01_the_record.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EngMtaleb/chemai/blob/main/projects/p04_tide_fouling/notebooks/01_the_record.ipynb) |
+| [02 · From pressure tags to a fouling rate](notebooks/02_from_tags_to_fouling.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EngMtaleb/chemai/blob/main/projects/p04_tide_fouling/notebooks/02_from_tags_to_fouling.ipynb) |
+| [03 · Is the fouling locked to the moon?](notebooks/03_the_tide_test.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EngMtaleb/chemai/blob/main/projects/p04_tide_fouling/notebooks/03_the_tide_test.ipynb) |
+| [04 · Does the membrane mind the sun?](notebooks/04_the_sun_tests.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EngMtaleb/chemai/blob/main/projects/p04_tide_fouling/notebooks/04_the_sun_tests.ipynb) |
+| [05 · Running on the sun — and the moon](notebooks/05_sun_and_moon_design.ipynb) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EngMtaleb/chemai/blob/main/projects/p04_tide_fouling/notebooks/05_sun_and_moon_design.ipynb) |
 
 ## Run it
 
 ```bash
-pip install -e ".[viz]"
+pip install -e ".[viz,data]"
 python -c "from chemai.data.uf_pilot import download_archive, extract_archive; extract_archive(download_archive())"
 python projects/p04_tide_fouling/step1_audit.py
 python projects/p04_tide_fouling/step2_segments.py
@@ -107,7 +131,21 @@ python projects/p04_tide_fouling/step3_power.py
 python projects/p04_tide_fouling/step4_tide_test.py
 python projects/p04_tide_fouling/step5_sun_power.py
 python projects/p04_tide_fouling/step6_sun_tests.py
+python projects/p04_tide_fouling/step7a_uf_energy.py      # needs the archive
+python projects/p04_tide_fouling/step7_solar_plan.py
+python projects/p04_tide_fouling/step8_sun_and_moon.py
+python projects/p04_tide_fouling/make_figures.py
 ```
 
-`results/segments.parquet` is committed, so steps 3–4 run without the 356 MB
-archive.
+`results/segments.parquet` is committed, so steps 3–8 (all but 7a) run without
+the 356 MB archive (steps 5–6 also read `results/episodes.parquet`, also
+committed).
+
+Test a log of your own without the service:
+
+```python
+import pandas as pd
+from chemai.evaluation.tide_test import series_test
+log = pd.read_csv("my_log.csv", parse_dates=["t"])      # columns t, value[, run]
+print(series_test(log, kind="tide"))                    # or kind="clock"
+```
