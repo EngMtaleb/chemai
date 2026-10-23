@@ -1,0 +1,748 @@
+{
+ "plants": 30,
+ "seed": 2002,
+ "frozen": {
+  "law": "linear",
+  "window": 42,
+  "inflation": 2.0,
+  "ratio_max": 2.0
+ },
+ "vendor 1.5": {
+  "summary": {
+   "forecasts": 9751,
+   "cycles": 563,
+   "truth_inside_horizon": 6945,
+   "dated": 3533,
+   "missed_in_sight": 3412,
+   "mae_days": 34.7,
+   "median_abs_err_days": 23.4,
+   "p90_abs_err_days": 83.5,
+   "bias_days": 6.2,
+   "coverage": 0.852,
+   "flagged": 1439,
+   "median_err_inside": 17.0,
+   "median_err_flagged": 44.8,
+   "flag_ratio": 2.64,
+   "precision_at_recall_0.5": {
+    "forecast": null,
+    "margin": 0.608
+   }
+  },
+  "curves": {
+   "n": 10514,
+   "cycles": 585,
+   "positive_share": 0.264,
+   "forecast_p50": [
+    [
+     7,
+     0.094,
+     0.621
+    ],
+    [
+     14,
+     0.179,
+     0.576
+    ],
+    [
+     21,
+     0.252,
+     0.553
+    ],
+    [
+     28,
+     0.308,
+     0.529
+    ],
+    [
+     35,
+     0.357,
+     0.513
+    ],
+    [
+     42,
+     0.393,
+     0.498
+    ],
+    [
+     56,
+     0.445,
+     0.466
+    ]
+   ],
+   "margin": [
+    [
+     0.0,
+     0.201,
+     0.751
+    ],
+    [
+     0.01,
+     0.253,
+     0.726
+    ],
+    [
+     0.02,
+     0.299,
+     0.693
+    ],
+    [
+     0.03,
+     0.361,
+     0.673
+    ],
+    [
+     0.04,
+     0.422,
+     0.648
+    ],
+    [
+     0.05,
+     0.482,
+     0.616
+    ],
+    [
+     0.065,
+     0.577,
+     0.572
+    ],
+    [
+     0.08,
+     0.676,
+     0.537
+    ],
+    [
+     0.12,
+     0.83,
+     0.428
+    ]
+   ]
+  }
+ },
+ "own fit": {
+  "summary": {
+   "forecasts": 10260,
+   "cycles": 582,
+   "truth_inside_horizon": 7968,
+   "dated": 5477,
+   "missed_in_sight": 2491,
+   "mae_days": 31.5,
+   "median_abs_err_days": 19.4,
+   "p90_abs_err_days": 81.8,
+   "bias_days": 10.0,
+   "coverage": 0.78,
+   "flagged": 1846,
+   "median_err_inside": 12.2,
+   "median_err_flagged": 51.8,
+   "flag_ratio": 4.25,
+   "precision_at_recall_0.5": {
+    "forecast": 0.784,
+    "margin": 0.736
+   }
+  },
+  "curves": {
+   "n": 10475,
+   "cycles": 583,
+   "positive_share": 0.279,
+   "forecast_p50": [
+    [
+     7,
+     0.119,
+     0.911
+    ],
+    [
+     14,
+     0.271,
+     0.873
+    ],
+    [
+     21,
+     0.404,
+     0.829
+    ],
+    [
+     28,
+     0.508,
+     0.78
+    ],
+    [
+     35,
+     0.594,
+     0.731
+    ],
+    [
+     42,
+     0.66,
+     0.686
+    ],
+    [
+     56,
+     0.745,
+     0.616
+    ]
+   ],
+   "margin": [
+    [
+     0.0,
+     0.065,
+     0.83
+    ],
+    [
+     0.01,
+     0.121,
+     0.833
+    ],
+    [
+     0.02,
+     0.19,
+     0.794
+    ],
+    [
+     0.03,
+     0.297,
+     0.784
+    ],
+    [
+     0.04,
+     0.41,
+     0.766
+    ],
+    [
+     0.05,
+     0.521,
+     0.729
+    ],
+    [
+     0.065,
+     0.652,
+     0.664
+    ],
+    [
+     0.08,
+     0.751,
+     0.596
+    ],
+    [
+     0.12,
+     0.856,
+     0.424
+    ]
+   ]
+  },
+  "by_law": {
+   "asymptotic": {
+    "forecasts": 3890,
+    "cycles": 152,
+    "truth_inside_horizon": 1822,
+    "dated": 1471,
+    "missed_in_sight": 351,
+    "mae_days": 34.6,
+    "median_abs_err_days": 22.9,
+    "p90_abs_err_days": 86.7,
+    "bias_days": -7.2,
+    "coverage": 0.907,
+    "flagged": 412,
+    "median_err_inside": 18.7,
+    "median_err_flagged": 38.8,
+    "flag_ratio": 2.07
+   },
+   "biofilm": {
+    "forecasts": 3689,
+    "cycles": 209,
+    "truth_inside_horizon": 3465,
+    "dated": 1846,
+    "missed_in_sight": 1619,
+    "mae_days": 37.1,
+    "median_abs_err_days": 25.6,
+    "p90_abs_err_days": 89.4,
+    "bias_days": 23.2,
+    "coverage": 0.647,
+    "flagged": 751,
+    "median_err_inside": 13.9,
+    "median_err_flagged": 62.8,
+    "flag_ratio": 4.52
+   },
+   "linear": {
+    "forecasts": 2681,
+    "cycles": 221,
+    "truth_inside_horizon": 2681,
+    "dated": 2160,
+    "missed_in_sight": 521,
+    "mae_days": 24.6,
+    "median_abs_err_days": 13.6,
+    "p90_abs_err_days": 66.4,
+    "bias_days": 10.5,
+    "coverage": 0.78,
+    "flagged": 683,
+    "median_err_inside": 8.9,
+    "median_err_flagged": 45.1,
+    "flag_ratio": 5.07
+   }
+  },
+  "error_by_ratio": {
+   "(0.0, 0.5]": [
+    1177,
+    6.3
+   ],
+   "(0.5, 1.0]": [
+    1108,
+    11.9
+   ],
+   "(1.0, 1.5]": [
+    875,
+    20.0
+   ],
+   "(1.5, 2.0]": [
+    608,
+    28.8
+   ],
+   "(2.0, 3.0]": [
+    822,
+    41.4
+   ],
+   "(3.0, 5.0]": [
+    680,
+    71.5
+   ],
+   "(5.0, 1000000000.0]": [
+    200,
+    80.2
+   ]
+  }
+ },
+ "linear 1.0": {
+  "summary": {
+   "forecasts": 8155,
+   "cycles": 456,
+   "truth_inside_horizon": 5498,
+   "dated": 1280,
+   "missed_in_sight": 4218,
+   "mae_days": 40.0,
+   "median_abs_err_days": 30.9,
+   "p90_abs_err_days": 88.4,
+   "bias_days": -5.3,
+   "coverage": 0.921,
+   "flagged": 945,
+   "median_err_inside": 21.3,
+   "median_err_flagged": 35.3,
+   "flag_ratio": 1.66,
+   "precision_at_recall_0.5": {
+    "forecast": null,
+    "margin": 0.327
+   }
+  },
+  "curves": {
+   "n": 9602,
+   "cycles": 491,
+   "positive_share": 0.208,
+   "forecast_p50": [
+    [
+     7,
+     0.031,
+     0.304
+    ],
+    [
+     14,
+     0.058,
+     0.297
+    ],
+    [
+     21,
+     0.076,
+     0.275
+    ],
+    [
+     28,
+     0.093,
+     0.274
+    ],
+    [
+     35,
+     0.106,
+     0.27
+    ],
+    [
+     42,
+     0.12,
+     0.273
+    ],
+    [
+     56,
+     0.141,
+     0.269
+    ]
+   ],
+   "margin": [
+    [
+     0.0,
+     0.33,
+     0.416
+    ],
+    [
+     0.01,
+     0.357,
+     0.403
+    ],
+    [
+     0.02,
+     0.372,
+     0.387
+    ],
+    [
+     0.03,
+     0.389,
+     0.374
+    ],
+    [
+     0.04,
+     0.41,
+     0.366
+    ],
+    [
+     0.05,
+     0.43,
+     0.355
+    ],
+    [
+     0.065,
+     0.463,
+     0.34
+    ],
+    [
+     0.08,
+     0.496,
+     0.329
+    ],
+    [
+     0.12,
+     0.582,
+     0.296
+    ]
+   ]
+  }
+ },
+ "physics 1.75": {
+  "summary": {
+   "forecasts": 10270,
+   "cycles": 584,
+   "truth_inside_horizon": 7930,
+   "dated": 5478,
+   "missed_in_sight": 2452,
+   "mae_days": 31.3,
+   "median_abs_err_days": 18.5,
+   "p90_abs_err_days": 82.1,
+   "bias_days": 9.3,
+   "coverage": 0.78,
+   "flagged": 1795,
+   "median_err_inside": 11.6,
+   "median_err_flagged": 54.5,
+   "flag_ratio": 4.7,
+   "precision_at_recall_0.5": {
+    "forecast": 0.795,
+    "margin": 0.75
+   }
+  },
+  "curves": {
+   "n": 10448,
+   "cycles": 587,
+   "positive_share": 0.279,
+   "forecast_p50": [
+    [
+     7,
+     0.13,
+     0.929
+    ],
+    [
+     14,
+     0.283,
+     0.897
+    ],
+    [
+     21,
+     0.429,
+     0.844
+    ],
+    [
+     28,
+     0.522,
+     0.78
+    ],
+    [
+     35,
+     0.607,
+     0.735
+    ],
+    [
+     42,
+     0.679,
+     0.689
+    ],
+    [
+     56,
+     0.758,
+     0.62
+    ]
+   ],
+   "margin": [
+    [
+     0.0,
+     0.06,
+     0.88
+    ],
+    [
+     0.01,
+     0.119,
+     0.874
+    ],
+    [
+     0.02,
+     0.198,
+     0.836
+    ],
+    [
+     0.03,
+     0.306,
+     0.808
+    ],
+    [
+     0.04,
+     0.417,
+     0.778
+    ],
+    [
+     0.05,
+     0.534,
+     0.739
+    ],
+    [
+     0.065,
+     0.661,
+     0.674
+    ],
+    [
+     0.08,
+     0.751,
+     0.598
+    ],
+    [
+     0.12,
+     0.858,
+     0.427
+    ]
+   ]
+  }
+ },
+ "two pressure transmitters": {
+  "summary": {
+   "forecasts": 8564,
+   "cycles": 494,
+   "truth_inside_horizon": 5774,
+   "dated": 2155,
+   "missed_in_sight": 3619,
+   "mae_days": 41.8,
+   "median_abs_err_days": 30.4,
+   "p90_abs_err_days": 98.3,
+   "bias_days": 2.7,
+   "coverage": 0.879,
+   "flagged": 992,
+   "median_err_inside": 21.6,
+   "median_err_flagged": 46.1,
+   "flag_ratio": 2.14
+  },
+  "curves": {
+   "n": 9439,
+   "cycles": 528,
+   "positive_share": 0.218,
+   "forecast_p50": [
+    [
+     7,
+     0.067,
+     0.509
+    ],
+    [
+     14,
+     0.107,
+     0.449
+    ],
+    [
+     21,
+     0.156,
+     0.432
+    ],
+    [
+     28,
+     0.2,
+     0.429
+    ],
+    [
+     35,
+     0.232,
+     0.416
+    ],
+    [
+     42,
+     0.263,
+     0.408
+    ],
+    [
+     56,
+     0.314,
+     0.398
+    ]
+   ],
+   "margin": [
+    [
+     0.0,
+     0.238,
+     0.587
+    ],
+    [
+     0.01,
+     0.274,
+     0.559
+    ],
+    [
+     0.02,
+     0.324,
+     0.551
+    ],
+    [
+     0.03,
+     0.368,
+     0.533
+    ],
+    [
+     0.04,
+     0.407,
+     0.508
+    ],
+    [
+     0.05,
+     0.455,
+     0.49
+    ],
+    [
+     0.065,
+     0.526,
+     0.463
+    ],
+    [
+     0.08,
+     0.593,
+     0.438
+    ],
+    [
+     0.12,
+     0.727,
+     0.368
+    ]
+   ]
+  }
+ },
+ "blockage (secondary)": {
+  "summary": {
+   "forecasts": 10245,
+   "cycles": 582,
+   "truth_inside_horizon": 7953,
+   "dated": 5579,
+   "missed_in_sight": 2374,
+   "mae_days": 30.1,
+   "median_abs_err_days": 17.8,
+   "p90_abs_err_days": 78.9,
+   "bias_days": 7.6,
+   "coverage": 0.806,
+   "flagged": 1812,
+   "median_err_inside": 11.4,
+   "median_err_flagged": 49.8,
+   "flag_ratio": 4.37
+  },
+  "curves": {
+   "n": 10475,
+   "cycles": 583,
+   "positive_share": 0.279,
+   "forecast_p50": [
+    [
+     7,
+     0.129,
+     0.9
+    ],
+    [
+     14,
+     0.293,
+     0.864
+    ],
+    [
+     21,
+     0.432,
+     0.818
+    ],
+    [
+     28,
+     0.537,
+     0.754
+    ],
+    [
+     35,
+     0.619,
+     0.706
+    ],
+    [
+     42,
+     0.688,
+     0.665
+    ],
+    [
+     56,
+     0.761,
+     0.59
+    ]
+   ],
+   "margin": [
+    [
+     0.0,
+     0.065,
+     0.83
+    ],
+    [
+     0.01,
+     0.121,
+     0.833
+    ],
+    [
+     0.02,
+     0.19,
+     0.794
+    ],
+    [
+     0.03,
+     0.297,
+     0.784
+    ],
+    [
+     0.04,
+     0.41,
+     0.766
+    ],
+    [
+     0.05,
+     0.521,
+     0.729
+    ],
+    [
+     0.065,
+     0.652,
+     0.664
+    ],
+    [
+     0.08,
+     0.751,
+     0.596
+    ],
+    [
+     0.12,
+     0.856,
+     0.424
+    ]
+   ]
+  }
+ }
+}
