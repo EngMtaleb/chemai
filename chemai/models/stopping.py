@@ -101,6 +101,81 @@ def cost_of_stopping_at(v_stop: float, fixed: float, slope: float, m0: float = 0
     return float(m0 + fixed / v_stop + slope * v_stop / 2.0)
 
 
+def batch_decision(t_s, power_kw, permeate_lpm, fixed_kwh: float, window_s: float = 120.0,
+                   min_minutes: float = 5.0, conductivity=None, law_fit_minutes: float = 15.0) -> dict:
+    """The rule on one logged batch (start-up to the end of the log), in plain numbers.
+
+    Returns the rule's stop (or None: the cost was still falling when the log ends),
+    the best end in hindsight under the same fixed cost, the log's own end, the
+    square-root law fitted on the `law_fit_minutes` after `min_minutes`, and a
+    curve for plotting. Live cost is undefined where the permeate flow is below
+    a tenth of its median.
+    """
+    t = np.asarray(t_s, float)
+    P = np.asarray(power_kw, float)
+    Q = np.asarray(permeate_lpm, float)
+    c = None if conductivity is None else np.asarray(conductivity, float)
+    q_floor = 0.1 * float(np.nanmedian(Q[Q > 0])) if np.any(Q > 0) else np.inf
+    with np.errstate(divide="ignore", invalid="ignore"):
+        live = np.where(Q > q_floor, P / (Q * 60.0 / 1000.0), np.nan)        # kWh/m3
+    E = cumulative(t, P) / 3600.0                                            # kWh
+    V = cumulative(t, Q) / 60.0 / 1000.0                                     # m3
+    J = average_cost(fixed_kwh, E, V)
+    m = rolling_median(t, live, window_s, min_periods=3)
+    elapsed = (t - t[0]) / 60.0
+    ok = np.isfinite(J) & (elapsed >= min_minutes) & np.isfinite(live)
+    if ok.sum() < 10:
+        return {"status": "insufficient"}
+    dec = marginal_equals_average(t, live, E, V, fixed_kwh, window_s, min_elapsed_s=min_minutes * 60.0,
+                                  allowed=ok)
+    i_ok = np.flatnonzero(ok)
+    i_best = int(i_ok[np.nanargmin(J[i_ok])])
+    i_end = int(i_ok[-1])
+
+    def point(i):
+        return {"minutes": float(elapsed[i]), "permeate_l": float(V[i] * 1000.0),
+                "conductivity": None if c is None or not np.isfinite(c[i]) else float(c[i]),
+                "live_kwh_m3": None if not np.isfinite(m[i]) else float(m[i]),
+                "average_kwh_m3": float(J[i])}
+
+    out = {"status": "stop" if dec.index is not None else "run_longer",
+           "stop": point(dec.index) if dec.index is not None else None,
+           "best": point(i_best), "end": point(i_end),
+           "regret_pct": float(100.0 * (J[dec.index] / J[i_best] - 1.0)) if dec.index is not None else None,
+           "end_regret_pct": float(100.0 * (J[i_end] / J[i_best] - 1.0)),
+           "best_is_at_end": bool(elapsed[i_end] - elapsed[i_best] < 1.0)}
+
+    fit = ok & (elapsed <= min_minutes + law_fit_minutes)
+    out["law"] = None
+    if fit.sum() >= 10 and elapsed[i_end] >= min_minutes + law_fit_minutes:
+        s, m0 = np.polyfit(V[fit], live[fit], 1)
+        i0 = int(np.flatnonzero(fit)[0])
+        f_eff = fixed_kwh + E[i0] - m0 * V[i0]
+        v_star, _ = sqrt_law(f_eff, s, m0)
+        q_mean = float(np.nanmean(Q[ok])) * 60.0 / 1000.0 / 60.0            # m3 per minute
+        if np.isfinite(v_star) and v_star <= V[i_end]:
+            t_star = float(np.interp(v_star, V[i_ok], elapsed[i_ok]))
+        elif np.isfinite(v_star) and q_mean > 0:
+            t_star = float(elapsed[i_end] + (v_star - V[i_end]) / q_mean)
+        else:
+            t_star = None
+        out["law"] = {"fitted_minutes": (float(min_minutes), float(min_minutes + law_fit_minutes)),
+                      "m0_kwh_m3": float(m0), "slope_kwh_m3_per_m3": float(s), "fixed_kwh": float(f_eff),
+                      "v_star_l": float(v_star * 1000.0) if np.isfinite(v_star) else float("inf"),
+                      "forecast_minutes": t_star}
+
+    step = max(1, len(t) // 400)
+    sel = np.arange(0, len(t), step)
+
+    def clean(a):
+        return [None if not np.isfinite(x) else round(float(x), 5) for x in a]
+
+    out["curve"] = {"minutes": clean(elapsed[sel]), "permeate_l": clean(V[sel] * 1000.0),
+                    "live": clean(m[sel]), "average": clean(np.where(elapsed[sel] >= 1.0, J[sel], np.nan)),
+                    "conductivity": clean(c[sel]) if c is not None else None}
+    return out
+
+
 def theil_sen(x: np.ndarray, y: np.ndarray) -> tuple[float, float]:
     """Median of pairwise slopes and the matching intercept - robust to the odd bad day."""
     x, y = np.asarray(x, float), np.asarray(y, float)

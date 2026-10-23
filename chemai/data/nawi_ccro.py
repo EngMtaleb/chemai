@@ -92,6 +92,33 @@ def check_files(cfg: CCROConfig | None = None) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def download_files(cfg: CCROConfig | None = None, names: list[str] | None = None,
+                   timeout: float = 600.0) -> pd.DataFrame:
+    """Fetch the missing zips from the record and check each one's sha256.
+
+    351 MB in all. A file whose sha256 does not match the one recorded in
+    CCROConfig is deleted and reported, never used.
+    """
+    import urllib.request
+    cfg = cfg or CCROConfig()
+    data_dir(cfg).mkdir(parents=True, exist_ok=True)
+    for name, size, sha in cfg.files:
+        if names is not None and name not in names:
+            continue
+        p = data_dir(cfg) / name
+        if p.exists() and p.stat().st_size == size and sha256_of(p) == sha:
+            continue
+        url = cfg.base_url + name.replace(" ", "%20")
+        log.info("downloading %s", url)
+        with urllib.request.urlopen(url, timeout=timeout) as r, open(p, "wb") as f:   # noqa: S310
+            while chunk := r.read(1 << 20):
+                f.write(chunk)
+        if sha256_of(p) != sha:
+            p.unlink()
+            raise ValueError(f"{name}: sha256 does not match the recorded one - file removed")
+    return check_files(cfg)
+
+
 def snake(column: str) -> str:
     """'Feed Pump Power Draw (kW)' -> 'feed_pump_power_draw_kw'."""
     c = column.replace("%", "pct").replace("/", "_per_").replace("^3", "3")

@@ -1,6 +1,6 @@
 """The service's front door.
 
-Four projects share one deployment, and a visitor who opens the root URL should
+Five projects share one deployment, and a visitor who opens the root URL should
 land somewhere, not on a 404. This lists what is running and links to each.
 """
 
@@ -29,8 +29,16 @@ INDEX = r"""<!doctype html>
 <body>
 <div class="wrap">
   <h1>chemai</h1>
-  <p class="sub">Industrial AI services for chemical engineering problems. Four projects, one
+  <p class="sub">Industrial AI services for chemical engineering problems. Five projects, one
   deployment. Every answer carries its uncertainty, or the reason it cannot be given.</p>
+
+  <a class="card" href="stop/">
+    <div class="t">When to stop</div>
+    <div class="d">One rule for four decisions in a desalination plant: end an RO batch, backwash,
+      clean chemically, clean an RO train. Tested once on 153 held-out batches of a public RO
+      testbed, then run on your own batch log or cleaning cycle.</div>
+    <div class="m">Open the demo &rarr;</div>
+  </a>
 
   <a class="card" href="sun/">
     <div class="t">Desalination on the sun &mdash; and the moon</div>
