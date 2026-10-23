@@ -84,6 +84,14 @@ def judge(cycles, s) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def ratio_summary(j: pd.DataFrame) -> dict:
+    """T*/T_actual: cycles whose penalty never rose have an infinite T* and are counted apart."""
+    r = j.t_star_d / j.length_d
+    fin = r[np.isfinite(r)]
+    return {"no_rise_share": round(float((~np.isfinite(r)).mean()), 3), "finite": int(len(fin)),
+            "q10_q50_q90_of_finite": [round(float(fin.quantile(q)), 2) for q in (0.1, 0.5, 0.9)] if len(fin) else None}
+
+
 def main():
     commit = declaration_commit()
     daily, ledger = load_daily(), load_ledger()
@@ -129,8 +137,8 @@ def main():
                "pass": bool(corner.rule_before_operators.sum() <= 7)},
         "D4": {"cycles": len(lengths), "spearman_rho": None if np.isnan(rho) else round(float(rho), 3),
                "p": None if np.isnan(p) else round(float(p), 3)},
-        "mid_t_star_over_actual": [round(float(x), 2) for x in (mid.t_star_d / mid.length_d).quantile([0.1, 0.5, 0.9])],
-        "corner_t_star_over_actual": [round(float(x), 2) for x in (corner.t_star_d / corner.length_d).quantile([0.1, 0.5, 0.9])],
+        "mid_t_star_over_actual": ratio_summary(mid),
+        "corner_t_star_over_actual": ratio_summary(corner),
         "grid_rule_before_operators": {"min": int(grid.rule_before_operators.min()),
                                        "median": float(grid.rule_before_operators.median()),
                                        "max": int(grid.rule_before_operators.max()), "cases": int(len(grid))},

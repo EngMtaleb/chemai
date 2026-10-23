@@ -92,3 +92,10 @@ a constraint is not a cost, and Project 3 is about forecasting exactly that limi
 
 ---
 *Corrections after the run (dated, never edits above this line):*
+
+- 2026-10-23, after the run: the deposit has **15** complete cycles, not 14 — train C has six,
+  not five; the count above was made by hand from the cycle list and is wrong by one. The
+  thresholds were set for 14 cycles; the results (D1: 0 of 15, D3: 6 of 15) clear them either way.
+  The first run also printed the T*/T_actual quantiles as NaN because a cycle with no rise has an
+  infinite T*; the summary now reports the share of such cycles and the quantiles of the others.
+  No number used by D1–D4 changed.
