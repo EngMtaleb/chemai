@@ -78,7 +78,69 @@ def fig_power():
     fig.savefig(FIG / "fig3_power.png")
 
 
-FIGS = {"record": fig_record, "segments": fig_segments, "power": fig_power}
+def fig_test():
+    """Observed statistic against its week-shift null, for every declared test."""
+    from chemai.evaluation.tide_test import (CONSTITUENTS, PLACEBO, TideTestConfig, block_shifts,
+                                             prepare, rotation_stack, tide_design, _fit)
+    seg = pd.read_parquet(RES / "segments.parquet")
+    cfg = TideTestConfig()
+    jobs = [("fouling rate (H1)", seg, "fouling_pct_h", CONSTITUENTS),
+            ("placebo periods", seg, "fouling_pct_h", PLACEBO),
+            ("pump speed (C1)", seg, "pump_speed", CONSTITUENTS),
+            ("pump discharge pressure (C2)", seg, "p_mf_in", CONSTITUENTS),
+            ("feed turbidity (S1)", seg[seg.turbidity_reads == "feed"], "turbidity", CONSTITUENTS)]
+    fig, axes = plt.subplots(1, len(jobs), figsize=(12, 2.6), sharey=False)
+    for ax, (title, data, col, periods) in zip(axes, jobs):
+        prep = prepare(data, col, cfg)
+        d = tide_design(prep, periods)
+        zy = d.zcat.T @ prep.y_res
+        k = len(d.blocks)
+        tot = float(prep.y_res @ prep.y_res)
+        obs = _fit(d, zy, rotation_stack(d, np.zeros(k)))[0] / tot
+        rng = np.random.default_rng(cfg.seed)
+        null = np.array([_fit(d, zy, rotation_stack(d, block_shifts(k, rng, cfg.shift_weeks)))[0] / tot
+                         for _ in range(cfg.n_surrogates)])
+        p = (1 + np.sum(null >= obs)) / (1 + len(null))
+        ax.hist(null * 100, bins=40, color=GRID, edgecolor=MUTED, lw=0.3)
+        ax.axvline(obs * 100, color=RED if p <= 0.01 else INK, lw=2)
+        ax.set_title(f"{title}\np = {p:.3f}", fontsize=9, color=INK)
+        ax.set_yticks([])
+        ax.set_xlabel("variance explained (%)", fontsize=8)
+    fig.suptitle("Real clock (line) against 999 clocks moved by whole weeks (grey)", x=0.01, ha="left",
+                 fontsize=10, color=INK, y=1.08)
+    fig.savefig(FIG / "fig4_test.png")
+
+
+def fig_phases():
+    """Each long episode's M2 phase: a tide would make the arrows point one way."""
+    from chemai.evaluation.tide_test import CONSTITUENTS, TideTestConfig, prepare
+    seg = pd.read_parquet(RES / "segments.parquet")
+    fig, axes = plt.subplots(1, 2, figsize=(7.6, 3.6), subplot_kw={"projection": "polar"},
+                             gridspec_kw={"wspace": 0.55})
+    for ax, (title, col) in zip(axes, [("fouling rate", "fouling_pct_h"), ("pump speed (control)", "pump_speed")]):
+        prep = prepare(seg, col, TideTestConfig())
+        w = 2 * np.pi * prep.t_hours / CONSTITUENTS["M2"]
+        amps, phs = [], []
+        for e in np.unique(prep.episode):
+            sel = prep.episode == e
+            if np.ptp(prep.t_hours[sel]) < 48:
+                continue
+            a = np.column_stack([np.cos(w[sel]), np.sin(w[sel])])
+            c = np.linalg.lstsq(a, prep.y_res[sel], rcond=None)[0]
+            amps.append(np.hypot(*c))
+            phs.append(np.arctan2(c[1], c[0]))
+        amps, phs = np.array(amps), np.array(phs)
+        for a, p in zip(amps / amps.max(), phs):
+            ax.plot([p, p], [0, a], color=BLUE, lw=1.2, alpha=0.7)
+        r = np.abs(np.mean(np.exp(1j * phs)))
+        ax.set_title(f"{title}: {len(phs)} episodes\nmean resultant length {r:.2f}", fontsize=9, color=INK)
+        ax.set_yticks([])
+        ax.set_xticks(np.radians([0, 90, 180, 270]), ["0°", "90°", "180°", "270°"], fontsize=7)
+    fig.savefig(FIG / "fig5_phases.png")
+
+
+FIGS = {"record": fig_record, "segments": fig_segments, "power": fig_power, "test": fig_test,
+        "phases": fig_phases}
 
 if __name__ == "__main__":
     FIG.mkdir(exist_ok=True)

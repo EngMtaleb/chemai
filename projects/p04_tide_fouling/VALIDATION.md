@@ -51,3 +51,91 @@ tests `tests/test_uf_segments.py`.
   Fouling rate median 13.2 %/h, interquartile 8.7–18.6 %/h, 3.7 % negative.
   A single segment's slope is noisy: its standard error is a median 37 % of its
   size. The test works on thousands of segments, not on any one.
+
+## 3. Power, before the test
+
+Source: `results/step3_power.json`; `chemai/evaluation/tide_test.py:power_curve`.
+An M2 wave of known size is added to AR(1) noise with each run's own residual
+spread and persistence, and the full declared test (999 surrogates) is run on
+it, 200 times per size. The data's real alignment with the tide is not used.
+
+| response | 2 % | 5 % | 10 % | 20 % |
+|---|---|---|---|---|
+| fouling rate (median 13.2 %/h) | 3 % | 43 % | 99.5 % | 100 % |
+| feed turbidity (median 0.51 NTU) | 6.5 % | 38 % | 67 % | 97.5 % |
+| pump speed (median 1.15) | 100 % | 100 % | 100 % | 100 % |
+| pump discharge pressure (median 3.58 psi) | 100 % | 100 % | 100 % | 100 % |
+
+Size = 5–95 % range of the wave as a share of the response's median; cell =
+share of trials found at p ≤ 0.01. The hydraulic tide that section 5 finds is
+smaller than any size on this grid: 0.2 % of median pump speed and 0.9 % of
+median discharge pressure.
+
+## 4. The declared test, as run
+
+Declaration: commit `1989858` (DECLARED_BEFORE_RUN.md), pushed before step 4
+ran. Source: `results/step4_tide_test.json`.
+
+| test | variance explained | null 95th pct | p | verdict |
+|---|---|---|---|---|
+| **H1 fouling rate** | 0.101 % | 0.138 % | **0.244** | fails (rule: p ≤ 0.01) |
+| C1 pump speed | 0.048 % | 0.086 % | 0.349 | fails |
+| C2 pump discharge pressure | 0.467 % | 0.404 % | 0.015 | fails, narrowly |
+| S1 feed turbidity (2013) | 1.84 % | 1.88 % | 0.063 | fails |
+| placebo periods on fouling | 0.060 % | 0.096 % | 0.330 | calibration holds |
+| confirmation, fit 2012–13 → score 2014–15 | −1.34 % (worse than nothing) | −1.11 % | 0.248 | fails |
+
+Declared outcome **3**: no tide effect at this intake larger than the minimum
+detectable size. From section 3, a tide-locked wave whose 5–95 % range is 10 %
+of the median fouling rate (≈ 1.3 %/h) would have been found in 99.5 % of
+trials; the fitted tide component's range is 0.83 %/h, below its own null's
+95th percentile (0.98 %/h). Calibration held, so the null is trusted.
+
+Reported, not decisive: the depositors' split (fit on `training/`, score on
+`test/`) explains −0.06 % (p = 0.47). No daylight-saving correction: p = 0.32.
+No covariates: p = 0.14. No winsorising: p = 0.28. M2 phase fitted on
+2012–2013 alone: 293°; on 2014–2015 alone: 32° — a tide does not change its
+phase between years.
+
+**Checked end to end on the real data.** A known M2 wave added to the real
+fouling rates is found by the same pipeline: a wave of 10 % of the median at
+p = 0.001 (amplitude recovered 0.68 %/h against 0.67 planted), one of 5 % at
+p = 0.029 (missed at the declared line, as section 3 predicts 57 % of the
+time). The pooled variance explained was also recomputed by a direct full
+least-squares fit, without the projection shortcut: 0.1014 %, the same.
+
+## 5. Exploratory checks — not in the declaration
+
+Run after step 4, to understand the controls. Treat as hints, not results.
+
+- **Phase coherence per episode** (37 episodes of 48 h or more; one M2
+  amplitude and phase fitted per episode on the base-model residuals; Rayleigh
+  test on the phases, each episode counted once). The declared test weights
+  episodes by their variance, so one noisy episode can swamp a small steady
+  signal; this check does not.
+
+  | response | mean resultant length | Rayleigh p | mean direction | 2012–13 / 2014–15 directions |
+  |---|---|---|---|---|
+  | fouling rate | 0.16 | 0.38 | — | 280° / 59° (disagree) |
+  | pump speed | 0.39 | 0.003 | 355° | 316° / 14° |
+  | pump discharge pressure | 0.40 | 0.002 | 166° | 134° / 180° |
+
+- **Reading.** Pump speed and discharge pressure lock to the M2 phase in both
+  halves of the record and point roughly opposite ways — what a suction head
+  that rises and falls with the tide does to a flow-controlled pump. The tide
+  reaches the pilot's hydraulics, faintly: an M2 amplitude of about 0.01 psi
+  in discharge pressure, where a pump drawing straight from the sea would see
+  1.4 psi of suction head for every metre of tide. The feed seems to arrive
+  through storage or a header that damps the tide. The fouling rate shows no
+  such lock.
+
+## 6. What the result is, and is not
+
+- **Is**: at this pilot, with feed delivered as it was, UF fouling is not locked
+  to the tide by more than about 10 % of its median rate. Planning backwash and
+  coagulant here gains nothing measurable from the tide.
+- **Is not**: a statement about intakes that draw straight from the sea. The
+  hydraulics suggest this pilot's feed was buffered; an open intake could
+  differ. The same test runs on any timestamped plant log.
+- Turbidity (2013 only, 11 long episodes) stays undecided: p = 0.063 declared,
+  0.07 exploratory.
