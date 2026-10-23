@@ -73,3 +73,24 @@ A method replaces the rule as the shipped diagnosis only if all three hold:
 
 Otherwise the rule stays the diagnosis, and the method is reported for what it adds — for example
 as a second opinion on the loops the rule cannot judge.
+
+## Amendment 1 — 2026-10-23, still before any test or plant result
+
+Development (simulation, `random_state = 42` only) showed that method 1 as written cannot work on
+routine closed-loop data, and why: with one-step ARX prediction, even the TRUE valve position
+explains CV worse than CO does in every pressure and level run and in half the flow runs — CO
+already carries the disturbance through the feedback. An output-error variant helps only for
+clearly visible stiction in flow loops. The Hammerstein fit is therefore recorded as rejected at
+development (VALIDATION.md 23.1) and replaced, before anything else is run, by a direct reading of
+the definition of S:
+
+1. **Valve physics from the trend.** For every reversal of CO, find the next reversal of CV — the
+   moment the valve finally moved — and measure how far CO travelled in between. The median over
+   the record estimates S (in CO standard deviations, or in % when CO is in %); the median wait,
+   as a fraction of CO's half-cycle, is kept too. Smoothing (3 samples) and the reversal
+   hysteresis (0.5 standard deviations) were chosen on the development set. Physics-alone
+   diagnosis: stiction when the estimated S exceeds a threshold chosen on the development set.
+
+Methods 2–4 use these two numbers as the physics features in place of Ŝ, Ĵ / Ŝ and the fit
+gain. J is not estimated: after a slip in the same direction the trend shows no reversal to
+measure, so J needs the valve position itself. Everything else above is unchanged.
