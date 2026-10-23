@@ -8,6 +8,16 @@ produce in daylight and stop at night, at its usual flux, without fouling
 faster. Both tests were declared before they were run, with positive controls,
 placebos and power analyses.
 
+**What it takes to run on the sun.** With modules switched on and off at their
+usual flux — so the record's no-penalty result applies — a synthetic sunny year
+needs, per m³/day of water: 3× production capacity, a 16-hour tank and 0.7 kWp
+of PV for 94 % solar energy (grid electricity 3.12 → 0.19 kWh/m³). A simple
+rule with no forecast does as well as a perfect-foresight plan once the tank is
+that big. Getting the capacity by pushing flux instead of adding modules would
+raise fouling per m³ — the design study is in VALIDATION.md 8.
+
+![What capacity and storage buy](figures/fig7_solar_share.png)
+
 **And the moon does not matter here.** The first question was the tide:
 not at this intake, and not by more than about 10 % of the fouling rate. A test
 declared before it was run found no tide-locked component in the fouling of

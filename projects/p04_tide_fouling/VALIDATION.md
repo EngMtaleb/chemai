@@ -180,3 +180,58 @@ the same flux it runs at around the clock, without fouling faster. The price
 of going solar is membrane area and storage — sized in part 3 — not fouling.
 The limits of section 7 of the second declaration stand: one pilot, and its
 restarts were the operators' choice.
+
+## 8. Part 3 — sizing a plant that runs on the sun
+
+Code: `chemai/models/solar_plan.py`; tests: `tests/test_solar_plan.py`; run:
+`step7_solar_plan.py`; results: `results/step7_solar_plan.{parquet,json}`.
+This part is a **design study on a synthetic year**, not a measurement. What
+comes from the record and what is assumed:
+
+| input | value | from |
+|---|---|---|
+| fouling per m³ in daylight-only, stop-start operation at design flux | same as round-the-clock | part 2 (H2, H3) |
+| UF energy | 0.12 kWh/m³ (0.083 hydraulic, median of 105 runs, ÷ pump efficiency 0.7) | the record + assumption |
+| seawater RO energy | 3.0 kWh/m³ | literature range 2.5–3.5 |
+| weather | synthetic: day length 10.4–13.6 h, clear-day 6.2 kWh/kWp ± 16 % by season, daily cloud draw; mean 5.26 kWh/kWp/day ("sunny"), 4.73 ("cloudier") | assumption, no site |
+| RO under daily stop-start | flushed at each stop | literature (lab study, 2025: a daily rinse recovered permeability) — not tested here |
+
+**Method.** Modules switch on and off at their design flux, so production can
+follow the sun without changing the flux. For each design (production
+capacity 1–3× the average demand, product-water tank 2–24 h, PV 0.3–1.3 kWp
+per m³/day), a linear programme over 8,760 hours finds the least grid energy
+any controller could achieve (perfect foresight); a simple rule with no
+forecast is replayed beside it. 216 designs × 2 weathers.
+
+**Smallest designs reaching a solar share** (sunny year; per m³/day of demand):
+
+| solar share | capacity | tank | PV | reached | PV curtailed |
+|---|---|---|---|---|---|
+| 50 % | 2.0× | 8 h | 0.3 kWp | 51 % | 0 % |
+| 75 % | 2.5× | 12 h | 0.5 kWp | 78 % | 7 % |
+| 90 % | 3.0× | 16 h | 0.7 kWp | 94 % | 20 % |
+| 95 % | 3.0× | 16 h | 0.9 kWp | 97 % | 36 % |
+
+Cloudier year: 90 % needs 3.0×, 16 h, 0.9 kWp (94 %); 95 % needs a 24 h tank.
+
+- **Round-the-clock capacity cannot go far on the sun**: at 1.0× capacity the
+  plant must run all night, and the solar share stops near 46 % however much
+  PV is added. Capacity and a tank are what buy the rest.
+- **A forecast is worth little once the tank is big enough**: the simple rule
+  is within 0.2 percentage points of the perfect-foresight plan in the median
+  design. The gap reaches 8 points only with a 2 h tank — there, knowing
+  tomorrow's sun replaces storage.
+- **Add modules, do not push flux.** Getting 2.5× capacity by running the same
+  membrane 2.5× faster would raise fouling per m³ by 2.5^(n−1): ×1.2 at n = 1.2,
+  ×1.6 at n = 1.5, ×2.5 at n = 2 (fouling rate ∝ flux^n). The record cannot pin
+  n — flux was changed mostly between campaigns — so this is a range, not a
+  measurement; any n above 1 says the same thing.
+- **For every 1,000 m³/day**, the 90 % design (700 kWp, a 670 m³ tank, a
+  3,000 m³/day plant running about 8 h a day) cuts grid electricity from
+  3.12 to 0.19 kWh/m³: about 1.07 GWh a year, 430–750 t of CO₂ at a grid
+  intensity of 0.4–0.7 kg/kWh.
+
+**What this is not**: a cost optimum (no prices are used: capacity, tanks and
+PV are traded in physical units only), a site design (the year is synthetic),
+or evidence about the RO membrane under daily cycling (only the UF
+pre-treatment was tested).

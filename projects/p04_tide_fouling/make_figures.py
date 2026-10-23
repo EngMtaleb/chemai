@@ -139,8 +139,83 @@ def fig_phases():
     fig.savefig(FIG / "fig5_phases.png")
 
 
+def fig_sun():
+    """The two declared sun tests: the daily profile and the restart window."""
+    r = json.loads((RES / "step6_sun_tests.json").read_text())
+    h2, h3 = r["H2_fouling_daily"], r["H3_restart"]
+    med = h2["median_y"]
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.0), gridspec_kw={"width_ratios": [2.2, 1]})
+    ax = axes[0]
+    prof = np.array(h2["profile_by_hour"]) / med * 100
+    ax.axvspan(9, 15, color="#fff3c4", lw=0)
+    ax.axhline(0, color=MUTED, lw=0.8)
+    ax.plot(np.arange(24), prof, "o-", color=ORANGE, ms=3)
+    lo, hi = (np.array(h2["solar_contrast_ci95"]) / med * 100)
+    ax.set_ylim(-12, 12)
+    ax.set_xticks(range(0, 25, 3))
+    ax.set_xlabel("hour of day (local standard time)")
+    ax.set_ylabel("fouling rate vs daily mean (%)")
+    ax.set_title(f"Daily pattern: p = {h2['p_value']:.2f}. Daylight 09–15 h: "
+                 f"{h2['solar_contrast_relative']*100:+.1f} % ({lo:+.1f} to {hi:+.1f})",
+                 loc="left", fontsize=9, color=INK)
+    ax = axes[1]
+    rows = [("restart (H3)", r["H3_restart"]), ("2012–13", r["H3_2012_13"]), ("2014–15", r["H3_2014_15"]),
+            ("placebo 24 h", r["H3_placebo_24h"])]
+    for i, (name, x) in enumerate(rows):
+        m = x["median_y"]
+        ax.errorbar(x["effect"] / m * 100, i, xerr=[[(x["effect"] - x["ci95"][0]) / m * 100],
+                                                   [(x["ci95"][1] - x["effect"]) / m * 100]],
+                    fmt="o", color=BLUE if i else ORANGE, capsize=3)
+    ax.axvline(0, color=MUTED, lw=0.8)
+    ax.set_yticks(range(len(rows)), [n for n, _ in rows])
+    ax.invert_yaxis()
+    ax.set_xlabel("first 3 h after restart (% of median)")
+    ax.set_title(f"Restart: p = {h3['p_value']:.2f}", loc="left", fontsize=9, color=INK)
+    fig.savefig(FIG / "fig6_sun.png")
+
+
+def fig_solar():
+    """How much capacity and storage a given solar share needs (sunny synthetic year)."""
+    df = pd.read_parquet(RES / "step7_solar_plan.parquet")
+    df = df[(df.weather == "sunny") & (df.pv_kwp == 0.9)]
+    fig, ax = plt.subplots(figsize=(6.4, 3.4))
+    for c, col in zip((1.5, 2.0, 2.5, 3.0), [MUTED, BLUE, GREEN, ORANGE]):
+        d = df[df.capacity == c].sort_values("storage_h")
+        ax.plot(d.storage_h, d.solar_fraction * 100, "o-", color=col, label=f"capacity {c:g}× demand")
+    ax.axhline(100, color=GRID)
+    ax.set_xlabel("product-water tank (hours of demand)")
+    ax.set_ylabel("energy from the sun (%)")
+    ax.set_ylim(40, 101)
+    ax.legend(frameon=False, fontsize=8, loc="lower right")
+    ax.set_title("PV 0.9 kWp per m³/day · modules at design flux", loc="left", fontsize=9, color=INK)
+    fig.savefig(FIG / "fig7_solar_share.png")
+
+
+def fig_solar_week():
+    from chemai.models.solar_plan import SolarPlanConfig, plan_lp, pv_year
+    cfg = SolarPlanConfig()
+    pv = pv_year(cfg)
+    _, s = plan_lp(pv, 3.0, 16, 0.9, cfg, series=True)
+    daily = pv.reshape(-1, 24).sum(1)
+    start = int(np.argmin([daily[d:d + 7].min() for d in range(200, 300)])) + 200      # a week with a dull day
+    sl = slice(start * 24, start * 24 + 7 * 24)
+    h = np.arange(7 * 24)
+    fig, axes = plt.subplots(2, 1, figsize=(9, 4), sharex=True)
+    axes[0].fill_between(h, s["pv_kwh"][sl], color="#ffd66b", lw=0, label="sun available")
+    axes[0].plot(h, s["production_m3"][sl] * cfg.sec, color=ORANGE, lw=1.4, label="energy used")
+    axes[0].plot(h, s["grid_kwh"][sl], color=RED, lw=1.2, label="from grid")
+    axes[0].set_ylabel("kWh per hour")
+    axes[0].legend(frameon=False, fontsize=8, ncol=3, loc="upper left")
+    axes[1].plot(h, s["tank_m3"][sl] * 24, color=BLUE)
+    axes[1].set_ylabel("tank (h of demand)")
+    axes[1].set_xlabel("hour of the week")
+    axes[0].set_title("A week with a dull day: production in daylight, the tank carries the night",
+                      loc="left", fontsize=9, color=INK)
+    fig.savefig(FIG / "fig8_solar_week.png")
+
+
 FIGS = {"record": fig_record, "segments": fig_segments, "power": fig_power, "test": fig_test,
-        "phases": fig_phases}
+        "phases": fig_phases, "sun": fig_sun, "solar": fig_solar, "solar_week": fig_solar_week}
 
 if __name__ == "__main__":
     FIG.mkdir(exist_ok=True)
