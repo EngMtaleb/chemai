@@ -229,11 +229,11 @@ routine SWRO SCADA.* Membranes 16(8), 257,
 
 ## The validation record
 
-[`VALIDATION.md`](VALIDATION.md) holds 16 sections in the order the work was done: what the deposit
+[`VALIDATION.md`](VALIDATION.md) holds 17 sections in the order the work was done: what the deposit
 turned out to be (three sources disagreed about its baselines), the physics, the simulator and where
 it differs from the real plant, every development choice, the test plants, the declaration and the
-external test, the rule added after it, a check on a quieter simulator, and the eighteen errors that
-became tests.
+external test, the rule added after it, a check on a quieter simulator, the eighteen errors that
+became tests, and a side-by-side with the published trigger.
 
 **What this is:** a deployed prototype, complete from a public deposit to a service anyone can call,
 tested once on a real plant with the result reported as it came out.
