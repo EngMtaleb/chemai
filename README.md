@@ -47,7 +47,7 @@ split:
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q            # 197 tests, no data needed
+pytest tests -q            # 207 tests, no data needed
 python -m chemai.api.run   # http://localhost:8000
 ```
 
@@ -75,7 +75,7 @@ Data is not committed. The soft sensor uses the public
 chemai/        the package: physics features, models, uncertainty, envelope check, API
 projects/      one folder per project: training script and write-up
 docs/          validation record and data exploration
-tests/         197 tests that run without any dataset
+tests/         207 tests that run without any dataset
 soft-sensor/   the project page, served by GitHub Pages
 ```
 

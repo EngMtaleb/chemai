@@ -25,10 +25,11 @@ examples whose fault is known, or upload your own CSV.
 | Stiction caught by the adopted rule, precision 0.88 | **12 of 14** |
 | Eastman plant-wide root cause, found among 30 loops unaided | **tag 22**, 13× the next priority |
 | Cascade pairs discovered from structure alone, across 3 plants | 8 |
-| Tests | 197 (whole repository) |
+| Tests | 207 (whole repository) |
 
-Simulation is used for training and for anything needing a known answer. **Plant data is an external
-test set, spent once.** Nothing was retuned after seeing how it scored.
+Simulation is used for training and for anything needing a known answer. **Labelled plant data is an
+external test set: it never trains anything**, and nothing was retuned after seeing how it scored.
+The Week 8 runs used the same labelled loops again, so their numbers describe — they do not prove.
 
 ---
 
@@ -73,6 +74,19 @@ had learned that a low Harris means sluggish tuning — so it called eight real 
 
 **The baseline is what ships.** A model that does not beat one threshold on one feature has not
 earned its complexity.
+
+**Week 8 tried harder, and the answer held.** Five model families tuned with nested
+cross-validation beat the rule on new simulated plants (stiction F1 up to 0.88 against 0.68) — and on
+the same 22 plant loops the best of them tied its 12 catches with one more false alarm. Then the
+valve's physics went inside the method: **S read from the trend** — how far OP travels after it
+reverses before PV turns, which is the definition of S (rank correlation 0.72 with the true S on new
+plants, median error 0.5 % of travel) — and Harris computed in simulation the way a plant must compute
+it. The models improved on simulation; on plant loops none cleared the bar written before the run.
+The closest, the rule teaching a forest on eleven unlabelled real loops, caught two more of 26 sticky
+valves with no extra false alarm, where the bar asked for more than two. One idea failed for a reason
+worth knowing: in a closed loop even the true valve position explains PV worse than OP does, so the
+valve cannot be fitted back from PV — only read from the timing of the reversals (VALIDATION.md §17.4,
+§23).
 
 ### The historian can turn a right answer into a wrong one
 
@@ -147,6 +161,9 @@ python projects/p02_control_loops/week3_report.py           # the weekly report
 python projects/p02_control_loops/week4_cascade.py          # cascade structure and source
 python projects/p02_control_loops/week5_propagation.py      # plant-wide propagation
 python projects/p02_control_loops/week6_compression.py      # what the historian throws away
+python projects/p02_control_loops/compare_models.py         # five models, nested CV, on simulation
+python projects/p02_control_loops/plant_check.py            # the same models on plant loops, once
+python projects/p02_control_loops/week8_physics.py          # the valve's physics inside the method
 ```
 
 **Service**
@@ -187,7 +204,7 @@ python -m chemai.api.run      # http://localhost:8000/loops/
 
 ## The validation record
 
-`VALIDATION.md` holds 22 sections written as the work happened: what was decided before seeing
+`VALIDATION.md` holds 23 sections written as the work happened: what was decided before seeing
 results, what the data then said, and what had to change. It includes the numbers behind every claim
 above, three conflicts found between published labels and the data they describe, and the measures
 that were tried and rejected.
