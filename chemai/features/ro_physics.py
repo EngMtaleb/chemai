@@ -293,3 +293,28 @@ def fit_flow_exponent(df: pd.DataFrame, max_gap_days: int = 2, min_steps: int = 
         out["note"] = (f"exponent {n_hat:.2f} is outside 0.8-2.2: a flow meter or the dP "
                        "measurement is suspect before the membranes are")
     return out
+
+
+# ---------------------------------------------------------------- energy (Project 5)
+
+def specific_energy_per_bar(pump_eff: float = 0.80, erd_eff: float = 0.95, recovery: float = 0.45) -> float:
+    """kWh per m3 of permeate for each extra bar of feed pressure.
+
+    The high-pressure pump moves the permeate share of the feed; an isobaric
+    energy-recovery device returns all but (1 - erd_eff) of the pressure on the
+    brine. Per m3 of permeate:  [1 + (1 - erd_eff)(1 - r)/r] / (36 * pump_eff).
+    With no recovery device (erd_eff = 0) it is 1 / (36 * pump_eff * r).
+    """
+    return (1.0 + (1.0 - erd_eff) * (1.0 - recovery) / recovery) / (36.0 * pump_eff)
+
+
+def fouling_energy_penalty(ndp_pct, d_dp_pct, ndp0_bar: float, dp0_bar: float,
+                           kwh_per_bar: float) -> np.ndarray:
+    """Extra kWh/m3 a fouled train spends to hold its production.
+
+    It needs more net driving pressure (ndp_pct of the clean value) and half of
+    the extra feed-channel pressure drop (d_dp_pct of the clean value) on top.
+    """
+    extra_bar = (ndp0_bar * np.asarray(ndp_pct, float)
+                 + 0.5 * dp0_bar * np.asarray(d_dp_pct, float))
+    return kwh_per_bar * np.clip(extra_bar, 0.0, None)

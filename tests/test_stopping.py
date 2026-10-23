@@ -89,3 +89,45 @@ def test_noisy_live_cost_is_smoothed_before_comparing():
     dec_smooth = marginal_equals_average(t, noisy, K, V, F, window_s=30.0, min_periods=100)
     v_star, _ = sqrt_law(F, 0.001, 1.0)
     assert abs(V[dec_smooth.index] - v_star) < abs(V[dec_raw.index] - v_star)
+
+
+# ------------------------------------------------------------ slow cycles (days between cleanings)
+
+from chemai.models.stopping import implied_fixed_cost, interval_economics, theil_sen  # noqa: E402
+from chemai.features.ro_physics import fouling_energy_penalty, specific_energy_per_bar  # noqa: E402
+
+
+def test_theil_sen_ignores_one_bad_day():
+    x = np.arange(20.0)
+    y = 0.5 * x + 1.0
+    y[7] = 100.0
+    slope, icpt = theil_sen(x, y)
+    assert slope == pytest.approx(0.5)
+    assert icpt == pytest.approx(1.0)
+
+
+def test_implied_fixed_cost_inverts_the_sqrt_law():
+    F, s = 2.0, 0.003
+    t_star, _ = sqrt_law(F, s)
+    assert implied_fixed_cost(s, t_star) == pytest.approx(F)
+
+
+def test_interval_economics_on_a_linear_daily_cycle():
+    days = np.arange(1, 301, dtype=float)
+    a, F = 1e-4, 1.0                        # $/m3 per day, $ per (m3/day)
+    e = interval_economics(days, a * days, F, smooth=7, min_t=7)
+    assert e.slope == pytest.approx(a)
+    assert e.t_star == pytest.approx(np.sqrt(2 * F / a), rel=1e-6)          # ~141 days
+    assert e.rule_time == pytest.approx(np.sqrt(2 * F / a), abs=6)         # the 7-day median lags ~3.5 days
+    short = interval_economics(days[:60], a * days[:60], F, smooth=7, min_t=7)
+    assert short.rule_time is None                                          # cleaned before it paid
+    assert short.implied_fixed == pytest.approx(a * 60 ** 2 / 2)
+
+
+def test_energy_penalty_per_bar_and_floor():
+    assert specific_energy_per_bar() == pytest.approx(0.0368, abs=1e-4)
+    assert specific_energy_per_bar(erd_eff=0.0) == pytest.approx(1 / (36 * 0.8 * 0.45))
+    k = specific_energy_per_bar()
+    pen = fouling_energy_penalty([0.1, 0.0, -0.05], [0.2, 0.0, 0.0], ndp0_bar=20, dp0_bar=2, kwh_per_bar=k)
+    assert pen[0] == pytest.approx(k * (2.0 + 0.2))
+    assert pen[1] == 0 and pen[2] == 0

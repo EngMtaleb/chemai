@@ -99,3 +99,64 @@ def sqrt_law(fixed: float, slope: float, m0: float = 0.0) -> tuple[float, float]
 def cost_of_stopping_at(v_stop: float, fixed: float, slope: float, m0: float = 0.0) -> float:
     """Average cost of a cycle stopped at V under linear growth: m0 + F/V + s V / 2."""
     return float(m0 + fixed / v_stop + slope * v_stop / 2.0)
+
+
+def theil_sen(x: np.ndarray, y: np.ndarray) -> tuple[float, float]:
+    """Median of pairwise slopes and the matching intercept - robust to the odd bad day."""
+    x, y = np.asarray(x, float), np.asarray(y, float)
+    ok = np.isfinite(x) & np.isfinite(y)
+    x, y = x[ok], y[ok]
+    if len(x) < 2:
+        return float("nan"), float("nan")
+    i, j = np.triu_indices(len(x), 1)
+    dx = x[j] - x[i]
+    keep = dx != 0
+    if not keep.any():
+        return float("nan"), float("nan")
+    slope = float(np.median((y[j] - y[i])[keep] / dx[keep]))
+    return slope, float(np.median(y - slope * x))
+
+
+def implied_fixed_cost(slope: float, interval: float) -> float:
+    """The fixed cost that would make `interval` the best one under linear growth: s T^2 / 2."""
+    return float(slope * interval ** 2 / 2.0)
+
+
+@dataclass(frozen=True)
+class IntervalEconomics:
+    """One cycle of a slow process (days between cleanings), judged by the rule and the law."""
+    length: float              # the interval actually run
+    slope: float               # growth of the live cost per unit time (Theil-Sen)
+    m0: float                  # live cost at the start of the cycle (intercept)
+    t_star: float              # the square-root law's best interval, sqrt(2 F / slope)
+    rule_time: float | None    # first time the smoothed live cost reached the average cost
+    implied_fixed: float       # the fixed cost that would make the actual interval the best one
+    j_actual: float            # average cost of the cycle as run: F / T + mean live cost
+
+
+def interval_economics(t: np.ndarray, live: np.ndarray, fixed: float, smooth: float,
+                       min_t: float = 0.0) -> IntervalEconomics:
+    """The rule and the square-root law on one cycle sampled in time (output constant per unit time).
+
+    With output proportional to time, J(t) = (F + integral of m) / t, where F is
+    the fixed cost per unit of output rate (for a plant: $ per m3/day of capacity)
+    and m the live cost per unit of output ($/m3).
+    """
+    t = np.asarray(t, float)
+    m = np.asarray(live, float)
+    ok = np.isfinite(t) & np.isfinite(m)
+    t, m = t[ok], m[ok]
+    order = np.argsort(t)
+    t, m = t[order], m[order]
+    length = float(t[-1]) if len(t) else float("nan")
+    slope, m0 = theil_sen(t, m)
+    t_star = sqrt_law(fixed, slope, m0)[0] if np.isfinite(slope) else float("nan")
+    run = cumulative(t, m)                       # integral of m dt, with t from the cycle start
+    dec = marginal_equals_average(t * 86400.0, m, run, t, fixed, window_s=smooth * 86400.0,
+                                  min_elapsed_s=min_t * 86400.0, min_periods=1)
+    j = (fixed + run[-1]) / t[-1] if len(t) and t[-1] > 0 else float("nan")
+    return IntervalEconomics(
+        length=length, slope=slope, m0=m0, t_star=float(t_star),
+        rule_time=float(t[dec.index]) if dec.index is not None else None,
+        implied_fixed=implied_fixed_cost(slope, length) if np.isfinite(slope) else float("nan"),
+        j_actual=float(j))
