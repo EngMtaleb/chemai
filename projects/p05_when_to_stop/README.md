@@ -65,7 +65,8 @@ On the seawater plant deposit of Project 3 (15 complete cleaning cycles), the ex
 train spends to hold its production never reached the average cost of a cleaning before the
 operators cleaned — not once in the mid case, and not once in 156 of the 216 price-and-plant cases
 tested; the cases most in favour of cleaning found 6 of 15. In **9 of the 15 cycles the energy penalty had no rising trend at all**,
-and where it did it never passed 0.6 US cents per m³. The cleanings were set by something else: the
+and at the moment of cleaning the penalty was 0.01–0.59 US cents per m³ (its weekly median peaked at
+0.1–1.7 ¢ per m³ across the cycles). The cleanings were set by something else: the
 pressure-drop limit that protects the elements, salt passage, routine. One cost of waiting did show:
 **longer cycles left more pressure drop behind** after their cleaning (Spearman 0.63, p = 0.016,
 14 cycles) — fouling that hardens. That is a reason to look, not a measured price.
