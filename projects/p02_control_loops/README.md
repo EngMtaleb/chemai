@@ -11,6 +11,8 @@ This project diagnoses loops from what a plant historian actually stores: the se
 measurement and the controller output. It answers with **the fault, the evidence, a confidence band,
 the action, and the owner** — or it says the data cannot support an answer.
 
+**Episode:** [the full walkthrough on YouTube](https://youtu.be/BzPoTwKvNgE) — the data, every
+model and the results, step by step.
 **Live service:** [chemai-tr2c.onrender.com/loops/](https://chemai-tr2c.onrender.com/loops/) — four
 worked examples whose fault is known, or upload your own CSV.
 **Validation record:** [`VALIDATION.md`](VALIDATION.md) · **Experiments:** [`experiments/`](experiments/)
