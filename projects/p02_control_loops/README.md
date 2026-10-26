@@ -28,8 +28,10 @@ examples whose fault is known, or upload your own CSV.
 | Tests | 357 (whole repository) |
 
 Simulation is used for training and for anything needing a known answer. **Labelled plant data is an
-external test set: it never trains anything**, and nothing was retuned after seeing how it scored.
-The Week 8 runs used the same labelled loops again, so their numbers describe — they do not prove.
+external test set: through Week 8 it never trains anything**, and nothing was retuned after seeing how
+it scored. Experiments 11 and 12 then let part of it train, every loop still tested once by a model
+that never saw it or its valve. The Week 8 runs and experiments 9–12 used the same labelled loops
+again, so their numbers describe — they do not prove.
 
 ---
 
@@ -87,6 +89,16 @@ valves with no extra false alarm, where the bar asked for more than two. One ide
 worth knowing: in a closed loop even the true valve position explains PV worse than OP does, so the
 valve cannot be fitted back from PV — only read from the timing of the reversals (VALIDATION.md §17.4,
 §23).
+
+**Experiments 9–12 tried more, and the rule still ships.** Twice the simulation; seven model
+families, XGBoost and LightGBM among them, default and tuned, and their ensemble; networks that read
+OP and PV directly (a CNN and an LSTM); some real loops in training, every loop tested once by a
+model that never saw it or its valve; and the networks with the valve's physics. Of 29 methods, 5
+cleared the bar. The best: the rule decides where its call is clear and a CNN reads the rest — 22 of
+26 sticky valves caught with 7 false alarms, against the rule's 12 and 2. But with 29 tries on the
+same 58 loops one can clear the bar by luck, and its lead over the rule (+5) has a 95 % range from
+−2 to +13 loops. So it is a hypothesis for new labelled loops, not a replacement (VALIDATION.md §24,
+`experiments/`).
 
 ### The historian can turn a right answer into a wrong one
 
@@ -164,6 +176,7 @@ python projects/p02_control_loops/week6_compression.py      # what the historian
 python projects/p02_control_loops/compare_models.py         # five models, nested CV, on simulation
 python projects/p02_control_loops/plant_check.py            # the same models on plant loops, once
 python projects/p02_control_loops/week8_physics.py          # the valve's physics inside the method
+# then experiments 9–12: order and extra packages in projects/p02_control_loops/experiments/README.md
 ```
 
 **Service**
@@ -204,7 +217,7 @@ python -m chemai.api.run      # http://localhost:8000/loops/
 
 ## The validation record
 
-`VALIDATION.md` holds 23 sections written as the work happened: what was decided before seeing
+`VALIDATION.md` holds 24 sections written as the work happened: what was decided before seeing
 results, what the data then said, and what had to change. It includes the numbers behind every claim
 above, three conflicts found between published labels and the data they describe, and the measures
 that were tried and rejected.
