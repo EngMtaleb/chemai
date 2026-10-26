@@ -195,3 +195,57 @@ def predict(model: nn.Module, inputs: list, prob: bool = False) -> np.ndarray:
         if prob:
             out = torch.sigmoid(out)
     return out.numpy().astype(float)
+
+
+class HistoryGRU(nn.Module):
+    """Plain DL for the UF cycle: a GRU reads the cycles before this one (oldest first),
+    joined with this cycle's features, straight to the climb."""
+
+    def __init__(self, n_step: int, n_scalar: int, hidden: int = 32):
+        super().__init__()
+        self.gru = nn.GRU(n_step, hidden, batch_first=True)
+        self.head = nn.Sequential(nn.Linear(hidden + n_scalar, hidden), nn.ReLU(), nn.Linear(hidden, 1))
+
+    def forward(self, x, h):
+        _, last = self.gru(h)
+        return self.head(torch.cat([last[-1], x], 1)).squeeze(-1)
+
+
+class HermiaNet(nn.Module):
+    """Physics-informed DL for the UF cycle - a Hermia PINN in the sense of the 2025
+    membrane literature: the network assigns weights to the four blocking mechanisms and
+    a rate constant to each; the constant-flux laws turn them into the climb
+
+        y = 100 * sum_i w_i [ g_i(K_i, t1) - g_i(K_i, t0) ],   g_i = ln(R/R0) of law i
+
+    so the output is always a resistance that rises the way some mix of the laws allows."""
+
+    LAWS = ("complete", "standard", "intermediate", "cake")
+
+    def __init__(self, n_in: int, hidden: int = 64, t0: float = 4.0, t1: float = 11.0, k_scale: float = 0.004):
+        super().__init__()
+        self.body = nn.Sequential(nn.Linear(n_in, hidden), nn.ReLU(), nn.Linear(hidden, hidden), nn.ReLU())
+        self.w = nn.Linear(hidden, 4)
+        self.k = nn.Linear(hidden, 4)
+        self.t0, self.t1, self.ks = t0, t1, k_scale
+
+    @staticmethod
+    def g(i: int, k, t):
+        if i == 0:
+            return -torch.log(torch.clamp(1 - k * t, min=1e-4))
+        if i == 1:
+            return -2.0 * torch.log(torch.clamp(1 - k * t / 2, min=1e-4))
+        if i == 2:
+            return k * t
+        return torch.log1p(k * t)
+
+    def parts(self, x):
+        h = self.body(x)
+        w = torch.softmax(self.w(h), dim=1)
+        k = torch.nn.functional.softplus(self.k(h)) * self.ks         # per minute, >= 0
+        return w, k
+
+    def forward(self, x, *_):
+        w, k = self.parts(x)
+        rise = torch.stack([self.g(i, k[:, i], self.t1) - self.g(i, k[:, i], self.t0) for i in range(4)], 1)
+        return 100.0 * (w * rise).sum(1)

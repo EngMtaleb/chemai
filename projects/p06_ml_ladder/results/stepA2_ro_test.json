@@ -1,0 +1,641 @@
+{
+ "declaration_commit": "e7ad90b",
+ "frozen_picks": {
+  "ml": "random_forest",
+  "ml_ensemble": "ensemble_top3",
+  "ml_physics": "xgboost",
+  "ml_physics_ensemble": "ensemble_top3",
+  "dl": "mlp",
+  "dl_physics": "gaplaw"
+ },
+ "final_exam": {
+  "plants": 60,
+  "seed": 6006,
+  "rows": 21955,
+  "positives": 5221,
+  "groups": 60,
+  "forecast": {
+   "tp": 1603,
+   "fp": 1947,
+   "fn": 3618,
+   "recall": 0.307,
+   "precision": 0.452,
+   "f1": 0.366
+  },
+  "margin_rule": {
+   "tp": 1949,
+   "fp": 1449,
+   "fn": 3272,
+   "recall": 0.373,
+   "precision": 0.574,
+   "f1": 0.452
+  },
+  "union_post_hoc": {
+   "tp": 2844,
+   "fp": 2795,
+   "fn": 2377,
+   "recall": 0.545,
+   "precision": 0.504,
+   "f1": 0.524
+  },
+  "models": {
+   "ml:logistic_regression": {
+    "tp": 3222,
+    "fp": 2168,
+    "fn": 1999,
+    "recall": 0.617,
+    "precision": 0.598,
+    "f1": 0.607,
+    "ap": 0.633,
+    "recall_minus_rule": 0.244,
+    "recall_minus_rule_ci95": [
+     0.213,
+     0.273
+    ]
+   },
+   "ml:k_nearest_neighbours": {
+    "tp": 2880,
+    "fp": 1785,
+    "fn": 2341,
+    "recall": 0.552,
+    "precision": 0.617,
+    "f1": 0.583,
+    "ap": 0.637,
+    "recall_minus_rule": 0.179,
+    "recall_minus_rule_ci95": [
+     0.149,
+     0.206
+    ]
+   },
+   "ml:svm_rbf": {
+    "tp": 3108,
+    "fp": 2098,
+    "fn": 2113,
+    "recall": 0.595,
+    "precision": 0.597,
+    "f1": 0.596,
+    "ap": 0.64,
+    "recall_minus_rule": 0.222,
+    "recall_minus_rule_ci95": [
+     0.189,
+     0.251
+    ]
+   },
+   "ml:random_forest": {
+    "tp": 3298,
+    "fp": 2281,
+    "fn": 1923,
+    "recall": 0.632,
+    "precision": 0.591,
+    "f1": 0.611,
+    "ap": 0.656,
+    "recall_minus_rule": 0.259,
+    "recall_minus_rule_ci95": [
+     0.225,
+     0.29
+    ]
+   },
+   "ml:extra_trees": {
+    "tp": 3167,
+    "fp": 2140,
+    "fn": 2054,
+    "recall": 0.607,
+    "precision": 0.597,
+    "f1": 0.602,
+    "ap": 0.645,
+    "recall_minus_rule": 0.234,
+    "recall_minus_rule_ci95": [
+     0.204,
+     0.263
+    ]
+   },
+   "ml:xgboost": {
+    "tp": 3134,
+    "fp": 2015,
+    "fn": 2087,
+    "recall": 0.6,
+    "precision": 0.609,
+    "f1": 0.604,
+    "ap": 0.66,
+    "recall_minus_rule": 0.227,
+    "recall_minus_rule_ci95": [
+     0.194,
+     0.26
+    ]
+   },
+   "ml:lightgbm": {
+    "tp": 3132,
+    "fp": 1988,
+    "fn": 2089,
+    "recall": 0.6,
+    "precision": 0.612,
+    "f1": 0.606,
+    "ap": 0.66,
+    "recall_minus_rule": 0.227,
+    "recall_minus_rule_ci95": [
+     0.194,
+     0.259
+    ]
+   },
+   "ml_physics:logistic_regression": {
+    "tp": 3262,
+    "fp": 2248,
+    "fn": 1959,
+    "recall": 0.625,
+    "precision": 0.592,
+    "f1": 0.608,
+    "ap": 0.632,
+    "recall_minus_rule": 0.252,
+    "recall_minus_rule_ci95": [
+     0.221,
+     0.281
+    ]
+   },
+   "ml_physics:k_nearest_neighbours": {
+    "tp": 2914,
+    "fp": 1955,
+    "fn": 2307,
+    "recall": 0.558,
+    "precision": 0.598,
+    "f1": 0.578,
+    "ap": 0.619,
+    "recall_minus_rule": 0.185,
+    "recall_minus_rule_ci95": [
+     0.162,
+     0.206
+    ]
+   },
+   "ml_physics:svm_rbf": {
+    "tp": 3128,
+    "fp": 2155,
+    "fn": 2093,
+    "recall": 0.599,
+    "precision": 0.592,
+    "f1": 0.596,
+    "ap": 0.64,
+    "recall_minus_rule": 0.226,
+    "recall_minus_rule_ci95": [
+     0.192,
+     0.256
+    ]
+   },
+   "ml_physics:random_forest": {
+    "tp": 3300,
+    "fp": 2250,
+    "fn": 1921,
+    "recall": 0.632,
+    "precision": 0.595,
+    "f1": 0.613,
+    "ap": 0.654,
+    "recall_minus_rule": 0.259,
+    "recall_minus_rule_ci95": [
+     0.232,
+     0.286
+    ]
+   },
+   "ml_physics:extra_trees": {
+    "tp": 3208,
+    "fp": 2344,
+    "fn": 2013,
+    "recall": 0.614,
+    "precision": 0.578,
+    "f1": 0.596,
+    "ap": 0.63,
+    "recall_minus_rule": 0.241,
+    "recall_minus_rule_ci95": [
+     0.218,
+     0.262
+    ]
+   },
+   "ml_physics:xgboost": {
+    "tp": 3146,
+    "fp": 1971,
+    "fn": 2075,
+    "recall": 0.603,
+    "precision": 0.615,
+    "f1": 0.609,
+    "ap": 0.663,
+    "recall_minus_rule": 0.23,
+    "recall_minus_rule_ci95": [
+     0.198,
+     0.26
+    ]
+   },
+   "ml_physics:lightgbm": {
+    "tp": 3208,
+    "fp": 2000,
+    "fn": 2013,
+    "recall": 0.614,
+    "precision": 0.616,
+    "f1": 0.615,
+    "ap": 0.663,
+    "recall_minus_rule": 0.241,
+    "recall_minus_rule_ci95": [
+     0.211,
+     0.272
+    ]
+   },
+   "dl:mlp": {
+    "tp": 3172,
+    "fp": 2077,
+    "fn": 2049,
+    "recall": 0.608,
+    "precision": 0.604,
+    "f1": 0.606,
+    "ap": 0.644,
+    "recall_minus_rule": 0.235,
+    "recall_minus_rule_ci95": [
+     0.196,
+     0.268
+    ]
+   },
+   "dl:cnn": {
+    "tp": 2994,
+    "fp": 1930,
+    "fn": 2227,
+    "recall": 0.573,
+    "precision": 0.608,
+    "f1": 0.59,
+    "ap": 0.635,
+    "recall_minus_rule": 0.2,
+    "recall_minus_rule_ci95": [
+     0.16,
+     0.238
+    ]
+   },
+   "dl:gaplaw": {
+    "tp": 3221,
+    "fp": 2370,
+    "fn": 2000,
+    "recall": 0.617,
+    "precision": 0.576,
+    "f1": 0.596,
+    "ap": 0.622,
+    "recall_minus_rule": 0.244,
+    "recall_minus_rule_ci95": [
+     0.213,
+     0.273
+    ]
+   },
+   "ml:ensemble_top3": {
+    "tp": 3232,
+    "fp": 2121,
+    "fn": 1989,
+    "recall": 0.619,
+    "precision": 0.604,
+    "f1": 0.611,
+    "ap": 0.664,
+    "recall_minus_rule": 0.246,
+    "recall_minus_rule_ci95": [
+     0.212,
+     0.278
+    ]
+   },
+   "ml_physics:ensemble_top3": {
+    "tp": 3302,
+    "fp": 2179,
+    "fn": 1919,
+    "recall": 0.632,
+    "precision": 0.602,
+    "f1": 0.617,
+    "ap": 0.667,
+    "recall_minus_rule": 0.259,
+    "recall_minus_rule_ci95": [
+     0.229,
+     0.288
+    ]
+   }
+  }
+ },
+ "real_exploratory": {
+  "rows": 213,
+  "positives": 61,
+  "groups": 11,
+  "forecast": {
+   "tp": 13,
+   "fp": 5,
+   "fn": 48,
+   "recall": 0.213,
+   "precision": 0.722,
+   "f1": 0.329
+  },
+  "margin_rule": {
+   "tp": 26,
+   "fp": 2,
+   "fn": 35,
+   "recall": 0.426,
+   "precision": 0.929,
+   "f1": 0.584
+  },
+  "union_post_hoc": {
+   "tp": 31,
+   "fp": 6,
+   "fn": 30,
+   "recall": 0.508,
+   "precision": 0.838,
+   "f1": 0.633
+  },
+  "models": {
+   "ml:logistic_regression": {
+    "tp": 40,
+    "fp": 24,
+    "fn": 21,
+    "recall": 0.656,
+    "precision": 0.625,
+    "f1": 0.64,
+    "ap": 0.607,
+    "recall_minus_rule": 0.23,
+    "recall_minus_rule_ci95": [
+     -0.059,
+     0.433
+    ]
+   },
+   "ml:k_nearest_neighbours": {
+    "tp": 42,
+    "fp": 29,
+    "fn": 19,
+    "recall": 0.689,
+    "precision": 0.592,
+    "f1": 0.636,
+    "ap": 0.705,
+    "recall_minus_rule": 0.263,
+    "recall_minus_rule_ci95": [
+     -0.059,
+     0.487
+    ]
+   },
+   "ml:svm_rbf": {
+    "tp": 43,
+    "fp": 15,
+    "fn": 18,
+    "recall": 0.705,
+    "precision": 0.741,
+    "f1": 0.723,
+    "ap": 0.77,
+    "recall_minus_rule": 0.279,
+    "recall_minus_rule_ci95": [
+     -0.086,
+     0.513
+    ]
+   },
+   "ml:random_forest": {
+    "tp": 40,
+    "fp": 16,
+    "fn": 21,
+    "recall": 0.656,
+    "precision": 0.714,
+    "f1": 0.684,
+    "ap": 0.739,
+    "recall_minus_rule": 0.23,
+    "recall_minus_rule_ci95": [
+     -0.05,
+     0.441
+    ]
+   },
+   "ml:extra_trees": {
+    "tp": 39,
+    "fp": 14,
+    "fn": 22,
+    "recall": 0.639,
+    "precision": 0.736,
+    "f1": 0.684,
+    "ap": 0.762,
+    "recall_minus_rule": 0.213,
+    "recall_minus_rule_ci95": [
+     -0.037,
+     0.407
+    ]
+   },
+   "ml:xgboost": {
+    "tp": 41,
+    "fp": 25,
+    "fn": 20,
+    "recall": 0.672,
+    "precision": 0.621,
+    "f1": 0.646,
+    "ap": 0.672,
+    "recall_minus_rule": 0.246,
+    "recall_minus_rule_ci95": [
+     -0.076,
+     0.469
+    ]
+   },
+   "ml:lightgbm": {
+    "tp": 41,
+    "fp": 25,
+    "fn": 20,
+    "recall": 0.672,
+    "precision": 0.621,
+    "f1": 0.646,
+    "ap": 0.664,
+    "recall_minus_rule": 0.246,
+    "recall_minus_rule_ci95": [
+     -0.076,
+     0.469
+    ]
+   },
+   "ml_physics:logistic_regression": {
+    "tp": 39,
+    "fp": 26,
+    "fn": 22,
+    "recall": 0.639,
+    "precision": 0.6,
+    "f1": 0.619,
+    "ap": 0.59,
+    "recall_minus_rule": 0.213,
+    "recall_minus_rule_ci95": [
+     -0.065,
+     0.409
+    ]
+   },
+   "ml_physics:k_nearest_neighbours": {
+    "tp": 41,
+    "fp": 24,
+    "fn": 20,
+    "recall": 0.672,
+    "precision": 0.631,
+    "f1": 0.651,
+    "ap": 0.666,
+    "recall_minus_rule": 0.246,
+    "recall_minus_rule_ci95": [
+     0.026,
+     0.381
+    ]
+   },
+   "ml_physics:svm_rbf": {
+    "tp": 42,
+    "fp": 12,
+    "fn": 19,
+    "recall": 0.689,
+    "precision": 0.778,
+    "f1": 0.73,
+    "ap": 0.787,
+    "recall_minus_rule": 0.263,
+    "recall_minus_rule_ci95": [
+     -0.111,
+     0.5
+    ]
+   },
+   "ml_physics:random_forest": {
+    "tp": 44,
+    "fp": 14,
+    "fn": 17,
+    "recall": 0.721,
+    "precision": 0.759,
+    "f1": 0.739,
+    "ap": 0.773,
+    "recall_minus_rule": 0.295,
+    "recall_minus_rule_ci95": [
+     0.037,
+     0.488
+    ]
+   },
+   "ml_physics:extra_trees": {
+    "tp": 42,
+    "fp": 13,
+    "fn": 19,
+    "recall": 0.689,
+    "precision": 0.764,
+    "f1": 0.724,
+    "ap": 0.76,
+    "recall_minus_rule": 0.263,
+    "recall_minus_rule_ci95": [
+     0.068,
+     0.385
+    ]
+   },
+   "ml_physics:xgboost": {
+    "tp": 39,
+    "fp": 23,
+    "fn": 22,
+    "recall": 0.639,
+    "precision": 0.629,
+    "f1": 0.634,
+    "ap": 0.662,
+    "recall_minus_rule": 0.213,
+    "recall_minus_rule_ci95": [
+     -0.022,
+     0.385
+    ]
+   },
+   "ml_physics:lightgbm": {
+    "tp": 42,
+    "fp": 23,
+    "fn": 19,
+    "recall": 0.689,
+    "precision": 0.646,
+    "f1": 0.667,
+    "ap": 0.697,
+    "recall_minus_rule": 0.263,
+    "recall_minus_rule_ci95": [
+     0.0,
+     0.449
+    ]
+   },
+   "dl:mlp": {
+    "tp": 37,
+    "fp": 13,
+    "fn": 24,
+    "recall": 0.607,
+    "precision": 0.74,
+    "f1": 0.667,
+    "ap": 0.725,
+    "recall_minus_rule": 0.181,
+    "recall_minus_rule_ci95": [
+     -0.151,
+     0.431
+    ]
+   },
+   "dl:cnn": {
+    "tp": 43,
+    "fp": 18,
+    "fn": 18,
+    "recall": 0.705,
+    "precision": 0.705,
+    "f1": 0.705,
+    "ap": 0.681,
+    "recall_minus_rule": 0.279,
+    "recall_minus_rule_ci95": [
+     -0.075,
+     0.528
+    ]
+   },
+   "dl:gaplaw": {
+    "tp": 45,
+    "fp": 19,
+    "fn": 16,
+    "recall": 0.738,
+    "precision": 0.703,
+    "f1": 0.72,
+    "ap": 0.716,
+    "recall_minus_rule": 0.312,
+    "recall_minus_rule_ci95": [
+     -0.017,
+     0.521
+    ]
+   },
+   "ml:ensemble_top3": {
+    "tp": 42,
+    "fp": 25,
+    "fn": 19,
+    "recall": 0.689,
+    "precision": 0.627,
+    "f1": 0.656,
+    "ap": 0.69,
+    "recall_minus_rule": 0.263,
+    "recall_minus_rule_ci95": [
+     -0.031,
+     0.469
+    ]
+   },
+   "ml_physics:ensemble_top3": {
+    "tp": 44,
+    "fp": 21,
+    "fn": 17,
+    "recall": 0.721,
+    "precision": 0.677,
+    "f1": 0.698,
+    "ap": 0.704,
+    "recall_minus_rule": 0.295,
+    "recall_minus_rule_ci95": [
+     0.033,
+     0.471
+    ]
+   }
+  }
+ },
+ "real_exploratory_matched_training": {
+  "plants": 30,
+  "seed": 1005,
+  "rows": 11649,
+  "margin_rule_dev": {
+   "tp": 489,
+   "fp": 302,
+   "fn": 940,
+   "recall": 0.342,
+   "precision": 0.618,
+   "f1": 0.441
+  },
+  "models": {
+   "ml:random_forest": {
+    "tp": 46,
+    "fp": 16,
+    "fn": 15,
+    "recall": 0.754,
+    "precision": 0.742,
+    "f1": 0.748,
+    "ap": 0.776
+   },
+   "ml_physics:xgboost": {
+    "tp": 50,
+    "fp": 21,
+    "fn": 11,
+    "recall": 0.82,
+    "precision": 0.704,
+    "f1": 0.758,
+    "ap": 0.835
+   }
+  }
+ },
+ "seconds": 247
+}
