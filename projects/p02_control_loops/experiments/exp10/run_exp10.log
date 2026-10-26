@@ -1,0 +1,25 @@
+[     0s] train windows 4424 · simulation windows 12654 · archive windows 682 · classes ['external_oscillation', 'healthy', 'stiction', 'tuning_sluggish', 'tuning_tight']
+/tmp/claude-0/-home-claude/cf7486a3-52fe-5bf9-8b59-6aa18ae8513a/scratchpad/venv_dl/lib/python3.13/site-packages/jax/_src/core.py:1980: UserWarning: Explicitly requested dtype int64 requested in ShapeDtypeStruct is not available, and will be truncated to dtype int32. To enable more dtypes, set the jax_enable_x64 configuration option or the JAX_ENABLE_X64 shell environment variable. See https://github.com/jax-ml/jax#current-gotchas for more.
+  return aval_fn(x)
+[    16s]   cnn: fold 1/5 (30 epochs)
+[    32s]   cnn: fold 2/5 (30 epochs)
+[    47s]   cnn: fold 3/5 (30 epochs)
+[    60s]   cnn: fold 4/5 (25 epochs)
+[    75s]   cnn: fold 5/5 (30 epochs)
+[    89s]   cnn: final seed 0 (24 epochs)
+[   104s]   cnn: final seed 1 (24 epochs)
+[   120s]   cnn: final seed 2 (26 epochs)
+[   123s] cnn   sim F1 0.845 (5-class acc 0.86) | 58: 12/26 FA 4 F1 0.571 [0.378, 0.727] | 22: 9/14 FA 2 | seeds s0:12/4 s1:11/4 s2:13/4
+/tmp/claude-0/-home-claude/cf7486a3-52fe-5bf9-8b59-6aa18ae8513a/scratchpad/venv_dl/lib/python3.13/site-packages/jax/_src/core.py:1980: UserWarning: Explicitly requested dtype int64 requested in ShapeDtypeStruct is not available, and will be truncated to dtype int32. To enable more dtypes, set the jax_enable_x64 configuration option or the JAX_ENABLE_X64 shell environment variable. See https://github.com/jax-ml/jax#current-gotchas for more.
+  return aval_fn(x)
+[   175s]   lstm: fold 1/5 (15 epochs)
+[   209s]   lstm: fold 2/5 (10 epochs)
+[   247s]   lstm: fold 3/5 (11 epochs)
+[   305s]   lstm: fold 4/5 (17 epochs)
+[   388s]   lstm: fold 5/5 (25 epochs)
+[   464s]   lstm: final seed 0 (19 epochs)
+[   583s]   lstm: final seed 1 (29 epochs)
+[   654s]   lstm: final seed 2 (17 epochs)
+[   656s] lstm  sim F1 0.593 (5-class acc 0.688) | 58: 6/26 FA 3 F1 0.343 [0.129, 0.533] | 22: 5/14 FA 2 | seeds s0:3/3 s1:9/3 s2:8/3
+[   656s] saved results_exp10.json
+exit 0

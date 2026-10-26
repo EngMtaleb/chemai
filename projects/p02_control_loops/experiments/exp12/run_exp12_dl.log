@@ -1,0 +1,22 @@
+[     7s] cnn · hybrid           sim only: 15/26 FA 4 F1 0.667 | + real: 22/26 FA 7 F1 0.800 [0.667, 0.903]
+/tmp/claude-0/-home-claude/cf7486a3-52fe-5bf9-8b59-6aa18ae8513a/scratchpad/venv_dl/lib/python3.13/site-packages/jax/_src/core.py:1980: UserWarning: Explicitly requested dtype int64 requested in ShapeDtypeStruct is not available, and will be truncated to dtype int32. To enable more dtypes, set the jax_enable_x64 configuration option or the JAX_ENABLE_X64 shell environment variable. See https://github.com/jax-ml/jax#current-gotchas for more.
+  return aval_fn(x)
+[    89s]   cnn teacher: condition A done
+[   163s]   cnn teacher: condition B fold 1/5 done (46 labelled real training loops)
+[   236s]   cnn teacher: condition B fold 2/5 done (46 labelled real training loops)
+[   340s]   cnn teacher: condition B fold 3/5 done (47 labelled real training loops)
+[   432s]   cnn teacher: condition B fold 4/5 done (47 labelled real training loops)
+[   541s]   cnn teacher: condition B fold 5/5 done (46 labelled real training loops)
+[   551s] cnn · rule as teacher  sim only: 21/26 FA 11 F1 0.724 | + real: 19/26 FA 4 F1 0.776 [0.629, 0.893]
+[   560s] lstm · hybrid          sim only: 13/26 FA 3 F1 0.619 | + real: 20/26 FA 7 F1 0.755 [0.61, 0.867]
+/tmp/claude-0/-home-claude/cf7486a3-52fe-5bf9-8b59-6aa18ae8513a/scratchpad/venv_dl/lib/python3.13/site-packages/jax/_src/core.py:1980: UserWarning: Explicitly requested dtype int64 requested in ShapeDtypeStruct is not available, and will be truncated to dtype int32. To enable more dtypes, set the jax_enable_x64 configuration option or the JAX_ENABLE_X64 shell environment variable. See https://github.com/jax-ml/jax#current-gotchas for more.
+  return aval_fn(x)
+[   771s]   lstm teacher: condition A done
+[  1013s]   lstm teacher: condition B fold 1/5 done (46 labelled real training loops)
+[  1243s]   lstm teacher: condition B fold 2/5 done (46 labelled real training loops)
+[  1539s]   lstm teacher: condition B fold 3/5 done (47 labelled real training loops)
+[  1783s]   lstm teacher: condition B fold 4/5 done (47 labelled real training loops)
+[  2117s]   lstm teacher: condition B fold 5/5 done (46 labelled real training loops)
+[  2124s] lstm · rule as teacher sim only: 0/26 FA 0 F1 0.000 | + real: 3/26 FA 4 F1 0.182 [0.0, 0.364]
+[  2124s] saved results_exp12_dl.json
+exit 0

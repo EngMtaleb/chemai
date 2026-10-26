@@ -25,10 +25,13 @@ examples whose fault is known, or upload your own CSV.
 | Stiction caught by the adopted rule, precision 0.88 | **12 of 14** |
 | Eastman plant-wide root cause, found among 30 loops unaided | **tag 22**, 13× the next priority |
 | Cascade pairs discovered from structure alone, across 3 plants | 8 |
-| Tests | 269 (whole repository) |
+| Tests | 357 (whole repository) |
 
-Simulation is used for training and for anything needing a known answer. **Plant data is an external
-test set, spent once.** Nothing was retuned after seeing how it scored.
+Simulation is used for training and for anything needing a known answer. **Labelled plant data is an
+external test set: through Week 8 it never trains anything**, and nothing was retuned after seeing how
+it scored. Experiments 11 and 12 then let part of it train, every loop still tested once by a model
+that never saw it or its valve. The Week 8 runs and experiments 9–12 used the same labelled loops
+again, so their numbers describe — they do not prove.
 
 ---
 
@@ -73,6 +76,29 @@ had learned that a low Harris means sluggish tuning — so it called eight real 
 
 **The baseline is what ships.** A model that does not beat one threshold on one feature has not
 earned its complexity.
+
+**Week 8 tried harder, and the answer held.** Five model families tuned with nested
+cross-validation beat the rule on new simulated plants (stiction F1 up to 0.88 against 0.68) — and on
+the same 22 plant loops the best of them tied its 12 catches with one more false alarm. Then the
+valve's physics went inside the method: **S read from the trend** — how far OP travels after it
+reverses before PV turns, which is the definition of S (rank correlation 0.72 with the true S on new
+plants, median error 0.5 % of travel) — and Harris computed in simulation the way a plant must compute
+it. The models improved on simulation; on plant loops none cleared the bar written before the run.
+The closest, the rule teaching a forest on eleven unlabelled real loops, caught two more of 26 sticky
+valves with no extra false alarm, where the bar asked for more than two. One idea failed for a reason
+worth knowing: in a closed loop even the true valve position explains PV worse than OP does, so the
+valve cannot be fitted back from PV — only read from the timing of the reversals (VALIDATION.md §17.4,
+§23).
+
+**Experiments 9–12 tried more, and the rule still ships.** Twice the simulation; seven model
+families, XGBoost and LightGBM among them, default and tuned, and their ensemble; networks that read
+OP and PV directly (a CNN and an LSTM); some real loops in training, every loop tested once by a
+model that never saw it or its valve; and the networks with the valve's physics. Of 29 methods, 5
+cleared the bar. The best: the rule decides where its call is clear and a CNN reads the rest — 22 of
+26 sticky valves caught with 7 false alarms, against the rule's 12 and 2. But with 29 tries on the
+same 58 loops one can clear the bar by luck, and its lead over the rule (+5) has a 95 % range from
+−2 to +13 loops. So it is a hypothesis for new labelled loops, not a replacement (VALIDATION.md §24,
+`experiments/`).
 
 ### The historian can turn a right answer into a wrong one
 
@@ -147,6 +173,10 @@ python projects/p02_control_loops/week3_report.py           # the weekly report
 python projects/p02_control_loops/week4_cascade.py          # cascade structure and source
 python projects/p02_control_loops/week5_propagation.py      # plant-wide propagation
 python projects/p02_control_loops/week6_compression.py      # what the historian throws away
+python projects/p02_control_loops/compare_models.py         # five models, nested CV, on simulation
+python projects/p02_control_loops/plant_check.py            # the same models on plant loops, once
+python projects/p02_control_loops/week8_physics.py          # the valve's physics inside the method
+# then experiments 9–12: order and extra packages in projects/p02_control_loops/experiments/README.md
 ```
 
 **Service**
@@ -187,7 +217,7 @@ python -m chemai.api.run      # http://localhost:8000/loops/
 
 ## The validation record
 
-`VALIDATION.md` holds 22 sections written as the work happened: what was decided before seeing
+`VALIDATION.md` holds 24 sections written as the work happened: what was decided before seeing
 results, what the data then said, and what had to change. It includes the numbers behind every claim
 above, three conflicts found between published labels and the data they describe, and the measures
 that were tried and rejected.

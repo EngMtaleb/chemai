@@ -904,6 +904,41 @@ fiction (§6).
 > A negative result with its cause measured is the outcome the external test set exists to produce.
 > The gap between 0.83 on simulation and a baseline loss on plant data **is** the finding.
 
+### 17.4 Five models, tuned fairly — Week 8
+
+Code: `compare_models.py` (simulation) and `plant_check.py` (plant, run once under
+`PROTOCOL_plant.md`, written before it ran).
+
+The route of 17.3 taken further: five model families, each tuned by **nested cross-validation** —
+outer `GroupKFold(5)` by simulated loop, settings chosen inside each training fold only (inner
+`GroupKFold(4)`, macro F1) — and every model also scored on the rule's own question, stiction against
+the rest. A forest without Harris is included for the physical reason of 17.2.
+
+| Stiction F1 | Rule | Logistic | Tree | Forest | Boosting | Forest, no Harris |
+|---|---:|---:|---:|---:|---:|---:|
+| simulation, nested CV (240 runs) | 0.55 | 0.62 | 0.67 | 0.70 | 0.67 | 0.72 |
+| 120 new plants, touched once | 0.68 | 0.82 | 0.75 | **0.88** | 0.84 | 0.86 |
+
+Where the models win: on visible stiction the rule and the forest catch the same 18 of 24; on
+stiction near the noise (buried and marginal) the rule catches 5 of 24, the forest 13.
+
+On plant data, run once:
+
+| | 22 loops · caught | false alarms | all 58 stated · caught | false alarms |
+|---|---:|---:|---:|---:|
+| **Rule** | **12 of 14** | **2** | 12 of 26 | 2 |
+| Logistic regression | 10 | 2 | 12 | 5 |
+| Decision tree | 10 | 3 | 12 | 7 |
+| Random forest | 12 | 3 | 14 | 3 |
+| Gradient boosting | 12 | 3 | 14 | 4 |
+| Forest, no Harris | 12 | 3 | 14 | 5 |
+
+The bar written first — beat the rule by more than two loops in caught minus false alarms on the
+22 — is not reached: the best models tie the catches with one more false alarm. On all 58 the best
+forest gains two catches for one more false alarm. **The rule stays.** About half the sticky valves
+of the 58 are missed by every contender: they draw no clean cycle. The 22 loops had been seen
+before (17.2), so these numbers describe — they do not prove.
+
 ---
 
 ## 18. Week 3 — from diagnosis to a report
@@ -1294,6 +1329,298 @@ boot because of it.
 
 ---
 
+## 23. Week 8 — physics inside the method
+
+Protocol: `PROTOCOL_physics.md`, written before any result, with one amendment made before any
+test. Code: `chemai/features/stiction_physics.py`. Evidence: `week8_physics.py`, run once.
+Tests: `tests/test_stiction_physics.py`.
+
+17.2 and 17.4 measured why models trained on simulation lose on plant loops: Harris means something
+else there, and the four numbers describe the waveform, not the valve. The question: does putting
+the valve's physics into the method help where the rule is blind, without losing what it does well?
+Four methods, defined in the protocol: physics alone, physics-informed models, a hybrid with the
+rule, and the rule as teacher.
+
+### 23.1 ❌ Rejected at development: fitting the valve back from CV
+
+The first plan (Hammerstein): pass CO through the stiction model for a grid of S and J, fit a linear
+process model (ARX, 2 output and 10 input lags) from the reconstructed valve position to CV, keep the
+best candidate. On the development set (`random_state = 42`) it cannot work, and the reason is a
+property of closed loops: **the controller has already put the disturbance into CO**. In one-step
+prediction, even the **true** valve position explains CV worse than CO does:
+
+| Sticky runs, development set | True MV explains CV worse than CO |
+|---|---:|
+| level | 16 of 16 |
+| pressure | 14 of 16 |
+| flow | 0 of 16 — better, but by less than 16 % in half of them |
+| **all** | **30 of 48** |
+
+If the true valve cannot win the fit, no fitted valve can. Rejected, and replaced before any test by
+reading S directly (amendment 1). *Correction to the amendment's wording, found when this table was
+recounted: it says "every pressure and level run and half the flow runs"; the count is every level
+run, 14 of 16 pressure runs and no flow run. The decision does not change.* `fit_valve` stays in the
+module, marked rejected, with a test that its valve is the simulator's own valve step for step.
+
+### 23.2 ⭐ Adopted: S read from the reversals
+
+The definition of S, measured on the trend. After CO reverses, a sticky valve waits until the
+command has travelled S; meanwhile the process keeps going the old way, and CV turns only when the
+stem jumps. So: find every reversal of CO (3-sample moving average; a reversal must come back by
+0.5 standard deviations — both chosen on development), find the next reversal of CV, and measure how
+far CO travelled in between. The median over the record is the reading of S, in the units of CO; the
+median wait, as a fraction of CO's half-cycle, is kept too.
+
+On the 48 sticky runs of the new plants:
+
+| | Runs | Rank correlation with the true S | Median error, % of travel |
+|---|---:|---:|---:|
+| **all** | 48 | **0.72** | **0.50** |
+| pressure | 16 | 0.94 | 0.26 |
+| flow | 16 | 0.68 | 0.32 |
+| level | 16 | 0.68 | 1.53 |
+
+Development promised more (0.86): the reading generalises, but noisier. Level loops read worst — the
+tank delays the turn of CV. Two limits, stated: valves **without** stiction read a median of
+**1.04 %** too, because the process takes time to answer — so the reading alone is a weak diagnosis;
+and **J cannot be read** — after a slip in the same direction there is no reversal to time. J needs MV.
+
+### 23.3 Simulation
+
+Physics-informed means the five models with the reading (`s_travel`, `travel_lag`) added, and Harris
+computed in simulation with the plant's assumed delay (2 samples), so the number means the same in
+training and in use. Same grids, same nested cross-validation.
+
+| Stiction F1, nested CV (240 runs) | Without physics | With physics |
+|---|---:|---:|
+| logistic regression | 0.62 | 0.75 |
+| decision tree | 0.67 | **0.59** |
+| random forest | 0.70 | 0.80 |
+| gradient boosting | 0.67 | **0.83** |
+| forest, no Harris | 0.72 | 0.80 |
+
+Four of five improve; the single tree gets worse. On the 120 new plants the gains shrink to inside
+the noise: best without physics 0.88 (0.78–0.95), best with physics 0.91 (0.81–0.97). Physics alone —
+one threshold on the reading, chosen on development — scores 0.56. In the physics-informed forest
+without Harris the two physics features carry 0.35 of the importance.
+
+### 23.4 Plant loops, run once
+
+| | 22 loops · caught · false alarms | vs rule | 58 loops · caught · false alarms | vs rule |
+|---|---:|---:|---:|---:|
+| **Rule** | **12 · 2** | — | 12 · 2 | — |
+| Forest, no physics (17.4) | 12 · 3 | −1 | 14 · 3 | +1 |
+| Physics alone | 9 · 4 | −5 | 12 · 4 | −2 |
+| Logistic + physics | 11 · 3 | −2 | 13 · 3 | 0 |
+| Tree + physics | 8 · 2 | −4 | 11 · 4 | −3 |
+| Forest + physics | 11 · 3 | −2 | 13 · 3 | 0 |
+| Boosting + physics (best on development) | 11 · 2 | −1 | 13 · 3 | 0 |
+| Forest, no Harris + physics | 12 · 3 | −1 | 14 · 3 | +1 |
+| Hybrid | 12 · 3 | −1 | 14 · 4 | 0 |
+| **Rule as teacher** | **12 · 2** | **0** | **14 · 2** | **+2** |
+
+*vs rule* = caught minus false alarms, minus the rule's. The hybrid's grey zone — where the rule is
+not clear — holds 73 % of the simulated test runs, 27 % of the 22 loops and 72 % of the 58 (42
+loops). The rule as teacher learned from 11 of the 65 unlabelled real loops (9 sticky, 2 not),
+labelled by the rule where it is clear; the labelled loops never trained anything.
+
+### 23.5 The verdict, by the bar written first
+
+| | New plants: F1 range above 0.68 | 58 loops: more than +2 | 22 loops: −1 or better | Replaces the rule |
+|---|---|---|---|---|
+| Forest, no physics | ✓ 0.78–0.95 | ✗ +1 | ✓ −1 | no |
+| Physics alone | ✗ 0.39–0.69 | ✗ −2 | ✗ −5 | no |
+| Boosting + physics | ✓ 0.75–0.94 | ✗ 0 | ✓ −1 | no |
+| Hybrid | ✗ 0.68–0.90, ties | ✗ 0 | ✓ −1 | no |
+| Rule as teacher | ✓ 0.71–0.91 | ✗ +2 | ✓ 0 | no |
+
+**The rule stays the diagnosis.** The rule as teacher passed two tests and stopped at the third:
++2 where the bar asked for more than 2. The bar is not moved after the run.
+
+What the physics adds, reported beside the rule's verdict and not yet in the service: **S in % of
+travel** — how sticky, not only whether; readings near 1 % can be a valve without stiction — and a
+**second opinion** from the teacher on loops in the grey zone, as a field check, never a work order.
+
+### 23.6 What the result says
+
+- The physics made the models better on simulation, and the reading of S is the valve's own
+  number, with units — something an engineer can check in the field.
+- On plant loops the gain did not appear. The best result came from the one method that saw real
+  loops — eleven of them, labelled by the rule. What the plant data lacks is data: the valve
+  position (then S and J are measured, not read), hundreds of labelled real loops, and each loop's
+  dead time.
+- The method that failed taught the most physics: **a closed loop hides the valve from a fit**,
+  because CO already carries the disturbance.
+
+---
+
+## 24. After Week 8 — experiments 9 to 12
+
+Protocols: `experiments/expN/PROTOCOL_expN.md`, each written before its run. One check made after a
+run is labelled as such (`experiments/exp12/POSTHOC_exp12.md`). Code and run logs: `experiments/`,
+with the order to run them in `experiments/README.md`. Every method ran once, and every method is
+reported, the ones that did worse included.
+
+The 58 labelled loops (26 sticky valves; the 22 of the episode inside them) had been tested before —
+the Week 2 classifier, the five-model plant check (§17.4), the Week 8 run — so the numbers below
+describe, they do not prove. The score, as in §23: caught − false alarms, minus the rule's (12
+caught, 2 false alarms on the 58). The bar, unchanged: a method beats the rule only by **more than
+two** loops.
+
+### 24.1 Experiment 9 — all of the simulation trains, the archive only tests
+
+All 480 simulated runs (240 plants) train; the archive is touched once. The stages of the episode:
+default models, tuned, ensembles, physics-informed, the rule as teacher, the rule. Addendum, written
+before it ran: a neural network (multilayer perceptron) on the episode's numbers and on the physics
+numbers.
+
+| 58 loops | Best of the stage · caught · false alarms | vs rule |
+|---|---|---:|
+| Default, five families | boosting · 14 · 3 | +1 |
+| Tuned | forest, boosting · 14 · 3 | +1 |
+| Ensembles (voting, stacking) | 14 · 4 | 0 |
+| Physics-informed, five families and two ensembles | 13 · 3 | 0 |
+| Hybrid | 14 · 3 | +1 |
+| **Rule as teacher** | **14 · 2** | **+2** |
+| Neural network, episode numbers | 12 · 6 | −4 |
+| Neural network, physics numbers | 13 · 4 | −1 |
+
+Twice the simulation did not change the Week 8 answer: the closest is again the rule as teacher, at
++2 on the 58 and 0 on the 22.
+
+### 24.2 Experiment 10 — networks that read CO and CV
+
+A 1D-CNN and an LSTM read windows of CO and CV − SP directly, instead of the episode's numbers. Time
+is rescaled so one oscillation period spans 32 points; settings fixed in the protocol, no tuning.
+Trained on the same 480 runs; the archive call is the mean over three seeds.
+
+| | Stiction F1, simulation (out of fold, by plant) | 58 loops | vs rule | 22 loops | vs rule |
+|---|---:|---:|---:|---:|---:|
+| CNN | 0.85 | 12 · 4 | −2 | 9 · 2 | −3 |
+| LSTM | 0.59 | 6 · 3 | −7 | 5 · 2 | −7 |
+
+On simulation the CNN scores as high as the best physics-informed models of experiment 9 (0.85);
+trained on simulation alone, both networks lose to the rule on real loops, the LSTM badly.
+
+### 24.3 Experiment 11 — some real loops join the training
+
+The 58 loops sit in five parts; the recordings of one valve or one plant stay in one part (11 source
+groups). Each part is tested by models trained on the simulation plus the other four parts, the real
+loops together weighing as much as the simulation, so every loop is tested once, by a model that
+never saw it or its valve. Each method ran twice: simulation only (A) and simulation + real loops (B).
+
+| 58 loops · caught · false alarms | A · simulation only | B · + real loops | vs rule (B) |
+|---|---:|---:|---:|
+| Random forest | 14 · 4 | 16 · 6 | 0 |
+| Random forest, tuned | 14 · 3 | 17 · 9 | −2 |
+| Ensemble of five tuned families | 14 · 4 | 16 · 8 | −2 |
+| Physics, forest | 13 · 3 | 14 · 6 | −2 |
+| Physics, hybrid | 14 · 3 | 15 · 5 | 0 |
+| Physics, rule as teacher | 14 · 2 | 15 · 6 | −1 |
+| **Neural network, physics numbers** | 13 · 4 | **17 · 4** | **+3 ✓** |
+| CNN | 12 · 4 | 20 · 8 | +2 |
+| LSTM | 6 · 3 | 19 · 9 | 0 |
+
+Real loops in training helped the networks most — the CNN from 12 to 20 caught, the LSTM from 6 to
+19 — and every method but one paid for its catches in false alarms. One cleared the bar: the neural
+network on the physics numbers, +3, its false alarms unchanged.
+
+### 24.4 Experiment 12 — seven families, and the networks with the physics
+
+The same split, weighting and bar, condition B. The protocol states that it was designed after
+experiment 11's results were seen, and that with this many tries one can clear the bar by luck.
+
+The feature models, on the episode's numbers:
+
+| 58 loops | Default · caught · FA | F1 | Tuned · caught · FA | F1 | vs rule, tuned |
+|---|---:|---:|---:|---:|---:|
+| Logistic regression | 10 · 4 | 0.50 | 14 · 5 | 0.62 | −1 |
+| SVM | 12 · 4 | 0.57 | 13 · 9 | 0.54 | −6 |
+| Decision tree | 15 · 6 | 0.64 | 16 · 7 | 0.65 | −1 |
+| Random forest | 16 · 6 | 0.67 | 17 · 9 | 0.65 | −2 |
+| Gradient boosting | 13 · 5 | 0.59 | 14 · 5 | 0.62 | −1 |
+| XGBoost | 17 · 7 | 0.68 | 17 · 5 | 0.71 | +2 |
+| LightGBM | 15 · 4 | 0.67 | 16 · 4 | 0.70 | +2 |
+| Ensemble of the seven tuned | | | 16 · 6 | 0.67 | 0 |
+| **The rule** | | | **12 · 2** | **0.60** | — |
+
+None of the 15 clears the bar; the two boosting libraries come closest, at +2. Tuning raised F1 in
+five families of seven. F1 puts most models above the rule while the score does not: F1 counts a
+catch for more than a false alarm, the score counts them the same, and the rule has only two false
+alarms.
+
+The networks with the physics. *Hybrid*: the rule decides where its call is clear, the network
+decides the rest, nothing retrained. *Rule as teacher*: a two-class network trained also on the 11
+unlabelled real loops the rule labels where it is clear.
+
+| 58 loops | caught · false alarms | vs rule |
+|---|---:|---:|
+| Neural network, physics numbers (experiment 11, rerun) | 17 · 4 | +3 ✓ |
+| Neural network, hybrid | 17 · 5 | +2 |
+| Neural network, rule as teacher | 14 · 7 | −3 |
+| **CNN, hybrid** | **22 · 7** | **+5 ✓** |
+| **CNN, rule as teacher** | **19 · 4** | **+5 ✓** |
+| LSTM, hybrid | 20 · 7 | +3 ✓ |
+| LSTM, rule as teacher | 3 · 4 | −11 |
+| S alone, one threshold chosen on the training side | 18 · 5 | +3 ✓ |
+
+The LSTM teacher collapsed. Experiment 11's forest, tuned forest, five-family ensemble and neural
+network were rerun as a check and gave the same calls.
+
+### 24.5 One check after the run
+
+The teacher networks changed two things at once against experiment 11: a two-class output, and the
+11 rule-labelled loops. Written after the results were seen: the same two-class networks without the
+11 loops. It is not a try against the bar.
+
+| 58 loops | Experiment 11, five classes | Two classes, without the 11 | Two classes, with the 11 (teacher) |
+|---|---:|---:|---:|
+| CNN | 20 · 8 (+2) | 16 · 2 (+4) | 19 · 4 (+5) |
+| LSTM | 19 · 9 (0) | 2 · 4 (−12) | 3 · 4 (−11) |
+
+Most of the CNN teacher's gain came from asking the two-class question; the 11 loops added one. The
+LSTM fails as a two-class network with them or without them: the setup failed, not the rule's labels.
+
+### 24.6 How far one difference can be trusted
+
+`experiments/exp12/paired_exp12.py`, after the runs, changes no result: 2000 resamples of the 58
+loops, each method resampled together with the rule, and the 95 % range of its score against the
+rule. Experiments 11 and 12 tried 29 methods (the reruns counted once); 5 clear the bar:
+
+| | vs rule | 95 % range | Resamples above 0 |
+|---|---:|---:|---:|
+| CNN, hybrid | +5 | −2 to +13 | 88 % |
+| CNN, rule as teacher | +5 | −3 to +13 | 88 % |
+| Neural network, physics numbers | +3 | −3 to +9 | 79 % |
+| LSTM, hybrid | +3 | −4 to +10 | 76 % |
+| S alone | +3 | −4 to +10 | 74 % |
+
+Every range includes zero.
+
+### 24.7 The verdict
+
+**The rule stays the diagnosis.** Five methods cleared the bar, but each is one try among 29 on
+loops seen before, and no range excludes zero.
+
+**The hypothesis for new labelled loops: the rule decides where it is clear, and a CNN reads the
+grey zone** — the CNN hybrid, 22 of 26 sticky valves caught with 7 false alarms, against the rule's
+12 and 2. Only new labelled real loops, tested once against a bar written first, can confirm it or
+drop it.
+
+What the four experiments say:
+
+- Twice the simulation changed nothing. Real loops in training changed the most, and most for the
+  networks, which read CO and CV directly.
+- The physics, as a hybrid, lifted both networks: the CNN from +2 to +5, the LSTM from 0 to +3. As a
+  teacher the CNN gained too, mostly from the two-class question (§24.5); the two-class LSTM
+  collapsed.
+- Among the feature models, boosting came closest and none cleared the bar; an ensemble was no
+  better than one forest.
+- What the archive lacks is still data (§23.6): the valve position, labelled real loops in the
+  hundreds, and each loop's dead time.
+
+---
+
 ## Open questions
 
 - Does the shape test survive **detrending and cycle isolation** on all thirteen stiction files,
@@ -1308,8 +1635,14 @@ boot because of it.
   **disagree** (§20.4), and no published root cause settles it.
 - Do the twelve sluggish files belong in the study at all, or are they a separate problem —
   **loop not oscillating but not controlling either**?
+- Does the teacher's second opinion on the grey-zone loops (§23.5) hold up against **field
+  checks** of the valves it flags?
+- With the valve position logged, how many of the 26 sticky valves of the 58 stated loops would be
+  found — the half no method here can see?
+- Does the CNN hybrid (§24.7) keep its lead on new labelled real loops, tested once against a bar
+  written first?
 
 ---
 
-*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2, section 18 in Week 3, section 19 in Week 4, section 20 in Week 5, section 21 in Week 6, section 22 in Week 7. Every constraint came from
+*Sections 1–10 recorded before modelling. Sections 11–13 recorded after Week 1, sections 14–17 in Week 2, section 18 in Week 3, section 19 in Week 4, section 20 in Week 5, section 21 in Week 6, section 22 in Week 7, sections 17.4 and 23 in Week 8, section 24 after Week 8 (experiments 9–12). Every constraint came from
 reading the data or the physics, not from a metric.*

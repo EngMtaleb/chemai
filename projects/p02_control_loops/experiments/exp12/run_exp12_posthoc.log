@@ -1,0 +1,18 @@
+/tmp/claude-0/-home-claude/cf7486a3-52fe-5bf9-8b59-6aa18ae8513a/scratchpad/venv_dl/lib/python3.13/site-packages/jax/_src/core.py:1980: UserWarning: Explicitly requested dtype int64 requested in ShapeDtypeStruct is not available, and will be truncated to dtype int32. To enable more dtypes, set the jax_enable_x64 configuration option or the JAX_ENABLE_X64 shell environment variable. See https://github.com/jax-ml/jax#current-gotchas for more.
+  return aval_fn(x)
+[    80s]   cnn two-class without the 11: fold 1/5 done
+[   154s]   cnn two-class without the 11: fold 2/5 done
+[   255s]   cnn two-class without the 11: fold 3/5 done
+[   353s]   cnn two-class without the 11: fold 4/5 done
+[   414s]   cnn two-class without the 11: fold 5/5 done
+[   418s] cnn two-class without the 11 · + real: 16/26 FA 2 F1 0.727 [0.558, 0.862]
+/tmp/claude-0/-home-claude/cf7486a3-52fe-5bf9-8b59-6aa18ae8513a/scratchpad/venv_dl/lib/python3.13/site-packages/jax/_src/core.py:1980: UserWarning: Explicitly requested dtype int64 requested in ShapeDtypeStruct is not available, and will be truncated to dtype int32. To enable more dtypes, set the jax_enable_x64 configuration option or the JAX_ENABLE_X64 shell environment variable. See https://github.com/jax-ml/jax#current-gotchas for more.
+  return aval_fn(x)
+[   626s]   lstm two-class without the 11: fold 1/5 done
+[   819s]   lstm two-class without the 11: fold 2/5 done
+[   981s]   lstm two-class without the 11: fold 3/5 done
+[  1203s]   lstm two-class without the 11: fold 4/5 done
+[  1440s]   lstm two-class without the 11: fold 5/5 done
+[  1443s] lstm two-class without the 11 · + real: 2/26 FA 4 F1 0.125 [0.0, 0.286]
+[  1443s] saved results_exp12_posthoc.json
+exit 0

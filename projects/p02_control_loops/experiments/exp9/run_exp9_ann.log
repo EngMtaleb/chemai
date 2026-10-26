@@ -1,0 +1,14 @@
+[    23s]   neural network · episode features: outer fold 1/5
+[    46s]   neural network · episode features: outer fold 2/5
+[    70s]   neural network · episode features: outer fold 3/5
+[    93s]   neural network · episode features: outer fold 4/5
+[   115s]   neural network · episode features: outer fold 5/5
+[   152s] neural network · episode features    sim F1 0.704 | 58: 12/26 FA 6 F1 0.545 [0.353, 0.703] | 22: 10/14 FA 2 | seeds 0-4 on 58: [(12, 6), (13, 6), (11, 6), (11, 6), (12, 6)] | {'mlpclassifier__alpha': '0.0001', 'mlpclassifier__hidden_layer_sizes': '(16,)'}
+[   177s]   neural network · physics features: outer fold 1/5
+[   200s]   neural network · physics features: outer fold 2/5
+[   225s]   neural network · physics features: outer fold 3/5
+[   247s]   neural network · physics features: outer fold 4/5
+[   270s]   neural network · physics features: outer fold 5/5
+[   303s] neural network · physics features    sim F1 0.829 | 58: 13/26 FA 4 F1 0.605 [0.421, 0.766] | 22: 11/14 FA 3 | seeds 0-4 on 58: [(13, 4), (13, 4), (13, 4), (13, 4), (13, 3)] | {'mlpclassifier__alpha': '0.0001', 'mlpclassifier__hidden_layer_sizes': '(32, 16)'}
+[   303s] saved results_exp9_ann.json
+exit 0
