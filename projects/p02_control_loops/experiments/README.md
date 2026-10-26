@@ -29,8 +29,9 @@ python $E/exp12/prep_exp12.py && python $E/exp12/run_exp12_features.py && python
 python $E/exp12/run_exp12_posthoc.py && python $E/exp12/paired_exp12.py
 ```
 
-`EXP10_SMOKE=1`, `EXP11_SMOKE=1` and `EXP12_SMOKE=1` run a tiny version as a code check: archive
-numbers hidden, nothing saved.
+`EXP10_SMOKE=1`, `EXP11_SMOKE=1` and `EXP12_SMOKE=1` run a tiny version as a code check (one epoch,
+or tiny grids), and nothing is saved. The run scripts hide the archive numbers in this mode; the post
+hoc check, written after the results were seen, prints its one-epoch numbers.
 
 Beyond the package: `xgboost` and `lightgbm` (experiment 12), and `keras` with the `jax` backend
 (the networks). The runs used Python 3.13, scikit-learn 1.9.1, XGBoost 3.4.1, LightGBM 4.7.0,
