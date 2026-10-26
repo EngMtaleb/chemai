@@ -29,7 +29,15 @@ def set_seed(seed: int) -> None:
 
 
 class Standardiser:
-    """Median-impute with missing flags, then standardise - fitted on training rows only."""
+    """Median-impute with missing flags, then standardise - fitted on training rows only.
+
+    `robust=True` (Part C) also leaves a feature that is constant in the training rows
+    unscaled and clips standardised values to +-10: a setpoint held through every
+    training experiment must not turn into a huge input on a test experiment that
+    changed it."""
+
+    def __init__(self, robust: bool = False):
+        self.robust = robust
 
     def fit(self, X: np.ndarray):
         X = np.asarray(X, float)
@@ -38,6 +46,8 @@ class Standardiser:
         self.miss = np.isnan(X).any(axis=0)
         Z = self._fill(X)
         self.mu, self.sd = Z.mean(0), Z.std(0) + 1e-6
+        if self.robust:
+            self.sd = np.where(Z.std(0) < 1e-3 * (np.abs(self.mu) + 1e-3), 1.0, self.sd)
         return self
 
     def _fill(self, X):
@@ -47,7 +57,10 @@ class Standardiser:
         return np.hstack([filled, flags])
 
     def transform(self, X):
-        return ((self._fill(X) - self.mu) / self.sd).astype(np.float32)
+        Z = (self._fill(X) - self.mu) / self.sd
+        if getattr(self, "robust", False):
+            Z = np.clip(Z, -10, 10)
+        return Z.astype(np.float32)
 
 
 def sequence_channels(seq: np.ndarray) -> np.ndarray:
@@ -249,3 +262,40 @@ class HermiaNet(nn.Module):
         w, k = self.parts(x)
         rise = torch.stack([self.g(i, k[:, i], self.t1) - self.g(i, k[:, i], self.t0) for i in range(4)], 1)
         return 100.0 * (w * rise).sum(1)
+
+
+class PointMLP(nn.Module):
+    """Plain DL for the batch: features and r straight to m(r) / m20."""
+
+    def __init__(self, n_in: int, hidden: int = 64):
+        super().__init__()
+        self.net = MLP(n_in + 1, hidden)
+
+    def forward(self, x, r, *_):
+        return self.net(torch.cat([x, r[:, None]], 1))
+
+
+class PowerLawNet(nn.Module):
+    """Physics-informed DL for the batch: the live cost keeps the slope the plant measured
+    at minute 20, and the network learns only how that slope decays with permeate volume:
+
+        m(r) / m20 = 1 + k * slope_rel * (r^a - 1) / a,     a in (0.2, 1.2), k in (0.6, 1.6)
+
+    a = 1 is the square-root law's straight line; a < 1 bends it down. Every forecast is a
+    smooth, rising cost - the network cannot invent a cost that falls as the loop concentrates."""
+
+    def __init__(self, n_in: int, hidden: int = 32):
+        super().__init__()
+        self.body = nn.Sequential(nn.Linear(n_in, hidden), nn.ReLU(), nn.Linear(hidden, hidden), nn.ReLU())
+        self.a = nn.Linear(hidden, 1)
+        self.k = nn.Linear(hidden, 1)
+
+    def shape(self, x):
+        h = self.body(x)
+        a = 0.2 + torch.sigmoid(self.a(h).squeeze(-1))
+        k = torch.exp(0.5 * torch.tanh(self.k(h).squeeze(-1)))
+        return a, k
+
+    def forward(self, x, r, slope_rel):
+        a, k = self.shape(x)
+        return 1 + k * slope_rel * (torch.pow(r, a) - 1) / a
