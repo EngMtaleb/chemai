@@ -7,48 +7,182 @@ through the unit, and by Monday morning ten loops look faulty. Nine of them are 
 repair — retuning the controller — does not fix a sticking valve: it only slows the limit cycle down,
 which is how weeks get spent on a mechanical problem.
 
-This project diagnoses loops from what a plant historian actually stores: setpoint, measurement and
-controller output. It answers with **the fault, the evidence, a confidence band, the action, and the
-owner** — or it says the data cannot support an answer.
+This project diagnoses loops from what a plant historian actually stores: the setpoint, the
+measurement and the controller output. It answers with **the fault, the evidence, a confidence band,
+the action, and the owner** — or it says the data cannot support an answer.
 
-**Live:** [chemai-tr2c.onrender.com/loops/](https://chemai-tr2c.onrender.com/loops/) — four worked
-examples whose fault is known, or upload your own CSV.
+**Live service:** [chemai-tr2c.onrender.com/loops/](https://chemai-tr2c.onrender.com/loops/) — four
+worked examples whose fault is known, or upload your own CSV.
+**Validation record:** [`VALIDATION.md`](VALIDATION.md) · **Experiments:** [`experiments/`](experiments/)
+
+*Notation:* SP the setpoint · CV the measured variable (PV in historian files) · CO the controller
+output (OP) · MV the valve position, which historians rarely keep.
 
 ---
 
-## Results
+## At a glance
 
-| | |
+| Measured | Result |
 |---|---:|
-| Real plant loops assessed (SACAC + ISDB, duplicates removed) | **141** |
-| Labelled loops used as an external test set | 76 |
-| Stiction caught by the adopted rule, precision 0.88 | **12 of 14** |
+| Real loops from two public archives (SACAC + ISDB, duplicates removed) | **141** |
+| Real loops with a stated expert label, used to test · sticky valves among them | **58** · 26 |
+| Methods compared with the physics rule on those loops, each loop tested once | **29** |
+| F1 on the 58 real loops: the rule → the best method (a CNN with the valve's physics) | **0.60 → 0.80** |
+| Simulated plants with known faults, for training | 240 (480 runs) |
 | Eastman plant-wide root cause, found among 30 loops unaided | **tag 22**, 13× the next priority |
 | Cascade pairs discovered from structure alone, across 3 plants | 8 |
 | Tests | 357 (whole repository) |
 
-Simulation is used for training and for anything needing a known answer. **Labelled plant data is an
-external test set: through Week 8 it never trains anything**, and nothing was retuned after seeing how
-it scored. Experiments 11 and 12 then let part of it train, every loop still tested once by a model
-that never saw it or its valve. The Week 8 runs and experiments 9–12 used the same labelled loops
-again, so their numbers describe — they do not prove.
+---
+
+## The data — real loops first
+
+**Real loops.** 141 loops from the SACAC PID data repository (Bauer et al., 2019) and the ISDB
+benchmark (Jelali & Huang, 2010). 58 carry a stated expert label; 26 of them are sticky valves. They
+hold only what a historian stores — SP, CV and CO — with no valve position and no known dead time.
+
+**Why simulation.** 58 labelled loops are too few to train on alone. A loop simulator with known
+faults — valve stiction (the two-parameter model of Choudhury et al.), tight and sluggish tuning, an
+outside oscillation, a healthy loop — gives 480 runs from 240 simulated plants, where the answer is
+always known.
+
+**Cross-validation on the real loops.** The 58 loops sit in five parts; the recordings of one valve
+or one plant stay in one part. Each round trains on all the simulation plus four parts — the real
+loops weighted to count as much as the simulation — and tests the fifth. After five rounds **every
+real loop has been tested once, by a model that never saw it or its valve.** Model settings are tuned
+on the training side only (GroupKFold), so the tested part never helps choose them.
+
+**One score, written before the run.** Sticky valves caught − false alarms. The rule scores 12 − 2 =
+10; a method clearly beats it only by **more than 2**. F1 is reported beside it.
 
 ---
 
-## ⭐ What it found
+## Results — from a physics rule to deep learning with physics
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="figures/f1_by_stage_dark.png">
+  <img alt="F1 on the 58 real loops for every method, grouped in five stages: the rule 0.60, machine learning best 0.71 (XGBoost, tuned), physics best 0.73 (S alone), deep learning best 0.74 (1D-CNN), deep learning with physics best 0.80 (CNN hybrid)." src="figures/f1_by_stage_light.png">
+</picture>
+
+0. **The rule** — a regular cycle with a triangular shape is a sticky valve. 12 of 26 caught, 2 false
+   alarms: **F1 0.60.**
+1. **Machine learning** on four numbers per loop (Harris, regularity, shape, cycles): seven families,
+   default and tuned, and two ensembles. Tuning raised F1 in five families of seven; no ensemble beat
+   the best single model. Best: XGBoost, tuned — **F1 0.71.**
+2. **Physics.** S, the valve's stuck band, read from the trend: after CO reverses, how far it travels
+   before CV turns. S alone, with one threshold, clears the bar — **F1 0.73, +3.** Inside a forest it
+   did not move the score.
+3. **Deep learning.** An ANN on the numbers, and a 1D-CNN and an LSTM that read CO and CV directly.
+   The networks catch the most; the CNN and the LSTM pay for it in false alarms. Best: the CNN —
+   **F1 0.74.**
+4. **Deep learning + physics.** *Hybrid:* the rule decides where its call is clear, the network reads
+   the rest. *Rule as teacher:* the rule labels 11 unlabelled real loops it is sure about, and the
+   network learns from them too. Best: the CNN hybrid — 22 of 26 caught, 7 false alarms — **F1 0.80,
+   +5.**
+
+<details open>
+<summary><b>Every method, on the 58 real loops</b> (caught of 26 · false alarms · F1 · score against the rule)</summary>
+
+| Stage | Method | Caught (of 26) | False alarms | F1 | vs the rule |
+|---|---|---:|---:|---:|---:|
+| The rule | Regular cycle + triangular shape | 12 | 2 | **0.60** | — |
+| Machine learning | Logistic regression · default | 10 | 4 | 0.50 | −4 |
+|  | Logistic regression · tuned | 14 | 5 | 0.62 | −1 |
+|  | SVM · default | 12 | 4 | 0.57 | −2 |
+|  | SVM · tuned | 13 | 9 | 0.54 | −6 |
+|  | Decision tree · default | 15 | 6 | 0.64 | −1 |
+|  | Decision tree · tuned | 16 | 7 | 0.65 | −1 |
+|  | Random forest · default | 16 | 6 | 0.67 | 0 |
+|  | Random forest · tuned | 17 | 9 | 0.65 | −2 |
+|  | Gradient boosting · default | 13 | 5 | 0.59 | −2 |
+|  | Gradient boosting · tuned | 14 | 5 | 0.62 | −1 |
+|  | XGBoost · default | 17 | 7 | 0.68 | 0 |
+|  | XGBoost · tuned | 17 | 5 | **0.71** | +2 |
+|  | LightGBM · default | 15 | 4 | 0.67 | +1 |
+|  | LightGBM · tuned | 16 | 4 | 0.70 | +2 |
+|  | Ensemble · the 7 tuned vote | 16 | 6 | 0.67 | 0 |
+|  | Ensemble · 5 tuned (experiment 11) | 16 | 8 | 0.64 | −2 |
+| Physics | S alone · one threshold | 18 | 5 | **0.73** | **+3 ✓** |
+|  | Physics forest · S added | 14 | 6 | 0.61 | −2 |
+|  | Hybrid · the rule, then the physics forest | 15 | 5 | 0.65 | 0 |
+|  | Rule as teacher · physics forest | 15 | 6 | 0.64 | −1 |
+| Deep learning | ANN · on the numbers, S included | 17 | 4 | 0.72 | **+3 ✓** |
+|  | 1D-CNN · reads CO and CV | 20 | 8 | **0.74** | +2 |
+|  | LSTM · reads CO and CV | 19 | 9 | 0.70 | 0 |
+| Deep learning + physics | CNN · hybrid | 22 | 7 | **0.80** | **+5 ✓** |
+|  | CNN · rule as teacher | 19 | 4 | 0.78 | **+5 ✓** |
+|  | LSTM · hybrid | 20 | 7 | 0.76 | **+3 ✓** |
+|  | ANN · hybrid | 17 | 5 | 0.71 | +2 |
+|  | ANN · rule as teacher | 14 | 7 | 0.60 | −3 |
+|  | LSTM · rule as teacher | 3 | 4 | 0.18 | −11 |
+
+*vs the rule* = (caught − false alarms) − 10; ✓ marks more than +2. F1 counts a catch for more than a
+false alarm, the score counts them the same — so a higher F1 alone is not a win over a rule with only
+two false alarms.
+
+</details>
+
+### Real data moved F1 the most
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="figures/real_loops_dark.png">
+  <img alt="F1 on the 58 real loops, trained on simulation only and then with about 40 real loops added: random forest 0.64 to 0.67, ANN 0.60 to 0.72, CNN 0.57 to 0.74, LSTM 0.34 to 0.70." src="figures/real_loops_light.png">
+</picture>
+
+Trained on simulation alone, the networks caught 6 to 13 of the 26 sticky valves. With about forty
+real loops in training, 17 to 20. **Real data moved F1 more than any change of model** — a larger
+labelled archive is the most direct way to raise it.
+
+### How far the numbers can be trusted
+
+58 labelled loops is a small test. Paired 95 % ranges of the score against the rule (2000 resamples
+of the loops, each method resampled together with the rule), for the five methods that clear the bar:
+
+| Method | vs the rule | 95 % range | Resamples above 0 |
+|---|---:|---:|---:|
+| CNN · hybrid | +5 | −2 to +13 | 88 % |
+| CNN · rule as teacher | +5 | −3 to +13 | 88 % |
+| ANN · on the numbers, S included | +3 | −3 to +9 | 79 % |
+| LSTM · hybrid | +3 | −4 to +10 | 76 % |
+| S alone · one threshold | +3 | −4 to +10 | 74 % |
+
+Every range still includes zero, and 29 tries on the same loops can clear a bar by luck. So the rule
+stays in service, and **the CNN hybrid is the candidate to confirm on new labelled loops**, tested once
+against a bar written before the run (`VALIDATION.md` §24).
+
+---
+
+## With the valve position logged
+
+What turns this from a diagnosis into a maintenance tool is one more signal — MV, the stem position
+the positioner already measures:
+
+1. **Stiction becomes a measurement.** The MV-against-CO plot shows the stuck band directly, and
+   buried stiction — invisible in CO and CV — is found.
+2. **MV labels the data.** Physics labels thousands of real loops instead of an expert labelling 58,
+   so the models train on plant data, not only on simulation.
+3. **Plants that log MV teach the rest.** A model learns to read S from CO and CV where the true S is
+   known, then serves the plants that do not log MV.
+4. **Predictive maintenance.** Read S every month; a stuck band creeping toward the repair level is a
+   valve wearing out — fix it at the next planned shutdown, before it fails.
+5. **Reinforcement learning.** With the valve's state measured, an agent can learn when to repair
+   which valve, or how the controller should compensate until the repair.
+
+*Rich data means:* SP · CV · CO · MV · at least ten samples per cycle · compression that keeps the
+corners · a known dead time · labels from maintenance records.
+
+---
+
+## ⭐ Engineering findings
 
 ### The standard index rewards the wrong thing
 
 The Harris index is the textbook measure of loop performance. On simulated loops it rates
 **tight-tuned pressure and level loops above healthy ones** (0.60–0.62 against 0.43–0.45), because
 minimum-variance control *is* aggressive control. Raising the controller gain raises the index —
-until the loop is one small process change away from instability. A 20% gain change that the healthy
-loop absorbs makes the "better" loop unstable.
-
-A real averaging level loop, labelled healthy by the expert who published it, scores **0.013** — the
-worst possible mark for a surge drum doing exactly its job.
-
-**So Harris ranks; it does not diagnose.** It is not used in the diagnosis at all.
+until the loop is one small process change away from instability. A real averaging level loop,
+labelled healthy by the expert who published it, scores **0.013** — the worst possible mark for a
+surge drum doing exactly its job. **So Harris ranks; it does not diagnose.**
 
 ### Half of all stiction is not in the data
 
@@ -59,46 +193,22 @@ Simulated sticky valves, split by how far the valve's slip jump stands above the
 | Buried (jump below the noise) | **0.50** |
 | Visible (jump above 2× the noise) | 0.83 |
 
-Below the noise the fingerprint is not in OP or PV at all, so **no algorithm recovers it**. The fix
-is not a better model — it is logging the valve position, which modern positioners already measure
-and historians usually discard. This is the project's strongest engineering recommendation, and it is
-now a number rather than an opinion.
+Below the noise the fingerprint is not in CO or CV at all, so **no algorithm recovers it**. The fix is
+not a better model — it is logging the valve position.
 
-### A trained classifier lost to one threshold
+### Why models trained on simulation misread plant loops
 
-A five-class random forest on three features, cross-validated by loop, reaches 0.83 on simulation.
-On plant data it catches 11 of 14 stiction cases against the baseline's 12, with more false alarms.
+**Harris is three times lower on plant data than in simulation** (0.07 against 0.22), because a plant
+rarely knows its dead time and the minimum estimate must be used. A model that learned "low Harris
+means sluggish tuning" called eight real sticky valves "sluggish". Hence two rules of the project:
+compute every number the same way in training and in use, and never trust simulation alone.
 
-The cause was measured: **Harris is three times lower on plant data than in simulation** (0.07 vs
-0.22), because a plant rarely knows its dead time and the minimum estimate must be used. The model
-had learned that a low Harris means sluggish tuning — so it called eight real stiction loops
-"sluggish".
+### A closed loop hides the valve from a fit
 
-**The baseline is what ships.** A model that does not beat one threshold on one feature has not
-earned its complexity.
-
-**Week 8 tried harder, and the answer held.** Five model families tuned with nested
-cross-validation beat the rule on new simulated plants (stiction F1 up to 0.88 against 0.68) — and on
-the same 22 plant loops the best of them tied its 12 catches with one more false alarm. Then the
-valve's physics went inside the method: **S read from the trend** — how far OP travels after it
-reverses before PV turns, which is the definition of S (rank correlation 0.72 with the true S on new
-plants, median error 0.5 % of travel) — and Harris computed in simulation the way a plant must compute
-it. The models improved on simulation; on plant loops none cleared the bar written before the run.
-The closest, the rule teaching a forest on eleven unlabelled real loops, caught two more of 26 sticky
-valves with no extra false alarm, where the bar asked for more than two. One idea failed for a reason
-worth knowing: in a closed loop even the true valve position explains PV worse than OP does, so the
-valve cannot be fitted back from PV — only read from the timing of the reversals (VALIDATION.md §17.4,
-§23).
-
-**Experiments 9–12 tried more, and the rule still ships.** Twice the simulation; seven model
-families, XGBoost and LightGBM among them, default and tuned, and their ensemble; networks that read
-OP and PV directly (a CNN and an LSTM); some real loops in training, every loop tested once by a
-model that never saw it or its valve; and the networks with the valve's physics. Of 29 methods, 5
-cleared the bar. The best: the rule decides where its call is clear and a CNN reads the rest — 22 of
-26 sticky valves caught with 7 false alarms, against the rule's 12 and 2. But with 29 tries on the
-same 58 loops one can clear the bar by luck, and its lead over the rule (+5) has a 95 % range from
-−2 to +13 loops. So it is a hypothesis for new labelled loops, not a replacement (VALIDATION.md §24,
-`experiments/`).
+Fitting the valve back from the data (a stiction model plus a process model) fails for a physical
+reason: the controller has already put the disturbance into CO. In 30 of 48 simulated sticky runs
+even the **true** valve position explains CV worse than CO does. S is therefore read from the timing
+of the reversals, not fitted (`VALIDATION.md` §23).
 
 ### The historian can turn a right answer into a wrong one
 
@@ -112,25 +222,20 @@ Twelve known-stiction loops, compressed the way a plant historian compresses:
 
 A slower logging rate mostly yields *undetermined* — the report admits it does not know. **A deadband
 yields a confident wrong answer**, which sends the control engineer to a loop whose valve is stuck.
-Corners are the stiction fingerprint, and compression rounds corners first.
-
-Working limit: **ten samples per oscillation cycle**, and ten cycles in the record. Below that the
-service refuses to diagnose.
+Corners are the stiction fingerprint, and compression rounds corners first. Working limit: **ten
+samples per oscillation cycle**, and ten cycles in the record; below that the service refuses to
+diagnose.
 
 ### One plant, one fault, ten victims
 
 Thirty Eastman loops recorded together; the published root cause is tag 22, a sticking valve on a
 level loop. Without being told anything, the analysis finds **eleven loops sharing one 114-minute
-oscillation** and puts tag 22 first, at 13× the priority of the next loop.
-
-The weekly report then stops listing eleven faults and says: *one propagation event, this is the
-candidate source, the other ten are probably victims — no work orders until the source is repaired.*
-
-**And the ranking's limits were measured too.** In a simulated plant the source and its nearest
-victim tie to within 0.001. On a second real case the ranking points at the wrong loop, for a reason
-that is now understood: a non-linear source spreads its power into harmonics, so *the very
-fingerprint that identifies a sticky valve counts against it here.* The source list is a candidate
-list for an engineer to confirm, never a verdict.
+oscillation** and puts tag 22 first, at 13× the priority of the next loop. The weekly report then
+says: *one propagation event, this is the candidate source, the other ten are probably victims — no
+work orders until the source is repaired.* In a simulated plant the source and its nearest victim tie
+to within 0.001, and on a second real case the ranking points at the wrong loop — a non-linear
+source spreads its power into harmonics — so the source list is a candidate list for an engineer to
+confirm, never a verdict.
 
 ---
 
@@ -147,7 +252,7 @@ data quality  →  indices  →  diagnosis  →  plant view
    integral drives the process away.
 2. **Indices.** Oscillation regularity (is there a cycle at all?) and the curve-fitting shape index
    (triangular, from a valve, or sinusoidal, from tuning). Loop type selects the signal: fast loops
-   are read on OP, level loops on PV, because a tank integrates a square wave into a triangle.
+   are read on CO, level loops on CV, because a tank integrates a square wave into a triangle.
 3. **Diagnosis.** A regular oscillation with a triangular waveform is stiction; data-quality flags
    outrank the shape; everything else is *undetermined*.
 4. **Plant view.** Cascade structure (a slave's setpoint *is* its master's output) and shared
@@ -177,6 +282,7 @@ python projects/p02_control_loops/compare_models.py         # five models, neste
 python projects/p02_control_loops/plant_check.py            # the same models on plant loops, once
 python projects/p02_control_loops/week8_physics.py          # the valve's physics inside the method
 # then experiments 9–12: order and extra packages in projects/p02_control_loops/experiments/README.md
+python projects/p02_control_loops/figures/make_results_figures.py   # the figures and tables above
 ```
 
 **Service**
@@ -201,16 +307,18 @@ python -m chemai.api.run      # http://localhost:8000/loops/
 
 ## ⚠️ Limits
 
-1. **Half of buried stiction is unrecoverable** from OP and PV. Log the valve position.
+1. **Half of buried stiction is unrecoverable** from CO and CV. Log the valve position.
 2. **Ten samples per cycle and ten cycles per record**, or no diagnosis is given.
-3. **Stiction and saturation only.** Positioner hysteresis, air-supply leaks and wrong valve sizing
+3. **58 labelled real loops** decide every comparison above; a larger labelled archive is what would
+   settle them.
+4. **Stiction and saturation only.** Positioner hysteresis, air-supply leaks and wrong valve sizing
    have no labelled data to test against.
-4. **Cascade and propagation results are candidates**, confirmed in the field, not verdicts.
-5. **Cost ranking needs the plant.** Severity is comparable only within one plant in its own units,
+5. **Cascade and propagation results are candidates**, confirmed in the field, not verdicts.
+6. **Cost ranking needs the plant.** Severity is comparable only within one plant in its own units,
    and location weights (1 utility · 2 energy · 3 specification or safety) are written by an
    engineer. Without them the report ranks on diagnosis alone and says so.
-6. **Cascade loops are diagnosed, not scored.** A cascade-specific Harris index is out of scope.
-7. **Mixed faults blur every tool here** — stiction *and* tight tuning together reads as one or the
+7. **Cascade loops are diagnosed, not scored.** A cascade-specific Harris index is out of scope.
+8. **Mixed faults blur every tool here** — stiction *and* tight tuning together reads as one or the
    other.
 
 ---
