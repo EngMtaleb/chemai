@@ -1,0 +1,49 @@
+{
+  "segments": 14998,
+  "runs_with_segments": 106,
+  "runs_without_segments": [
+    "20131112.csv"
+  ],
+  "segments_per_run": {
+    "min": 1,
+    "median": 80.0,
+    "max": 678
+  },
+  "minutes": {
+    "count": 14998.0,
+    "mean": 14.0,
+    "std": 4.6,
+    "min": 10.0,
+    "25%": 11.8,
+    "50%": 13.2,
+    "75%": 15.7,
+    "max": 283.7
+  },
+  "fouling_pct_h": {
+    "count": 14998.0,
+    "mean": 13.833,
+    "std": 8.939,
+    "min": -114.635,
+    "1%": -7.628,
+    "5%": 1.518,
+    "25%": 8.681,
+    "50%": 13.167,
+    "75%": 18.572,
+    "95%": 28.993,
+    "99%": 38.873,
+    "max": 73.002
+  },
+  "share_negative": 0.037,
+  "median_se_over_abs_slope": 0.367,
+  "by_split": {
+    "training": 12520,
+    "test": 2478
+  },
+  "by_n_online": {
+    "2": 14892,
+    "3": 104,
+    "0": 2
+  },
+  "feed_turbidity_segments": 3833,
+  "episodes": 86
+}

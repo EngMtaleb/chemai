@@ -1,0 +1,19 @@
+{
+  "samples_june_july": 65415,
+  "samples_august": 25192,
+  "feed_pressure": {
+    "mape_in_sample_pct": 2.6,
+    "mape_august_pct": 15.0,
+    "bias_august_pct": -5.3
+  },
+  "feed_pump_power": {
+    "mape_in_sample_pct": 1.1,
+    "mape_august_pct": 17.4,
+    "bias_august_pct": -17.4
+  },
+  "recirculation_pump_power": {
+    "mape_in_sample_pct": 2.3,
+    "mape_august_pct": 32.5,
+    "bias_august_pct": -32.5
+  }
+}

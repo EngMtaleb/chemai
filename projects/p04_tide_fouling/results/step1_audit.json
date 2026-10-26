@@ -1,0 +1,107 @@
+{
+  "files": 180,
+  "by_layout": {
+    "csv_clock": 149,
+    "sheet": 27,
+    "csv_noclock": 3,
+    "csv_clock_noheader": 1
+  },
+  "with_clock": 150,
+  "malformed_lines": [
+    {
+      "split": "training",
+      "file": "20120723.csv",
+      "bad_lines": 82
+    },
+    {
+      "split": "training",
+      "file": "20120725.csv",
+      "bad_lines": 7
+    },
+    {
+      "split": "training",
+      "file": "20120726.csv",
+      "bad_lines": 8
+    },
+    {
+      "split": "training",
+      "file": "20140206.csv",
+      "bad_lines": 4
+    },
+    {
+      "split": "training",
+      "file": "20140329.csv",
+      "bad_lines": 1
+    }
+  ],
+  "clock_not_trusted": [
+    {
+      "split": "training",
+      "file": "20120308.csv",
+      "clock_offset_days": 106.37
+    },
+    {
+      "split": "training",
+      "file": "20140701.csv",
+      "clock_offset_days": -174.11
+    },
+    {
+      "split": "training",
+      "file": "20140705.csv",
+      "clock_offset_days": -3.33
+    },
+    {
+      "split": "test",
+      "file": "20120325.csv",
+      "clock_offset_days": 88.47
+    },
+    {
+      "split": "test",
+      "file": "20121022.csv",
+      "clock_offset_days": -6.36
+    },
+    {
+      "split": "test",
+      "file": "20130626.csv",
+      "clock_offset_days": -364.51
+    }
+  ],
+  "trusted_and_long_enough": 107,
+  "by_split": {
+    "training": 92,
+    "test": 15
+  },
+  "hours_total": 5105.8,
+  "hours_by_split": {
+    "test": 889.1,
+    "training": 4216.7
+  },
+  "episodes": 87,
+  "episodes_mixing_training_and_test": [
+    40,
+    60
+  ],
+  "first_and_last": [
+    "2012-06-23 10:04:05.071900869",
+    "2015-04-01 20:17:34.440864172"
+  ],
+  "turbidity_reads": {
+    "none": 63,
+    "filtrate": 25,
+    "feed": 19
+  },
+  "feed_turbidity_hours": 1517.9,
+  "temperature_peak_hour": {
+    "runs": 34,
+    "histogram": {
+      "12.0": 1,
+      "13.0": 1,
+      "14.0": 3,
+      "15.0": 10,
+      "16.0": 13,
+      "17.0": 4,
+      "18.0": 1,
+      "19.0": 1
+    }
+  }
+}

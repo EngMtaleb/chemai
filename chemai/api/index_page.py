@@ -1,6 +1,6 @@
 """The service's front door.
 
-Two projects share one deployment, and a visitor who opens the root URL should
+Five projects share one deployment, and a visitor who opens the root URL should
 land somewhere, not on a 404. This lists what is running and links to each.
 """
 
@@ -29,8 +29,32 @@ INDEX = r"""<!doctype html>
 <body>
 <div class="wrap">
   <h1>chemai</h1>
-  <p class="sub">Industrial AI services for chemical engineering problems. Two projects, one
+  <p class="sub">Industrial AI services for chemical engineering problems. Five projects, one
   deployment. Every answer carries its uncertainty, or the reason it cannot be given.</p>
+
+  <a class="card" href="stop/">
+    <div class="t">When to stop</div>
+    <div class="d">One rule for four decisions in a desalination plant: end an RO batch, backwash,
+      clean chemically, clean an RO train. Tested once on 153 held-out batches of a public RO
+      testbed, then run on your own batch log or cleaning cycle.</div>
+    <div class="m">Open the demo &rarr;</div>
+  </a>
+
+  <a class="card" href="sun/">
+    <div class="t">Desalination on the sun &mdash; and the moon</div>
+    <div class="d">Does a seawater membrane foul differently with the hour, after a restart, or
+      with the tide? Declared tests on 5,106 hours of a public pilot, a solar and tidal design
+      explorer, and the tide test run on your own log.</div>
+    <div class="m">Open the demo &rarr;</div>
+  </a>
+
+  <a class="card" href="ro/">
+    <div class="t">RO fouling and cleaning</div>
+    <div class="d">When will each reverse-osmosis train reach its review level for a cleaning?
+      A forecast from the normalised pressure drop with a P10-P90 range, and a weekly plan with
+      an action and an owner per train.</div>
+    <div class="m">Open the demo &rarr;</div>
+  </a>
 
   <a class="card" href="loops/">
     <div class="t">Control loop diagnosis</div>

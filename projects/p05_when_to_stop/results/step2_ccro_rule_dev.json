@@ -1,0 +1,184 @@
+{
+  "development": [
+    "dataset3",
+    "dataset4"
+  ],
+  "settings": {
+    "live_window_s": 120.0,
+    "min_batch_min": 5.0,
+    "fixed_cost_from": "the drain that opens the batch's file (the previous batch's brine)",
+    "defaults_first_batch": {
+      "drain_kwh": 0.034,
+      "brine_l": 16.0
+    }
+  },
+  "rule_on_development": {
+    "b=0": {
+      "batches_inside": 69,
+      "rule_regret_pct": {
+        "median": 0.067,
+        "p90": 0.105,
+        "max": 0.126
+      },
+      "controller_regret_pct": {
+        "median": 0.155,
+        "p90": 1.924
+      },
+      "rule_stopped_share": 0.87,
+      "sqrt_law": {
+        "batches": 69,
+        "median_abs_error_pct": 3.7,
+        "ratio_q10_q50_q90": [
+          0.905,
+          0.989,
+          1.069
+        ],
+        "regret_median_pct": 0.015
+      },
+      "fixed_end_regret_median_pct": {
+        "10 mS/cm": 3.974,
+        "15 mS/cm": 0.032,
+        "20 mS/cm": 0.949
+      },
+      "outside": {
+        "batches": 519,
+        "rule_stopped_share": 0.035,
+        "stopped_costlier_than_end_by_0.5pct": 1
+      }
+    },
+    "b=1": {
+      "batches_inside": 8,
+      "rule_regret_pct": {
+        "median": 0.08,
+        "p90": 0.1,
+        "max": 0.103
+      },
+      "controller_regret_pct": {
+        "median": 2.402,
+        "p90": 3.31
+      },
+      "rule_stopped_share": 1.0,
+      "sqrt_law": {
+        "batches": 8,
+        "median_abs_error_pct": 2.1,
+        "ratio_q10_q50_q90": [
+          0.936,
+          1.007,
+          1.064
+        ],
+        "regret_median_pct": 0.006
+      },
+      "fixed_end_regret_median_pct": {
+        "10 mS/cm": 9.044,
+        "15 mS/cm": 0.365,
+        "20 mS/cm": 0.446
+      },
+      "outside": {
+        "batches": 580,
+        "rule_stopped_share": 0.003,
+        "stopped_costlier_than_end_by_0.5pct": 2
+      }
+    },
+    "b=3": {
+      "batches_inside": 8,
+      "rule_regret_pct": {
+        "median": 0.071,
+        "p90": 0.138,
+        "max": 0.179
+      },
+      "controller_regret_pct": {
+        "median": 1.224,
+        "p90": 2.051
+      },
+      "rule_stopped_share": 1.0,
+      "sqrt_law": {
+        "batches": 8,
+        "median_abs_error_pct": 2.78,
+        "ratio_q10_q50_q90": [
+          0.924,
+          1.003,
+          1.084
+        ],
+        "regret_median_pct": 0.014
+      },
+      "fixed_end_regret_median_pct": {
+        "10 mS/cm": 15.684,
+        "15 mS/cm": 1.503,
+        "20 mS/cm": 0.115
+      },
+      "outside": {
+        "batches": 580,
+        "rule_stopped_share": 0.0,
+        "stopped_costlier_than_end_by_0.5pct": 0
+      }
+    },
+    "b=10": {
+      "batches_inside": 3,
+      "rule_regret_pct": {
+        "median": 0.082,
+        "p90": 0.096,
+        "max": 0.099
+      },
+      "controller_regret_pct": {
+        "median": 0.097,
+        "p90": 0.372
+      },
+      "rule_stopped_share": 1.0,
+      "sqrt_law": {
+        "batches": 3,
+        "median_abs_error_pct": 6.33,
+        "ratio_q10_q50_q90": [
+          0.824,
+          0.993,
+          1.049
+        ],
+        "regret_median_pct": 0.042
+      },
+      "fixed_end_regret_median_pct": {
+        "10 mS/cm": 26.884,
+        "15 mS/cm": 4.484,
+        "20 mS/cm": 0.478
+      },
+      "outside": {
+        "batches": 585,
+        "rule_stopped_share": 0.0,
+        "stopped_costlier_than_end_by_0.5pct": 0
+      }
+    }
+  },
+  "excluded_varying_setpoints": 27,
+  "esc_audit": [
+    {
+      "exp": "Exp1",
+      "b": 1.0,
+      "batches": 203,
+      "still_falling_at_end": 1.0,
+      "c_end_median": 7.181,
+      "inside": 0.0
+    },
+    {
+      "exp": "Exp2",
+      "b": 10.0,
+      "batches": 57,
+      "still_falling_at_end": 1.0,
+      "c_end_median": 10.486,
+      "inside": 0.0
+    },
+    {
+      "exp": "Exp2_continued/Data",
+      "b": 10.0,
+      "batches": 42,
+      "still_falling_at_end": 1.0,
+      "c_end_median": 13.247,
+      "inside": 0.0
+    },
+    {
+      "exp": "Exp3",
+      "b": 10.0,
+      "batches": 278,
+      "still_falling_at_end": 1.0,
+      "c_end_median": 15.416,
+      "inside": 0.0
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "declaration_commit": "349394b5018102230fe91601cf1c5a354c9ba7c2",
+  "complete_cycles": 15,
+  "mid_case": {
+    "price": 0.1,
+    "ndp0": 20.0,
+    "dp0": 2.0,
+    "erd": true,
+    "F": 1.0
+  },
+  "corner_case": {
+    "price": 0.15,
+    "ndp0": 25.0,
+    "dp0": 3.0,
+    "erd": false,
+    "F": 0.5
+  },
+  "kwh_per_bar": {
+    "with_erd": 0.0368,
+    "without_erd": 0.0772
+  },
+  "D1": {
+    "rule_before_operators": 0,
+    "of": 15,
+    "pass": true
+  },
+  "D2": {
+    "implied_F_median_usd_per_m3d": 0.0,
+    "pass": true
+  },
+  "D3": {
+    "rule_before_operators": 6,
+    "of": 15,
+    "pass": true
+  },
+  "D4": {
+    "cycles": 14,
+    "spearman_rho": 0.628,
+    "p": 0.016
+  },
+  "mid_t_star_over_actual": {
+    "no_rise_share": 0.6,
+    "finite": 6,
+    "q10_q50_q90_of_finite": [
+      3.26,
+      4.61,
+      58.17
+    ]
+  },
+  "corner_t_star_over_actual": {
+    "no_rise_share": 0.6,
+    "finite": 6,
+    "q10_q50_q90_of_finite": [
+      1.1,
+      1.57,
+      19.06
+    ]
+  },
+  "grid_rule_before_operators": {
+    "min": 0,
+    "median": 0.0,
+    "max": 6,
+    "cases": 216
+  },
+  "trigger_120_reached_in": 10
+}
