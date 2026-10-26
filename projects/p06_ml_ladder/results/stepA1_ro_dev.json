@@ -1,0 +1,361 @@
+{
+ "data": {
+  "plants": 30,
+  "seed": 1001,
+  "normalisation": "vendor 1.5",
+  "rows": 10192,
+  "positives": 2759,
+  "cycles": 627,
+  "dropped_insufficient": 2428
+ },
+ "baselines": {
+  "forecast_flag": {
+   "tp": 826,
+   "fp": 1032,
+   "fn": 1933,
+   "recall": 0.299,
+   "precision": 0.445,
+   "f1": 0.358
+  },
+  "margin_flag": {
+   "tp": 1020,
+   "fp": 797,
+   "fn": 1739,
+   "recall": 0.37,
+   "precision": 0.561,
+   "f1": 0.446
+  },
+  "union_post_hoc": {
+   "tp": 1441,
+   "fp": 1494,
+   "fn": 1318,
+   "recall": 0.522,
+   "precision": 0.491,
+   "f1": 0.506
+  }
+ },
+ "threshold_rule": "the threshold at which a model's development precision equals the margin rule's (0.561)",
+ "rungs": {
+  "ml": {
+   "logistic_regression": {
+    "ap": 0.6053,
+    "params": {
+     "m__C": 0.01
+    },
+    "threshold": 0.6020202068341686,
+    "at_threshold": {
+     "tp": 1773,
+     "fp": 1387,
+     "fn": 986,
+     "recall": 0.643,
+     "precision": 0.561,
+     "f1": 0.599
+    },
+    "seconds": 1
+   },
+   "k_nearest_neighbours": {
+    "ap": 0.5847,
+    "params": {
+     "m__n_neighbors": 151,
+     "m__weights": "distance"
+    },
+    "threshold": 0.39374322591627947,
+    "at_threshold": {
+     "tp": 1514,
+     "fp": 1184,
+     "fn": 1245,
+     "recall": 0.549,
+     "precision": 0.561,
+     "f1": 0.555
+    },
+    "seconds": 3
+   },
+   "svm_rbf": {
+    "ap": 0.616,
+    "params": {
+     "k__gamma": 0.01,
+     "m__estimator__C": 1.0
+    },
+    "threshold": 0.3754825906274759,
+    "at_threshold": {
+     "tp": 1735,
+     "fp": 1357,
+     "fn": 1024,
+     "recall": 0.629,
+     "precision": 0.561,
+     "f1": 0.593
+    },
+    "seconds": 13
+   },
+   "random_forest": {
+    "ap": 0.6266,
+    "params": {
+     "m__max_depth": 12,
+     "m__min_samples_leaf": 5
+    },
+    "threshold": 0.5243587356687294,
+    "at_threshold": {
+     "tp": 1756,
+     "fp": 1374,
+     "fn": 1003,
+     "recall": 0.636,
+     "precision": 0.561,
+     "f1": 0.596
+    },
+    "seconds": 36
+   },
+   "extra_trees": {
+    "ap": 0.6127,
+    "params": {
+     "m__max_depth": 12,
+     "m__min_samples_leaf": 5
+    },
+    "threshold": 0.5975652777081986,
+    "at_threshold": {
+     "tp": 1698,
+     "fp": 1328,
+     "fn": 1061,
+     "recall": 0.615,
+     "precision": 0.561,
+     "f1": 0.587
+    },
+    "seconds": 16
+   },
+   "xgboost": {
+    "ap": 0.6259,
+    "params": {
+     "max_depth": 3,
+     "min_child_weight": 10
+    },
+    "threshold": 0.3793966770172119,
+    "at_threshold": {
+     "tp": 1706,
+     "fp": 1334,
+     "fn": 1053,
+     "recall": 0.618,
+     "precision": 0.561,
+     "f1": 0.588
+    },
+    "seconds": 7
+   },
+   "lightgbm": {
+    "ap": 0.626,
+    "params": {
+     "min_child_samples": 80,
+     "num_leaves": 7
+    },
+    "threshold": 0.3809334236852667,
+    "at_threshold": {
+     "tp": 1721,
+     "fp": 1346,
+     "fn": 1038,
+     "recall": 0.624,
+     "precision": 0.561,
+     "f1": 0.591
+    },
+    "seconds": 7
+   },
+   "ensemble_top3": {
+    "members": [
+     "random_forest",
+     "lightgbm",
+     "xgboost"
+    ],
+    "ap": 0.6316,
+    "threshold": 0.4217379751244262,
+    "at_threshold": {
+     "tp": 1748,
+     "fp": 1367,
+     "fn": 1011,
+     "recall": 0.634,
+     "precision": 0.561,
+     "f1": 0.595
+    }
+   }
+  },
+  "ml_physics": {
+   "logistic_regression": {
+    "ap": 0.6029,
+    "params": {
+     "m__C": 0.01
+    },
+    "threshold": 0.6005513452536441,
+    "at_threshold": {
+     "tp": 1785,
+     "fp": 1396,
+     "fn": 974,
+     "recall": 0.647,
+     "precision": 0.561,
+     "f1": 0.601
+    },
+    "seconds": 2
+   },
+   "k_nearest_neighbours": {
+    "ap": 0.5698,
+    "params": {
+     "m__n_neighbors": 151,
+     "m__weights": "distance"
+    },
+    "threshold": 0.38789452631081023,
+    "at_threshold": {
+     "tp": 1520,
+     "fp": 1189,
+     "fn": 1239,
+     "recall": 0.551,
+     "precision": 0.561,
+     "f1": 0.556
+    },
+    "seconds": 4
+   },
+   "svm_rbf": {
+    "ap": 0.61,
+    "params": {
+     "k__gamma": 0.01,
+     "m__estimator__C": 1.0
+    },
+    "threshold": 0.38047491435839137,
+    "at_threshold": {
+     "tp": 1710,
+     "fp": 1338,
+     "fn": 1049,
+     "recall": 0.62,
+     "precision": 0.561,
+     "f1": 0.589
+    },
+    "seconds": 13
+   },
+   "random_forest": {
+    "ap": 0.619,
+    "params": {
+     "m__max_depth": 12,
+     "m__min_samples_leaf": 5
+    },
+    "threshold": 0.5180429956528426,
+    "at_threshold": {
+     "tp": 1723,
+     "fp": 1348,
+     "fn": 1036,
+     "recall": 0.625,
+     "precision": 0.561,
+     "f1": 0.591
+    },
+    "seconds": 40
+   },
+   "extra_trees": {
+    "ap": 0.5956,
+    "params": {
+     "m__max_depth": 12,
+     "m__min_samples_leaf": 5
+    },
+    "threshold": 0.5909592218458288,
+    "at_threshold": {
+     "tp": 1649,
+     "fp": 1290,
+     "fn": 1110,
+     "recall": 0.598,
+     "precision": 0.561,
+     "f1": 0.579
+    },
+    "seconds": 17
+   },
+   "xgboost": {
+    "ap": 0.63,
+    "params": {
+     "max_depth": 3,
+     "min_child_weight": 10
+    },
+    "threshold": 0.382476806640625,
+    "at_threshold": {
+     "tp": 1695,
+     "fp": 1326,
+     "fn": 1064,
+     "recall": 0.614,
+     "precision": 0.561,
+     "f1": 0.587
+    },
+    "seconds": 9
+   },
+   "lightgbm": {
+    "ap": 0.6269,
+    "params": {
+     "min_child_samples": 80,
+     "num_leaves": 7
+    },
+    "threshold": 0.3776605905566827,
+    "at_threshold": {
+     "tp": 1716,
+     "fp": 1342,
+     "fn": 1043,
+     "recall": 0.622,
+     "precision": 0.561,
+     "f1": 0.59
+    },
+    "seconds": 9
+   },
+   "ensemble_top3": {
+    "members": [
+     "xgboost",
+     "lightgbm",
+     "random_forest"
+    ],
+    "ap": 0.6322,
+    "threshold": 0.41558564419644944,
+    "at_threshold": {
+     "tp": 1754,
+     "fp": 1372,
+     "fn": 1005,
+     "recall": 0.636,
+     "precision": 0.561,
+     "f1": 0.596
+    }
+   }
+  },
+  "dl": {
+   "mlp": {
+    "ap": 0.6087,
+    "threshold": 0.3837559223175049,
+    "at_threshold": {
+     "tp": 1689,
+     "fp": 1321,
+     "fn": 1070,
+     "recall": 0.612,
+     "precision": 0.561,
+     "f1": 0.586
+    }
+   },
+   "cnn": {
+    "ap": 0.5946,
+    "threshold": 0.395718514919281,
+    "at_threshold": {
+     "tp": 1557,
+     "fp": 1218,
+     "fn": 1202,
+     "recall": 0.564,
+     "precision": 0.561,
+     "f1": 0.563
+    }
+   },
+   "gaplaw": {
+    "ap": 0.5768,
+    "threshold": 0.3748583197593689,
+    "at_threshold": {
+     "tp": 1486,
+     "fp": 1162,
+     "fn": 1273,
+     "recall": 0.539,
+     "precision": 0.561,
+     "f1": 0.55
+    }
+   }
+  }
+ },
+ "frozen": {
+  "ml": "random_forest",
+  "ml_ensemble": "ensemble_top3",
+  "ml_physics": "xgboost",
+  "ml_physics_ensemble": "ensemble_top3",
+  "dl": "mlp",
+  "dl_physics": "gaplaw"
+ },
+ "seconds": 209
+}
