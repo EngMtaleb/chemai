@@ -1,0 +1,42 @@
+[     0s] training: 480 runs / 240 plants · archive: 58 loops (26 sticky), 22 loops (14 sticky)
+WARNING chemai.data.sacac: tuning-L-paper-horch-2003: kept rows 0-845, dropped 301 (data-quality rule)
+[    29s] unlabelled real loops: 65
+[    30s]   A: outer fold 1/5 done
+[    31s]   A: outer fold 2/5 done
+[    33s]   A: outer fold 3/5 done
+[    34s]   A: outer fold 4/5 done
+[    35s]   A: outer fold 5/5 done
+[    39s] A default logistic_regression        sim F1 0.707 | 58: 12/26 FA 4 F1 0.571 [0.385, 0.735] | 22: 10/14 FA 2
+[    42s] A default svm                        sim F1 0.674 | 58: 10/26 FA 3 F1 0.513 [0.303, 0.683] | 22: 9/14 FA 2
+[    45s] A default decision_tree              sim F1 0.724 | 58: 10/26 FA 7 F1 0.465 [0.267, 0.64] | 22: 8/14 FA 4
+[    48s] A default random_forest              sim F1 0.796 | 58: 14/26 FA 4 F1 0.636 [0.452, 0.783] | 22: 12/14 FA 3
+[    52s] A default gradient_boosting          sim F1 0.772 | 58: 14/26 FA 3 F1 0.651 [0.465, 0.792] | 22: 12/14 FA 3
+[    96s]   B+C: outer fold 1/5 done
+[   135s]   B+C: outer fold 2/5 done
+[   177s]   B+C: outer fold 3/5 done
+[   219s]   B+C: outer fold 4/5 done
+[   260s]   B+C: outer fold 5/5 done
+[   310s] B tuned logistic_regression          sim F1 0.726 | 58: 14/26 FA 4 F1 0.636 [0.452, 0.783] | 22: 12/14 FA 2
+[   313s] B tuned svm                          sim F1 0.689 | 58: 10/26 FA 6 F1 0.476 [0.278, 0.649] | 22: 9/14 FA 2
+[   315s] B tuned decision_tree                sim F1 0.725 | 58: 14/26 FA 10 F1 0.560 [0.381, 0.7] | 22: 12/14 FA 4
+[   318s] B tuned random_forest                sim F1 0.791 | 58: 14/26 FA 3 F1 0.651 [0.465, 0.792] | 22: 12/14 FA 3
+[   321s] B tuned gradient_boosting            sim F1 0.754 | 58: 14/26 FA 3 F1 0.651 [0.465, 0.792] | 22: 12/14 FA 3
+[   324s] C ensemble voting                    sim F1 0.783 | 58: 14/26 FA 4 F1 0.636 [0.45, 0.784] | 22: 12/14 FA 3
+[   327s] C ensemble stacking                  sim F1 0.812 | 58: 14/26 FA 4 F1 0.636 [0.45, 0.784] | 22: 12/14 FA 3
+[   370s]   D: outer fold 1/5 done
+[   413s]   D: outer fold 2/5 done
+[   458s]   D: outer fold 3/5 done
+[   502s]   D: outer fold 4/5 done
+[   545s]   D: outer fold 5/5 done
+[   594s] D physics logistic_regression        sim F1 0.826 | 58: 13/26 FA 3 F1 0.619 [0.444, 0.778] | 22: 11/14 FA 2
+[   597s] D physics svm                        sim F1 0.854 | 58: 13/26 FA 3 F1 0.619 [0.435, 0.776] | 22: 11/14 FA 3
+[   600s] D physics decision_tree              sim F1 0.749 | 58: 12/26 FA 8 F1 0.522 [0.333, 0.682] | 22: 11/14 FA 4
+[   603s] D physics random_forest              sim F1 0.849 | 58: 13/26 FA 3 F1 0.619 [0.435, 0.776] | 22: 11/14 FA 3
+[   606s] D physics gradient_boosting          sim F1 0.853 | 58: 13/26 FA 3 F1 0.619 [0.435, 0.776] | 22: 11/14 FA 3
+[   609s] D physics ensemble voting            sim F1 0.846 | 58: 13/26 FA 3 F1 0.619 [0.435, 0.776] | 22: 11/14 FA 3
+[   612s] D physics ensemble stacking          sim F1 0.837 | 58: 13/26 FA 3 F1 0.619 [0.435, 0.776] | 22: 11/14 FA 3
+[   615s] D hybrid (rule + physics svm)        sim F1 0.775 | 58: 14/26 FA 3 F1 0.651 [0.465, 0.792] | 22: 12/14 FA 3
+[   618s] D rule as teacher                    sim F1 nan | 58: 14/26 FA 2 F1 0.667 [0.485, 0.81] | 22: 12/14 FA 2
+[   620s] E the rule                           sim F1 0.616 | 58: 12/26 FA 2 F1 0.600 [0.385, 0.762] | 22: 12/14 FA 2
+[   621s] saved results_exp9.json and results_exp9_table.csv
+exit 0

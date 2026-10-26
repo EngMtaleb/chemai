@@ -1,0 +1,32 @@
+29 methods tried against the rule (experiments 11 and 12), 5 clear the bar (> +2)
+exp12 · cnn · hybrid                                       22/ 7  vs rule  +5  95% [-2, 13]  P(>0) 0.88
+exp12 · cnn · rule as teacher                              19/ 4  vs rule  +5  95% [-3, 13]  P(>0) 0.88
+post hoc · cnn · two-class, without the 11                 16/ 2  vs rule  +4  95% [-2, 10]  P(>0) 0.86
+exp11 · ANN · physics features                             17/ 4  vs rule  +3  95% [-3, 9]  P(>0) 0.79
+exp12 · S alone                                            18/ 5  vs rule  +3  95% [-4, 10]  P(>0) 0.74
+exp12 · lstm · hybrid                                      20/ 7  vs rule  +3  95% [-4, 10]  P(>0) 0.76
+exp11 · cnn                                                20/ 8  vs rule  +2  95% [-6, 10]  P(>0) 0.63
+exp12 · xgboost · tuned                                    17/ 5  vs rule  +2  95% [-4, 8]  P(>0) 0.70
+exp12 · lightgbm · tuned                                   16/ 4  vs rule  +2  95% [-2, 7]  P(>0) 0.73
+exp12 · ANN · hybrid                                       17/ 5  vs rule  +2  95% [-3, 7]  P(>0) 0.69
+exp12 · lightgbm · default                                 15/ 4  vs rule  +1  95% [-4, 6]  P(>0) 0.57
+exp11 · ML · random forest (default)                       16/ 6  vs rule  +0  95% [-5, 5]  P(>0) 0.43
+exp11 · physics · hybrid                                   15/ 5  vs rule  +0  95% [-5, 5]  P(>0) 0.41
+exp11 · lstm                                               19/ 9  vs rule  +0  95% [-8, 8]  P(>0) 0.45
+exp12 · xgboost · default                                  17/ 7  vs rule  +0  95% [-6, 6]  P(>0) 0.43
+exp12 · ensemble · 7 tuned                                 16/ 6  vs rule  +0  95% [-6, 6]  P(>0) 0.42
+exp11 · physics · rule as teacher                          15/ 6  vs rule  -1  95% [-7, 5]  P(>0) 0.31
+exp12 · logistic_regression · tuned                        14/ 5  vs rule  -1  95% [-5, 3]  P(>0) 0.25
+exp12 · decision_tree · default                            15/ 6  vs rule  -1  95% [-7, 5]  P(>0) 0.30
+exp12 · decision_tree · tuned                              16/ 7  vs rule  -1  95% [-8, 5]  P(>0) 0.32
+exp12 · gradient_boosting · tuned                          14/ 5  vs rule  -1  95% [-6, 4]  P(>0) 0.27
+exp11 · tuning · random forest                             17/ 9  vs rule  -2  95% [-9, 4]  P(>0) 0.23
+exp11 · ensemble · soft voting of 5 tuned                  16/ 8  vs rule  -2  95% [-9, 5]  P(>0) 0.23
+exp11 · physics · random forest                            14/ 6  vs rule  -2  95% [-8, 3]  P(>0) 0.18
+exp12 · svm · default                                      12/ 4  vs rule  -2  95% [-7, 3]  P(>0) 0.16
+exp12 · gradient_boosting · default                        13/ 5  vs rule  -2  95% [-7, 3]  P(>0) 0.14
+exp12 · ANN · rule as teacher                              14/ 7  vs rule  -3  95% [-9, 3]  P(>0) 0.12
+exp12 · logistic_regression · default                      10/ 4  vs rule  -4  95% [-10, 3]  P(>0) 0.09
+exp12 · svm · tuned                                        13/ 9  vs rule  -6  95% [-13, 1]  P(>0) 0.03
+exp12 · lstm · rule as teacher                              3/ 4  vs rule -11  95% [-19, -3]  P(>0) 0.00
+post hoc · lstm · two-class, without the 11                 2/ 4  vs rule -12  95% [-19, -4]  P(>0) 0.00

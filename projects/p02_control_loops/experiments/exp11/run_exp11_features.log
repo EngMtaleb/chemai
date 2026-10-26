@@ -1,0 +1,18 @@
+WARNING chemai.data.sacac: tuning-L-paper-horch-2003: kept rows 0-845, dropped 301 (data-quality rule)
+[    30s] simulation 480 runs · archive 58 (26 sticky) in 5 folds · pseudo-labelled real loops 11
+[   257s] condition A (simulation only) done
+[   655s] condition B fold 1/5 done (real loops repeated x13, training rows 961)
+[  1159s] condition B fold 2/5 done (real loops repeated x13, training rows 974)
+[  1486s] condition B fold 3/5 done (real loops repeated x13, training rows 974)
+[  2044s] condition B fold 4/5 done (real loops repeated x13, training rows 974)
+[  2564s] condition B fold 5/5 done (real loops repeated x11, training rows 975)
+[  2571s] ML · random forest (default)         sim only: 14/26 FA 4 F1 0.636 | + real: 16/26 FA 6 F1 0.667 [0.5, 0.8]
+[  2577s] tuning · random forest               sim only: 14/26 FA 3 F1 0.651 | + real: 17/26 FA 9 F1 0.654 [0.485, 0.791]
+[  2583s] ensemble · soft voting of 5 tuned    sim only: 14/26 FA 4 F1 0.636 | + real: 16/26 FA 8 F1 0.640 [0.468, 0.783]
+[  2590s] physics · random forest              sim only: 13/26 FA 3 F1 0.619 | + real: 14/26 FA 6 F1 0.609 [0.421, 0.76]
+[  2596s] physics · hybrid                     sim only: 14/26 FA 3 F1 0.651 | + real: 15/26 FA 5 F1 0.652 [0.474, 0.792]
+[  2602s] physics · rule as teacher            sim only: 14/26 FA 2 F1 0.667 | + real: 15/26 FA 6 F1 0.638 [0.45, 0.784]
+[  2608s] ANN · physics features               sim only: 13/26 FA 4 F1 0.605 | + real: 17/26 FA 4 F1 0.723 [0.558, 0.857]
+[  2614s] the rule                             sim only: 12/26 FA 2 F1 0.600 | + real: 12/26 FA 2 F1 0.600 [0.385, 0.762]
+[  2614s] saved results_exp11_features.json
+exit 0

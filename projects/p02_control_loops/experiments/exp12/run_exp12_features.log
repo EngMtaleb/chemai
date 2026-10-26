@@ -1,0 +1,74 @@
+WARNING chemai.data.sacac: tuning-L-paper-horch-2003: kept rows 0-845, dropped 301 (data-quality rule)
+[   596s] simulation 480 runs · archive 58 (26 sticky) in 5 folds · pseudo-labelled real loops 11
+[   600s]     logistic_regression done
+[   602s]     svm done
+[   603s]     decision_tree done
+[   639s]     random_forest done
+[   868s]     gradient_boosting done
+[   878s]     xgboost done
+[   894s]     lightgbm done
+[   957s] condition A (simulation only) done
+[   959s]     logistic_regression done
+[   968s]     svm done
+[   969s]     decision_tree done
+[  1018s]     random_forest done
+[  1198s]     gradient_boosting done
+[  1211s]     xgboost done
+[  1232s]     lightgbm done
+[  1347s] condition B fold 1/5 done (real loops repeated x13, training rows 961)
+[  1349s]     logistic_regression done
+[  1356s]     svm done
+[  1357s]     decision_tree done
+[  1399s]     random_forest done
+[  1569s]     gradient_boosting done
+[  1582s]     xgboost done
+[  1601s]     lightgbm done
+[  1725s] condition B fold 2/5 done (real loops repeated x13, training rows 974)
+[  1727s]     logistic_regression done
+[  1735s]     svm done
+[  1736s]     decision_tree done
+[  1779s]     random_forest done
+[  1982s]     gradient_boosting done
+[  1996s]     xgboost done
+[  2017s]     lightgbm done
+[  2150s] condition B fold 3/5 done (real loops repeated x13, training rows 974)
+[  2152s]     logistic_regression done
+[  2161s]     svm done
+[  2162s]     decision_tree done
+[  2220s]     random_forest done
+[  2476s]     gradient_boosting done
+[  2495s]     xgboost done
+[  2522s]     lightgbm done
+[  2643s] condition B fold 4/5 done (real loops repeated x13, training rows 974)
+[  2645s]     logistic_regression done
+[  2654s]     svm done
+[  2655s]     decision_tree done
+[  2702s]     random_forest done
+[  3139s]     gradient_boosting done
+[  3155s]     xgboost done
+[  3180s]     lightgbm done
+[  3319s] condition B fold 5/5 done (real loops repeated x11, training rows 975)
+[  3319s] reproduction of experiment 11: random_forest · default A same, random_forest · default B same, random_forest · tuned A same, random_forest · tuned B same, check · ensemble of the 5 (experiment 11) A same, check · ensemble of the 5 (experiment 11) B same, ANN A same, ANN B same
+[  3327s] logistic_regression · default                sim only: 12/26 FA 4 F1 0.571 | + real: 10/26 FA 4 F1 0.500 [0.286, 0.667]
+[  3335s] logistic_regression · tuned                  sim only: 14/26 FA 4 F1 0.636 | + real: 14/26 FA 5 F1 0.622 [0.432, 0.773]
+[  3343s] svm · default                                sim only: 10/26 FA 3 F1 0.513 | + real: 12/26 FA 4 F1 0.571 [0.364, 0.732]
+[  3350s] svm · tuned                                  sim only: 10/26 FA 6 F1 0.476 | + real: 13/26 FA 9 F1 0.542 [0.35, 0.694]
+[  3359s] decision_tree · default                      sim only: 10/26 FA 7 F1 0.465 | + real: 15/26 FA 6 F1 0.638 [0.457, 0.786]
+[  3367s] decision_tree · tuned                        sim only: 14/26 FA 10 F1 0.560 | + real: 16/26 FA 7 F1 0.653 [0.485, 0.786]
+[  3375s] random_forest · default                      sim only: 14/26 FA 4 F1 0.636 | + real: 16/26 FA 6 F1 0.667 [0.5, 0.8]
+[  3382s] random_forest · tuned                        sim only: 14/26 FA 3 F1 0.651 | + real: 17/26 FA 9 F1 0.654 [0.485, 0.791]
+[  3390s] gradient_boosting · default                  sim only: 14/26 FA 3 F1 0.651 | + real: 13/26 FA 5 F1 0.591 [0.408, 0.745]
+[  3397s] gradient_boosting · tuned                    sim only: 14/26 FA 3 F1 0.651 | + real: 14/26 FA 5 F1 0.622 [0.435, 0.769]
+[  3404s] xgboost · default                            sim only: 14/26 FA 3 F1 0.651 | + real: 17/26 FA 7 F1 0.680 [0.512, 0.816]
+[  3410s] xgboost · tuned                              sim only: 14/26 FA 2 F1 0.667 | + real: 17/26 FA 5 F1 0.708 [0.541, 0.844]
+[  3418s] lightgbm · default                           sim only: 14/26 FA 3 F1 0.651 | + real: 15/26 FA 4 F1 0.667 [0.488, 0.809]
+[  3425s] lightgbm · tuned                             sim only: 14/26 FA 3 F1 0.651 | + real: 16/26 FA 4 F1 0.696 [0.526, 0.83]
+[  3432s] ensemble · 7 tuned                           sim only: 14/26 FA 3 F1 0.651 | + real: 16/26 FA 6 F1 0.667 [0.486, 0.808]
+[  3439s] check · ensemble of the 5 (experiment 11)    sim only: 14/26 FA 4 F1 0.636 | + real: 16/26 FA 8 F1 0.640 [0.468, 0.783]
+[  3446s] ANN                                          sim only: 13/26 FA 4 F1 0.605 | + real: 17/26 FA 4 F1 0.723 [0.558, 0.857]
+[  3452s] ANN · hybrid                                 sim only: 14/26 FA 4 F1 0.636 | + real: 17/26 FA 5 F1 0.708 [0.542, 0.84]
+[  3459s] ANN · rule as teacher                        sim only: 14/26 FA 12 F1 0.538 | + real: 14/26 FA 7 F1 0.596 [0.41, 0.75]
+[  3466s] S alone                                      sim only: 12/26 FA 4 F1 0.571 | + real: 18/26 FA 5 F1 0.735 [0.571, 0.863]
+[  3473s] the rule                                     sim only: 12/26 FA 2 F1 0.600 | + real: 12/26 FA 2 F1 0.600 [0.385, 0.762]
+[  3473s] saved results_exp12_features.json
+exit 0
