@@ -85,7 +85,7 @@ transmitters instead of one differential transmitter raised the forecast error f
 
 ### The forecast is blind on the floor and late on acceleration
 
-- Of 151 real crossings, **85 came while the forecast said "not in sight"**: the pressure drop was
+- Of 151 weekly decisions followed by a real crossing, **85 came while the forecast said "not in sight"**: the pressure drop was
   sitting at its clean baseline, and a trend that has not started cannot be extended.
 - On accelerating, biofilm-like fouling a straight line is **late by a median 23 days**
   (simulation). Plan by the P10 date for a train with that history.

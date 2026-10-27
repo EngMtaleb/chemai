@@ -48,7 +48,7 @@ own signal and needs none. The differences in cost are small because near its be
 flat — which is also why a slow search across batches gains so little.
 
 **What failed.** The square-root law, used as an early *forecast* of the stop (fitted on minutes
-5–20), landed within 4–7 % for b ≤ 3 but **11 % short at b = 10**, past the declared 10 %. The live
+5–20), landed a median 4.3–7.5 % off for b ≤ 3 but **11 % short at b = 10**, past the declared 10 %. The live
 cost bends slightly; the further out the stop, the more the early slope misleads. The online rule
 needs no straight line and was unaffected.
 

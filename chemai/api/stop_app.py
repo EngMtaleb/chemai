@@ -41,7 +41,7 @@ RESULTS = {
         "scored_best_end_in_record": {"b=1": 97, "b=10": 10},
         "median_above_best_pct": {"b=1": 0.069, "b=10": 0.019}, "p90_above_best_pct": {"b=1": 0.112, "b=10": 0.061},
         "optimiser_ended_while_cost_still_falling_pct": {"BO (test)": 90, "ESC (development)": 100},
-        "square_root_law_forecast": "within 4-7 % for b <= 3; 11 % short at b = 10 (declared limit 10 %: failed)"},
+        "square_root_law_forecast": "a median 4.3-7.5 % off for b <= 3; 11 % short at b = 10 (declared limit 10 %: failed)"},
     "ro_cleaning": {"cycles": 15, "energy_paid_for_a_cleaning": "0 of 15 (mid case); at most 6 of 15 in any of 216 cases",
                     "no_energy_rise": "9 of 15 cycles",
                     "longer_cycles_left_more_pressure_drop": {"spearman": 0.63, "p": 0.016}},
