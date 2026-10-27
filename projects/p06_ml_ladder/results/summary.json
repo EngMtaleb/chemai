@@ -1,0 +1,685 @@
+{
+ "commits": {
+  "A": "e7ad90b",
+  "B": "c0c9264",
+  "C": "aead79c"
+ },
+ "A": {
+  "final_exam": {
+   "plants": 60,
+   "rows": 21955,
+   "positives": 5221
+  },
+  "real": {
+   "rows": 213,
+   "positives": 61,
+   "groups": 11
+  },
+  "rule": {
+   "exam": {
+    "tp": 1949,
+    "fp": 1449,
+    "fn": 3272,
+    "recall": 0.373,
+    "precision": 0.574,
+    "f1": 0.452
+   },
+   "real": {
+    "tp": 26,
+    "fp": 2,
+    "fn": 35,
+    "recall": 0.426,
+    "precision": 0.929,
+    "f1": 0.584
+   }
+  },
+  "forecast": {
+   "exam": {
+    "tp": 1603,
+    "fp": 1947,
+    "fn": 3618,
+    "recall": 0.307,
+    "precision": 0.452,
+    "f1": 0.366
+   },
+   "real": {
+    "tp": 13,
+    "fp": 5,
+    "fn": 48,
+    "recall": 0.213,
+    "precision": 0.722,
+    "f1": 0.329
+   }
+  },
+  "picks": {
+   "ml": {
+    "label": "Machine learning",
+    "model": "ml:random_forest",
+    "exam": {
+     "recall": 0.632,
+     "precision": 0.591,
+     "ap": 0.656,
+     "d": 0.259,
+     "ci": [
+      0.225,
+      0.29
+     ]
+    },
+    "real": {
+     "recall": 0.656,
+     "precision": 0.714,
+     "ap": 0.739,
+     "d": 0.23,
+     "ci": [
+      -0.05,
+      0.441
+     ],
+     "precision_at_rule_recall": 0.789,
+     "recall_at_rule_precision": 0.098
+    }
+   },
+   "ml_ensemble": {
+    "label": "Ensemble",
+    "model": "ml:ensemble_top3",
+    "exam": {
+     "recall": 0.619,
+     "precision": 0.604,
+     "ap": 0.664,
+     "d": 0.246,
+     "ci": [
+      0.212,
+      0.278
+     ]
+    },
+    "real": {
+     "recall": 0.689,
+     "precision": 0.627,
+     "ap": 0.69,
+     "d": 0.263,
+     "ci": [
+      -0.031,
+      0.469
+     ],
+     "precision_at_rule_recall": 0.703,
+     "recall_at_rule_precision": 0.066
+    }
+   },
+   "ml_physics": {
+    "label": "ML + physics",
+    "model": "ml_physics:xgboost",
+    "exam": {
+     "recall": 0.603,
+     "precision": 0.615,
+     "ap": 0.663,
+     "d": 0.23,
+     "ci": [
+      0.198,
+      0.26
+     ]
+    },
+    "real": {
+     "recall": 0.639,
+     "precision": 0.629,
+     "ap": 0.662,
+     "d": 0.213,
+     "ci": [
+      -0.022,
+      0.385
+     ],
+     "precision_at_rule_recall": 0.659,
+     "recall_at_rule_precision": 0.049
+    }
+   },
+   "ml_physics_ensemble": {
+    "label": "Ensemble + physics",
+    "model": "ml_physics:ensemble_top3",
+    "exam": {
+     "recall": 0.632,
+     "precision": 0.602,
+     "ap": 0.667,
+     "d": 0.259,
+     "ci": [
+      0.229,
+      0.288
+     ]
+    },
+    "real": {
+     "recall": 0.721,
+     "precision": 0.677,
+     "ap": 0.704,
+     "d": 0.295,
+     "ci": [
+      0.033,
+      0.471
+     ],
+     "precision_at_rule_recall": 0.733,
+     "recall_at_rule_precision": 0.049
+    }
+   },
+   "dl": {
+    "label": "Deep learning",
+    "model": "dl:mlp",
+    "exam": {
+     "recall": 0.608,
+     "precision": 0.604,
+     "ap": 0.644,
+     "d": 0.235,
+     "ci": [
+      0.196,
+      0.268
+     ]
+    },
+    "real": {
+     "recall": 0.607,
+     "precision": 0.74,
+     "ap": 0.725,
+     "d": 0.181,
+     "ci": [
+      -0.151,
+      0.431
+     ],
+     "precision_at_rule_recall": 0.778,
+     "recall_at_rule_precision": 0.016
+    }
+   },
+   "dl_physics": {
+    "label": "DL + physics",
+    "model": "dl:gaplaw",
+    "exam": {
+     "recall": 0.617,
+     "precision": 0.576,
+     "ap": 0.622,
+     "d": 0.244,
+     "ci": [
+      0.213,
+      0.273
+     ]
+    },
+    "real": {
+     "recall": 0.738,
+     "precision": 0.703,
+     "ap": 0.716,
+     "d": 0.312,
+     "ci": [
+      -0.017,
+      0.521
+     ],
+     "precision_at_rule_recall": 0.824,
+     "recall_at_rule_precision": 0.0
+    }
+   }
+  },
+  "matched_training_real": {
+   "ml:random_forest": {
+    "tp": 46,
+    "fp": 16,
+    "fn": 15,
+    "recall": 0.754,
+    "precision": 0.742,
+    "f1": 0.748,
+    "ap": 0.776
+   },
+   "ml_physics:xgboost": {
+    "tp": 50,
+    "fp": 21,
+    "fn": 11,
+    "recall": 0.82,
+    "precision": 0.704,
+    "f1": 0.758,
+    "ap": 0.835
+   }
+  }
+ },
+ "B": {
+  "test": {
+   "rows": 10830,
+   "episodes": 47,
+   "period": "2014-01-01 to 2015-04-01"
+  },
+  "dev_rows": 4168,
+  "baselines": {
+   "no_model_dev_median": 0.9878,
+   "pred_line": 2.4757,
+   "pred_hermia": 2.0696,
+   "pred_history": 1.0881
+  },
+  "picks": {
+   "ml": {
+    "label": "Machine learning",
+    "model": "ml:extra_trees",
+    "mae": 0.9432,
+    "d": -0.0446,
+    "ci": [
+     -0.0801,
+     -0.003
+    ]
+   },
+   "ml_ensemble": {
+    "label": "Ensemble",
+    "model": "ml:ensemble_top3",
+    "mae": 0.9517,
+    "d": -0.0361,
+    "ci": [
+     -0.077,
+     0.0087
+    ]
+   },
+   "ml_physics": {
+    "label": "ML + physics",
+    "model": "ml_physics:extra_trees",
+    "mae": 0.9475,
+    "d": -0.0402,
+    "ci": [
+     -0.0767,
+     0.0022
+    ]
+   },
+   "ml_physics_ensemble": {
+    "label": "Ensemble + physics",
+    "model": "ml_physics:ensemble_top3",
+    "mae": 0.9587,
+    "d": -0.029,
+    "ci": [
+     -0.0715,
+     0.0167
+    ]
+   },
+   "dl": {
+    "label": "Deep learning",
+    "model": "dl:mlp",
+    "mae": 1.4529,
+    "d": 0.4651,
+    "ci": [
+     0.2466,
+     0.6655
+    ]
+   },
+   "dl_physics": {
+    "label": "DL + physics",
+    "model": "dl:hermia",
+    "mae": 0.942,
+    "d": -0.0457,
+    "ci": [
+     -0.0918,
+     0.0166
+    ]
+   }
+  },
+  "best_any": [
+   "ml_physics:svr_rbf",
+   0.9141
+  ],
+  "clock": {
+   "model": "extra_trees",
+   "mae_without": 0.9432,
+   "mae_with": 0.9563
+  },
+  "hermia_weights": {
+   "complete": 0.0820000022649765,
+   "standard": 0.6420000195503235,
+   "intermediate": 0.14900000393390656,
+   "cake": 0.12700000405311584
+  },
+  "separability": {
+   "cycles": 10830,
+   "spread_at_12min_pct_median": 0.05,
+   "spread_over_noise_median": 0.049,
+   "share_spread_above_noise": 0.0
+  }
+ },
+ "C": {
+  "test_batches": 142,
+  "dev_batches": 336,
+  "r_max_esc": 2.34,
+  "r_max_open_loop": 6.58,
+  "law": {
+   "b=0": {
+    "inside": 103,
+    "err": 4.31,
+    "ratio": 0.961,
+    "regret": 0.011
+   },
+   "b=1": {
+    "inside": 97,
+    "err": 5.14,
+    "ratio": 0.952,
+    "regret": 0.014
+   },
+   "b=3": {
+    "inside": 75,
+    "err": 7.46,
+    "ratio": 0.926,
+    "regret": 0.032
+   },
+   "b=10": {
+    "inside": 10,
+    "err": 11.35,
+    "ratio": 0.887,
+    "regret": 0.149
+   }
+  },
+  "picks": {
+   "ml": {
+    "label": "Machine learning",
+    "model": "ml:ridge",
+    "by_b": {
+     "b=0": {
+      "err": 6.87,
+      "ratio": 0.934,
+      "regret": 0.025,
+      "d": 2.52,
+      "ci": [
+       0.76,
+       3.86
+      ],
+      "beyond": 0
+     },
+     "b=1": {
+      "err": 6.99,
+      "ratio": 0.933,
+      "regret": 0.034,
+      "d": 1.87,
+      "ci": [
+       0.45,
+       3.22
+      ],
+      "beyond": 0
+     },
+     "b=3": {
+      "err": 9.83,
+      "ratio": 0.907,
+      "regret": 0.049,
+      "d": 2.12,
+      "ci": [
+       -0.91,
+       4.12
+      ],
+      "beyond": 0
+     },
+     "b=10": {
+      "err": 16.73,
+      "ratio": 0.833,
+      "regret": 0.253,
+      "d": 5.39,
+      "ci": [
+       -2.87,
+       8.84
+      ],
+      "beyond": 0
+     }
+    }
+   },
+   "ml_ensemble": {
+    "label": "Ensemble",
+    "model": "ml:ensemble_top3",
+    "by_b": {
+     "b=0": {
+      "err": 6.31,
+      "ratio": 0.941,
+      "regret": 0.023,
+      "d": 1.89,
+      "ci": [
+       -0.11,
+       3.41
+      ],
+      "beyond": 0
+     },
+     "b=1": {
+      "err": 8.07,
+      "ratio": 0.92,
+      "regret": 0.041,
+      "d": 2.89,
+      "ci": [
+       0.7,
+       4.42
+      ],
+      "beyond": 0
+     },
+     "b=3": {
+      "err": 11.49,
+      "ratio": 0.885,
+      "regret": 0.069,
+      "d": 3.79,
+      "ci": [
+       0.47,
+       5.64
+      ],
+      "beyond": 0
+     },
+     "b=10": {
+      "err": 13.82,
+      "ratio": 0.862,
+      "regret": 0.191,
+      "d": 2.48,
+      "ci": [
+       -5.33,
+       6.42
+      ],
+      "beyond": 0
+     }
+    }
+   },
+   "ml_physics": {
+    "label": "ML + physics",
+    "model": "ml_physics:extra_trees",
+    "by_b": {
+     "b=0": {
+      "err": 4.24,
+      "ratio": 1.01,
+      "regret": 0.01,
+      "d": -0.09,
+      "ci": [
+       -2.04,
+       1.24
+      ],
+      "beyond": 1
+     },
+     "b=1": {
+      "err": 3.98,
+      "ratio": 1.004,
+      "regret": 0.011,
+      "d": -1.18,
+      "ci": [
+       -2.42,
+       0.45
+      ],
+      "beyond": 1
+     },
+     "b=3": {
+      "err": 3.66,
+      "ratio": 0.97,
+      "regret": 0.011,
+      "d": -3.88,
+      "ci": [
+       -4.59,
+       -2.09
+      ],
+      "beyond": 1
+     },
+     "b=10": {
+      "err": 10.17,
+      "ratio": 0.946,
+      "regret": 0.102,
+      "d": -1.18,
+      "ci": [
+       -6.25,
+       5.59
+      ],
+      "beyond": 1
+     }
+    }
+   },
+   "ml_physics_ensemble": {
+    "label": "Ensemble + physics",
+    "model": "ml_physics:ensemble_top3",
+    "by_b": {
+     "b=0": {
+      "err": 4.86,
+      "ratio": 1.025,
+      "regret": 0.012,
+      "d": 0.57,
+      "ci": [
+       -1.54,
+       1.77
+      ],
+      "beyond": 1
+     },
+     "b=1": {
+      "err": 3.83,
+      "ratio": 1.012,
+      "regret": 0.011,
+      "d": -1.31,
+      "ci": [
+       -2.51,
+       0.23
+      ],
+      "beyond": 1
+     },
+     "b=3": {
+      "err": 4.1,
+      "ratio": 0.969,
+      "regret": 0.011,
+      "d": -3.37,
+      "ci": [
+       -4.27,
+       -2.18
+      ],
+      "beyond": 1
+     },
+     "b=10": {
+      "err": 9.3,
+      "ratio": 0.952,
+      "regret": 0.078,
+      "d": -2.05,
+      "ci": [
+       -5.71,
+       4.88
+      ],
+      "beyond": 1
+     }
+    }
+   },
+   "dl": {
+    "label": "Deep learning",
+    "model": "dl:mlp",
+    "by_b": {
+     "b=0": {
+      "err": 8.32,
+      "ratio": 0.922,
+      "regret": 0.032,
+      "d": 3.96,
+      "ci": [
+       2.03,
+       4.99
+      ],
+      "beyond": 0
+     },
+     "b=1": {
+      "err": 6.56,
+      "ratio": 0.947,
+      "regret": 0.024,
+      "d": 1.37,
+      "ci": [
+       -0.43,
+       2.64
+      ],
+      "beyond": 0
+     },
+     "b=3": {
+      "err": 8.06,
+      "ratio": 0.951,
+      "regret": 0.035,
+      "d": 0.44,
+      "ci": [
+       -1.46,
+       2.12
+      ],
+      "beyond": 2
+     },
+     "b=10": {
+      "err": 8.23,
+      "ratio": 0.938,
+      "regret": 0.031,
+      "d": -3.12,
+      "ci": [
+       -12.68,
+       3.95
+      ],
+      "beyond": 1
+     }
+    }
+   },
+   "dl_physics": {
+    "label": "DL + physics",
+    "model": "dl:powerlaw",
+    "by_b": {
+     "b=0": {
+      "err": 13.3,
+      "ratio": 1.131,
+      "regret": 0.066,
+      "d": 8.99,
+      "ci": [
+       5.43,
+       11.03
+      ],
+      "beyond": 2
+     },
+     "b=1": {
+      "err": 13.79,
+      "ratio": 1.135,
+      "regret": 0.068,
+      "d": 8.58,
+      "ci": [
+       5.06,
+       10.48
+      ],
+      "beyond": 5
+     },
+     "b=3": {
+      "err": 12.53,
+      "ratio": 1.113,
+      "regret": 0.055,
+      "d": 5.01,
+      "ci": [
+       1.71,
+       8.87
+      ],
+      "beyond": 12
+     },
+     "b=10": {
+      "err": 11.18,
+      "ratio": 1.112,
+      "regret": 0.021,
+      "d": -0.16,
+      "ci": [
+       -15.47,
+       21.22
+      ],
+      "beyond": 4
+     }
+    }
+   }
+  },
+  "curve_mae": {
+   "square_root_law_line": 0.0248,
+   "ml:ridge": 0.0247,
+   "ml:k_nearest_neighbours": 0.0234,
+   "ml:svr_rbf": 0.0311,
+   "ml:random_forest": 0.0204,
+   "ml:extra_trees": 0.0149,
+   "ml:xgboost": 0.027,
+   "ml:lightgbm": 0.0253,
+   "ml:ensemble_top3": 0.0199,
+   "ml_physics:ridge": 0.0148,
+   "ml_physics:k_nearest_neighbours": 0.0105,
+   "ml_physics:svr_rbf": 0.035,
+   "ml_physics:random_forest": 0.0115,
+   "ml_physics:extra_trees": 0.011,
+   "ml_physics:xgboost": 0.012,
+   "ml_physics:lightgbm": 0.0121,
+   "ml_physics:ensemble_top3": 0.0106,
+   "dl:mlp": 0.0279,
+   "dl:powerlaw": 0.01
+  }
+ }
+}

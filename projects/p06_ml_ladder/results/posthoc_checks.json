@@ -1,0 +1,1778 @@
+{
+ "note": "post hoc, after the declared tests; nothing here replaces a declared result",
+ "B1_first5_flow_and_temperature": {
+  "unmatched_cycles": 0,
+  "gaps": {
+   "dev": {
+    "flow_gap_pct_sd": 0.512,
+    "flow_gap_corr_with_y": -0.327,
+    "temp_gap_c_sd": 0.019
+   },
+   "test": {
+    "flow_gap_pct_sd": 0.279,
+    "flow_gap_corr_with_y": -0.258,
+    "temp_gap_c_sd": 0.015
+   }
+  },
+  "reproduces_declared_scores": true,
+  "as_declared": {
+   "ml:ridge": {
+    "mae": 1.5693,
+    "minus_no_model": 0.5815,
+    "ci95": [
+     0.3573,
+     0.8152
+    ]
+   },
+   "ml:k_nearest_neighbours": {
+    "mae": 0.9352,
+    "minus_no_model": -0.0526,
+    "ci95": [
+     -0.0742,
+     -0.0312
+    ]
+   },
+   "ml:svr_rbf": {
+    "mae": 0.9396,
+    "minus_no_model": -0.0482,
+    "ci95": [
+     -0.0783,
+     -0.008
+    ]
+   },
+   "ml:random_forest": {
+    "mae": 1.0967,
+    "minus_no_model": 0.109,
+    "ci95": [
+     0.0109,
+     0.2075
+    ]
+   },
+   "ml:extra_trees": {
+    "mae": 0.9432,
+    "minus_no_model": -0.0446,
+    "ci95": [
+     -0.0801,
+     -0.003
+    ]
+   },
+   "ml:xgboost": {
+    "mae": 1.1623,
+    "minus_no_model": 0.1745,
+    "ci95": [
+     0.0757,
+     0.2938
+    ]
+   },
+   "ml:lightgbm": {
+    "mae": 1.0735,
+    "minus_no_model": 0.0858,
+    "ci95": [
+     0.0184,
+     0.1703
+    ]
+   },
+   "ml:ensemble_top3": {
+    "mae": 0.9517,
+    "minus_no_model": -0.0361,
+    "ci95": [
+     -0.077,
+     0.0087
+    ]
+   },
+   "ml_physics:ridge": {
+    "mae": 1.5617,
+    "minus_no_model": 0.574,
+    "ci95": [
+     0.3458,
+     0.8086
+    ]
+   },
+   "ml_physics:k_nearest_neighbours": {
+    "mae": 0.9187,
+    "minus_no_model": -0.0691,
+    "ci95": [
+     -0.0865,
+     -0.0527
+    ]
+   },
+   "ml_physics:svr_rbf": {
+    "mae": 0.9141,
+    "minus_no_model": -0.0737,
+    "ci95": [
+     -0.0963,
+     -0.0444
+    ]
+   },
+   "ml_physics:random_forest": {
+    "mae": 1.0848,
+    "minus_no_model": 0.097,
+    "ci95": [
+     0.0039,
+     0.1893
+    ]
+   },
+   "ml_physics:extra_trees": {
+    "mae": 0.9475,
+    "minus_no_model": -0.0402,
+    "ci95": [
+     -0.0767,
+     0.0022
+    ]
+   },
+   "ml_physics:xgboost": {
+    "mae": 1.2142,
+    "minus_no_model": 0.2264,
+    "ci95": [
+     0.1207,
+     0.3336
+    ]
+   },
+   "ml_physics:lightgbm": {
+    "mae": 1.1887,
+    "minus_no_model": 0.2009,
+    "ci95": [
+     0.0955,
+     0.3199
+    ]
+   },
+   "ml_physics:ensemble_top3": {
+    "mae": 0.9587,
+    "minus_no_model": -0.029,
+    "ci95": [
+     -0.0715,
+     0.0167
+    ]
+   }
+  },
+  "first5": {
+   "ml:ridge": {
+    "mae": 1.2188,
+    "minus_no_model": 0.2311,
+    "ci95": [
+     0.1054,
+     0.3601
+    ]
+   },
+   "ml:k_nearest_neighbours": {
+    "mae": 0.9308,
+    "minus_no_model": -0.0569,
+    "ci95": [
+     -0.0774,
+     -0.0377
+    ]
+   },
+   "ml:svr_rbf": {
+    "mae": 0.9056,
+    "minus_no_model": -0.0822,
+    "ci95": [
+     -0.0975,
+     -0.0661
+    ]
+   },
+   "ml:random_forest": {
+    "mae": 1.0724,
+    "minus_no_model": 0.0846,
+    "ci95": [
+     -0.0013,
+     0.1673
+    ]
+   },
+   "ml:extra_trees": {
+    "mae": 0.9374,
+    "minus_no_model": -0.0504,
+    "ci95": [
+     -0.0854,
+     -0.0126
+    ]
+   },
+   "ml:xgboost": {
+    "mae": 1.1686,
+    "minus_no_model": 0.1808,
+    "ci95": [
+     0.0806,
+     0.281
+    ]
+   },
+   "ml:lightgbm": {
+    "mae": 1.0433,
+    "minus_no_model": 0.0556,
+    "ci95": [
+     -0.0037,
+     0.1196
+    ]
+   },
+   "ml:ensemble_top3": {
+    "mae": 0.9358,
+    "minus_no_model": -0.052,
+    "ci95": [
+     -0.087,
+     -0.019
+    ]
+   },
+   "ml_physics:ridge": {
+    "mae": 1.2362,
+    "minus_no_model": 0.2485,
+    "ci95": [
+     0.1172,
+     0.3821
+    ]
+   },
+   "ml_physics:k_nearest_neighbours": {
+    "mae": 0.9162,
+    "minus_no_model": -0.0716,
+    "ci95": [
+     -0.0875,
+     -0.0568
+    ]
+   },
+   "ml_physics:svr_rbf": {
+    "mae": 0.9041,
+    "minus_no_model": -0.0836,
+    "ci95": [
+     -0.1002,
+     -0.0663
+    ]
+   },
+   "ml_physics:random_forest": {
+    "mae": 1.0627,
+    "minus_no_model": 0.0749,
+    "ci95": [
+     -0.0097,
+     0.1569
+    ]
+   },
+   "ml_physics:extra_trees": {
+    "mae": 0.9458,
+    "minus_no_model": -0.0419,
+    "ci95": [
+     -0.0797,
+     -0.0014
+    ]
+   },
+   "ml_physics:xgboost": {
+    "mae": 1.1805,
+    "minus_no_model": 0.1927,
+    "ci95": [
+     0.0927,
+     0.2943
+    ]
+   },
+   "ml_physics:lightgbm": {
+    "mae": 1.1231,
+    "minus_no_model": 0.1354,
+    "ci95": [
+     0.048,
+     0.2239
+    ]
+   },
+   "ml_physics:ensemble_top3": {
+    "mae": 0.951,
+    "minus_no_model": -0.0368,
+    "ci95": [
+     -0.0744,
+     -0.0034
+    ]
+   }
+  }
+ },
+ "B2_narrowness": {
+  "pick": "ml:extra_trees",
+  "full": {
+   "minus_no_model": -0.0446,
+   "ci95": [
+    -0.0801,
+    -0.003
+   ]
+  },
+  "bootstrap_seeds_0_to_19": {
+   "passes": 20,
+   "upper_bounds": [
+    -0.004,
+    -0.0097,
+    -0.0072,
+    -0.0037,
+    -0.0058,
+    -0.005,
+    -0.0056,
+    -0.003,
+    -0.0032,
+    -0.0038,
+    -0.0018,
+    -0.0018,
+    -0.0056,
+    -0.0031,
+    -0.0036,
+    -0.0019,
+    -0.0093,
+    -0.0048,
+    -0.0032,
+    -0.0079
+   ]
+  },
+  "test_episodes": 47,
+  "episodes_whose_removal_makes_a_tie": [
+   41,
+   44,
+   45,
+   47,
+   80,
+   81,
+   82
+  ],
+  "by_dropped_episode": {
+   "41": {
+    "minus_no_model": -0.0414,
+    "ci95": [
+     -0.077,
+     0.0009
+    ],
+    "verdict": "tie"
+   },
+   "42": {
+    "minus_no_model": -0.0428,
+    "ci95": [
+     -0.0784,
+     -0.0007
+    ],
+    "verdict": "pass"
+   },
+   "43": {
+    "minus_no_model": -0.0443,
+    "ci95": [
+     -0.0801,
+     -0.0014
+    ],
+    "verdict": "pass"
+   },
+   "44": {
+    "minus_no_model": -0.0424,
+    "ci95": [
+     -0.079,
+     0.0011
+    ],
+    "verdict": "tie"
+   },
+   "45": {
+    "minus_no_model": -0.0408,
+    "ci95": [
+     -0.0789,
+     0.0037
+    ],
+    "verdict": "tie"
+   },
+   "46": {
+    "minus_no_model": -0.0417,
+    "ci95": [
+     -0.0781,
+     -0.0003
+    ],
+    "verdict": "pass"
+   },
+   "47": {
+    "minus_no_model": -0.0403,
+    "ci95": [
+     -0.077,
+     0.001
+    ],
+    "verdict": "tie"
+   },
+   "48": {
+    "minus_no_model": -0.0419,
+    "ci95": [
+     -0.0786,
+     -0.0003
+    ],
+    "verdict": "pass"
+   },
+   "49": {
+    "minus_no_model": -0.0575,
+    "ci95": [
+     -0.0899,
+     -0.0282
+    ],
+    "verdict": "pass"
+   },
+   "50": {
+    "minus_no_model": -0.0461,
+    "ci95": [
+     -0.0836,
+     -0.0053
+    ],
+    "verdict": "pass"
+   },
+   "51": {
+    "minus_no_model": -0.0442,
+    "ci95": [
+     -0.0826,
+     -0.003
+    ],
+    "verdict": "pass"
+   },
+   "52": {
+    "minus_no_model": -0.045,
+    "ci95": [
+     -0.0809,
+     -0.0063
+    ],
+    "verdict": "pass"
+   },
+   "53": {
+    "minus_no_model": -0.0442,
+    "ci95": [
+     -0.0808,
+     -0.0053
+    ],
+    "verdict": "pass"
+   },
+   "54": {
+    "minus_no_model": -0.0443,
+    "ci95": [
+     -0.0815,
+     -0.0053
+    ],
+    "verdict": "pass"
+   },
+   "55": {
+    "minus_no_model": -0.0445,
+    "ci95": [
+     -0.0814,
+     -0.0056
+    ],
+    "verdict": "pass"
+   },
+   "56": {
+    "minus_no_model": -0.0444,
+    "ci95": [
+     -0.0807,
+     -0.0062
+    ],
+    "verdict": "pass"
+   },
+   "57": {
+    "minus_no_model": -0.0468,
+    "ci95": [
+     -0.0817,
+     -0.0066
+    ],
+    "verdict": "pass"
+   },
+   "58": {
+    "minus_no_model": -0.0443,
+    "ci95": [
+     -0.0795,
+     -0.0058
+    ],
+    "verdict": "pass"
+   },
+   "59": {
+    "minus_no_model": -0.0455,
+    "ci95": [
+     -0.0809,
+     -0.0081
+    ],
+    "verdict": "pass"
+   },
+   "60": {
+    "minus_no_model": -0.0516,
+    "ci95": [
+     -0.0845,
+     -0.0122
+    ],
+    "verdict": "pass"
+   },
+   "61": {
+    "minus_no_model": -0.0466,
+    "ci95": [
+     -0.0831,
+     -0.0055
+    ],
+    "verdict": "pass"
+   },
+   "62": {
+    "minus_no_model": -0.0469,
+    "ci95": [
+     -0.0829,
+     -0.0063
+    ],
+    "verdict": "pass"
+   },
+   "63": {
+    "minus_no_model": -0.0463,
+    "ci95": [
+     -0.0823,
+     -0.0059
+    ],
+    "verdict": "pass"
+   },
+   "64": {
+    "minus_no_model": -0.0457,
+    "ci95": [
+     -0.0812,
+     -0.0058
+    ],
+    "verdict": "pass"
+   },
+   "65": {
+    "minus_no_model": -0.045,
+    "ci95": [
+     -0.081,
+     -0.0053
+    ],
+    "verdict": "pass"
+   },
+   "66": {
+    "minus_no_model": -0.0462,
+    "ci95": [
+     -0.0823,
+     -0.006
+    ],
+    "verdict": "pass"
+   },
+   "67": {
+    "minus_no_model": -0.0452,
+    "ci95": [
+     -0.0806,
+     -0.0054
+    ],
+    "verdict": "pass"
+   },
+   "68": {
+    "minus_no_model": -0.0446,
+    "ci95": [
+     -0.0803,
+     -0.0048
+    ],
+    "verdict": "pass"
+   },
+   "69": {
+    "minus_no_model": -0.0437,
+    "ci95": [
+     -0.0797,
+     -0.0041
+    ],
+    "verdict": "pass"
+   },
+   "70": {
+    "minus_no_model": -0.0438,
+    "ci95": [
+     -0.0798,
+     -0.0042
+    ],
+    "verdict": "pass"
+   },
+   "71": {
+    "minus_no_model": -0.0453,
+    "ci95": [
+     -0.082,
+     -0.0052
+    ],
+    "verdict": "pass"
+   },
+   "72": {
+    "minus_no_model": -0.0448,
+    "ci95": [
+     -0.0819,
+     -0.005
+    ],
+    "verdict": "pass"
+   },
+   "73": {
+    "minus_no_model": -0.0439,
+    "ci95": [
+     -0.0815,
+     -0.0028
+    ],
+    "verdict": "pass"
+   },
+   "74": {
+    "minus_no_model": -0.0444,
+    "ci95": [
+     -0.0814,
+     -0.0036
+    ],
+    "verdict": "pass"
+   },
+   "75": {
+    "minus_no_model": -0.0437,
+    "ci95": [
+     -0.0805,
+     -0.0031
+    ],
+    "verdict": "pass"
+   },
+   "76": {
+    "minus_no_model": -0.0424,
+    "ci95": [
+     -0.0799,
+     -0.0009
+    ],
+    "verdict": "pass"
+   },
+   "77": {
+    "minus_no_model": -0.0444,
+    "ci95": [
+     -0.0818,
+     -0.0056
+    ],
+    "verdict": "pass"
+   },
+   "78": {
+    "minus_no_model": -0.0416,
+    "ci95": [
+     -0.0807,
+     -0.0013
+    ],
+    "verdict": "pass"
+   },
+   "79": {
+    "minus_no_model": -0.044,
+    "ci95": [
+     -0.0824,
+     -0.0025
+    ],
+    "verdict": "pass"
+   },
+   "80": {
+    "minus_no_model": -0.0422,
+    "ci95": [
+     -0.0799,
+     0.0001
+    ],
+    "verdict": "tie"
+   },
+   "81": {
+    "minus_no_model": -0.0416,
+    "ci95": [
+     -0.0789,
+     0.0007
+    ],
+    "verdict": "tie"
+   },
+   "82": {
+    "minus_no_model": -0.0385,
+    "ci95": [
+     -0.0759,
+     0.0007
+    ],
+    "verdict": "tie"
+   },
+   "83": {
+    "minus_no_model": -0.0427,
+    "ci95": [
+     -0.0796,
+     -0.0019
+    ],
+    "verdict": "pass"
+   },
+   "84": {
+    "minus_no_model": -0.0502,
+    "ci95": [
+     -0.0863,
+     -0.0108
+    ],
+    "verdict": "pass"
+   },
+   "85": {
+    "minus_no_model": -0.046,
+    "ci95": [
+     -0.0855,
+     -0.0043
+    ],
+    "verdict": "pass"
+   },
+   "86": {
+    "minus_no_model": -0.0469,
+    "ci95": [
+     -0.0847,
+     -0.0064
+    ],
+    "verdict": "pass"
+   },
+   "87": {
+    "minus_no_model": -0.0445,
+    "ci95": [
+     -0.0825,
+     -0.0057
+    ],
+    "verdict": "pass"
+   }
+  },
+  "episodes_straddling_the_split": {
+   "41": {
+    "dev_cycles": 78,
+    "test_cycles": 240,
+    "first_cycle": "2013-12-30 17:14:16.181289651",
+    "last_cycle": "2014-01-04 11:11:26.181081435"
+   }
+  },
+  "test_period": [
+   "2014-01-01 00:15:56.181110391",
+   "2015-04-01 19:44:44.441030417"
+  ]
+ },
+ "C1_minute20_inputs": {
+  "reproduces_declared_scores": true,
+  "as_declared": {
+   "b=0": {
+    "inside": 103,
+    "square_root_law_T4": 4.31,
+    "ml:ridge": {
+     "median_abs_err_pct": 6.87,
+     "minus_law": 2.52,
+     "ci95": [
+      0.84,
+      3.95
+     ]
+    },
+    "ml:k_nearest_neighbours": {
+     "median_abs_err_pct": 78.19,
+     "minus_law": 75.67,
+     "ci95": [
+      50.36,
+      92.37
+     ]
+    },
+    "ml:svr_rbf": {
+     "median_abs_err_pct": 43.7,
+     "minus_law": 39.42,
+     "ci95": [
+      35.26,
+      44.68
+     ]
+    },
+    "ml:random_forest": {
+     "median_abs_err_pct": 6.62,
+     "minus_law": 2.39,
+     "ci95": [
+      0.62,
+      3.31
+     ]
+    },
+    "ml:extra_trees": {
+     "median_abs_err_pct": 5.51,
+     "minus_law": 1.26,
+     "ci95": [
+      -0.32,
+      2.98
+     ]
+    },
+    "ml:xgboost": {
+     "median_abs_err_pct": 10.49,
+     "minus_law": 6.21,
+     "ci95": [
+      4.2,
+      8.73
+     ]
+    },
+    "ml:lightgbm": {
+     "median_abs_err_pct": 10.72,
+     "minus_law": 6.18,
+     "ci95": [
+      3.82,
+      7.58
+     ]
+    },
+    "ml:ensemble_top3": {
+     "median_abs_err_pct": 6.31,
+     "minus_law": 1.89,
+     "ci95": [
+      -0.15,
+      3.42
+     ]
+    },
+    "ml_physics:ridge": {
+     "median_abs_err_pct": 3.84,
+     "minus_law": -0.45,
+     "ci95": [
+      -2.28,
+      0.4
+     ]
+    },
+    "ml_physics:k_nearest_neighbours": {
+     "median_abs_err_pct": 5.47,
+     "minus_law": 1.23,
+     "ci95": [
+      -0.65,
+      2.48
+     ]
+    },
+    "ml_physics:svr_rbf": {
+     "median_abs_err_pct": 20.2,
+     "minus_law": 15.79,
+     "ci95": [
+      12.15,
+      17.87
+     ]
+    },
+    "ml_physics:random_forest": {
+     "median_abs_err_pct": 4.07,
+     "minus_law": -0.18,
+     "ci95": [
+      -2.01,
+      1.39
+     ]
+    },
+    "ml_physics:extra_trees": {
+     "median_abs_err_pct": 4.24,
+     "minus_law": -0.09,
+     "ci95": [
+      -2.13,
+      1.24
+     ]
+    },
+    "ml_physics:xgboost": {
+     "median_abs_err_pct": 4.73,
+     "minus_law": 0.37,
+     "ci95": [
+      -1.36,
+      1.45
+     ]
+    },
+    "ml_physics:lightgbm": {
+     "median_abs_err_pct": 4.86,
+     "minus_law": 0.57,
+     "ci95": [
+      -1.42,
+      1.64
+     ]
+    },
+    "ml_physics:ensemble_top3": {
+     "median_abs_err_pct": 4.86,
+     "minus_law": 0.57,
+     "ci95": [
+      -1.61,
+      1.76
+     ]
+    }
+   },
+   "b=1": {
+    "inside": 97,
+    "square_root_law_T4": 5.14,
+    "ml:ridge": {
+     "median_abs_err_pct": 6.99,
+     "minus_law": 1.87,
+     "ci95": [
+      0.32,
+      3.36
+     ]
+    },
+    "ml:k_nearest_neighbours": {
+     "median_abs_err_pct": 50.74,
+     "minus_law": 46.66,
+     "ci95": [
+      26.27,
+      63.77
+     ]
+    },
+    "ml:svr_rbf": {
+     "median_abs_err_pct": 267.69,
+     "minus_law": 263.19,
+     "ci95": [
+      254.54,
+      268.82
+     ]
+    },
+    "ml:random_forest": {
+     "median_abs_err_pct": 8.98,
+     "minus_law": 3.81,
+     "ci95": [
+      2.29,
+      5.55
+     ]
+    },
+    "ml:extra_trees": {
+     "median_abs_err_pct": 6.9,
+     "minus_law": 1.62,
+     "ci95": [
+      0.1,
+      3.33
+     ]
+    },
+    "ml:xgboost": {
+     "median_abs_err_pct": 11.06,
+     "minus_law": 5.79,
+     "ci95": [
+      3.69,
+      7.17
+     ]
+    },
+    "ml:lightgbm": {
+     "median_abs_err_pct": 12.83,
+     "minus_law": 7.38,
+     "ci95": [
+      4.75,
+      9.09
+     ]
+    },
+    "ml:ensemble_top3": {
+     "median_abs_err_pct": 8.07,
+     "minus_law": 2.89,
+     "ci95": [
+      0.77,
+      4.45
+     ]
+    },
+    "ml_physics:ridge": {
+     "median_abs_err_pct": 4.06,
+     "minus_law": -1.23,
+     "ci95": [
+      -2.99,
+      0.29
+     ]
+    },
+    "ml_physics:k_nearest_neighbours": {
+     "median_abs_err_pct": 4.31,
+     "minus_law": -0.83,
+     "ci95": [
+      -2.54,
+      0.78
+     ]
+    },
+    "ml_physics:svr_rbf": {
+     "median_abs_err_pct": 14.39,
+     "minus_law": 9.17,
+     "ci95": [
+      6.14,
+      11.2
+     ]
+    },
+    "ml_physics:random_forest": {
+     "median_abs_err_pct": 3.99,
+     "minus_law": -1.18,
+     "ci95": [
+      -2.49,
+      0.17
+     ]
+    },
+    "ml_physics:extra_trees": {
+     "median_abs_err_pct": 3.98,
+     "minus_law": -1.18,
+     "ci95": [
+      -2.34,
+      0.39
+     ]
+    },
+    "ml_physics:xgboost": {
+     "median_abs_err_pct": 3.76,
+     "minus_law": -1.37,
+     "ci95": [
+      -2.63,
+      0.45
+     ]
+    },
+    "ml_physics:lightgbm": {
+     "median_abs_err_pct": 4.04,
+     "minus_law": -1.1,
+     "ci95": [
+      -2.45,
+      0.38
+     ]
+    },
+    "ml_physics:ensemble_top3": {
+     "median_abs_err_pct": 3.83,
+     "minus_law": -1.31,
+     "ci95": [
+      -2.52,
+      0.3
+     ]
+    }
+   },
+   "b=3": {
+    "inside": 75,
+    "square_root_law_T4": 7.46,
+    "ml:ridge": {
+     "median_abs_err_pct": 9.83,
+     "minus_law": 2.12,
+     "ci95": [
+      -1.21,
+      4.04
+     ]
+    },
+    "ml:k_nearest_neighbours": {
+     "median_abs_err_pct": 19.32,
+     "minus_law": 11.17,
+     "ci95": [
+      8.2,
+      32.7
+     ]
+    },
+    "ml:svr_rbf": {
+     "median_abs_err_pct": 200.04,
+     "minus_law": 192.6,
+     "ci95": [
+      185.07,
+      218.83
+     ]
+    },
+    "ml:random_forest": {
+     "median_abs_err_pct": 13.38,
+     "minus_law": 5.83,
+     "ci95": [
+      2.95,
+      7.52
+     ]
+    },
+    "ml:extra_trees": {
+     "median_abs_err_pct": 10.77,
+     "minus_law": 3.23,
+     "ci95": [
+      0.28,
+      5.48
+     ]
+    },
+    "ml:xgboost": {
+     "median_abs_err_pct": 15.57,
+     "minus_law": 8.03,
+     "ci95": [
+      5.54,
+      10.01
+     ]
+    },
+    "ml:lightgbm": {
+     "median_abs_err_pct": 17.58,
+     "minus_law": 10.12,
+     "ci95": [
+      3.18,
+      11.96
+     ]
+    },
+    "ml:ensemble_top3": {
+     "median_abs_err_pct": 11.49,
+     "minus_law": 3.79,
+     "ci95": [
+      0.52,
+      5.73
+     ]
+    },
+    "ml_physics:ridge": {
+     "median_abs_err_pct": 6.39,
+     "minus_law": -1.28,
+     "ci95": [
+      -2.77,
+      0.44
+     ]
+    },
+    "ml_physics:k_nearest_neighbours": {
+     "median_abs_err_pct": 3.76,
+     "minus_law": -3.7,
+     "ci95": [
+      -4.46,
+      -2.48
+     ]
+    },
+    "ml_physics:svr_rbf": {
+     "median_abs_err_pct": 7.36,
+     "minus_law": -0.24,
+     "ci95": [
+      -3.02,
+      2.5
+     ]
+    },
+    "ml_physics:random_forest": {
+     "median_abs_err_pct": 4.97,
+     "minus_law": -2.54,
+     "ci95": [
+      -3.39,
+      -1.25
+     ]
+    },
+    "ml_physics:extra_trees": {
+     "median_abs_err_pct": 3.66,
+     "minus_law": -3.88,
+     "ci95": [
+      -4.42,
+      -2.15
+     ]
+    },
+    "ml_physics:xgboost": {
+     "median_abs_err_pct": 4.68,
+     "minus_law": -2.81,
+     "ci95": [
+      -3.43,
+      -1.27
+     ]
+    },
+    "ml_physics:lightgbm": {
+     "median_abs_err_pct": 4.26,
+     "minus_law": -3.24,
+     "ci95": [
+      -4.08,
+      -1.45
+     ]
+    },
+    "ml_physics:ensemble_top3": {
+     "median_abs_err_pct": 4.1,
+     "minus_law": -3.37,
+     "ci95": [
+      -4.22,
+      -2.18
+     ]
+    }
+   },
+   "b=10": {
+    "inside": 10,
+    "square_root_law_T4": 11.35,
+    "ml:ridge": {
+     "median_abs_err_pct": 16.73,
+     "minus_law": 5.39,
+     "ci95": [
+      -3.07,
+      8.67
+     ]
+    },
+    "ml:k_nearest_neighbours": {
+     "median_abs_err_pct": 16.1,
+     "minus_law": 4.75,
+     "ci95": [
+      -6.0,
+      13.4
+     ]
+    },
+    "ml:svr_rbf": {
+     "median_abs_err_pct": 87.68,
+     "minus_law": 76.34,
+     "ci95": [
+      64.23,
+      113.34
+     ]
+    },
+    "ml:random_forest": {
+     "median_abs_err_pct": 14.23,
+     "minus_law": 2.89,
+     "ci95": [
+      -6.28,
+      7.21
+     ]
+    },
+    "ml:extra_trees": {
+     "median_abs_err_pct": 7.4,
+     "minus_law": -3.94,
+     "ci95": [
+      -13.57,
+      6.74
+     ]
+    },
+    "ml:xgboost": {
+     "median_abs_err_pct": 17.61,
+     "minus_law": 6.26,
+     "ci95": [
+      -1.57,
+      9.09
+     ]
+    },
+    "ml:lightgbm": {
+     "median_abs_err_pct": 13.55,
+     "minus_law": 2.21,
+     "ci95": [
+      -7.55,
+      8.67
+     ]
+    },
+    "ml:ensemble_top3": {
+     "median_abs_err_pct": 13.82,
+     "minus_law": 2.48,
+     "ci95": [
+      -5.3,
+      6.04
+     ]
+    },
+    "ml_physics:ridge": {
+     "median_abs_err_pct": 13.75,
+     "minus_law": 2.41,
+     "ci95": [
+      -2.2,
+      3.78
+     ]
+    },
+    "ml_physics:k_nearest_neighbours": {
+     "median_abs_err_pct": 10.22,
+     "minus_law": -1.13,
+     "ci95": [
+      -9.0,
+      7.02
+     ]
+    },
+    "ml_physics:svr_rbf": {
+     "median_abs_err_pct": 8.72,
+     "minus_law": -2.63,
+     "ci95": [
+      -6.3,
+      5.23
+     ]
+    },
+    "ml_physics:random_forest": {
+     "median_abs_err_pct": 10.11,
+     "minus_law": -1.23,
+     "ci95": [
+      -10.05,
+      7.94
+     ]
+    },
+    "ml_physics:extra_trees": {
+     "median_abs_err_pct": 10.17,
+     "minus_law": -1.18,
+     "ci95": [
+      -6.13,
+      5.24
+     ]
+    },
+    "ml_physics:xgboost": {
+     "median_abs_err_pct": 10.28,
+     "minus_law": -1.07,
+     "ci95": [
+      -6.81,
+      2.47
+     ]
+    },
+    "ml_physics:lightgbm": {
+     "median_abs_err_pct": 10.3,
+     "minus_law": -1.04,
+     "ci95": [
+      -6.08,
+      2.06
+     ]
+    },
+    "ml_physics:ensemble_top3": {
+     "median_abs_err_pct": 9.3,
+     "minus_law": -2.05,
+     "ci95": [
+      -5.71,
+      4.88
+     ]
+    }
+   }
+  },
+  "minute20": {
+   "b=0": {
+    "inside": 103,
+    "square_root_law_T4": 4.31,
+    "ml:ridge": {
+     "median_abs_err_pct": 7.19,
+     "minus_law": 2.87,
+     "ci95": [
+      0.99,
+      4.43
+     ]
+    },
+    "ml:k_nearest_neighbours": {
+     "median_abs_err_pct": 85.52,
+     "minus_law": 81.7,
+     "ci95": [
+      54.77,
+      92.57
+     ]
+    },
+    "ml:svr_rbf": {
+     "median_abs_err_pct": 45.75,
+     "minus_law": 41.48,
+     "ci95": [
+      36.77,
+      45.35
+     ]
+    },
+    "ml:random_forest": {
+     "median_abs_err_pct": 5.76,
+     "minus_law": 1.52,
+     "ci95": [
+      0.15,
+      2.72
+     ]
+    },
+    "ml:extra_trees": {
+     "median_abs_err_pct": 5.74,
+     "minus_law": 1.5,
+     "ci95": [
+      -0.25,
+      2.89
+     ]
+    },
+    "ml:xgboost": {
+     "median_abs_err_pct": 11.26,
+     "minus_law": 6.97,
+     "ci95": [
+      4.37,
+      8.75
+     ]
+    },
+    "ml:lightgbm": {
+     "median_abs_err_pct": 10.88,
+     "minus_law": 6.27,
+     "ci95": [
+      3.73,
+      7.64
+     ]
+    },
+    "ml:ensemble_top3": {
+     "median_abs_err_pct": 6.31,
+     "minus_law": 1.83,
+     "ci95": [
+      -0.15,
+      3.36
+     ]
+    },
+    "ml_physics:ridge": {
+     "median_abs_err_pct": 3.94,
+     "minus_law": -0.31,
+     "ci95": [
+      -1.95,
+      0.51
+     ]
+    },
+    "ml_physics:k_nearest_neighbours": {
+     "median_abs_err_pct": 5.14,
+     "minus_law": 0.88,
+     "ci95": [
+      -0.94,
+      2.13
+     ]
+    },
+    "ml_physics:svr_rbf": {
+     "median_abs_err_pct": 20.2,
+     "minus_law": 15.79,
+     "ci95": [
+      12.5,
+      17.87
+     ]
+    },
+    "ml_physics:random_forest": {
+     "median_abs_err_pct": 4.03,
+     "minus_law": -0.2,
+     "ci95": [
+      -2.05,
+      1.46
+     ]
+    },
+    "ml_physics:extra_trees": {
+     "median_abs_err_pct": 4.03,
+     "minus_law": -0.2,
+     "ci95": [
+      -2.2,
+      1.24
+     ]
+    },
+    "ml_physics:xgboost": {
+     "median_abs_err_pct": 4.18,
+     "minus_law": -0.05,
+     "ci95": [
+      -1.82,
+      0.93
+     ]
+    },
+    "ml_physics:lightgbm": {
+     "median_abs_err_pct": 4.76,
+     "minus_law": 0.34,
+     "ci95": [
+      -1.66,
+      1.64
+     ]
+    },
+    "ml_physics:ensemble_top3": {
+     "median_abs_err_pct": 4.73,
+     "minus_law": 0.41,
+     "ci95": [
+      -1.67,
+      1.6
+     ]
+    }
+   },
+   "b=1": {
+    "inside": 97,
+    "square_root_law_T4": 5.14,
+    "ml:ridge": {
+     "median_abs_err_pct": 7.33,
+     "minus_law": 2.21,
+     "ci95": [
+      0.57,
+      3.71
+     ]
+    },
+    "ml:k_nearest_neighbours": {
+     "median_abs_err_pct": 54.29,
+     "minus_law": 50.01,
+     "ci95": [
+      29.66,
+      65.4
+     ]
+    },
+    "ml:svr_rbf": {
+     "median_abs_err_pct": 267.27,
+     "minus_law": 262.16,
+     "ci95": [
+      253.44,
+      266.74
+     ]
+    },
+    "ml:random_forest": {
+     "median_abs_err_pct": 8.98,
+     "minus_law": 3.81,
+     "ci95": [
+      2.25,
+      5.79
+     ]
+    },
+    "ml:extra_trees": {
+     "median_abs_err_pct": 8.62,
+     "minus_law": 3.44,
+     "ci95": [
+      1.27,
+      4.95
+     ]
+    },
+    "ml:xgboost": {
+     "median_abs_err_pct": 10.76,
+     "minus_law": 5.62,
+     "ci95": [
+      4.12,
+      7.14
+     ]
+    },
+    "ml:lightgbm": {
+     "median_abs_err_pct": 12.87,
+     "minus_law": 7.73,
+     "ci95": [
+      4.78,
+      9.22
+     ]
+    },
+    "ml:ensemble_top3": {
+     "median_abs_err_pct": 8.68,
+     "minus_law": 3.47,
+     "ci95": [
+      1.25,
+      5.03
+     ]
+    },
+    "ml_physics:ridge": {
+     "median_abs_err_pct": 3.87,
+     "minus_law": -1.39,
+     "ci95": [
+      -2.7,
+      -0.0
+     ]
+    },
+    "ml_physics:k_nearest_neighbours": {
+     "median_abs_err_pct": 4.27,
+     "minus_law": -0.93,
+     "ci95": [
+      -2.65,
+      0.62
+     ]
+    },
+    "ml_physics:svr_rbf": {
+     "median_abs_err_pct": 14.17,
+     "minus_law": 9.01,
+     "ci95": [
+      5.69,
+      11.2
+     ]
+    },
+    "ml_physics:random_forest": {
+     "median_abs_err_pct": 3.99,
+     "minus_law": -1.2,
+     "ci95": [
+      -2.51,
+      0.28
+     ]
+    },
+    "ml_physics:extra_trees": {
+     "median_abs_err_pct": 3.76,
+     "minus_law": -1.38,
+     "ci95": [
+      -2.46,
+      0.51
+     ]
+    },
+    "ml_physics:xgboost": {
+     "median_abs_err_pct": 3.48,
+     "minus_law": -1.74,
+     "ci95": [
+      -2.95,
+      -0.16
+     ]
+    },
+    "ml_physics:lightgbm": {
+     "median_abs_err_pct": 4.36,
+     "minus_law": -0.84,
+     "ci95": [
+      -2.16,
+      0.41
+     ]
+    },
+    "ml_physics:ensemble_top3": {
+     "median_abs_err_pct": 4.37,
+     "minus_law": -0.75,
+     "ci95": [
+      -2.45,
+      0.47
+     ]
+    }
+   },
+   "b=3": {
+    "inside": 75,
+    "square_root_law_T4": 7.46,
+    "ml:ridge": {
+     "median_abs_err_pct": 10.23,
+     "minus_law": 2.61,
+     "ci95": [
+      -1.2,
+      4.26
+     ]
+    },
+    "ml:k_nearest_neighbours": {
+     "median_abs_err_pct": 21.55,
+     "minus_law": 14.67,
+     "ci95": [
+      8.33,
+      33.04
+     ]
+    },
+    "ml:svr_rbf": {
+     "median_abs_err_pct": 200.04,
+     "minus_law": 192.6,
+     "ci95": [
+      185.07,
+      218.83
+     ]
+    },
+    "ml:random_forest": {
+     "median_abs_err_pct": 14.74,
+     "minus_law": 7.1,
+     "ci95": [
+      4.84,
+      8.99
+     ]
+    },
+    "ml:extra_trees": {
+     "median_abs_err_pct": 12.58,
+     "minus_law": 4.93,
+     "ci95": [
+      2.05,
+      7.34
+     ]
+    },
+    "ml:xgboost": {
+     "median_abs_err_pct": 15.57,
+     "minus_law": 7.93,
+     "ci95": [
+      6.13,
+      10.06
+     ]
+    },
+    "ml:lightgbm": {
+     "median_abs_err_pct": 17.56,
+     "minus_law": 10.06,
+     "ci95": [
+      2.82,
+      11.94
+     ]
+    },
+    "ml:ensemble_top3": {
+     "median_abs_err_pct": 12.67,
+     "minus_law": 4.87,
+     "ci95": [
+      1.77,
+      6.83
+     ]
+    },
+    "ml_physics:ridge": {
+     "median_abs_err_pct": 6.58,
+     "minus_law": -0.98,
+     "ci95": [
+      -2.16,
+      1.05
+     ]
+    },
+    "ml_physics:k_nearest_neighbours": {
+     "median_abs_err_pct": 3.68,
+     "minus_law": -3.84,
+     "ci95": [
+      -4.59,
+      -2.58
+     ]
+    },
+    "ml_physics:svr_rbf": {
+     "median_abs_err_pct": 7.36,
+     "minus_law": -0.24,
+     "ci95": [
+      -3.02,
+      2.5
+     ]
+    },
+    "ml_physics:random_forest": {
+     "median_abs_err_pct": 4.97,
+     "minus_law": -2.54,
+     "ci95": [
+      -3.42,
+      -1.47
+     ]
+    },
+    "ml_physics:extra_trees": {
+     "median_abs_err_pct": 3.66,
+     "minus_law": -3.88,
+     "ci95": [
+      -4.47,
+      -1.98
+     ]
+    },
+    "ml_physics:xgboost": {
+     "median_abs_err_pct": 5.19,
+     "minus_law": -2.32,
+     "ci95": [
+      -3.24,
+      -1.06
+     ]
+    },
+    "ml_physics:lightgbm": {
+     "median_abs_err_pct": 4.68,
+     "minus_law": -2.9,
+     "ci95": [
+      -3.61,
+      -1.31
+     ]
+    },
+    "ml_physics:ensemble_top3": {
+     "median_abs_err_pct": 4.1,
+     "minus_law": -3.37,
+     "ci95": [
+      -4.19,
+      -2.18
+     ]
+    }
+   },
+   "b=10": {
+    "inside": 10,
+    "square_root_law_T4": 11.35,
+    "ml:ridge": {
+     "median_abs_err_pct": 16.92,
+     "minus_law": 5.57,
+     "ci95": [
+      -2.87,
+      8.67
+     ]
+    },
+    "ml:k_nearest_neighbours": {
+     "median_abs_err_pct": 15.37,
+     "minus_law": 4.02,
+     "ci95": [
+      -4.95,
+      14.88
+     ]
+    },
+    "ml:svr_rbf": {
+     "median_abs_err_pct": 87.68,
+     "minus_law": 76.34,
+     "ci95": [
+      64.23,
+      113.34
+     ]
+    },
+    "ml:random_forest": {
+     "median_abs_err_pct": 10.51,
+     "minus_law": -0.84,
+     "ci95": [
+      -10.46,
+      6.66
+     ]
+    },
+    "ml:extra_trees": {
+     "median_abs_err_pct": 7.24,
+     "minus_law": -4.11,
+     "ci95": [
+      -13.23,
+      5.1
+     ]
+    },
+    "ml:xgboost": {
+     "median_abs_err_pct": 17.04,
+     "minus_law": 5.7,
+     "ci95": [
+      -1.95,
+      8.54
+     ]
+    },
+    "ml:lightgbm": {
+     "median_abs_err_pct": 13.76,
+     "minus_law": 2.41,
+     "ci95": [
+      -9.9,
+      8.67
+     ]
+    },
+    "ml:ensemble_top3": {
+     "median_abs_err_pct": 13.45,
+     "minus_law": 2.11,
+     "ci95": [
+      -5.48,
+      6.04
+     ]
+    },
+    "ml_physics:ridge": {
+     "median_abs_err_pct": 13.75,
+     "minus_law": 2.41,
+     "ci95": [
+      -2.65,
+      3.78
+     ]
+    },
+    "ml_physics:k_nearest_neighbours": {
+     "median_abs_err_pct": 10.66,
+     "minus_law": -0.69,
+     "ci95": [
+      -9.55,
+      7.37
+     ]
+    },
+    "ml_physics:svr_rbf": {
+     "median_abs_err_pct": 8.72,
+     "minus_law": -2.63,
+     "ci95": [
+      -6.12,
+      5.27
+     ]
+    },
+    "ml_physics:random_forest": {
+     "median_abs_err_pct": 9.93,
+     "minus_law": -1.42,
+     "ci95": [
+      -10.02,
+      7.94
+     ]
+    },
+    "ml_physics:extra_trees": {
+     "median_abs_err_pct": 9.95,
+     "minus_law": -1.4,
+     "ci95": [
+      -6.13,
+      5.17
+     ]
+    },
+    "ml_physics:xgboost": {
+     "median_abs_err_pct": 10.09,
+     "minus_law": -1.25,
+     "ci95": [
+      -6.44,
+      2.47
+     ]
+    },
+    "ml_physics:lightgbm": {
+     "median_abs_err_pct": 10.5,
+     "minus_law": -0.84,
+     "ci95": [
+      -6.08,
+      2.11
+     ]
+    },
+    "ml_physics:ensemble_top3": {
+     "median_abs_err_pct": 9.3,
+     "minus_law": -2.05,
+     "ci95": [
+      -5.73,
+      4.88
+     ]
+    }
+   }
+  }
+ },
+ "seconds": 148
+}

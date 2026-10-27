@@ -156,3 +156,30 @@ def segment_table(df: pd.DataFrame, run: str, cfg: UFSegmentConfig | None = None
             p_mf_in=float(seg["p_mf_in"].mean()),
         ))
     return pd.DataFrame(rows)
+
+
+def segment_curves(df: pd.DataFrame, run: str, cfg: UFSegmentConfig | None = None) -> pd.DataFrame:
+    """The binned ln R curve of every segment `segment_table` keeps, in long form:
+    one row per (segment, bin) with minutes since the segment's first bin.
+
+    Same cutting, same bins, same exclusions as `segment_table`, so a curve joins
+    its segment row on (run, t_start)."""
+    cfg = cfg or UFSegmentConfig()
+    if df.empty:
+        return pd.DataFrame()
+    with np.errstate(invalid="ignore", divide="ignore"):
+        lnr = np.log(resistance_index(df).to_numpy(float))
+    dt = float(np.median(np.diff(seconds(df.index)))) if len(df) > 1 else cfg.bin_s
+    bin_s = max(cfg.bin_s, round(dt))
+    parts = []
+    for a, b in cut_segments(df, cfg):
+        seg = df.iloc[a:b + 1]
+        s = pd.Series(lnr[a:b + 1], index=seg.index)
+        binned = s.resample(f"{int(bin_s)}s").median().dropna()
+        binned = binned[np.isfinite(binned)]
+        if len(binned) < cfg.min_points:
+            continue
+        x = (seconds(binned.index) - seconds(binned.index)[0]) / 60.0          # minutes
+        parts.append(pd.DataFrame({"run": run, "t_start": seg.index[0], "minute": x,
+                                   "lnr": binned.to_numpy(float), "bin_s": bin_s}))
+    return pd.concat(parts, ignore_index=True) if parts else pd.DataFrame()

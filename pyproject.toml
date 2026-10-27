@@ -20,6 +20,7 @@ dev = ["pytest>=7.4", "pytest-cov", "httpx>=0.26"]
 sim = ["thermo>=0.2"]
 viz = ["matplotlib>=3.7"]
 data = ["pyarrow>=14"]          # the Project 4 results are parquet files
+ml = ["xgboost>=2.0", "lightgbm>=4.0", "torch>=2.2"]   # Project 6: the model ladder
 
 [build-system]
 requires = ["setuptools>=68"]
