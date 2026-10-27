@@ -11,9 +11,12 @@ same way for each question, declared before each test:
 > **ML + physics features** → **deep learning** → **physics-informed deep learning** (a gap-law
 > network, a Hermia PINN, a power-law cost network)
 
-Tuning sees development data only, split by group (plant, episode, experiment); each test runs once,
-after its declaration is committed (`DECLARED_BEFORE_RUN_A/B/C.md`, commits e7ad90b, c0c9264,
-aead79c), by a script that refuses to run otherwise.
+Tuning sees development data only, split by group (plant, operating episode, experiment). Each test
+ran once, after its declaration was committed and pushed (`DECLARED_BEFORE_RUN_A/B/C.md`, commits
+e7ad90b, c0c9264, aead79c; GitHub's activity log has each push 3–5 s before its test began). The test
+scripts refuse to run unless the declaration is committed and unchanged; they do not lock the code or
+the input tables, so what else was checked after the fact is in `VALIDATION.md`, section 7 — an
+independent audit of this folder, run after the tests.
 
 ---
 
@@ -22,11 +25,11 @@ aead79c), by a script that refuses to run otherwise.
 | Question | Method to beat | Best result on the test | Verdict |
 |---|---|---|---|
 | **A** — will an RO train reach its review level within 28 days? | the margin rule | **60 new simulated plants:** every rung catches 0.60–0.63 of the crossings vs the rule's 0.37, at slightly higher precision (0.58–0.62 vs 0.57). **The real plant** (exploratory): the models catch 0.61–0.74 vs 0.43, with more false alarms (precision 0.63–0.74 vs 0.93) | simulation: **ML wins**. Real plant: **a trade, not a win** |
-| **B** — from a UF cycle's first 5 minutes, how far will its resistance climb by minute 11? | no model (the median climb) | extra trees: MAE **0.943 vs 0.988** (−4.5 %, interval −8.1 to −0.3 %). Hermia's laws extrapolated from 5 minutes: **2.070** | **a small win for ML**; physics alone loses to doing nothing |
-| **C** — from a CCRO batch's first 20 minutes, where should it end? | the square-root law (Project 5's T4) | the **hybrid** — the law's line plus an ML correction: **3.7 % vs 7.5 %** median error at b = 3; ties at b = 0 and 1. Pure ML: **worse than the law** | **the hybrid wins where the law is biased; pure ML cannot extrapolate** |
+| **B** — from a UF cycle's first 5 minutes, how far will its resistance climb by minute 11? | no model (the median climb) | extra trees: MAE **0.943 vs 0.988** (−4.5 %, interval −8.1 to −0.3 %). Hermia's laws extrapolated from 5 minutes: **2.070** | **a narrow win for ML** — a tie if any one of 7 of the 47 test episodes is left out; physics alone loses to doing nothing |
+| **C** — from a CCRO batch's first 20 minutes, where should it end? | the square-root law (Project 5's T4) | the **hybrid** — the law's line plus an ML correction: **3.7 % vs 7.5 %** median error at b = 3; ties at b = 0 and 1. Pure ML: **worse than the law** | **the hybrid wins at b = 3 and ties at b = 0 and 1 — the declared bar is not met; pure ML cannot extrapolate** |
 
 **One sentence:** machine learning wins when its training data cover the test (simulated plants),
-gains a little when the signal is weak (a 12-minute UF cycle), and loses when it must extrapolate
+gains a little when the signal is weak (a UF cycle of about 13 minutes), and loses when it must extrapolate
 without physics (a batch far longer than any it trained on) — where the hybrid is the one that wins.
 
 ![Part A](figures/figA_ro.png)
@@ -65,12 +68,18 @@ Test: the 10,830 cycles of 2014–15 (development: the 4,168 of 2012–13).
 | Extra trees + physics features · ensembles | 0.948 · 0.952–0.959 |
 | HermiaNet (the Hermia PINN) | 0.942 |
 | History GRU · MLP | 0.986 · 1.453 |
-| Best model of all (RBF SVR + physics features) | 0.914 |
+| Best model of all, picked after the test (RBF SVR + physics features) | 0.914 |
 
 The frozen ML pick passes, narrowly; ensembles, the ML + physics pick and HermiaNet tie with no
-model; the MLP and the boosted trees lose — the 2014–15 conditions differ from 2012–13.
-**Hermia's four mechanisms cannot be told apart here:** fitted to each test cycle's whole 12-minute
-curve, the four laws differ by a median 0.05 % of R at minute 12, against about 1 % of point-to-point
+model; the MLP and the boosted trees lose — the 2014–15 conditions differ from 2012–13. How narrowly,
+checked after the test: leave out any one of 7 of the 47 test episodes and the interval crosses zero
+(upper bounds +0.0001 to +0.0037). Two inputs, flow per element and temperature, were whole-cycle
+means and so read past minute 5; refitted after the test with first-5-minute values, every frozen
+pick scores better — extra trees 0.937, and both ensembles and the ML + physics pick move from a tie
+to a pass; of the 14 models only XGBoost gets worse, by 0.006 (`posthoc_checks.py`; VALIDATION.md,
+section 7).
+**Hermia's four mechanisms cannot be told apart here:** fitted to each test cycle's curve up to minute
+12, the four laws differ by a median 0.05 % of R at minute 12, against about 1 % of point-to-point
 noise — in no cycle does the difference exceed the noise. HermiaNet's mechanism weights are a curve
 fit, not a diagnosis. **Hour of day and tide phase added as features made the model slightly worse
 (0.956)**: Project 4's "no tide, no daylight effect", from a different method.
@@ -96,7 +105,13 @@ The law stops short (median V*/V_best 0.96, 0.95, 0.93, 0.89); the hybrid sits o
 (1.01, 1.00, 0.97). At b = 3 its gain is clear (−3.9 points, interval −4.6 to −2.1); at b = 0 and 1 it
 ties, so **the declared bar — better at b = 0, 1 and 3 — is not met.** Some pure-ML models collapse
 when asked about volumes they never saw (the SVR: 268 % at b = 1). PowerLawNet fits the curves best
-(MAE 0.010 of m20 vs the line's 0.025) and stops worst: an accurate curve is not an accurate decision.
+(MAE 0.010 of m20 vs the line's 0.025) and stops worst at b ≤ 3: an accurate curve is not an accurate
+decision. One caveat on the networks: their early stopping held out the open-loop experiment — the
+only development batches that run long — so the final MLP and PowerLawNet never trained on a batch
+past 2.3 times its minute-20 volume, while the other rungs did. Three minute-20 inputs read a little
+past minute 20 (a centred conductivity median, 7 s; flux, recirculation and temperature as medians of
+the whole filtration phase); with values known at minute 20, checked after the test, the hybrid gives
+4.03 %, 3.76 %, 3.66 % and 9.95 % at b = 0, 1, 3 and 10 — the same verdicts.
 
 ![Part C](figures/figC_ccro.png)
 
@@ -109,7 +124,7 @@ when asked about volumes they never saw (the SVR: 268 % at b = 1). PowerLawNet f
 | Unit | weekly decision × review level | filtration cycle | batch |
 | Target | crosses within 28 days (0/1) | climb of ln R, minute 4 → 11 | live cost after minute 20 |
 | Development · test | 30 · 60 new simulated plants; real deposit exploratory | 2012–13 · 2014–15 | extremum seeking + open loop · Bayesian optimisation |
-| Grouped by | plant | episode | experiment |
+| Grouped by | plant | operating episode (split by date) | experiment |
 | Physics-informed ML | Project 3's forecasts as features | Hermia constants, viscosity, physics predictions | learn only the departure from the law's line |
 | Physics-informed DL | **GapLawNet**: predicts a fouling rate; the gap law gives the date | **HermiaNet**: weights four blocking mechanisms; the constant-flux laws give the climb | **PowerLawNet**: predicts how the measured slope decays |
 
@@ -128,6 +143,7 @@ python projects/p06_ml_ladder/stepB1_uf_dev.py && python projects/p06_ml_ladder/
 python projects/p06_ml_ladder/build_ccro_rows.py
 python projects/p06_ml_ladder/stepC1_ccro_dev.py && python projects/p06_ml_ladder/stepC2_ccro_test.py
 python projects/p06_ml_ladder/make_summary.py           # results/summary.json and the figures
+python projects/p06_ml_ladder/posthoc_checks.py         # after the tests: the audit's checks, results/posthoc_checks.json
 ```
 
 The UF and CCRO steps need the records Projects 4 and 5 download (`data/`).
@@ -145,6 +161,13 @@ The UF and CCRO steps need the records Projects 4 and 5 download (`data/`).
 5. **Small grids, one seed.** The tuning grids are small on purpose; a wider search could move
    individual models, not the pattern across the three parts.
 6. **One record per question**, as in Projects 3–5.
+7. **Some inputs read past the decision time** — Part B's flow and temperature (whole-cycle means),
+   Part C's conductivity by 7 s and its flux, recirculation and temperature (whole-phase medians).
+   Sized after the tests: no declared verdict gets worse — in Part B every frozen pick scores better
+   without them; in Part C the picks' verdicts are unchanged.
+8. **The guards lock the declaration, not the code.** The test scripts refuse to run unless the
+   declaration is committed and unchanged; they do not stop a second run or check the code and input
+   tables. These were checked after the fact (VALIDATION.md, section 7).
 
 **What this is:** the machine-learning ladder run three times, honestly, on public records.
 **What it is not:** a claim that ML does or does not work for desalination — only what these records

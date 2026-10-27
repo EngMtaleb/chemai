@@ -1,9 +1,11 @@
 # Project 6 — validation notes
 
 Every number in README.md traces to a file in `results/` (collected in `results/summary.json` by
-`make_summary.py`) or to a test in `tests/test_ml_ladder.py`. Three parts, three declarations, each
-committed and pushed before its test ran; each test script refuses to run otherwise and records the
-commit.
+`make_summary.py`, and in `results/posthoc_checks.json` by `posthoc_checks.py` for the checks made
+after the tests) or to a test in `tests/test_ml_ladder.py`. Three parts, three declarations, each
+committed and pushed before its test ran; each test script refuses to run unless its declaration is
+committed and unchanged, and records the commit. Section 7 is an independent audit made after the
+three tests: what it found, and how much each finding moves.
 
 | Part | Question | Development | Test (once) | Declaration |
 |---|---|---|---|---|
@@ -15,7 +17,8 @@ commit.
 
 - **Grouped development.** Tuning and out-of-fold scores split by plant (A), episode (B) or
   experiment (C) — rows of one group share one membrane or one controller. The development score of
-  the chosen settings is mildly optimistic (chosen on the same folds); the test decides.
+  the chosen settings is mildly optimistic (chosen on the same folds); the test decides. Part B's test
+  is split by date, so one episode that runs across 2014-01-01 sits on both sides (section 7).
 - **The ladder, the same each time** (`chemai/models/ladder.py`): logistic regression or ridge,
   k-nearest neighbours, an RBF SVM / SVR, random forest, extra trees, XGBoost, LightGBM — each on a
   small grid; the ensemble is the mean of the three best on development. Then the same seven with
@@ -24,7 +27,7 @@ commit.
 - **The pick of each rung is chosen on development** (best average precision or MAE) and named in
   the declaration; all models are reported.
 - **Networks** train with Adam, weight decay and early stopping on a held-out fifth of the development
-  groups (one experiment in C); one seed.
+  groups (one experiment in C — with seed 0, the open-loop experiment: section 7); one seed.
 
 ## 2. Part A — the cleaning question
 
@@ -63,9 +66,10 @@ recovered); features `chemai/features/uf_forecast.py`.
 
 **What the plant may use at minute 5:** the cycle's binned ln R up to minute 5; earlier cycles of the
 episode within 3 h, each only after it ended; flow per element and temperature (segment means — the
-pilot holds its flow, and the temperature moves slowly); elements online; hours into the episode; days
-since the last chemical clean seen in the record. Not used: pump speed and MF inlet pressure, whose
-segment means include the rest of the cycle.
+declaration assumed the pilot holds its flow and the temperature moves slowly; the audit found the
+flow assumption too strong, so these two inputs read past minute 5: section 7); elements online; hours
+into the episode; days since the last chemical clean seen in the record. Not used: pump speed and MF
+inlet pressure, whose segment means include the rest of the cycle.
 
 **Development** (MAE, % of R): no model 1.537; straight line from 5 minutes 3.605; Hermia's best law
 2.974; history 1.730. Seven ML 1.396–1.473 (plain) and 1.393–1.438 (physics); ensembles 1.389 and
@@ -134,3 +138,54 @@ flat 0.0285. Plain ML 0.007–0.050 · 0.023–0.073 (ridge best overall); hybri
 **Is:** the same ladder run on three questions, each declared before its test, with the losses
 reported beside the wins. **Is not:** a validation on plant data (one deposit, one pilot, one
 testbed), nor an exhaustive search: the grids are small and each network has one seed.
+
+## 7. An independent audit, after the tests
+
+After the three tests, a separate reviewer — an AI agent that had not built the ladder, given only the
+repository — read the code, the declarations and the results for leakage and protocol gaps. It found
+no test data touching development in any part, and Part A clean. Its other findings follow, each with
+what it moves. The numbers come from `posthoc_checks.py` → `results/posthoc_checks.json`: each check
+first rebuilds the declared scores from the same code path (it does, exactly), the networks are not
+refitted, and **nothing here replaces a declared result.**
+
+1. **Part B: flow and temperature read past minute 5.** Both enter as means over the whole cycle (a
+   median 13 minutes long). Temperature barely moves within a cycle (whole-cycle minus first five
+   minutes: s.d. 0.02 °C), but flow does: 100 · ln(whole-cycle flow / first-5-minute flow) has a spread
+   of 0.51 % in development and 0.28 % in the test, and correlates with the climb at −0.33 and −0.26.
+   Refitted with first-5-minute values, every frozen pick scores better: extra trees 0.937 (−0.050;
+   −0.085 to −0.013); its ensemble 0.936 (−0.052; −0.087 to −0.019); extra trees + physics 0.946
+   (−0.042; −0.080 to −0.001); its ensemble 0.951 (−0.037; −0.074 to −0.003) — the last three move
+   from a tie to a pass. Of the 14 models only XGBoost gets worse (1.162 → 1.169); ridge improves most
+   (1.57 → 1.22). The look-ahead did not inflate the declared result; it slightly hid the models' gain.
+2. **Part B: a narrow pass, and one episode on both sides of the split.** The pass holds under all 20
+   bootstrap seeds tried (0–19; the declared seed is 7), but leave out any one of 7 of the 47 test
+   episodes (41, 44, 45, 47, 80, 81, 82) and the interval's upper bound lands between +0.0001 and
+   +0.0037: a tie. The split is by date, so episode 41 (30 December 2013 to 4 January 2014) has 78
+   cycles in development and 240 in the test; "grouped by episode" holds inside development, not across
+   the cut.
+3. **Part C: three minute-20 inputs read a little past minute 20.** Conductivity is smoothed with a
+   centred 15-sample median (7 s ahead at minute 20); flux, recirculation and temperature are medians
+   of the whole filtration phase. With a trailing median and medians up to minute 20, the hybrid gives
+   4.03 / 3.76 / 3.66 / 9.95 % at b = 0 / 1 / 3 / 10 (declared 4.24 / 3.98 / 3.66 / 10.17), its
+   ensemble 4.73 / 4.37 / 4.10 / 9.30 and ridge 7.19 / 7.33 / 10.23 / 16.92. No frozen pick's verdict
+   changes; one model that was not a pick, the hybrid XGBoost, would move from a tie to a win at b = 1.
+4. **Part C: the networks never trained on a long batch.** Their early stopping holds out one
+   development experiment; with seed 0 that is the open-loop experiment, the only one whose batches
+   run past r = 2.34. The final MLP and PowerLawNet learned only from batches that stop by r = 2.34,
+   while the other rungs trained on all four experiments. The deep-learning comparison in Part C is
+   unequal, and PowerLawNet's poor stops may owe as much to that as to its form.
+5. **The guards lock the declaration, not the code.** The test scripts refuse to run unless the
+   declaration file is committed and unchanged; they do not check the code, the development JSON or
+   the input tables (some are gitignored), and nothing stops a second run. Checked after the fact: the
+   test scripts, feature modules, `ladder.py` and the development JSONs are unchanged since their
+   declaration commits, and `deep.py` changed only in ways Parts A and B do not use (additions, and an
+   option that is off unless asked for); the picks, ensemble members, thresholds and pass marks match
+   the declarations; GitHub's activity log for the branch records the three pushes at 22:58:30,
+   23:15:07 and 23:31:15 UTC on 26 October 2026, and the result files put the tests' starts 5, 3 and
+   3 s later (file time minus the run time each records). Each test ran once; the guard does not
+   enforce that.
+6. **Smaller points.** Part B's one-minute bins are aligned to the clock, so "the first 5 minutes"
+   reaches about 5.5 minutes (at most 6) — still before the target window. The look-ahead unit test
+   covers Part A only (`tests/test_ml_ladder.py`), not Parts B and C, where these look-aheads were.
+   README's "best model of all" in Part B (SVR + physics, 0.914) was picked on the test, and is now
+   labelled so. The headline verdict for Part C now says that the declared bar was not met.
