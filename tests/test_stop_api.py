@@ -91,7 +91,7 @@ def test_interval_on_the_real_cycles(client):
     ro = EXAMPLES["ro_cycle"]
     j = client.post("/interval", json={"day": ro["day"], "live_cost": ro["live_cost"],
                                        "fixed_cost": ro["fixed_cost"]}).json()
-    assert j["rule_day"] is None                         # energy never paid within the cycle
+    assert j["rule_day"] is None                         # energy alone never covered a cleaning in the cycle
     assert j["t_star_days"] > ro["actual_days"]
     uf = EXAMPLES["uf_interval"]
     j2 = client.post("/interval", json={"day": uf["day"], "live_cost": uf["live_cost"],

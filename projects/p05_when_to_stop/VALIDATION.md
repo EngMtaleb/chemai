@@ -258,10 +258,10 @@ not a test.
 
 | Decision | Time scale | Is energy the reason to stop? |
 |---|---|---|
-| End a CCRO batch | ~1 h | **Yes** — and the rule ends batches within 0.1 % of their best, tested |
+| End a CCRO batch | ~1 h | **Yes** — and the rule ends batches a median 0.02–0.07 % above their own best, where the record shows it (§4), tested |
 | Backwash a UF element | ~20 min | **No** — energy and water alone: ~16× less often |
 | Clean a UF membrane chemically | ~4–5 months | **About** — energy alone: 1.1–1.3× the actual interval |
-| Clean an RO train | weeks to months | **No** — energy never paid for a cleaning in 15 cycles |
+| Clean an RO train | weeks to months | **No** — energy savings alone never covered a cleaning in 15 cycles (mid case) |
 
 The same equation tells which costs matter at which scale. Where the live cost rises steeply and
 reversibly (a concentrating batch, a resistance that doubles), energy times the square-root law is the

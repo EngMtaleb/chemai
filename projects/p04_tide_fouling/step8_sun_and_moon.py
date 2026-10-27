@@ -1,7 +1,8 @@
 """Step 8 - the moon as a power source: a tidal turbine beside the PV.
 
-Part 1 found the tide does not foul the membrane; part 2 that the membrane
-does not mind when it runs. So the plant can follow any renewable supply. A
+Part 1 found no tide in the membrane's fouling; part 2 no sign that the
+membrane minds when it runs. So, in this design study, the plant can follow any
+renewable supply. A
 tidal-stream turbine delivers at night and on cloudy days, on a timetable known
 years ahead. How much tank and capacity does a little of it save?
 

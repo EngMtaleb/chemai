@@ -45,9 +45,12 @@ log = logging.getLogger(__name__)
 
 LIMITS = [
     "On the one real plant it was tested on (three trains, eighteen cleanings), the date forecast "
-    "did not beat a simple rule. 'The 7-day median is within 0.03 of the level' caught 43 % of "
-    "the crossings inside 28 days at 93 % precision; the forecast caught 21 % at 72 %. The weekly "
-    "plan therefore uses both - a rule adopted after that test (VALIDATION.md section 12).",
+    "did not beat a simple rule. Of 213 weekly decisions, 61 were followed by a crossing within 28 "
+    "days: 'the 7-day median is within 0.03 of the level' caught 26 of them with 2 false alarms "
+    "(recall 0.43, precision 0.93); the forecast caught 13 with 5 (0.21, 0.72). The weekly plan "
+    "therefore uses both - a rule adopted after that test (VALIDATION.md section 12).",
+    "Gaps: a third of the real plant's weekly rows (32 %) had too few recorded days for any "
+    "forecast; the plan answers 'data' there instead of guessing.",
     "Level forecasts 14 days ahead were no better than assuming the level stays where it is "
     "(mean error 0.034 for both).",
     "The P10-P90 band is rough: it held 78 % of outcomes on simulated test plants, 89 % on the "

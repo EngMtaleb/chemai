@@ -38,9 +38,10 @@ log = logging.getLogger(__name__)
 RESULTS = {
     "batch_rule_test": {
         "batches": 153, "record": "closed-circuit RO testbed, Bayesian-optimisation runs (held out)",
+        "scored_best_end_in_record": {"b=1": 97, "b=10": 10},
         "median_above_best_pct": {"b=1": 0.069, "b=10": 0.019}, "p90_above_best_pct": {"b=1": 0.112, "b=10": 0.061},
         "optimiser_ended_while_cost_still_falling_pct": {"BO (test)": 90, "ESC (development)": 100},
-        "square_root_law_forecast": "within 4-7 % for b <= 3; 11 % short at b = 10 (declared limit 10 %: failed)"},
+        "square_root_law_forecast": "a median 4.3-7.5 % off for b <= 3; 11 % short at b = 10 (declared limit 10 %: failed)"},
     "ro_cleaning": {"cycles": 15, "energy_paid_for_a_cleaning": "0 of 15 (mid case); at most 6 of 15 in any of 216 cases",
                     "no_energy_rise": "9 of 15 cycles",
                     "longer_cycles_left_more_pressure_drop": {"spearman": 0.63, "p": 0.016}},
@@ -76,10 +77,11 @@ def create_stop_app() -> FastAPI:
     app = FastAPI(
         title="When to Stop",
         description=(
-            "One rule for four decisions in a desalination plant: end a closed-circuit RO batch, backwash a "
-            "filter, clean it chemically, clean an RO train. Stop when the live cost of the next cubic metre "
-            "reaches the average cost of the cycle so far. Tested on 153 held-out batches of a public RO "
-            "testbed: a median 0.02-0.07 % above each batch's best end.\n\n/batch runs it on your own log."),
+            "One rule for four decisions in desalination, on three separate public records: end a "
+            "closed-circuit RO batch, backwash a filter, clean it chemically, clean an RO train. Stop when the "
+            "live cost of the next cubic metre reaches the average cost of the cycle so far. Tested once on "
+            "153 held-out batches of a public RO testbed: where a batch's best end is in the record (97 at "
+            "b = 1, 10 at b = 10), a median 0.02-0.07 % above it, found in hindsight.\n\n/batch runs it on your own log."),
         version=__version__,
     )
 

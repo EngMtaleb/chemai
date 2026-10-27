@@ -35,11 +35,11 @@ log = logging.getLogger(__name__)
 # The declared results (projects/p04_tide_fouling/VALIDATION.md 4 and 7).
 RESULTS = {
     "record": "seawater UF pilot, 2012-2015: 107 runs, 5,106 h, 14,998 filtration segments",
-    "tide_fouling": {"p": 0.244, "answer": "no tide-locked fouling; a 10 % swing would have been found 99.5 % of the time"},
+    "tide_fouling": {"p": 0.244, "answer": "no tide-locked fouling detected; a 10 % swing would have been found 99.5 % of the time"},
     "daylight_hours": {"p": 0.746, "contrast": -0.008, "ci95": [-0.025, 0.012],
-                       "answer": "09-15 h foul like the rest of the day"},
+                       "answer": "no daylight effect detected: 09-15 h within -2.5 % to +1.2 % of the rest of the day"},
     "restart": {"p": 0.382, "effect": 0.031, "ci95": [-0.039, 0.100],
-                "answer": "the first 3 h after a restart foul like the rest"},
+                "answer": "no restart effect detected; one above about 10 % is ruled out, a smaller one is not"},
     "solar_design_90pc": {"capacity": 3.0, "storage_h": 16, "pv_kwp": 0.7, "renewable": 0.93,
                           "grid_kwh_m3": 0.23, "from_kwh_m3": 3.26},
     "with_tidal_0_10kW": {"capacity": 2.0, "storage_h": 8, "pv_kwp": 0.9, "renewable": 0.91},
@@ -66,9 +66,10 @@ def create_sun_app() -> FastAPI:
         title="Desalination on the Sun - and the Moon",
         description=(
             "Two things a solar-run seawater plant needs to know. Does the pre-treatment membrane foul "
-            "differently by the hour, after a restart, or with the tide? (No - over 5,106 hours of a "
-            "public pilot.) And how much capacity, storage and PV - or a tidal turbine - buys a given "
-            "share of renewable energy.\n\n/test runs the declared tide or time-of-day test on your own log."),
+            "differently by the hour, after a restart, or with the tide? (None detected over 5,106 hours "
+            "of one public UF pilot; a restart penalty below about 10 % is not ruled out.) And, on a "
+            "synthetic year with no prices, how much capacity, storage and PV - or a tidal turbine - "
+            "buys a given share of renewable energy.\n\n/test runs the declared tide or time-of-day test on your own log."),
         version=__version__,
     )
     sec = SolarPlanConfig().sec
