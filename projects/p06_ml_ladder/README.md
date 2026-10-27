@@ -108,9 +108,9 @@ when asked about volumes they never saw (the SVR: 268 % at b = 1). PowerLawNet f
 (MAE 0.010 of m20 vs the line's 0.025) and stops worst at b ≤ 3: an accurate curve is not an accurate
 decision. One caveat on the networks: their early stopping held out the open-loop experiment — the
 only development batches that run long — so the final MLP and PowerLawNet never trained on a batch
-past 2.3 times its minute-20 volume, while the other rungs did. Three minute-20 inputs read a little
-past minute 20 (a centred conductivity median, 7 s; flux, recirculation and temperature as medians of
-the whole filtration phase); with values known at minute 20, checked after the test, the hybrid gives
+past 2.3 times its minute-20 volume, while the other rungs did. Some minute-20 inputs read past
+minute 20 (the conductivity features by 7 s, through a centred median; flux, recirculation and
+temperature as medians of the whole filtration phase); with values known at minute 20, checked after the test, the hybrid gives
 4.03 %, 3.76 %, 3.66 % and 9.95 % at b = 0, 1, 3 and 10 — the same verdicts.
 
 ![Part C](figures/figC_ccro.png)

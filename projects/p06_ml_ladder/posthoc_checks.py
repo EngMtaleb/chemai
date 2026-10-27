@@ -8,9 +8,9 @@ These checks size three weaknesses the audit found (VALIDATION.md, section 7):
       minute 5. Refit the frozen sklearn models with first-5-minute values and score again.
   B2  How narrow is Part B's pass? Drop each test episode in turn and recompute the interval; and
       list the episodes that straddle the 2014-01-01 split.
-  C1  Three of Part C's minute-20 inputs read a little past minute 20 (a centred 15-sample
-      conductivity median; flux, recirculation and temperature as medians of the whole filtration
-      phase). Refit the frozen sklearn models with values known at minute 20 and score again.
+  C1  Some of Part C's minute-20 inputs read past minute 20 (the conductivity features through a
+      centred 15-sample median, 7 s; flux, recirculation and temperature as medians of the whole
+      filtration phase). Refit the frozen sklearn models with values known at minute 20 and score again.
 
 Each check first rebuilds the declared numbers from the same code path, to show it scores the
 same way; the networks are not refitted.

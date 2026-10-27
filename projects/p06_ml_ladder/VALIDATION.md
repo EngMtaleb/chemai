@@ -163,9 +163,9 @@ refitted, and **nothing here replaces a declared result.**
    +0.0037: a tie. The split is by date, so episode 41 (30 December 2013 to 4 January 2014) has 78
    cycles in development and 240 in the test; "grouped by episode" holds inside development, not across
    the cut.
-3. **Part C: three minute-20 inputs read a little past minute 20.** Conductivity is smoothed with a
-   centred 15-sample median (7 s ahead at minute 20); flux, recirculation and temperature are medians
-   of the whole filtration phase. With a trailing median and medians up to minute 20, the hybrid gives
+3. **Part C: some minute-20 inputs read past minute 20.** Conductivity is smoothed with a centred
+   15-sample median, so its three features look 7 s ahead at minute 20; flux, recirculation and
+   temperature are medians of the whole filtration phase. With a trailing median and medians up to minute 20, the hybrid gives
    4.03 / 3.76 / 3.66 / 9.95 % at b = 0 / 1 / 3 / 10 (declared 4.24 / 3.98 / 3.66 / 10.17), its
    ensemble 4.73 / 4.37 / 4.10 / 9.30 and ridge 7.19 / 7.33 / 10.23 / 16.92. No frozen pick's verdict
    changes; one model that was not a pick, the hybrid XGBoost, would move from a tie to a win at b = 1.
