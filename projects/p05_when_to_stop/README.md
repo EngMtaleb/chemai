@@ -1,7 +1,8 @@
 # Project 5 — When to Stop
 
-**One rule for four decisions in a desalination plant: when to end a reverse-osmosis batch, when to
-backwash a filter, when to clean it chemically, and when to clean an RO train.**
+**One rule for four decisions in desalination — when to end a reverse-osmosis batch, when to
+backwash a filter, when to clean it chemically, and when to clean an RO train — tested on three
+public records from three separate membrane systems.**
 
 **Live:** [chemai-tr2c.onrender.com/stop/](https://chemai-tr2c.onrender.com/stop/) — the rule on a
 real batch or on your own log, and the square-root law for cleaning intervals.
@@ -26,13 +27,18 @@ should come √2 times later, not twice.
 A public closed-circuit RO testbed (doi:10.7481/1963162) ran two published optimisers on the same
 question — when to end each batch, trading energy against brine. The rule was developed on one
 optimiser's batches (extremum seeking, June–July 2021), frozen in a declaration committed to this
-repository, and scored once on the other's (Bayesian optimisation, October 2021):
+repository, and scored once on the other's (Bayesian optimisation, October 2021). The rule sees only
+the batch so far and the drain and brine of the batch before; each batch's best end is found afterwards, in
+hindsight, on its own recorded path — so a batch is scored only where that best end lies inside the
+record:
 
 | 153 held-out batches | brine price b = 1 | b = 10 |
 |---|---:|---:|
+| Batches whose best end the record shows — scored | 97 | 10 |
 | **The rule's end, above the batch's own best** — median | **0.069 %** | **0.019 %** |
 | 90th percentile | 0.112 % | 0.061 % |
 | Declared limit (median · p90) | 0.5 % · 1.0 % | 0.5 % · 1.0 % |
+| The rest, ended while the cost was still falling: the rule stopped earlier at > 0.5 % above the end | 0 of 56 | 0 of 143 |
 | The optimiser's own end, above the best — median, where measurable | 0.52 % | 0.06 % |
 | Batches the optimiser ended while the cost was still falling | 69 % | 95–100 % |
 
@@ -54,10 +60,10 @@ needs no straight line and was unaffected.
 
 | Decision | Every | Is energy the reason to stop? | Evidence |
 |---|---|---|---|
-| End a closed-circuit RO batch | ~1 hour | **Yes** | the rule above: 0.02–0.07 % from the best, 153 held-out batches |
+| End a closed-circuit RO batch | ~1 hour | **Yes** | the rule above: a median 0.02–0.07 % above each batch's own best, where the record shows it (97 and 10 of 153 held-out batches) |
 | Backwash a UF element | ~20 minutes | **No** | energy and water alone: ~16× fewer backwashes (declared ≥ 5×: passed) |
 | Clean a UF membrane chemically | ~4–5 months | **About** | energy alone: 1.1–1.3× the intervals actually run (2 intervals) |
-| Clean an RO train | weeks–months | **No** | energy never paid for a cleaning: 0 of 15 cycles (declared ≤ 4: passed) |
+| Clean an RO train | weeks–months | **No** | energy savings alone never covered a cleaning: 0 of 15 cycles, mid case (declared ≤ 4: passed) |
 
 ### RO cleaning: energy is the smallest reason
 
@@ -126,7 +132,8 @@ fixed cost of the last stop
    m³/day of capacity.
 3. **Stop** at the first moment the live cost reaches the average, after a short floor.
 4. **Score** against the best stop in hindsight, inside each cycle — exact, because a batch's path
-   does not depend on where it is stopped.
+   does not depend on where it is stopped. Where a batch was ended while its cost was still falling,
+   its best end is not in the record; it is checked only for an early stop.
 
 Four declarations, each committed and pushed before its run: `DECLARED_BEFORE_RUN_A.md` (the batch
 rule), `_D.md` (RO cleaning), `_BC.md` (UF). The validation record is
@@ -212,6 +219,9 @@ curl "localhost:8000/stop/law?fixed=1.0&slope=0.0001"
 
 ## What this is not
 
+- **Not one plant.** The four decisions come from three separate public records: the batch rule from
+  a closed-circuit RO testbed, RO cleaning from one seawater RO plant, backwash and chemical cleaning
+  from one UF pilot.
 - **Not a plant result for the batch rule.** It was tested on a one-element NaCl testbed. Its claim is
   that a batch's own live signal finds its best end; the full-scale numbers are arithmetic.
 - **Not a verdict that plants clean too often.** Energy does not justify the RO cleanings; limits and

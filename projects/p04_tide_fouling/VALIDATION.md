@@ -150,13 +150,13 @@ ran. Power: `results/step5_sun_power.json`. Results: `results/step6_sun_tests.js
 
 | test | number | p | verdict |
 |---|---|---|---|
-| **H2** fouling rate follows the time of day | variance explained 0.028 % (null 95th pct 0.092 %) | **0.746** | no daily pattern |
+| **H2** fouling rate follows the time of day | variance explained 0.028 % (null 95th pct 0.092 %) | **0.746** | no daily pattern detected |
 | C3 positive control: temperature follows the time of day | 43.8 % (null 9.8 %) | 0.001 | the clock and the test work |
 | H2 placebo periods | 0.060 % (null 0.097 %) | 0.330 | calibrated |
 | H2 confirmation, fit 2012–13 → score 2014–15 | −0.27 % | 0.897 | nothing to confirm |
 | H2 with temperature in the base model | — | 0.385 | same |
 | **Solar-hours contrast** (09–15 h against the rest) | −0.8 % of the median fouling rate, 95 % interval **−2.5 % to +1.2 %** | — | not relevant (line: ±10 %) |
-| **H3** first 3 h after a restart (81 restarts, 2,503 segments) | +3.1 % of the median, 95 % interval **−3.9 % to +10.0 %** | **0.382** | no restart effect |
+| **H3** first 3 h after a restart (81 restarts, 2,503 segments) | +3.1 % of the median, 95 % interval **−3.9 % to +10.0 %** | **0.382** | no restart effect detected; above ~10 % ruled out |
 | H3 placebo, pretend restart at 24 h | −1.3 % | 0.842 | calibrated |
 | H3 in 2012–13 / 2014–15 | +0.34 / +0.25 %/h | 0.74 / 0.72 | no replication needed — nothing to replicate |
 | H3 idle 2–12 h / over 12 h (exploratory) | +1.63 / +0.41 %/h | 0.38 / 0.42 | — |
@@ -166,23 +166,26 @@ added to the real fouling rates is found at p = 0.001 (5 %: p = 0.032); an
 early-hours step of 10 % added to the real restart windows is found at
 p = 0.0007.
 
-**What it means for a plant run on the sun.** The record clears the two
-fouling worries about solar operation, with intervals rather than hopes:
+**What it means for a plant run on the sun.** On this UF pilot neither fouling
+worry about solar operation showed up, and the intervals say how large an
+effect could still hide:
 
-- Running only in daylight does not change the fouling rate: the hours 09–15
-  foul within −2.5 % to +1.2 % of the rest of the day.
-- Stopping every night and restarting every morning does not change it either:
-  the first 3 h after a restart are within −3.9 % to +10.0 %; a price of 20 %
-  would have been caught 98 % of the time.
+- No daylight effect was detected: the hours 09–15 foul within −2.5 % to
+  +1.2 % of the rest of the day.
+- No restart effect was detected either: the first 3 h after a restart are
+  within −3.9 % to +10.0 % — a penalty above about 10 % is ruled out, a smaller
+  one is not; a price of 20 % would have been caught 98 % of the time.
 - The warm-water bonus is real but small here: the daily temperature swing is
   0.7 °C, and the hours 09–15 average only 0.13 °C warmer than the rest — a
   0.3 % viscosity gain. Not a reason to run in daylight, not a reason against.
 
-So a seawater pre-treatment can be run on solar hours, with daily stops, at
-the same flux it runs at around the clock, without fouling faster. The price
-of going solar is membrane area and storage — sized in part 3 — not fouling.
-The limits of section 7 of the second declaration stand: one pilot, and its
-restarts were the operators' choice.
+So, on this record, a seawater UF pre-treatment run on solar hours, with daily
+stops, at the same flux it runs at around the clock, showed no sign of fouling
+faster. The price of going solar is then membrane area and storage — sized in
+part 3 — rather than fouling. This covers the UF only: the RO trains are not in
+the record, and their daily stops need their own test. The limits of section 7
+of the second declaration stand: one pilot, and its restarts were the
+operators' choice.
 
 ## 8. Part 3 — sizing a plant that runs on the sun
 
@@ -194,7 +197,7 @@ comes from the record and what is assumed:
 
 | input | value | from |
 |---|---|---|
-| fouling per m³ in daylight-only, stop-start operation at design flux | same as round-the-clock | part 2 (H2, H3) |
+| fouling per m³ in daylight-only, stop-start operation at design flux | taken as round-the-clock: no difference detected (a restart penalty below ~10 % not excluded) | part 2 (H2, H3), UF only |
 | UF energy | 0.26 kWh per m³ of product: 0.083 kWh hydraulic per m³ of UF feed (median of 106 runs; filtration pressure × feed flow plus backwash pressure × backwash flow), ÷ pump efficiency 0.7, ÷ RO recovery 0.45 | the record + assumptions |
 | seawater RO energy | 3.0 kWh/m³ — the plant uses 3.26 kWh/m³ in all | literature range 2.5–3.5 |
 | weather | synthetic: day length 10.4–13.6 h, clear-day 6.2 kWh/kWp ± 16 % by season, daily cloud draw; mean 5.26 kWh/kWp/day ("sunny"), 4.73 ("cloudier") | assumption, no site |
@@ -258,9 +261,9 @@ Run: `step8_sun_and_moon.py`; results: `results/step8_sun_and_moon.{parquet,json
 Same design study, with a generic tidal-stream turbine beside the PV: current
 from M2 and S2 (so spring and neap), power ∝ speed³ up to the rated speed,
 capacity factor 0.35 (typical for tidal stream). It delivers at night and on
-cloudy days, on a timetable known years ahead. Part 1 says the tide does not
-foul the membrane, part 2 that the membrane does not mind when it runs — so
-the plant can follow either supply.
+cloudy days, on a timetable known years ahead. Part 1 found no tide in this
+membrane's fouling, part 2 no sign that it minds when it runs — so, in this
+design study, the plant can follow either supply.
 
 | renewable share | PV only | + tidal 0.10 kW per m³/day (≈ 26 % of the energy) | + tidal 0.15 kW (≈ 39 %) |
 |---|---|---|---|

@@ -117,13 +117,13 @@ def fig_map():
     minutes_per_l = float((b6.filt_min / b6.filt_Vp_l).median())
     rows = [
         ("CCRO batch\n(testbed, b = 1)", np.nan, float(test.V_best_l.median() * minutes_per_l) / 60 / 24,
-         "energy is the decision: the rule ends each batch within 0.1 % of its best"),
+         "energy is the decision: the rule ends a batch a median 0.07 % above its own best (b = 1)"),
         ("UF backwash\n(pilot)", float(bw.v_cycle_m3.median() / bw.q_m3h.median()) / 24,
          float(bw.v_star_m3.median() / bw.q_m3h.median()) / 24, f"energy + water alone: {uf['B1']['median_ratio']:.0f}× longer"),
         ("UF chemical clean\n(pilot)", float(np.mean([c["length_d"] for c in uf["C_intervals"]])),
          float(np.mean([c["t_star_d"] for c in uf["C_intervals"]])), "energy alone: about the same"),
         ("RO cleaning\n(plant, 15 cycles)", float(ro.length_d.median()), np.inf,
-         f"energy never paid: 0 of {d['complete_cycles']}; 9 cycles no rise at all"),
+         f"energy savings alone never covered a cleaning: 0 of {d['complete_cycles']} (mid case); in 9, no rise at all"),
     ]
     fig, ax = plt.subplots(figsize=(9.2, 3.6))
     for i, (name, actual, star, note) in enumerate(rows):

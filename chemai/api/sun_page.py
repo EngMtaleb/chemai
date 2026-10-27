@@ -93,16 +93,16 @@ PAGE = r"""<!doctype html>
       fouling rate of each stretch from the membrane's resistance.</div>
     <div class="tiles">
       <div class="tile"><div class="k">The tide</div>
-        <div class="ans">Not locked to it</div>
-        <div>Fouling did not rise and fall with the tide.</div>
+        <div class="ans">None detected</div>
+        <div>The test found no tide-locked rise and fall in the fouling.</div>
         <div class="num">p = 0.24 &middot; a 10&nbsp;% swing would have been caught 99.5&nbsp;% of the time</div></div>
       <div class="tile"><div class="k">The sunny hours</div>
-        <div class="ans">No difference</div>
+        <div class="ans">No difference detected</div>
         <div>09&ndash;15&nbsp;h fouled like the rest of the day.</div>
         <div class="num">&minus;0.8&nbsp;% (&minus;2.5 to +1.2&nbsp;%) &middot; p = 0.75</div></div>
       <div class="tile"><div class="k">The restart</div>
-        <div class="ans">No penalty found</div>
-        <div>The first 3&nbsp;h after a stop fouled like the rest.</div>
+        <div class="ans">No penalty detected</div>
+        <div>The first 3&nbsp;h after a stop: a penalty above about 10&nbsp;% is ruled out.</div>
         <div class="num">+3.1&nbsp;% (&minus;3.9 to +10.0&nbsp;%) &middot; p = 0.38</div></div>
     </div>
     <div class="hint">So on this record the pre-treatment can follow the sun &mdash; stop at night,

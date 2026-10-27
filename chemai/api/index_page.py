@@ -34,9 +34,9 @@ INDEX = r"""<!doctype html>
 
   <a class="card" href="stop/">
     <div class="t">When to stop</div>
-    <div class="d">One rule for four decisions in a desalination plant: end an RO batch, backwash,
-      clean chemically, clean an RO train. Tested once on 153 held-out batches of a public RO
-      testbed, then run on your own batch log or cleaning cycle.</div>
+    <div class="d">One rule for four decisions in desalination &mdash; end an RO batch, backwash,
+      clean chemically, clean an RO train &mdash; on three separate public records. Tested once on
+      153 held-out batches of a public RO testbed, then run on your own batch log or cleaning cycle.</div>
     <div class="m">Open the demo &rarr;</div>
   </a>
 

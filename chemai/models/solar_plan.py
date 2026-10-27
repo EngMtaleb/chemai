@@ -1,9 +1,12 @@
 """Running a seawater UF -> RO plant on the sun: an hour-by-hour plan for a year.
 
-Part 2 of Project 4 found that the pre-treatment membrane fouls at the same
-rate in daylight as at night and does not foul faster after a restart. So a
-plant built from modules - each module on or off, always at its design flux -
-can follow the sun with no fouling price per cubic metre. What remains is
+Part 2 of Project 4 detected no difference in the pre-treatment membrane's
+fouling rate between daylight and the rest of the day (-2.5 % to +1.2 %) and
+none after a restart (-3.9 % to +10.0 %: above about 10 % ruled out). So this
+plan treats a plant built from modules - each module on or off, always at its
+design flux - as following the sun with no fouling price per cubic metre: an
+assumption the record supports for the UF, and does not test for the RO
+trains (a flush at each stop is assumed). What remains is
 hardware: how much production capacity, product-water storage and PV a given
 solar share needs. That is a linear programme.
 

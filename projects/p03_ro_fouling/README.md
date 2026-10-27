@@ -20,13 +20,17 @@ whose cause is known, or upload your own `day,dp_norm` CSV.
 ## ⭐ The headline: on the real plant, the forecast did not win
 
 Tested once, after a written declaration, on the only public plant record of this kind we could
-find (three trains, 18 cleanings — Su, Meng & Chang 2026):
+find (three trains, 18 cleanings — Su, Meng & Chang 2026): 213 weekly decisions with a known
+answer, from 11 cleaning cycles, of which 61 were followed by a crossing within 28 days.
 
-| "Will this train reach the review level within 28 days?" | Recall | Precision |
-|---|---:|---:|
-| the frozen forecast (P50 date within 28 days) | 0.21 | 0.72 |
-| **a simple rule: the last 7 days sit within 0.03 of the level** | **0.43** | **0.93** |
-| both, as the weekly plan now uses them (chosen after this test) | 0.51 | 0.84 |
+| "Will this train reach the review level within 28 days?" | Caught (of 61) | False alarms | Recall | Precision |
+|---|---:|---:|---:|---:|
+| the frozen forecast (P50 date within 28 days) | 13 | 5 | 0.21 | 0.72 |
+| **a simple rule: the last 7 days sit within 0.03 of the level** | **26** | **2** | **0.43** | **0.93** |
+| both, as the weekly plan now uses them (chosen after this test) | 31 | 6 | 0.51 | 0.84 |
+
+The record has gaps: over the two years, a third of the weekly rows (32 %) had too few recorded
+days to forecast at all, and the plan says so (`data`) instead of guessing.
 
 Level forecasts 14 days ahead were **no better than assuming the level stays where it is** (mean
 error 0.034 for both). The declaration had said this could happen, and named one reason: the
@@ -50,7 +54,7 @@ nearly the same precision. A second plant is what would settle it.
 | Median error, the dates it flags vs the rest (real plant) | **59 vs 12.5 days** |
 | Median error of the crossing date, test plants · real plant | 19 days · 28 days |
 | P10–P90 coverage: test plants · real plant · quieter simulation | 0.78 · 0.89 · 0.69 |
-| The operators' 18 cleanings the plan had at "review" or "plan" the week before | 13 |
+| The operators' cleanings the plan had at "review" or "plan" the week before (rules as adopted after the test) | 13 of 18 |
 | Tests | 269 (whole repository) |
 
 Simulation is used for everything that needs a known answer: the true crossing day without the
@@ -97,8 +101,8 @@ one to two days, in simulation and on the real plant; not adopted, kept as an op
 
 ### Three real cleanings had no hydraulic reason
 
-Replaying the weekly plan over two years, 13 of the operators' 18 cleanings came when the plan said
-"review" or "plan". Three came with the last week's DP_norm at 1.04–1.11. Before one of them, salt passage had been
+Replaying the weekly plan over two years — with the margin rule added after the test, so this is
+optimistic — 13 of the operators' 18 cleanings came when the plan said "review" or "plan". Three came with the last week's DP_norm at 1.04–1.11. Before one of them, salt passage had been
 about 60 % above its baseline for a month — a reason a pressure-drop plan cannot see. Before the
 other two, none of the four published indicators had moved. The data do not say why they were done.
 

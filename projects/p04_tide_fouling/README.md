@@ -4,49 +4,54 @@
 design explorer for solar and tidal supply, and the declared tide (or time-of-day) test run on your
 own `t,value` CSV.
 
-**The record clears solar operation.** Over 5,106 hours of a seawater
-ultrafiltration pilot, the fouling rate does not depend on the hour of the day
-(daylight hours within −2.5 % to +1.2 % of the rest) or on a daily stop and
-restart (first 3 hours within −3.9 % to +10.0 %). A solar-run pre-treatment can
-produce in daylight and stop at night, at its usual flux, without fouling
-faster. Both tests were declared before they were run, with positive controls,
-placebos and power analyses.
+**No daylight or restart effect was detected on this pilot.** Over 5,106 hours
+of a seawater ultrafiltration (UF) pilot, the fouling rate in daylight hours was
+within −2.5 % to +1.2 % of the rest of the day, and in the first 3 hours after a
+daily stop and restart within −3.9 % to +10.0 % (95 % intervals). A restart
+penalty above about 10 % is ruled out; a smaller one is not. On this record, a
+UF pre-treatment that produces in daylight and stops at night, at its usual
+flux, showed no sign of fouling faster. Reverse-osmosis trains are not in the
+record: their daily stops need their own test. Both tests were declared before
+they were run, with positive controls, placebos and power analyses.
 
-**What it takes to run on the sun.** With modules switched on and off at their
-usual flux — so the record's no-penalty result applies — a synthetic sunny year
-needs, per m³/day of water: 3× production capacity, a 16-hour tank and 0.7 kWp
-of PV for 93 % solar energy (grid electricity 3.26 → 0.23 kWh/m³). A simple
-rule with no forecast does as well as a perfect-foresight plan once the tank is
-that big. Getting the capacity by pushing flux instead of adding modules would
-raise fouling per m³ — the design study is in VALIDATION.md 8. Where a strong
-tidal current exists, a turbine supplying about a quarter of the energy lets
-the plant reach 90 % renewable with 2× capacity and an 8-hour tank
-(VALIDATION.md 9): the moon does not foul the membrane, but it can run it at
+**A design scenario for running on the sun.** With modules switched on and off
+at their usual flux — the condition the UF result above was measured at — a
+synthetic sunny year needs, per m³/day of water: 3× production capacity, a
+16-hour tank and 0.7 kWp of PV for 93 % of the plant's electricity from the sun
+(grid electricity 3.26 → 0.23 kWh/m³). It is an energy design on a synthetic
+year, not a costed plant: no prices are used, and the RO side under daily stops
+is assumed (a flush at each stop), not tested. A simple rule with no forecast
+does as well as a perfect-foresight plan once the tank is that big. Getting the
+capacity by pushing flux instead of adding modules would raise fouling per m³ —
+the design study is in VALIDATION.md 8. Where a strong tidal current exists, a
+turbine supplying about a quarter of the energy lets the plant reach 90 %
+renewable with 2× capacity and an 8-hour tank (VALIDATION.md 9): no tide was
+found in this membrane's fouling, but a tidal current could run a plant at
 night.
 
 ![What capacity and storage buy](figures/fig7_solar_share.png)
 
-**And the moon does not matter here.** The first question was the tide:
-not at this intake, and not by more than about 10 % of the fouling rate. A test
+**And no tide was found here.** The first question was the tide. A test
 declared before it was run found no tide-locked component in the fouling of
-the pilot over 2012–2015 (p = 0.24), with
-the power to find one whose swing is 10 % of the median rate (found in 99.5 %
-of simulated trials). Calibration held; the out-of-time confirmation failed.
+the pilot over 2012–2015 (p = 0.24). It had the power to find one whose swing
+is 10 % of the median rate (found in 99.5 % of simulated trials); a 5 % swing
+could slip through (found 43 % of the time). Calibration held; the out-of-time
+confirmation failed.
 The pilot's pump hydraulics carry a faint, steady tidal signature (exploratory),
 so the feed did feel the tide — the fouling did not follow it.
 
 | | result |
 |---|---|
-| Fouling rate locked to the tide (declared, H1) | **no** — p = 0.244, needed ≤ 0.01 |
+| Fouling rate locked to the tide (declared, H1) | **not detected** — p = 0.244, needed ≤ 0.01 |
 | What it could have missed | a swing of 5 % of the median rate could slip through (found 43 % of the time); 10 % could not (99.5 %) |
 | Same test on made-up periods (calibration) | p = 0.330 — the test does not invent signals |
 | Fit 2012–13, freeze, score 2014–15 | explains −1.3 % (worse than nothing), p = 0.248 |
 | Pump hydraulics (declared controls) | p = 0.349 and 0.015 — not passed |
 | Pump hydraulics, per-episode phase check (exploratory) | M2-locked, opposite phases for speed and pressure, stable across both halves |
 | Feed turbidity, 2013 only | p = 0.063 — undecided |
-| **Fouling follows the hour of the day** (declared, H2) | **no** — p = 0.746; daylight hours −0.8 % (−2.5 % to +1.2 %) |
+| **Fouling follows the hour of the day** (declared, H2) | **not detected** — p = 0.746; daylight hours −0.8 % (−2.5 % to +1.2 %) |
 | Temperature follows the hour (positive control) | yes — p = 0.001, the clock and the test work |
-| **First 3 h after a restart foul differently** (declared, H3) | **no** — p = 0.382; +3.1 % (−3.9 % to +10.0 %) |
+| **First 3 h after a restart foul differently** (declared, H3) | **not detected** — p = 0.382; +3.1 % (−3.9 % to +10.0 %): above about 10 % ruled out, below not |
 | Pretend restart 24 h in (placebo) | p = 0.842 |
 
 ![The real clock against 999 clocks moved by whole weeks](figures/fig4_test.png)
@@ -57,8 +62,8 @@ Seawater plants draw from the sea, and the sea follows the moon. If the fouling
 load at an intake rose and fell with the tide, part of the plant's future
 fouling would be known years ahead — something no sensor and no forecast model
 can give — and backwash, coagulant and production could be planned against it.
-At this pilot the answer is no, and the method that gave it can be pointed at
-any plant log with a clock.
+At this pilot no tide was detected, and the method that tested it can be
+pointed at any plant log with a clock.
 
 ## How the test cannot be fooled by the day
 
@@ -86,8 +91,11 @@ inside continuous training episodes, minutes from training data.
 
 One pilot. Its hydraulics suggest the feed came through storage that damps the
 tide; an intake that draws straight from the sea could behave differently, and
-this test is how to find out. The fouling rate is relative (%/h) — membrane
-area is not in the record. Turbidity covers 2013 only.
+this test is how to find out. The daylight and restart tests cover the UF
+pre-treatment only — not the RO membranes after it. The solar and tidal designs
+are energy scenarios on a synthetic year, with no site and no prices. The
+fouling rate is relative (%/h) — membrane area is not in the record. Turbidity
+covers 2013 only.
 
 ## Files
 

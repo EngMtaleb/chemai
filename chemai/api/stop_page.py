@@ -93,7 +93,8 @@ PAGE = r"""<!doctype html>
     <table>
       <tr><th>Decision</th><th>Every</th><th>Energy the reason?</th><th>What the record said</th></tr>
       <tr><td>End a closed-circuit RO batch</td><td>~1 hour</td><td class="yes">Yes</td>
-        <td>The rule ended 153 held-out batches a median <b>0.02&ndash;0.07&nbsp;%</b> above each one's best end.
+        <td>Where the record shows a held-out batch's best end (97 of 153 at b&nbsp;=&nbsp;1, 10 at b&nbsp;=&nbsp;10), the rule
+        ended it a median <b>0.02&ndash;0.07&nbsp;%</b> above that end, found in hindsight.
         The published optimisers ended 90&ndash;100&nbsp;% of theirs while the cost was still falling.</td></tr>
       <tr><td>Backwash a UF element</td><td>~20 minutes</td><td class="no">No</td>
         <td>Energy and water alone would filter <b>~16&times;</b> more per backwash; the pilot spent 29&nbsp;% of
@@ -102,8 +103,8 @@ PAGE = r"""<!doctype html>
         <td>The resistance doubles between cleans; energy alone puts the clean at 1.1&ndash;1.3&times; the
         interval actually run.</td></tr>
       <tr><td>Clean an RO train</td><td>weeks&ndash;months</td><td class="no">No</td>
-        <td>In 15 cycles of a seawater plant the energy penalty never paid for a cleaning; in 9 it had no
-        rising trend at all. Longer cycles left more pressure drop behind.</td></tr>
+        <td>In 15 cycles of one seawater plant, energy savings alone never covered a cleaning (mid case);
+        in 9 the penalty had no rising trend at all. Longer cycles left more pressure drop behind.</td></tr>
     </table>
   </div>
 
