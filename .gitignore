@@ -13,3 +13,6 @@ projects/*/results/*.pkl
 # experiments 9-12 (control loops): inputs and outputs are made by the scripts, never committed
 *.npz
 projects/p02_control_loops/experiments/**/*.json
+# AI for RO: its saved results, and the inputs its studies read, are part of its record
+!projects/p03_ai_for_ro/**/*.csv
+!projects/p03_ai_for_ro/**/results*.json

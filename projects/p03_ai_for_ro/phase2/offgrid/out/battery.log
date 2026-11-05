@@ -1,0 +1,21 @@
+[   9.4 s] named designs
+[   9.5 s] 2x 0.8 kWp 12 h: possible False, E_min inf, cost None
+[  10.9 s] 2x 1.2 kWp 12 h: possible True, E_min 17956.090197265148, cost 2.9811344719324704
+[  11.8 s] 2x 1.6 kWp 24 h: possible True, E_min 11918.084544979036, cost 2.495844212168982
+[  13.0 s] 2x 2 kWp 24 h: possible True, E_min 6533.334726128727, cost 2.061631033544345
+[  13.0 s] screen
+[  83.1 s] capacity 1 done
+[ 148.2 s] capacity 1.25 done
+[ 211.7 s] capacity 1.5 done
+[ 283.0 s] capacity 1.75 done
+[ 358.2 s] capacity 2 done
+[ 428.0 s] capacity 2.25 done
+[ 486.6 s] capacity 2.5 done
+[ 486.6 s] screen best: 1x 3 kWp 3 h, 1.5648 USD/m3
+[ 486.6 s] local search
+[ 495.6 s] local search: [1.0, 2.95, 2.0] -> 1.5631 USD/m3 (23 designs)
+[ 505.7 s] local search at 2x: [2.0, 2.8, 13.0] -> 1.7779 USD/m3 (23 designs)
+[ 507.1 s] cheapest with a battery: [1.0, 2.95, 2.0] -> 1.5632 USD/m3, battery 5106 kWh / 449 kW, off-grid True
+[ 508.2 s] cheapest with a battery at 2x: [2.0, 2.8, 13.0] -> 1.7780 USD/m3, battery 3364 kWh, off-grid True
+[ 508.2 s] done
+exit 0

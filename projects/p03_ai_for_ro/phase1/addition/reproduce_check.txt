@@ -1,0 +1,29 @@
+pairs per horizon: {1: 1169, 3: 1083, 7: 994, 14: 881} | 28 XGBoost inputs
+[rolling] test pairs: harness 4666, saved 4666, identical sets: True; largest difference in today's value or truth: 0.0e+00
+  no change MAE dp_pct h=1: harness 1.764981 pp, saved 1.764981 pp, agree to 1e-9: True
+  no change MAE dp_pct h=3: harness 2.825315 pp, saved 2.825315 pp, agree to 1e-9: True
+  no change MAE dp_pct h=7: harness 2.912653 pp, saved 2.912653 pp, agree to 1e-9: True
+  no change MAE dp_pct h=14: harness 3.486370 pp, saved 3.486370 pp, agree to 1e-9: True
+  no change MAE flux_pct h=1: harness 2.105626 pp, saved 2.105626 pp, agree to 1e-9: True
+  no change MAE flux_pct h=3: harness 3.066385 pp, saved 3.066385 pp, agree to 1e-9: True
+  no change MAE flux_pct h=7: harness 3.479169 pp, saved 3.479169 pp, agree to 1e-9: True
+  no change MAE flux_pct h=14: harness 4.307318 pp, saved 4.307318 pp, agree to 1e-9: True
+[unseen_train] test pairs: harness 4666, saved 4666, identical sets: True; largest difference in today's value or truth: 0.0e+00
+  no change MAE dp_pct h=1: harness 1.764981 pp, saved 1.764981 pp, agree to 1e-9: True
+  no change MAE dp_pct h=3: harness 2.825315 pp, saved 2.825315 pp, agree to 1e-9: True
+  no change MAE dp_pct h=7: harness 2.912653 pp, saved 2.912653 pp, agree to 1e-9: True
+  no change MAE dp_pct h=14: harness 3.486370 pp, saved 3.486370 pp, agree to 1e-9: True
+  no change MAE flux_pct h=1: harness 2.105626 pp, saved 2.105626 pp, agree to 1e-9: True
+  no change MAE flux_pct h=3: harness 3.066385 pp, saved 3.066385 pp, agree to 1e-9: True
+  no change MAE flux_pct h=7: harness 3.479169 pp, saved 3.479169 pp, agree to 1e-9: True
+  no change MAE flux_pct h=14: harness 4.307318 pp, saved 4.307318 pp, agree to 1e-9: True
+[rolling] dp_pct h=7: 572 forecasts; largest difference from the saved forecasts: XGBoost 9.9e-17, hybrid 9.7e-17
+  XGBoost: skill harness -9.347 %, saved -9.347 %; blocks harness [np.float64(-42.55), np.float64(2.2), np.float64(1.36), np.float64(-19.91)], saved [np.float64(-42.55), np.float64(2.2), np.float64(1.36), np.float64(-19.91)]; verdict harness False, saved False; agree to 0.01: True
+  hybrid: skill harness -24.872 %, saved -24.872 %; blocks harness [np.float64(-111.56), np.float64(4.54), np.float64(-24.18), np.float64(-18.8)], saved [np.float64(-111.56), np.float64(4.54), np.float64(-24.18), np.float64(-18.8)]; verdict harness False, saved False; agree to 0.01: True
+[unseen_train] dp_pct h=7: 572 forecasts; largest difference from the saved forecasts: XGBoost 9.7e-17, hybrid 9.7e-17
+  XGBoost: skill harness -28.459 %, saved -28.459 %; blocks harness [np.float64(-161.35), np.float64(1.47), np.float64(-2.56), np.float64(-26.4)], saved [np.float64(-161.35), np.float64(1.47), np.float64(-2.56), np.float64(-26.4)]; verdict harness False, saved False; agree to 0.01: True
+  hybrid: skill harness -67.282 %, saved -67.282 %; blocks harness [np.float64(-298.29), np.float64(2.22), np.float64(-46.01), np.float64(-61.19)], saved [np.float64(-298.29), np.float64(2.22), np.float64(-46.01), np.float64(-61.19)]; verdict harness False, saved False; agree to 0.01: True
+[rolling] flux_pct h=14: 502 forecasts; largest difference from the saved forecasts: XGBoost 9.9e-17, hybrid 9.8e-17
+  XGBoost: skill harness +3.562 %, saved +3.562 %; blocks harness [np.float64(-23.66), np.float64(27.31), np.float64(-2.44), np.float64(6.23)], saved [np.float64(-23.66), np.float64(27.31), np.float64(-2.44), np.float64(6.23)]; verdict harness False, saved False; agree to 0.01: True
+  hybrid: skill harness -3.288 %, saved -3.288 %; blocks harness [np.float64(-25.28), np.float64(10.44), np.float64(-13.18), np.float64(15.71)], saved [np.float64(-25.28), np.float64(10.44), np.float64(-13.18), np.float64(15.71)]; verdict harness False, saved False; agree to 0.01: True
+REPRODUCTION PASSED in 170 s

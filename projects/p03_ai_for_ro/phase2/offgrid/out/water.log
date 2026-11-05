@@ -1,0 +1,124 @@
+[   9.0 s] coarse sweep
+[  17.2 s] capacity 2 done
+[  24.5 s] capacity 2.25 done
+[  31.2 s] capacity 2.5 done
+[  39.0 s] capacity 2.75 done
+[  46.2 s] capacity 3 done
+[  53.7 s] capacity 3.5 done
+[  61.6 s] capacity 4 done
+[  61.6 s] coarse: 448 designs, 233 off-grid; exact min-tank agrees with simulation in 448 of 448
+[  61.6 s] fine search
+[  84.8 s] fine: 2275 (capacity, panels) pairs, 1796 can be off-grid; cheapest 2.45x, 2.15 kWp, tank 76.21 h, 1.5598 USD/m3
+[  85.2 s] verified 2.45x 2.15 kWp 77 h: off-grid True; with 75.71 h: off-grid False (70.5 kWh in the worst year)
+[  86.1 s] done
+{
+ "coarse": {
+  "designs": 448,
+  "off_grid": 233,
+  "exact_min_tank_agrees": 448,
+  "grid": {
+   "capacity": [
+    2.0,
+    2.25,
+    2.5,
+    2.75,
+    3.0,
+    3.5,
+    4.0
+   ],
+   "kwp_per_m3d": [
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    4.0,
+    5.0,
+    6.0
+   ],
+   "tank_h": [
+    24,
+    36,
+    48,
+    72,
+    96,
+    120,
+    144,
+    168
+   ]
+  }
+ },
+ "cheapest": {
+  "capacity": 2.45,
+  "kwp_per_m3d": 2.15,
+  "min_tank_h_exact": 76.20768489882722,
+  "tank_h": 77.0,
+  "usd_per_m3": 1.5608120335085243,
+  "usd_per_m3_parts": {
+   "RO plant": 0.9025403779535495,
+   "RO upkeep": 0.17136502070287127,
+   "panels": 0.3905473548670782,
+   "tank": 0.09635927998502551
+  },
+  "critical_stretch": {
+   "capacity": 2.45,
+   "kwp_per_m3d": 2.15,
+   "tank_h_needed": 76.20768489882722,
+   "start": "2020-11-25 16:00:00+03:00",
+   "end": "2020-12-07 06:00:00+03:00",
+   "days": 11.625,
+   "days_sun_short_of_demand": 12,
+   "days_in_stretch": 13,
+   "low_sun_days_in_stretch": 8,
+   "months": [
+    11,
+    12
+   ],
+   "sun_alone_makes_pct_of_demand_in_stretch": 72.68541759900685
+  },
+  "check": {
+   "grid_kWh_year_max": 3.3465452631276094e-12,
+   "grid_kWh_year_mean": 2.925460221292475e-12,
+   "years_with_grid": 0,
+   "short_hours": 0,
+   "sun_share_pct_mean": 100.0,
+   "sun_share_pct_min": 100.0,
+   "unused_panel_energy_pct": 61.89322695714932,
+   "kWh_per_m3": 3.5699050541259814,
+   "water_m3_year": 365287.49999999953,
+   "off_grid": true,
+   "start_level_m3": 2697.7847995071184,
+   "iterations": 2,
+   "tank_full_hours_by_year": {
+    "2015": 1092,
+    "2016": 1123,
+    "2017": 1087,
+    "2018": 1056,
+    "2019": 973,
+    "2020": 1100,
+    "2021": 1131,
+    "2022": 992,
+    "2023": 892,
+    "2024": 1020
+   },
+   "tank_lowest_m3_by_year": {
+    "2015": 1244.04455051218,
+    "2016": 1147.808722491216,
+    "2017": 2086.6459887384444,
+    "2018": 1448.5987014744458,
+    "2019": 564.023249753287,
+    "2020": 33.01312921517456,
+    "2021": 750.9823172124636,
+    "2022": 542.3205053837801,
+    "2023": 86.80906424615523,
+    "2024": 2107.7644372561444
+   }
+  },
+  "check_tank_minus_half_hour": {
+   "tank_h": 75.70768489882722,
+   "off_grid": false,
+   "grid_kWh_worst_year": 70.53364349418224,
+   "years_with_grid": 1
+  }
+ }
+}

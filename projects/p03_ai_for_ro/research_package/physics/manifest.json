@@ -1,0 +1,87 @@
+[
+  {
+    "name": "dispatch_endpoints.json",
+    "sha256": "b3a3fdbd3bea18a18d58931fdabe78491d59905f722cbb3e1f394497d785e460",
+    "bytes": 6478
+  },
+  {
+    "name": "energy_independent_review.json",
+    "sha256": "5962e4dff861947497c634cc56d4d6e8be3248d5746497a3b32ea02d31a43f4e",
+    "bytes": 21894
+  },
+  {
+    "name": "make_plots.py",
+    "sha256": "edcbb46f71e562cb4cc7146e625adb7fb02e86f56b218555aa1efa927cff1fc4",
+    "bytes": 3346
+  },
+  {
+    "name": "model.py",
+    "sha256": "e9ef61738277e080fa38b6508315e21a8d6aadee061a26583cf37a65a67c2e27",
+    "bytes": 9636
+  },
+  {
+    "name": "numerical_caps_review.json",
+    "sha256": "658dc3e56a6436f58f601c5bbf612418c3cdd2d0a2e2fefe189d1fe60e5e78f8",
+    "bytes": 644
+  },
+  {
+    "name": "operating_envelope.png",
+    "sha256": "24a726b3cc50cec2c14f7c5d76c2f71bacc68b3c306ce89fb05788c250c9769d",
+    "bytes": 90938
+  },
+  {
+    "name": "operating_envelope.svg",
+    "sha256": "6872131e51ae960594171ffdd40a1be225e14442586ac0ebb9687c3fd88838c4",
+    "bytes": 16422
+  },
+  {
+    "name": "operating_grid.json",
+    "sha256": "39c33d52d4c1999da8bcbb2be6b611d9472aaa4e124934bac000c41c928b6038",
+    "bytes": 505767
+  },
+  {
+    "name": "report.md",
+    "sha256": "f8585d77b25764ad0b8e8ad3470cff86ac46707878ecb030308bdb7c19460d0f",
+    "bytes": 9333
+  },
+  {
+    "name": "results.json",
+    "sha256": "4a1f543ed489b33e5fdc4ad10fca80eb395fb69ff4ed90b6b018c7263511c083",
+    "bytes": 119604
+  },
+  {
+    "name": "review_energy.py",
+    "sha256": "6427fba6572b379e03995d0f34c939ab046cb88463f2167b5b192e0240aa5a66",
+    "bytes": 5682
+  },
+  {
+    "name": "run_study.py",
+    "sha256": "10b239998868b7185040912cc6368fe22647ac0dd178b1ce8357fac5f8edc212",
+    "bytes": 7122
+  },
+  {
+    "name": "sources.json",
+    "sha256": "4d7bf9c685baf8c06ab2d54b6ca72d97ad032bae8da82a8aa2823b66c81e2b80",
+    "bytes": 4499
+  },
+  {
+    "name": "stress_cases.png",
+    "sha256": "f6e5c54f12e0f74c5dc4decd98c958712d631dee5f5ea4f786a56e315f42919f",
+    "bytes": 113182
+  },
+  {
+    "name": "stress_cases.svg",
+    "sha256": "ce4a88b2116551a8594623217e66ede4ffa4c6c41f2eb461a240777efe5f9636",
+    "bytes": 30257
+  },
+  {
+    "name": "vessel_profile.png",
+    "sha256": "f553287804e292c559e01fc5de55528bb72da9ffcc72fd1ada9a7dba9ab3b0f7",
+    "bytes": 128041
+  },
+  {
+    "name": "vessel_profile.svg",
+    "sha256": "891797dd9a5ee9f96581598cbdc3083a2bba05136b751252f1854604acef426d",
+    "bytes": 39117
+  }
+]

@@ -1,0 +1,26 @@
+{
+ "discount_rate": 0.075,
+ "plant_life_y": 25,
+ "pv_life_y": 25,
+ "tank_life_y": 25,
+ "ro_capex_usd_per_m3d": 1500,
+ "ro_capacity_share": 1.0,
+ "ro_capacity_om_usd_per_m3": 0.07,
+ "pv_capex_usd_per_kwp": 628.18,
+ "pv_om_usd_per_kwp_y": 10.0,
+ "tank_capex_usd_per_m3": 100.0,
+ "_sources": {
+  "discount_rate": "IRENA RPGC 2025 Annex I p.10: default real after-tax WACC 7.5 % outside OECD/China in 2024; World Bank 2019 p.xxv-xxvi: MENA discount rates 6-8 %",
+  "plant_life_y": "World Bank 2019 Table ES.2 note: 25 years at 5 %",
+  "pv_life_y": "IRENA RPGC 2025 Annex I Table A1: solar PV 25 years",
+  "tank_life_y": "assumed equal to the plant",
+  "ro_capex_usd_per_m3d": "World Bank 2019 Table ES.1: SWRO Arabian Gulf 1.2-1.8 (average 1.5) million US$/MLD, 2016 values",
+  "ro_capacity_share": "base: the whole plant grows with capacity; sensitivity 0.30 = RO system share of capex (Gulf capex breakdown, 4 large projects, 2023)",
+  "ro_capacity_om_usd_per_m3": "World Bank 2019 Table ES.2: membranes and cartridge filters 0.04 + maintenance 0.03 US$/m3 at design output, scaled with capacity",
+  "pv_capex_usd_per_kwp": "IRENA RPGC 2024 Summary: TIC 691 USD/kW (AC, 2024 USD), divided by our DC/AC ratio 1.1",
+  "pv_om_usd_per_kwp_y": "IRENA RPGC 2025 Annex I Table A4: non-OECD 11 USD/kW/yr (2024 USD), divided by 1.1",
+  "tank_capex_usd_per_m3": "Kocher & Menon 2023, Energy Environ. Sci., SI Table S1: water storage 100 $/m3 (fixed O&M 2 %/yr); sensitivity 750 $/m3 = US welded-steel ground tanks of 950-1,900 m3 bid in 2024 (2.83-2.85 $/gal, tank, foundation, site work, yard piping)",
+  "tank_om_frac_y": "Kocher & Menon 2023, SI Table S1: fixed O&M 2 % of capex per year"
+ },
+ "tank_om_frac_y": 0.02
+}

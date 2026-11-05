@@ -1,0 +1,515 @@
+--- original/physics/model.py
++++ big/physics/model.py
+@@ -1,6 +1,13 @@
+ """Industrial SWRO study model. All outputs are simulated, not plant measurements.
+ 
+-Seven 8-inch elements per pressure vessel, two vessels per train, three trains.
++BIGPLANT VERSION (copied from Smart_RO_Complete_Project/physics/model.py).
++The ONLY changes are marked "# BIGPLANT": the train layout in DEFAULT
++(110 vessels per train instead of 2, 12 trains instead of 3). Membrane model,
++element (41 m2), calibration, correlations, efficiencies, gates and the mean
++flux (14.518 LMH) are unchanged.
++
++Seven 8-inch elements per pressure vessel, 110 vessels per train, twelve trains
++(original: two vessels per train, three trains).
+ Solution diffusion + film concentration polarization; explicit differential
+ water/salt balances. A25/B25 are fitted only to a manufacturer's element point.
+ Hydraulic/transfer correlations and efficiencies remain disclosed assumptions.
+@@ -14,10 +21,15 @@
+ 
+ DEFAULT = {
+     "temperature_C": 25.0, "feed_salinity_g_L": 43.0,
++    # BIGPLANT: flux deliberately kept at the original 14.518 LMH. The original
++    # expression is retained so the value is bit-identical; it equals
++    # 132,000 m3/day / (24 h * 12 trains * 110 vessels * 7 elements * 41 m2)
++    # and gives 100 m3/day per 7-element vessel (checked in tools/check_layout.py).
+     "target_flux_LMH": 600000.0 / (24 * 3 * 2 * 7 * 41),
+     "recovery": 0.40, "A_factor": 1.0, "B_factor": 1.0,
+     "dp_factor": 1.0, "mass_transfer_factor": 1.0,
+-    "elements_per_vessel": 7, "vessels_per_train": 2, "trains": 3,
++    # BIGPLANT: was "vessels_per_train": 2, "trains": 3
++    "elements_per_vessel": 7, "vessels_per_train": 110, "trains": 12,
+     "element_area_m2": 41.0, "segments_per_element": 16,
+     "permeate_pressure_bar": 0.5,
+     "k25_LMH_at_10m3h": 180.0, "k_flow_exponent": 0.6,
+--- original/physics/make_plots.py
++++ big/physics/make_plots.py
+@@ -38,6 +38,7 @@
+       for j,c in enumerate(C):
+         pp=next(p for p in g if p['inputs']['temperature_C']==t and p['inputs']['feed_salinity_g_L']==c)
+         ax.text(j,i,f'{vals[i,j]:.1f}'+(' ✕' if not pp['feasible'] else ''),ha='center',va='center',color='white' if vals[i,j]>73 else navy)
+-    ax.set(xlabel='Feed salinity (g/L)',ylabel='Feed temperature (°C)',title='Pressure demand at 600 m³/day\n× indicates a failed study design gate')
++    # BIGPLANT: title text was hard-coded 'at 600 m³/day'; now taken from the nominal result (label only).
++    ax.set(xlabel='Feed salinity (g/L)',ylabel='Feed temperature (°C)',title=f"Pressure demand at {r['nominal']['plant_q_m3_day']:,.0f} m³/day\n× indicates a failed study design gate")
+     fig.colorbar(im,ax=ax,label='Feed pressure (bar)')
+     fig.savefig(HERE/'operating_envelope.svg');fig.savefig(HERE/'operating_envelope.png',dpi=180);plt.close(fig)
+--- original/physics/review_energy.py
++++ big/physics/review_energy.py
+@@ -1,9 +1,13 @@
+ """Independent read-only audit of energy trajectories against declared physics.
+ 
+ Writes only into the physics-review folder; never changes energy-owned files.
++
++BIGPLANT VERSION (copied from Smart_RO_Complete_Project/physics/review_energy.py).
++Generalised from 3 hard-coded trains to J trains; config, results folder and
++output file are selectable. Every change is marked "# BIGPLANT".
+ """
+ from pathlib import Path
+-import json, sys, importlib.util
++import json, sys, importlib.util, argparse
+ import numpy as np
+ from model import solve_point, DEFAULT
+ 
+@@ -11,16 +15,27 @@
+ ENERGY=HERE.parent/'energy'
+ 
+ def main():
+-    cfg=json.loads((ENERGY/'config.json').read_text())
+-    low=solve_point({'target_flux_LMH':cfg['low_flux_LMH']})
+-    high=solve_point({'target_flux_LMH':cfg['high_flux_LMH']})
++    # BIGPLANT: selectable inputs/outputs (original: energy/config.json, energy/results/, fixed output name).
++    ap=argparse.ArgumentParser()
++    ap.add_argument('--config',default=str(ENERGY/'config.json'))
++    ap.add_argument('--results',default=str(ENERGY/'results'))
++    ap.add_argument('--out',default=str(HERE/'energy_independent_review.json'))
++    args=ap.parse_args()
++    cfg=json.loads(Path(args.config).read_text())
++    layout={'vessels_per_train':cfg['vessels_per_train'],'trains':cfg['trains']}  # BIGPLANT: layout passed explicitly
++    low=solve_point({'target_flux_LMH':cfg['low_flux_LMH'],**layout})
++    high=solve_point({'target_flux_LMH':cfg['high_flux_LMH'],**layout})
+     q0=low['train_q_m3_h'];q1=high['train_q_m3_h']
+     p0=low['train_power_kW'];p1=high['train_power_kW']
+     diversion=cfg['routine_start_product_diversion_minutes']/60
++    # BIGPLANT: train count, steady set and full-start threshold (original: 3, [1,1,0], 590 m3/day of 600).
++    J=int(cfg['trains'])
++    steady=np.array([1]*int(cfg['steady_trains'])+[0]*(J-int(cfg['steady_trains'])),dtype=int)
++    full_start=590/600*J*q1*24
+     # Direct physics evaluations throughout the optimization surrogate interval.
+     interval=[]
+     for f in np.linspace(cfg['low_flux_LMH'],cfg['high_flux_LMH'],25):
+-        r=solve_point({'target_flux_LMH':float(f)})
++        r=solve_point({'target_flux_LMH':float(f),**layout})
+         frac=(r['train_q_m3_h']-q0)/(q1-q0)
+         linear=p0+frac*(p1-p0)
+         interval.append({'flux_LMH':float(f),'physics_feasible':r['feasible'],
+@@ -29,17 +44,18 @@
+                          'product_salt_mg_L':r['permeate_salinity_mg_L']})
+         assert r['feasible']
+     records=[]
+-    for path in sorted((ENERGY/'results').glob('*__*.json')):
++    for path in sorted(Path(args.results).glob('*__*.json')):
+         run=json.loads(path.read_text());rows=run['trajectory'];m=run['metrics']
+-        init=np.array([1,1,0]) if run['configuration'].get('demand_m3_day',400)<590 else np.ones(3,dtype=int)
+-        prev=init;stock=m['initial_stock_m3'];start_times=[[] for _ in range(3)]
++        # BIGPLANT: was np.array([1,1,0]) if demand (default 400) <590 else np.ones(3,dtype=int)
++        init=steady if run['configuration'].get('demand_m3_day',cfg['demand_m3_day'])<full_start else np.ones(J,dtype=int)
++        prev=init;stock=m['initial_stock_m3'];start_times=[[] for _ in range(J)]  # BIGPLANT: range(3)
+         errs={k:0. for k in ['recorded_gross','recorded_start_diversion','accepted','power','stock','PV','electrical']}
+         additional_yield_loss=0.;start_count=0
+         for t,row in enumerate(rows):
+             on=np.array(row['train_on']);trim=np.array(row['train_trim_fraction'])
+             assert np.all((on==0)|(on==1));assert np.all(trim>=-1e-8) and np.all(trim<=on+1e-8)
+             start=(on>prev).astype(int);start_count+=int(start.sum())
+-            for j in range(3):
++            for j in range(J):  # BIGPLANT: range(3)
+                 if start[j]:start_times[j].append(t)
+             q=np.where(on==1,q0+trim*(q1-q0),0)
+             gross=float(q.sum());loss=float(np.dot(start,q))*diversion
+@@ -77,13 +93,14 @@
+          'max_linear_power_error':max(abs(x['power_linear_relative_error']) for x in interval),
+          'causal_weather_index_latest_relative_hour':max_observation_offset,
+          'causality_code_review':'Forecast uses preceding24observations; feedbackyield uses precedingmeasuredratios; demand is assumedknown. No futureactualPV is supplied to optimization.',
++         # BIGPLANT: the third finding named the 600 m3/day / 3-train case; now worded for any plant size.
+          'findings':['No critical water/energy accounting or minimum-on-boundary defect found.',
+                      'Capacity-loss factor is an imposed accepted-yield stress, not a physical fouling forecast.',
+-                     'Use fixed schedule label for the600m3/daycapacity case because all3trains are initially ON.',
++                     'Use fixed schedule label for the full-capacity case because all trains are initially ON.',
+                      'Every savings comparison must exclude cases that fail service/terminal/reserve gates.',
+                      'Dispatch uses fixed25C43g/Lphysics; outdoorairtemperature inPVdata doesnotchangefeedwaterphysics.'],
+          'runs':records}
+-    (HERE/'energy_independent_review.json').write_text(json.dumps(out,indent=2))
++    Path(args.out).write_text(json.dumps(out,indent=2))
+     print(json.dumps({k:v for k,v in out.items() if k not in ['runs','dense_physics_interval']},indent=2))
+ 
+ if __name__=='__main__':main()
+--- original/energy/run_study.py
++++ big/energy/run_study.py
+@@ -1,6 +1,14 @@
+ """Reproducible modeled industrial SWRO dispatch; no field control or AI forecast.
+ 
+-Run from any directory: python industrial_ro/energy/run_study.py
++BIGPLANT VERSION (copied from Smart_RO_Complete_Project/energy/run_study.py).
++Generalised from 3 hard-coded trains to J trains. Every change from the
++original is marked "# BIGPLANT". Plant sizes, train counts, the clock-rule
++train counts, the steady-policy name and the stress-case list are read from
++the config file (--config), so the SAME code reproduces the original 3-train
++study (config_original_size.json) and runs the 12-train plant (config.json).
++Policy logic, horizons, MILP gap/time limit and the fallback are unchanged.
++
++Run: python big/energy/run_study.py [--config F] [--results DIR] [--case C] [--policy P]
+ Source data and physical model are retained with this project.
+ """
+ from __future__ import annotations
+@@ -15,23 +23,58 @@
+ sys.path.insert(0,str(HERE.parent/'physics'))
+ from model import solve_point
+ 
+-CFG=json.loads((HERE/'config.json').read_text())
+-LOW=solve_point({'target_flux_LMH':CFG['low_flux_LMH']})
+-HIGH=solve_point({'target_flux_LMH':CFG['high_flux_LMH']})
++# BIGPLANT: config file, results folder and (for a sensitivity run only) the
++# tie-break scale are selectable. Original: fixed config.json and results/.
++_pre=argparse.ArgumentParser(add_help=False)
++_pre.add_argument('--config',default=str(HERE/'config.json'))
++_pre.add_argument('--results',default=str(HERE/'results'))
++_pre.add_argument('--tie-break-scale',type=float,default=None)
++_PRE,_=_pre.parse_known_args()
++CFG=json.loads(Path(_PRE.config).read_text())
++RESULTS=Path(_PRE.results)
++# BIGPLANT: train layout passed to the physics model explicitly (original used
++# the model DEFAULT of 2 vessels/train, 3 trains).
++LAYOUT={'vessels_per_train':CFG['vessels_per_train'],'trains':CFG['trains']}
++LOW=solve_point({'target_flux_LMH':CFG['low_flux_LMH'],**LAYOUT})
++HIGH=solve_point({'target_flux_LMH':CFG['high_flux_LMH'],**LAYOUT})
+ assert LOW['feasible'] and HIGH['feasible'], (LOW,HIGH)
+ QL=float(LOW['train_q_m3_h']); QH=float(HIGH['train_q_m3_h'])
+ PL=float(LOW['train_power_kW']); PH=float(HIGH['train_power_kW'])
+ DQ=QH-QL; DP=PH-PL; DIV=CFG['routine_start_product_diversion_minutes']/60
+ 
++# BIGPLANT: train count and derived constants (original: 3 hard-coded).
++J_TRAINS=int(CFG['trains'])
++TRAIN_INDEX=np.arange(J_TRAINS)                      # original: [0,1,2]
++STEADY=np.array([1]*int(CFG['steady_trains'])+[0]*(J_TRAINS-int(CFG['steady_trains'])),dtype=int)  # original: [1,1,0]
++CAPACITY_M3_DAY=J_TRAINS*QH*24
++# BIGPLANT: original test "demand < 590 m3/day" (all trains start ON at or above it)
++# on a 600 m3/day plant; kept in the same proportion of full capacity.
++FULL_START_DEMAND=590/600*CAPACITY_M3_DAY
++FIXED_POLICY=CFG['fixed_policy']                     # original: 'fixed_two_trains'
++CLOCK=CFG['clock_rule_trains']                       # original: 1 / 3 / 2 trains
++# BIGPLANT: three tie-break weights are absolute numbers sized for a 2-vessel
++# train (rule: 1e-4 per start and 1e-6 per train index, in m3; MILP: 0.02 per
++# start, in kWh). They are multiplied by the per-train size ratio
++# (vessels per train / 2) so they keep the same proportion to per-train flow
++# and power (the MILP's other tie-break, 0.001*train power, already scales).
++# Equals exactly 1 for the original plant. --tie-break-scale overrides it
++# (used only for the literal-weights sensitivity run).
++TRAIN_SCALE=CFG['vessels_per_train']/2 if _PRE.tie_break_scale is None else float(_PRE.tie_break_scale)
++assert sum(STEADY)*QH*24<=CAPACITY_M3_DAY and CLOCK['day_08_17']<=J_TRAINS
++if 'initial_on_state' in CFG: assert list(STEADY)==CFG['initial_on_state'], 'config initial_on_state disagrees with steady_trains'
++
+ def active_h(n,starts): return n-DIV*starts
+ 
+ def nominal_rule(t):
+-    """Clock rule: one train 23:00-06:00; three08:00-17:00; two otherwise."""
++    """Clock rule: one train 23:00-06:00; three08:00-17:00; two otherwise.
++
++    BIGPLANT: counts come from config clock_rule_trains. For 12 trains they are
++    4 / 12 / 8, i.e. the same 1/3, 3/3 and 2/3 of the installed trains."""
+     h=t%24
+-    return 3 if 8<=h<17 else 1 if (h<6 or h>=23) else 2
++    return CLOCK['day_08_17'] if 8<=h<17 else CLOCK['night_23_06'] if (h<6 or h>=23) else CLOCK['other']
+ 
+ def reference_rule(N,demand,I0,initial):
+-    u=np.array([[int(j<nominal_rule(t)) for j in range(3)] for t in range(N)])
++    u=np.array([[int(j<nominal_rule(t)) for j in range(J_TRAINS)] for t in range(N)])  # BIGPLANT: range(3)
+     prev=np.vstack([initial,u[:-1]])
+     starts=np.maximum(0,u-prev)
+     eff=u.sum()-DIV*starts.sum()
+@@ -65,13 +108,13 @@
+     target=max(target,demand[t]+reserve-I)
+     target=min(target,demand[t]+cap-I)
+     choices=[]
+-    for bits in itertools.product([0,1],repeat=3):
++    for bits in itertools.product([0,1],repeat=J_TRAINS):  # BIGPLANT: repeat=3 (2^12 = 4096 combinations)
+         u=np.array(bits,dtype=int)
+         if np.any((initial==1)&(age<2)&(u==0)): continue
+         starts=np.maximum(0,u-initial)
+         if t==N-1 and starts.sum(): continue
+         n=int(u.sum()); e=active_h(n,int(starts.sum()))
+-        if n==0: x=np.zeros(3); delivered=0
++        if n==0: x=np.zeros(J_TRAINS); delivered=0  # BIGPLANT: np.zeros(3)
+         else:
+             qr=float(np.clip(target/max(fhat*e,1e-12),QL,QH))
+             x=u*(qr-QL)/DQ
+@@ -79,7 +122,8 @@
+         stock=I+delivered-demand[t]
+         violations=max(0,reserve-stock)+max(0,stock-cap)
+         # Prefer feasible water service, then match target, then fewer switches.
+-        score=(1e5*violations+abs(delivered-target)+1e-4*starts.sum()+1e-6*np.dot(u,[0,1,2]))
++        # BIGPLANT: 1e-4 and 1e-6 multiplied by TRAIN_SCALE; [0,1,2] -> TRAIN_INDEX.
++        score=(1e5*violations+abs(delivered-target)+1e-4*TRAIN_SCALE*starts.sum()+1e-6*TRAIN_SCALE*np.dot(u,TRAIN_INDEX))
+         choices.append((score,u,x))
+     if not choices: raise RuntimeError('No admissible rule action')
+     _,u,x=min(choices,key=lambda z:z[0])
+@@ -91,22 +135,24 @@
+     Linearized physical power curve; product loss only at routine restarts.
+     No forecast from future realized PV; caller supplies a causal forecast.
+     """
+-    T=len(pv); J=3; n=14*T
++    # BIGPLANT: J taken from the state vector (was J=3); variable blocks are
++    # u, x, s, w (J*T each), grid (T), stock (T): n=4*J*T+2*T (was 14*T).
++    T=len(pv); J=len(initial); n=4*J*T+2*T
+     def iu(j,t):return j*T+t
+-    def ix(j,t):return 3*T+j*T+t
+-    def ist(j,t):return 6*T+j*T+t
+-    def iw(j,t):return 9*T+j*T+t
+-    def ig(t):return 12*T+t
+-    def iv(t):return 13*T+t
++    def ix(j,t):return J*T+j*T+t        # BIGPLANT: 3*T -> J*T
++    def ist(j,t):return 2*J*T+j*T+t     # BIGPLANT: 6*T -> 2*J*T
++    def iw(j,t):return 3*J*T+j*T+t      # BIGPLANT: 9*T -> 3*J*T
++    def ig(t):return 4*J*T+t            # BIGPLANT: 12*T -> 4*J*T
++    def iv(t):return 4*J*T+T+t          # BIGPLANT: 13*T -> 4*J*T+T
+     lo=np.zeros(n); hi=np.ones(n); integ=np.zeros(n,dtype=int)
+-    integ[:3*T]=1;integ[6*T:9*T]=1
+-    hi[12*T:13*T]=np.inf;lo[13*T:]=reserve;hi[13*T:]=cap
++    integ[:J*T]=1;integ[2*J*T:3*J*T]=1                                 # BIGPLANT: [:3*T], [6*T:9*T]
++    hi[4*J*T:4*J*T+T]=np.inf;lo[4*J*T+T:]=reserve;hi[4*J*T+T:]=cap     # BIGPLANT: 12*T, 13*T
+     lo[iv(T-1)]=hi[iv(T-1)]=terminal
+-    c=np.zeros(n);c[12*T:13*T]=1
++    c=np.zeros(n);c[4*J*T:4*J*T+T]=1                                   # BIGPLANT: 12*T:13*T
+     for j in range(J):
+         c[j*T:(j+1)*T]=.001*PL
+-        c[3*T+j*T:3*T+(j+1)*T]=.001*DP
+-        c[6*T+j*T:6*T+(j+1)*T]=.02
++        c[J*T+j*T:J*T+(j+1)*T]=.001*DP                                 # BIGPLANT: 3*T
++        c[2*J*T+j*T:2*J*T+(j+1)*T]=.02*TRAIN_SCALE                     # BIGPLANT: 6*T; .02 -> .02*TRAIN_SCALE
+         if initial[j] and age[j]<2: lo[iu(j,0)]=1
+     row=[];col=[];val=[];rl=[];rh=[]
+     def add(d,l=-np.inf,h=np.inf):
+@@ -137,46 +183,51 @@
+         add(water,l=(I if t==0 else 0)-demand[t],h=(I if t==0 else 0)-demand[t])
+         add(grid,l=-pv[t])
+         # Identical units use a fixed priority. Duty rotation is outside scope.
+-        add({iu(0,t):1,iu(1,t):-1},l=0)
+-        add({iu(1,t):1,iu(2,t):-1},l=0)
++        # BIGPLANT: priority chain u[0]>=u[1]>=...>=u[J-1] (was the two rows for J=3).
++        for j in range(J-1):
++            add({iu(j,t):1,iu(j+1,t):-1},l=0)
+     A=coo_matrix((val,(row,col)),shape=(len(rl),n)).tocsc()
++    began=time.perf_counter()  # BIGPLANT: solve wall time logged (no effect on the solve)
+     result=milp(c,integrality=integ,bounds=Bounds(lo,hi),
+                 constraints=LinearConstraint(A,np.array(rl),np.array(rh)),
+                 options={'time_limit':time_limit,'mip_rel_gap':.005,'presolve':True})
++    wall=time.perf_counter()-began
+     if result.x is None:
+-        return None,{'status':int(result.status),'message':result.message}
++        return None,{'status':int(result.status),'message':result.message,'wall_s':wall}
+     z=result.x;az=A@z
+     valid=(np.all(z>=lo-1e-6) and np.all(z<=hi+1e-6)
+            and np.all(az>=np.array(rl)-1e-5) and np.all(az<=np.array(rh)+1e-5)
+            and np.all(abs(z[integ==1]-np.round(z[integ==1]))<1e-5))
+-    if not valid:return None,{'status':int(result.status),'message':'incumbent failed independent constraint check'}
++    if not valid:return None,{'status':int(result.status),'message':'incumbent failed independent constraint check','wall_s':wall}
+     U=np.array([[round(z[iu(j,t)]) for j in range(J)] for t in range(T)],dtype=int)
+     X=np.array([[z[ix(j,t)] for j in range(J)] for t in range(T)])
+     return (U,X),{'status':int(result.status),'gap':float(getattr(result,'mip_gap',np.nan)),
+-                 'optimal_within_requested_gap':bool(result.status==0)}
++                 'optimal_within_requested_gap':bool(result.status==0),'wall_s':wall}
+ 
+ def simulate(case,policy,source):
+     N=72;start=pd.Timestamp(case['date'],tz='Asia/Kuwait')
+     times=pd.to_datetime(source.interval_start_kuwait)
+     ids=np.flatnonzero((times>=start)&(times<start+pd.Timedelta(hours=N)))
+     assert len(ids)==N and ids[0]>=24
+-    scale=case.get('pv_kWp',320)/4.5
++    scale=case.get('pv_kWp',CFG['PV_kWp'])/4.5   # BIGPLANT: default 320 -> config PV_kWp (4.5 kWp = PVGIS source array, unchanged)
+     pv_all=source.pv_kw.to_numpy()*scale; pv=pv_all[ids]
+-    dday=case.get('demand_m3_day',400);demand=np.full(N,dday/24)
+-    cap=case.get('tank_m3',200);I0=cap/2;reserve=.1*cap
+-    I=I0;initial=np.array([1,1,0]) if dday<590 else np.ones(3,dtype=int)
++    dday=case.get('demand_m3_day',CFG['demand_m3_day']);demand=np.full(N,dday/24)  # BIGPLANT: default 400 -> config
++    cap=case.get('tank_m3',CFG['tank_m3']);I0=cap/2;reserve=.1*cap               # BIGPLANT: default 200 -> config
++    # BIGPLANT: was initial=np.array([1,1,0]) if dday<590 else np.ones(3,dtype=int)
++    I=I0;initial=STEADY.copy() if dday<FULL_START_DEMAND else np.ones(J_TRAINS,dtype=int)
+     previous=initial.copy();age=np.where(initial,10,0)
+     ftrue=np.ones(N)
+     if case.get('yield_step'):ftrue[24:]=case['yield_step']
+     _,rq,ref=reference_rule(N,demand,I0,initial)
+     # A 600m3/day demand cannot use the daytime2xheadroom schedule: use
+     # all-trains-on as the causal nominal reference in this capacity stress.
++    # (BIGPLANT: test unchanged; rq and QH are both per-train flows.)
+     if rq>QH:
+         ref=np.full(N+1,I0)
+     ratios=[];rows=[];solver_calls=[];fallbacks=0
+     for t in range(N):
+         fhat=float(np.median(ratios[-4:])) if ratios else 1.
+-        if policy=='fixed_two_trains':
++        if policy==FIXED_POLICY:   # BIGPLANT: was 'fixed_two_trains'; 'fixed_eight_trains' for 12 trains
+             u=initial.copy();x=u.copy().astype(float)
+         elif policy=='daylight_tank_rule':
+             u,x=rule_action(t,N,I,cap,reserve,demand,previous,age,fhat,ref)
+@@ -232,11 +283,12 @@
+     errpower=max(abs(x['load_kWh']-x['grid_kWh']-x['solar_used_kWh']) for x in r)
+     pvbalance=max(abs(x['PV_kW']-x['solar_used_kWh']-x['solar_curtailed_kWh']) for x in r)
+     assert errwater<1e-7 and errpower<1e-8 and pvbalance<1e-8
+-    assert all(0<=x['active_trains']<=3 for x in r)
++    assert all(0<=x['active_trains']<=J_TRAINS for x in r)   # BIGPLANT: <=3
+     assert all(-1e-9<=f<=1+1e-9 for x in r for f in x['train_trim_fraction'])
+     # Only deliberate starts count; verify2hminimum operation inside horizon.
+     for t in range(len(r)-1):
+-        prev=np.array([1,1,0]) if run['configuration'].get('demand_m3_day',400)<590 else np.ones(3)
++        # BIGPLANT: was np.array([1,1,0]) if demand<590 (default 400) else np.ones(3)
++        prev=STEADY.copy() if run['configuration'].get('demand_m3_day',CFG['demand_m3_day'])<FULL_START_DEMAND else np.ones(J_TRAINS)
+         if t:prev=np.array(r[t-1]['train_on'])
+         start=np.array(r[t]['train_on'])>prev
+         assert np.all(np.array(r[t+1]['train_on'])[start]==1)
+@@ -244,30 +296,29 @@
+             'PV_balance_residual_kWh':pvbalance,'within_horizon_minimum_on_verified':True}
+ 
+ def main():
+-    ap=argparse.ArgumentParser();ap.add_argument('--case');ap.add_argument('--policy');args=ap.parse_args()
++    # BIGPLANT: parent parser adds --config/--results/--tie-break-scale.
++    ap=argparse.ArgumentParser(parents=[_pre]);ap.add_argument('--case');ap.add_argument('--policy');args=ap.parse_args()
+     src=pd.read_csv(HERE/'data/solar_hourly.csv')
+     cases=[{'name':d[:7]+'_nominal','date':d} for d in CFG['seasons']]
+-    cases += [{'name':'october_yield90','date':'2023-10-15','yield_step':.9},
+-              {'name':'october_forecast140','date':'2023-10-15','forecast_multiplier':1.4},
+-              {'name':'october_tank6h','date':'2023-10-15','tank_m3':100},
+-              {'name':'october_tank24h','date':'2023-10-15','tank_m3':400},
+-              {'name':'october_PV240','date':'2023-10-15','pv_kWp':240},
+-              {'name':'october_PV400','date':'2023-10-15','pv_kWp':400},
+-              {'name':'october_capacity_limit_yield90','date':'2023-10-15','demand_m3_day':600,'tank_m3':300,'yield_step':.9}]
++    cases += CFG['stress_cases']   # BIGPLANT: list moved to config (tank/PV/capacity sizes are plant-specific)
+     if args.case:cases=[c for c in cases if c['name']==args.case]
+     policies=CFG['policies'] if not args.policy else [args.policy]
+-    runs=[];HERE.joinpath('results').mkdir(exist_ok=True)
++    runs=[];RESULTS.mkdir(parents=True,exist_ok=True)
+     for case in cases:
+         for p in policies:
+-            path=HERE/'results'/f"{case['name']}__{p}.json"
++            path=RESULTS/f"{case['name']}__{p}.json"
+             began=time.monotonic();run=simulate(case,p,src);run['audit']=audit(run)
++            run['runtime_s']=time.monotonic()-began   # BIGPLANT: wall time stored (original only printed it)
++            run['tie_break_scale']=TRAIN_SCALE        # BIGPLANT: provenance of the tie-break weights
+             path.write_text(json.dumps(run,indent=2,allow_nan=False));runs.append(run)
+             m=run['metrics'];print(case['name'],p,'grid',round(m['grid_kWh'],2),'PV%',round(m['PV_share_pct'],2),'terminal',round(m['terminal_error_m3'],6),'pass',m['service_stock_constraints_pass'],'fallback',m['fallback_hours'],'seconds',round(time.monotonic()-began,1),flush=True)
+     # Merge complete runs retained from the same explicitconfiguration.
+-    allruns=[json.loads(p.read_text()) for p in sorted((HERE/'results').glob('*__*.json'))]
++    allruns=[json.loads(p.read_text()) for p in sorted(RESULTS.glob('*__*.json'))]
+     summary={'scope':'Newly executed modeled industrial dispatch; real climate-derivedPV,reduced-order industrialROphysics,declared operating assumptions. No live plant,learnedsolarforecast,orvalidatedfoulingcontroller.',
+              'config':CFG,'physical_endpoints':{'low':LOW,'high':HIGH},
+-             'runs':[{'configuration':r['configuration'],'metrics':r['metrics'],'audit':r['audit']} for r in allruns]}
+-    (HERE/'results.json').write_text(json.dumps(summary,indent=2,allow_nan=False))
++             'tie_break_scale':TRAIN_SCALE,
++             'runs':[{'configuration':r['configuration'],'metrics':r['metrics'],'audit':r['audit'],'runtime_s':r.get('runtime_s')} for r in allruns]}
++    # BIGPLANT: summary written next to the results folder (original: energy/results.json).
++    (RESULTS.parent/(RESULTS.name+'_summary.json')).write_text(json.dumps(summary,indent=2,allow_nan=False))
+ 
+ if __name__=='__main__':main()
+--- original/energy/config.json
++++ big/energy/config.json
+@@ -1,10 +1,10 @@
+ {
+-  "design": "3 independently switchable trains, 2 vessels per train, 7 industrial SWRO elements per vessel; physics model supplies q and power",
+-  "demand_m3_day": 400,
+-  "tank_m3": 200,
+-  "initial_and_terminal_inventory_m3": 100,
+-  "reserve_m3": 20,
+-  "PV_kWp": 320,
++  "design": "12 independently switchable trains, 110 pressure vessels per train, 7 elements per vessel (the project's calibrated 8-inch seawater element, 41 m2), single stage, single pass, 40% recovery; physics model supplies q and power",
++  "demand_m3_day": 88000,
++  "tank_m3": 44000,
++  "initial_and_terminal_inventory_m3": 22000,
++  "reserve_m3": 4400,
++  "PV_kWp": 70400,
+   "constant_feed_temperature_C": 25,
+   "feed_salinity_g_L": 43,
+   "recovery": 0.4,
+@@ -22,7 +22,7 @@
+     "2023-10-15"
+   ],
+   "policies": [
+-    "fixed_two_trains",
++    "fixed_eight_trains",
+     "daylight_tank_rule",
+     "rolling_milp"
+   ],
+@@ -32,14 +32,85 @@
+   "initial_on_state": [
+     1,
+     1,
++    1,
++    1,
++    1,
++    1,
++    1,
++    1,
++    0,
++    0,
++    0,
+     0
+   ],
+   "initial_on_age_h": [
+     10,
+     10,
++    10,
++    10,
++    10,
++    10,
++    10,
++    10,
++    0,
++    0,
++    0,
+     0
+   ],
+   "comparison": "equal demand, same hardware, same initial and target terminal stock; failed stock/service cases excluded from saving claims",
+   "quality": "all physics dispatch points must meet modeled TDS500mg/L screen plus physics feasibility; not a drinking-water certificate",
+-  "startup_note": "5minute routine restart diversion and2hmin-on are study assumptions. No post-CIPrestart or chemical cleaningprotocol is simulated."
++  "startup_note": "5minute routine restart diversion and2hmin-on are study assumptions. No post-CIPrestart or chemical cleaningprotocol is simulated.",
++  "trains": 12,
++  "vessels_per_train": 110,
++  "steady_trains": 8,
++  "clock_rule_trains": {
++    "night_23_06": 4,
++    "day_08_17": 12,
++    "other": 8
++  },
++  "fixed_policy": "fixed_eight_trains",
++  "stress_cases": [
++    {
++      "name": "october_yield90",
++      "date": "2023-10-15",
++      "yield_step": 0.9
++    },
++    {
++      "name": "october_forecast140",
++      "date": "2023-10-15",
++      "forecast_multiplier": 1.4
++    },
++    {
++      "name": "october_tank6h",
++      "date": "2023-10-15",
++      "tank_m3": 22000
++    },
++    {
++      "name": "october_tank24h",
++      "date": "2023-10-15",
++      "tank_m3": 88000
++    },
++    {
++      "name": "october_PV52800",
++      "date": "2023-10-15",
++      "pv_kWp": 52800
++    },
++    {
++      "name": "october_PV88000",
++      "date": "2023-10-15",
++      "pv_kWp": 88000
++    },
++    {
++      "name": "october_capacity_limit_yield90",
++      "date": "2023-10-15",
++      "demand_m3_day": 132000,
++      "tank_m3": 66000,
++      "yield_step": 0.9
++    }
++  ],
++  "stress_case_map_to_original": {
++    "october_PV52800": "october_PV240",
++    "october_PV88000": "october_PV400"
++  },
++  "bigplant_note": "Demand = 8 trains (88,000 m3/day); capacity 12 trains = 1.5 x demand; tank 12 h of demand; PV 0.8 kWp per m3/day of demand. Stress cases scaled by the same ratios. Steady policy fixed_eight_trains replaces fixed_two_trains."
+ }
+\ No newline at end of file

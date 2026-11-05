@@ -1,0 +1,6 @@
+Importing plotly failed. Interactive plots will not work.
+block 0: train 408, last quarter 104, q90 0.2514; fits so far 391 [51 s]
+block 1: train 527, last quarter 132, q90 0.2527; fits so far 510 [70 s]
+block 2: train 670, last quarter 168, q90 0.1252; fits so far 653 [87 s]
+block 3: train 820, last quarter 206, q90 0.1310; fits so far 803 [106 s]
+done 803 fits 106 s

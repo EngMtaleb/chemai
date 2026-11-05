@@ -1,0 +1,12 @@
+{
+ "permeate_m3d": 34.85238770105701,
+ "rejection_pct": 99.71517295678947,
+ "datasheet_SW30HRLE_440": {
+  "permeate_m3d": 30.2,
+  "rejection_pct": 99.8
+ },
+ "datasheet_SW30XLE_440": {
+  "permeate_m3d": 37.4,
+  "rejection_pct": 99.8
+ }
+}

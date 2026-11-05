@@ -1,0 +1,3446 @@
+{
+  "title": "Industrial SWRO physics study",
+  "status": "recomputed_scenario_results",
+  "config": {
+    "temperature_C": 25.0,
+    "feed_salinity_g_L": 43.0,
+    "target_flux_LMH": 14.518002322880372,
+    "recovery": 0.4,
+    "A_factor": 1.0,
+    "B_factor": 1.0,
+    "dp_factor": 1.0,
+    "mass_transfer_factor": 1.0,
+    "elements_per_vessel": 7,
+    "vessels_per_train": 110,
+    "trains": 12,
+    "element_area_m2": 41.0,
+    "segments_per_element": 16,
+    "permeate_pressure_bar": 0.5,
+    "k25_LMH_at_10m3h": 180.0,
+    "k_flow_exponent": 0.6,
+    "element_dp_bar_at_8m3h": 0.15,
+    "dp_flow_exponent": 1.7,
+    "B_temperature_coefficient_per_C": 0.04,
+    "hp_pump_efficiency": 0.85,
+    "booster_efficiency": 0.8,
+    "erd_pressure_efficiency": 0.96,
+    "low_pressure_bar": 3.0,
+    "feed_pump_efficiency": 0.75,
+    "auxiliary_kWh_per_m3": 0.45,
+    "use_erd": true,
+    "max_feed_pressure_bar": 80.0,
+    "max_vessel_dp_bar": 3.5,
+    "max_element_dp_bar": 1.0,
+    "max_element_average_flux_LMH": 32.0,
+    "max_element_recovery": 0.13,
+    "max_feed_per_vessel_m3h": 13.0,
+    "min_brine_per_vessel_m3h": 3.5,
+    "max_product_salinity_mg_L": 500.0,
+    "min_temperature_C": 15.0,
+    "max_temperature_C": 35.0
+  },
+  "calibration": {
+    "A25_LMH_bar": 1.182518339785311,
+    "B25_LMH": 0.051761448282675634,
+    "reference": {
+      "temperature_C": 25.0,
+      "feed_salinity_g_L": 32.0,
+      "pressure_bar": 55.0,
+      "recovery": 0.08,
+      "permeate_m3_day": 30.2,
+      "salt_rejection": 0.998,
+      "area_m2": 41.0
+    },
+    "calculated_permeate_m3_day": 30.20000000000002,
+    "calculated_salt_rejection": 0.998,
+    "relative_flow_error": 6.661338147750939e-16,
+    "absolute_rejection_error": 0.0,
+    "claim": "One-point manufacturer calibration only; not field validation."
+  },
+  "nominal": {
+    "config": {
+      "temperature_C": 25.0,
+      "feed_salinity_g_L": 43.0,
+      "target_flux_LMH": 14.518002322880372,
+      "recovery": 0.4,
+      "A_factor": 1.0,
+      "B_factor": 1.0,
+      "dp_factor": 1.0,
+      "mass_transfer_factor": 1.0,
+      "elements_per_vessel": 7,
+      "vessels_per_train": 110,
+      "trains": 12,
+      "element_area_m2": 41.0,
+      "segments_per_element": 16,
+      "permeate_pressure_bar": 0.5,
+      "k25_LMH_at_10m3h": 180.0,
+      "k_flow_exponent": 0.6,
+      "element_dp_bar_at_8m3h": 0.15,
+      "dp_flow_exponent": 1.7,
+      "B_temperature_coefficient_per_C": 0.04,
+      "hp_pump_efficiency": 0.85,
+      "booster_efficiency": 0.8,
+      "erd_pressure_efficiency": 0.96,
+      "low_pressure_bar": 3.0,
+      "feed_pump_efficiency": 0.75,
+      "auxiliary_kWh_per_m3": 0.45,
+      "use_erd": true,
+      "max_feed_pressure_bar": 80.0,
+      "max_vessel_dp_bar": 3.5,
+      "max_element_dp_bar": 1.0,
+      "max_element_average_flux_LMH": 32.0,
+      "max_element_recovery": 0.13,
+      "max_feed_per_vessel_m3h": 13.0,
+      "min_brine_per_vessel_m3h": 3.5,
+      "max_product_salinity_mg_L": 500.0,
+      "min_temperature_C": 15.0,
+      "max_temperature_C": 35.0
+    },
+    "evidence_type": "simulated_industrial_design",
+    "train_q_m3_h": 458.333333333341,
+    "plant_q_m3_day": 132000.0000000022,
+    "train_feed_m3_h": 1145.8333333333333,
+    "train_brine_m3_h": 687.4999999999919,
+    "train_power_kW": 1320.6012518449527,
+    "plant_power_kW": 15847.215022139433,
+    "feed_pressure_bar": 63.49037113539727,
+    "vessel_dp_bar": 1.014058473372124,
+    "permeate_salinity_mg_L": 227.57983370454167,
+    "brine_salinity_g_L": 71.51494677753124,
+    "SEC_kWh_m3": 2.8813118222071212,
+    "RO_SEC_kWh_m3": 2.1535340444293483,
+    "power_components_train_kW": {
+      "high_pressure_pump": 906.0376940214885,
+      "erd_booster": 80.9987430086459,
+      "feed_pump": 127.31481481481481,
+      "assumed_auxiliaries": 206.25000000000344
+    },
+    "feasible": true,
+    "checks": {
+      "feed_pressure": true,
+      "vessel_pressure_drop": true,
+      "element_pressure_drop": true,
+      "element_average_flux": true,
+      "element_recovery": true,
+      "feed_flow": true,
+      "brine_crossflow": true,
+      "salt_quality_gate": true,
+      "temperature_study_envelope": true
+    },
+    "violations": [],
+    "water_balance_residual_m3_h": 4.689582056016661e-12,
+    "salt_balance_residual_kg_h": -8.061684653171142e-10,
+    "elements": [
+      {
+        "element": 1,
+        "feed_m3h": 10.416666666666666,
+        "permeate_m3h": 1.07724624087646,
+        "brine_m3h": 9.339420425790204,
+        "average_flux_LMH": 26.27429855796244,
+        "recovery": 0.10341563912414017,
+        "dp_bar": 0.2154299909434627,
+        "permeate_mg_L": 103.11922516074662
+      },
+      {
+        "element": 2,
+        "feed_m3h": 9.339420425790204,
+        "permeate_m3h": 0.8820788136031942,
+        "brine_m3h": 8.45734161218701,
+        "average_flux_LMH": 21.514117404955954,
+        "recovery": 0.09444684716916596,
+        "dp_bar": 0.18024691996585318,
+        "permeate_mg_L": 137.12589473068556
+      },
+      {
+        "element": 3,
+        "feed_m3h": 8.45734161218701,
+        "permeate_m3h": 0.7030051875196949,
+        "brine_m3h": 7.754336424667316,
+        "average_flux_LMH": 17.14646798828524,
+        "recovery": 0.0831236598633625,
+        "dp_bar": 0.15370328143388434,
+        "permeate_mg_L": 184.9844823603472
+      },
+      {
+        "element": 4,
+        "feed_m3h": 7.754336424667316,
+        "permeate_m3h": 0.5464638331297661,
+        "brine_m3h": 7.207872591537551,
+        "average_flux_LMH": 13.328386173896734,
+        "recovery": 0.07047203051332804,
+        "dp_bar": 0.1340301138585076,
+        "permeate_mg_L": 252.51048074183174
+      },
+      {
+        "element": 5,
+        "feed_m3h": 7.207872591537551,
+        "permeate_m3h": 0.4158195982928978,
+        "brine_m3h": 6.792052993244653,
+        "average_flux_LMH": 10.141941421777993,
+        "recovery": 0.057689643235521865,
+        "dp_bar": 0.11965223208861886,
+        "permeate_mg_L": 347.71557290645114
+      },
+      {
+        "element": 6,
+        "feed_m3h": 6.792052993244653,
+        "permeate_m3h": 0.3112956869208702,
+        "brine_m3h": 6.480757306323781,
+        "average_flux_LMH": 7.592577729777322,
+        "recovery": 0.04583234071207683,
+        "dp_bar": 0.10924585495057215,
+        "permeate_mg_L": 481.2635591102024
+      },
+      {
+        "element": 7,
+        "feed_m3h": 6.480757306323781,
+        "permeate_m3h": 0.23075730632385433,
+        "brine_m3h": 6.249999999999926,
+        "average_flux_LMH": 5.628226983508642,
+        "recovery": 0.035606534146663135,
+        "dp_bar": 0.10175008013122522,
+        "permeate_mg_L": 666.3864705141934
+      }
+    ],
+    "vessel_profile": [
+      {
+        "element": 1,
+        "axial_fraction": 0.004464285714285714,
+        "feed_m3h": 10.416666666666666,
+        "pressure_bar": 63.4830289185544,
+        "bulk_g_L": 43.0,
+        "surface_g_L": 50.190894445577655,
+        "flux_LMH": 28.580070672253616,
+        "permeate_mg_L": 90.7365402314792
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.013392857142857142,
+        "feed_m3h": 10.343430235569016,
+        "pressure_bar": 63.46843202431068,
+        "bulk_g_L": 43.30381809953295,
+        "surface_g_L": 50.49338619950656,
+        "flux_LMH": 28.269989378732653,
+        "permeate_mg_L": 92.28281169290833
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.022321428571428572,
+        "feed_m3h": 10.270988387786014,
+        "pressure_bar": 63.45400883340395,
+        "bulk_g_L": 43.608591442039504,
+        "surface_g_L": 50.795710420932956,
+        "flux_LMH": 27.960303466590947,
+        "permeate_mg_L": 93.86168231171082
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.03125,
+        "feed_m3h": 10.199340110152875,
+        "pressure_bar": 63.439756608991516,
+        "bulk_g_L": 43.914273516103535,
+        "surface_g_L": 51.09781063765857,
+        "flux_LMH": 27.651065220757864,
+        "permeate_mg_L": 95.4738920427545
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.04017857142857143,
+        "feed_m3h": 10.128484255524683,
+        "pressure_bar": 63.42567264276482,
+        "bulk_g_L": 44.220816767572856,
+        "surface_g_L": 51.3996301394265,
+        "flux_LMH": 27.342327205109914,
+        "permeate_mg_L": 97.120197385398
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.049107142857142856,
+        "feed_m3h": 10.05841954206159,
+        "pressure_bar": 63.411754255008745,
+        "bulk_g_L": 44.52817262444429,
+        "surface_g_L": 51.701112027320505,
+        "flux_LMH": 27.034142214796024,
+        "permeate_mg_L": 98.80137172631404
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.05803571428571429,
+        "feed_m3h": 9.989144552636175,
+        "pressure_bar": 63.397998794654406,
+        "bulk_g_L": 44.83629152366451,
+        "surface_g_L": 52.002199263936745,
+        "flux_LMH": 26.72656322780946,
+        "permeate_mg_L": 100.51820568852952
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.06696428571428571,
+        "feed_m3h": 9.920657734364912,
+        "pressure_bar": 63.38440363932505,
+        "bulk_g_L": 45.1451229398356,
+        "surface_g_L": 52.302834724233286,
+        "flux_LMH": 26.41964335589741,
+        "permeate_mg_L": 102.27150748675905
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.07589285714285714,
+        "feed_m3h": 9.852957398265426,
+        "pressure_bar": 63.370966195375125,
+        "bulk_g_L": 45.45461541580897,
+        "surface_g_L": 52.60296124696094,
+        "flux_LMH": 26.113435794903147,
+        "permeate_mg_L": 104.06210328910312
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.08482142857142858,
+        "feed_m3h": 9.786041719040986,
+        "pressure_bar": 63.35768389792226,
+        "bulk_g_L": 45.76471659514554,
+        "surface_g_L": 52.9025216865748,
+        "flux_LMH": 25.807993774637144,
+        "permeate_mg_L": 105.89083758518211
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.09375,
+        "feed_m3h": 9.719908734993478,
+        "pressure_bar": 63.34455421087215,
+        "bulk_g_L": 46.075373256414565,
+        "surface_g_L": 53.2014589655248,
+        "flux_LMH": 25.503370508377227,
+        "permeate_mg_L": 107.75857356076926
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.10267857142857142,
+        "feed_m3h": 9.65455634806576,
+        "pressure_bar": 63.33157462693632,
+        "bulk_g_L": 46.386531349297826,
+        "surface_g_L": 53.49971612682066,
+        "flux_LMH": 25.199619142098737,
+        "permeate_mg_L": 109.66619347898501
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.11160714285714286,
+        "feed_m3h": 9.589982324014132,
+        "pressure_bar": 63.31874266764253,
+        "bulk_g_L": 46.698136032460056,
+        "surface_g_L": 53.79723638676529,
+        "flux_LMH": 24.896792703537628,
+        "permeate_mg_L": 111.61459906810892
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.12053571428571429,
+        "feed_m3h": 9.526184292711317,
+        "pressure_bar": 63.30605588333785,
+        "bulk_g_L": 47.01013171314102,
+        "surface_g_L": 54.093963187749345,
+        "flux_LMH": 24.594944051191156,
+        "permeate_mg_L": 113.60471191605802
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.12946428571428573,
+        "feed_m3h": 9.46315974858014,
+        "pressure_bar": 63.293511853184405,
+        "bulk_g_L": 47.32246208841881,
+        "surface_g_L": 54.38984025099884,
+        "flux_LMH": 24.294125823361085,
+        "permeate_mg_L": 115.63747387157704
+      },
+      {
+        "element": 1,
+        "axial_fraction": 0.13839285714285715,
+        "feed_m3h": 9.400906051157776,
+        "pressure_bar": 63.28110818514762,
+        "bulk_g_L": 47.63507018808838,
+        "surface_g_L": 54.68481162916677,
+        "flux_LMH": 23.994390387345092,
+        "permeate_mg_L": 117.71384745217708
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.14732142857142858,
+        "feed_m3h": 9.339420425790204,
+        "pressure_bar": 63.26884251597704,
+        "bulk_g_L": 47.94789841909401,
+        "surface_g_L": 54.978821758660295,
+        "flux_LMH": 23.695789788882436,
+        "permeate_mg_L": 119.83481625885125
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.15625,
+        "feed_m3h": 9.278699964456193,
+        "pressure_bar": 63.25671251117957,
+        "bulk_g_L": 48.26088861144869,
+        "surface_g_L": 55.27181551159441,
+        "flux_LMH": 23.398375701959292,
+        "permeate_mg_L": 122.00138539758873
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.16517857142857142,
+        "feed_m3h": 9.218741626719922,
+        "pressure_bar": 63.24471586498531,
+        "bulk_g_L": 48.57398206556851,
+        "surface_g_L": 55.563738247264624,
+        "flux_LMH": 23.102199379078684,
+        "permeate_mg_L": 124.21458190769825
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.17410714285714285,
+        "feed_m3h": 9.159542240811033,
+        "pressure_bar": 63.23285030030579,
+        "bulk_g_L": 48.887119600944644,
+        "surface_g_L": 55.85453586303125,
+        "flux_LMH": 22.80731160209906,
+        "permeate_mg_L": 126.47545519694044
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.18303571428571427,
+        "feed_m3h": 9.101098504830654,
+        "pressure_bar": 63.22111356868473,
+        "bulk_g_L": 49.200241606071245,
+        "surface_g_L": 56.144154844510524,
+        "flux_LMH": 22.513762633743838,
+        "permeate_mg_L": 128.78507748345982
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.19196428571428573,
+        "feed_m3h": 9.043406988081685,
+        "pressure_bar": 63.20950345024124,
+        "bulk_g_L": 49.51328808954217,
+        "surface_g_L": 56.4325423149684,
+        "flux_LMH": 22.221602169882704,
+        "permeate_mg_L": 131.14454424449167
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.20089285714285715,
+        "feed_m3h": 8.98646413252136,
+        "pressure_bar": 63.198017753605704,
+        "bulk_g_L": 49.82619873222563,
+        "surface_g_L": 56.71964608381619,
+        "flux_LMH": 21.930879292683134,
+        "permeate_mg_L": 133.5549746718068
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.20982142857142858,
+        "feed_m3h": 8.93026625433386,
+        "pressure_bar": 63.18665431584802,
+        "bulk_g_L": 50.13891294042145,
+        "surface_g_L": 57.005414694108914,
+        "flux_LMH": 21.641642424728087,
+        "permeate_mg_L": 136.01751213384293
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.21875,
+        "feed_m3h": 8.874809545620494,
+        "pressure_bar": 63.175411002398604,
+        "bulk_g_L": 50.45136989990176,
+        "surface_g_L": 57.289797468951114,
+        "flux_LMH": 21.35393928419299,
+        "permeate_mg_L": 138.53332464445384
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.22767857142857142,
+        "feed_m3h": 8.82009007620475,
+        "pressure_bar": 63.16428570696204,
+        "bulk_g_L": 50.763508630732474,
+        "surface_g_L": 57.57274455671696,
+        "flux_LMH": 21.067816841171936,
+        "permeate_mg_L": 141.10360533818957
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.23660714285714285,
+        "feed_m3h": 8.766103795549247,
+        "pressure_bar": 63.15327635142341,
+        "bulk_g_L": 51.075268042769665,
+        "surface_g_L": 57.85420697500062,
+        "flux_LMH": 20.783321275250152,
+        "permeate_mg_L": 143.72957295193953
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.24553571428571427,
+        "feed_m3h": 8.712846534781418,
+        "pressure_bar": 63.14238088574746,
+        "bulk_g_L": 51.386586991722304,
+        "surface_g_L": 58.13413665318937,
+        "flux_LMH": 20.500497934342867,
+        "permeate_mg_L": 146.41247231318505
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.2544642857142857,
+        "feed_m3h": 8.660314008824665,
+        "pressure_bar": 63.131597287870704,
+        "bulk_g_L": 51.69740433566925,
+        "surface_g_L": 58.41248647363099,
+        "flux_LMH": 20.219391295029496,
+        "permeate_mg_L": 149.15357483381672
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.26339285714285715,
+        "feed_m3h": 8.608501818631153,
+        "pressure_bar": 63.12092356358648,
+        "bulk_g_L": 52.00765899191883,
+        "surface_g_L": 58.6892103112535,
+        "flux_LMH": 19.940044924263265,
+        "permeate_mg_L": 151.95417901049606
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.27232142857142855,
+        "feed_m3h": 8.557405453512729,
+        "pressure_bar": 63.11035774642305,
+        "bulk_g_L": 52.31728999409437,
+        "surface_g_L": 58.964263071594765,
+        "flux_LMH": 19.662501442616307,
+        "permeate_mg_L": 154.8156109308765
+      },
+      {
+        "element": 2,
+        "axial_fraction": 0.28125,
+        "feed_m3h": 8.507020293566024,
+        "pressure_bar": 63.09989789751502,
+        "bulk_g_L": 52.626236549329384,
+        "surface_g_L": 59.23760072726484,
+        "flux_LMH": 19.38680248937102,
+        "permeate_mg_L": 157.73922478371165
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.29017857142857145,
+        "feed_m3h": 8.45734161218701,
+        "pressure_bar": 63.08954210546797,
+        "bulk_g_L": 52.93443809545893,
+        "surface_g_L": 59.509180352516786,
+        "flux_LMH": 19.112988688772695,
+        "permeate_mg_L": 160.7264033777011
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.29910714285714285,
+        "feed_m3h": 8.40836457867203,
+        "pressure_bar": 63.079288486216576,
+        "bulk_g_L": 53.24183435808164,
+        "surface_g_L": 59.778960156221196,
+        "flux_LMH": 18.841099618504376,
+        "permeate_mg_L": 163.7785586619244
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.3080357142857143,
+        "feed_m3h": 8.360084260899612,
+        "pressure_bar": 63.06913518287633,
+        "bulk_g_L": 53.54836540738262,
+        "surface_g_L": 60.046899512930096,
+        "flux_LMH": 18.571173779668648,
+        "permeate_mg_L": 166.89713225273726
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.3169642857142857,
+        "feed_m3h": 8.312495628089211,
+        "pressure_bar": 63.059080365589,
+        "bulk_g_L": 53.8539717145957,
+        "surface_g_L": 60.312958992100725,
+        "flux_LMH": 18.303248568657153,
+        "permeate_mg_L": 170.08359596445715
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.32589285714285715,
+        "feed_m3h": 8.265593553632026,
+        "pressure_bar": 63.04912223136183,
+        "bulk_g_L": 54.15859420799,
+        "surface_g_L": 60.57710038540324,
+        "flux_LMH": 18.037360250839242,
+        "permeate_mg_L": 173.33945234420676
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.33482142857142855,
+        "feed_m3h": 8.219372817989251,
+        "pressure_bar": 63.039259003901,
+        "bulk_g_L": 54.462174328264794,
+        "surface_g_L": 60.83928673209197,
+        "flux_LMH": 17.773543936141255,
+        "permeate_mg_L": 176.66623521018707
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.34375,
+        "feed_m3h": 8.17382811165289,
+        "pressure_bar": 63.029488933439026,
+        "bulk_g_L": 54.76465408323953,
+        "surface_g_L": 61.09948234241145,
+        "flux_LMH": 17.511833556538935,
+        "permeate_mg_L": 180.06551019291763
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.35267857142857145,
+        "feed_m3h": 8.12895403816426,
+        "pressure_bar": 63.0198102965567,
+        "bulk_g_L": 55.06597610172725,
+        "surface_g_L": 61.35765281901201,
+        "flux_LMH": 17.25226184547661,
+        "permeate_mg_L": 183.53887527896885
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.36160714285714285,
+        "feed_m3h": 8.084745117185225,
+        "pressure_bar": 63.01022139599942,
+        "bulk_g_L": 55.366083686482575,
+        "surface_g_L": 61.61376507636014,
+        "flux_LMH": 16.994860319231424,
+        "permeate_mg_L": 187.08796135658162
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.3705357142857143,
+        "feed_m3h": 8.041195787617195,
+        "pressure_bar": 63.00072056048836,
+        "bulk_g_L": 55.66492086611784,
+        "surface_g_L": 61.86778735813228,
+        "flux_LMH": 16.739659260232603,
+        "permeate_mg_L": 190.71443276253274
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.3794642857142857,
+        "feed_m3h": 7.998300410762849,
+        "pressure_bar": 62.991306144526355,
+        "bulk_g_L": 55.96243244588452,
+        "surface_g_L": 62.119689252587655,
+        "flux_LMH": 16.486687702340326,
+        "permeate_mg_L": 194.4199878295465
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.38839285714285715,
+        "feed_m3h": 7.956053273525602,
+        "pressure_bar": 62.98197652819898,
+        "bulk_g_L": 56.25856405722049,
+        "surface_g_L": 62.36944170592038,
+        "flux_LMH": 16.235973418083262,
+        "permeate_mg_L": 198.20635943349222
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.39732142857142855,
+        "feed_m3h": 7.914448591641763,
+        "pressure_bar": 62.97273011697082,
+        "bulk_g_L": 56.55326220596755,
+        "surface_g_L": 62.617017033596646,
+        "flux_LMH": 15.98754290784842,
+        "permeate_mg_L": 202.07531553954138
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.40625,
+        "feed_m3h": 7.873480512940402,
+        "pressure_bar": 62.96356534147721,
+        "bulk_g_L": 56.846474319168045,
+        "surface_g_L": 62.86238892968866,
+        "flux_LMH": 15.741421391012066,
+        "permeate_mg_L": 206.02865974638613
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.41517857142857145,
+        "feed_m3h": 7.833143120625934,
+        "pressure_bar": 62.95448065731156,
+        "bulk_g_L": 57.13814879035374,
+        "surface_g_L": 63.105532474221185,
+        "flux_LMH": 15.497632798995113,
+        "permeate_mg_L": 210.06823182754906
+      },
+      {
+        "element": 3,
+        "axial_fraction": 0.42410714285714285,
+        "feed_m3h": 7.793430436578509,
+        "pressure_bar": 62.94547454480856,
+        "bulk_g_L": 57.428235023244994,
+        "surface_g_L": 63.346424138552294,
+        "flux_LMH": 15.256199770221738,
+        "permeate_mg_L": 214.1959082687341
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.4330357142857143,
+        "feed_m3h": 7.754336424667316,
+        "pressure_bar": 62.93654550882344,
+        "bulk_g_L": 57.71668347378334,
+        "surface_g_L": 63.58504178881411,
+        "flux_LMH": 15.017143646955068,
+        "permeate_mg_L": 218.41360280008746
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.4419642857142857,
+        "feed_m3h": 7.715854994071994,
+        "pressure_bar": 62.927692078507334,
+        "bulk_g_L": 58.00344569042573,
+        "surface_g_L": 63.82136468744435,
+        "flux_LMH": 14.780484473979689,
+        "permeate_mg_L": 222.72326692214463
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.45089285714285715,
+        "feed_m3h": 7.677980002607421,
+        "pressure_bar": 62.91891280707916,
+        "bulk_g_L": 58.28847435263427,
+        "surface_g_L": 64.05537349284329,
+        "flux_LMH": 14.546240999095945,
+        "permeate_mg_L": 227.12689042415283
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.45982142857142855,
+        "feed_m3h": 7.640705260047238,
+        "pressure_bar": 62.91020627159418,
+        "bulk_g_L": 58.571723307500754,
+        "surface_g_L": 64.2870502571952,
+        "flux_LMH": 14.314430675387598,
+        "permeate_mg_L": 231.62650189335253
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.46875,
+        "feed_m3h": 7.604024531441557,
+        "pressure_bar": 62.901571072709196,
+        "bulk_g_L": 58.85314760445129,
+        "surface_g_L": 64.51637842249714,
+        "flux_LMH": 14.085069665219761,
+        "permeate_mg_L": 236.2241692137083
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.47767857142857145,
+        "feed_m3h": 7.567931540424432,
+        "pressure_bar": 62.89300583444499,
+        "bulk_g_L": 59.13270352798187,
+        "surface_g_L": 64.74334281484111,
+        "flux_LMH": 13.858172845921406,
+        "permeate_mg_L": 240.92200005245903
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.48660714285714285,
+        "feed_m3h": 7.532419972506759,
+        "pressure_bar": 62.88450920394585,
+        "bulk_g_L": 59.4103486283819,
+        "surface_g_L": 64.96792963699956,
+        "flux_LMH": 13.633753817102757,
+        "permeate_mg_L": 245.72214233274997
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.4955357142857143,
+        "feed_m3h": 7.497483478350433,
+        "pressure_bar": 62.87607985123652,
+        "bulk_g_L": 59.686041750408734,
+        "surface_g_L": 65.19012645936652,
+        "flux_LMH": 13.41182490955513,
+        "permeate_mg_L": 250.62678469048632
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.5044642857142857,
+        "feed_m3h": 7.463115677019698,
+        "pressure_bar": 62.86771646897683,
+        "bulk_g_L": 59.959743059882115,
+        "surface_g_L": 65.40992220931028,
+        "flux_LMH": 13.192397195677751,
+        "permeate_mg_L": 255.638156913425
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.5133928571428571,
+        "feed_m3h": 7.429310159205774,
+        "pressure_bar": 62.85941777221414,
+        "bulk_g_L": 60.23141406817361,
+        "surface_g_L": 65.62730715899478,
+        "flux_LMH": 12.975480501374202,
+        "permeate_mg_L": 260.7585303603768
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.5223214285714286,
+        "feed_m3h": 7.396060490421003,
+        "pressure_bar": 62.8511824981337,
+        "bulk_g_L": 60.50101765457214,
+        "surface_g_L": 65.84227291173066,
+        "flux_LMH": 12.761083419357847,
+        "permeate_mg_L": 265.9902183582715
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.53125,
+        "feed_m3h": 7.363360214158898,
+        "pressure_bar": 62.84300940580739,
+        "bulk_g_L": 60.76851808651246,
+        "surface_g_L": 66.05481238691709,
+        "flux_LMH": 12.549213323804697,
+        "permeate_mg_L": 271.3355765746742
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.5401785714285714,
+        "feed_m3h": 7.331202855016648,
+        "pressure_bar": 62.83489727594062,
+        "bulk_g_L": 61.0338810376597,
+        "surface_g_L": 66.26491980363868,
+        "flux_LMH": 12.3398763862895,
+        "permeate_mg_L": 276.7970033632049
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.5491071428571429,
+        "feed_m3h": 7.299581921776781,
+        "pressure_bar": 62.826844910618,
+        "bulk_g_L": 61.29707360384846,
+        "surface_g_L": 66.47259066298214,
+        "flux_LMH": 12.133077592940381,
+        "permeate_mg_L": 282.3769400791407
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.5580357142857143,
+        "feed_m3h": 7.268490910444871,
+        "pressure_bar": 62.818851133047694,
+        "bulk_g_L": 61.55806431688083,
+        "surface_g_L": 66.67782172913886,
+        "flux_LMH": 11.928820762744932,
+        "permeate_mg_L": 288.07787136233463
+      },
+      {
+        "element": 4,
+        "axial_fraction": 0.5669642857142857,
+        "feed_m3h": 7.2379233072403375,
+        "pressure_bar": 62.81091478730471,
+        "bulk_g_L": 61.81682315619324,
+        "surface_g_L": 66.88061100936024,
+        "flux_LMH": 11.72710856694106,
+        "permeate_mg_L": 293.9023253843921
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.5758928571428571,
+        "feed_m3h": 7.207872591537551,
+        "pressure_bar": 62.803034738073315,
+        "bulk_g_L": 62.073321558407265,
+        "surface_g_L": 67.08095773283355,
+        "flux_LMH": 11.527942549423818,
+        "permeate_mg_L": 299.8528740568954
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.5848214285714286,
+        "feed_m3h": 7.178332238754653,
+        "pressure_bar": 62.79520987038879,
+        "bulk_g_L": 62.32753242478473,
+        "surface_g_L": 67.27886232854571,
+        "flux_LMH": 11.331323148100266,
+        "permeate_mg_L": 305.93213319725726
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.59375,
+        "feed_m3h": 7.149295723187645,
+        "pressure_bar": 62.787439089378545,
+        "bulk_g_L": 62.57943012661241,
+        "surface_g_L": 67.47432640220329,
+        "flux_LMH": 11.137249717123177,
+        "permeate_mg_L": 312.14276264861843
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.6026785714285714,
+        "feed_m3h": 7.120756520787517,
+        "pressure_bar": 62.77972132000299,
+        "bulk_g_L": 62.828990508546454,
+        "surface_g_L": 67.66735271227606,
+        "flux_LMH": 10.945720549934936,
+        "permeate_mg_L": 318.48746634999867
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.6116071428571429,
+        "feed_m3h": 7.092708111878309,
+        "pressure_bar": 62.7720555067961,
+        "bulk_g_L": 63.07619088995105,
+        "surface_g_L": 67.8579451452321,
+        "flux_LMH": 10.756732903052976,
+        "permeate_mg_L": 324.96899235271616
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.6205357142857143,
+        "feed_m3h": 7.065143983814236,
+        "pressure_bar": 62.764440613605956,
+        "bulk_g_L": 63.321010064270084,
+        "surface_g_L": 68.04610869003027,
+        "flux_LMH": 10.570283020528409,
+        "permeate_mg_L": 331.5901327788886
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.6294642857142857,
+        "feed_m3h": 7.038057633574132,
+        "pressure_bar": 62.756875623335404,
+        "bulk_g_L": 63.56342829647472,
+        "surface_g_L": 68.23184941193719,
+        "flux_LMH": 10.386366159010535,
+        "permeate_mg_L": 338.35372371761525
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.6383928571428571,
+        "feed_m3h": 7.011442570291668,
+        "pressure_bar": 62.74935953768296,
+        "bulk_g_L": 63.8034273186335,
+        "surface_g_L": 68.41517442573277,
+        "flux_LMH": 10.20497661334995,
+        "permeate_mg_L": 345.26264505424206
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.6473214285714286,
+        "feed_m3h": 6.985292317719958,
+        "pressure_bar": 62.74189137688409,
+        "bulk_g_L": 64.04099032365501,
+        "surface_g_L": 68.59609186836866,
+        "flux_LMH": 10.026107742674643,
+        "permeate_mg_L": 352.3198202278857
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.65625,
+        "feed_m3h": 6.959600416629354,
+        "pressure_bar": 62.73447017945302,
+        "bulk_g_L": 64.27610195725633,
+        "surface_g_L": 68.77461087114219,
+        "flux_LMH": 9.849751996874124,
+        "permeate_mg_L": 359.52821591218816
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.6651785714285714,
+        "feed_m3h": 6.9343604271373644,
+        "pressure_bar": 62.727095001925264,
+        "bulk_g_L": 64.50874830821353,
+        "surface_g_L": 68.95074153144662,
+        "flux_LMH": 9.675900943427875,
+        "permeate_mg_L": 366.89084161405856
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.6741071428571429,
+        "feed_m3h": 6.909565930969831,
+        "pressure_bar": 62.71976491860088,
+        "bulk_g_L": 64.73891689695306,
+        "surface_g_L": 69.1244948841575,
+        "flux_LMH": 9.504545294516166,
+        "permeate_mg_L": 374.41074918493854
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.6830357142857143,
+        "feed_m3h": 6.885210533652633,
+        "pressure_bar": 62.7124790212887,
+        "bulk_g_L": 64.96659666254513,
+        "surface_g_L": 69.29588287271248,
+        "flux_LMH": 9.33567493435224,
+        "permeate_mg_L": 382.0910322389292
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.6919642857142857,
+        "feed_m3h": 6.861287866633355,
+        "pressure_bar": 62.70523641905157,
+        "bulk_g_L": 65.19177794816238,
+        "surface_g_L": 69.46491831994103,
+        "flux_LMH": 9.169278946677073,
+        "permeate_mg_L": 389.93482547189404
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.7008928571428571,
+        "feed_m3h": 6.837791589332495,
+        "pressure_bar": 62.69803623795278,
+        "bulk_g_L": 65.41445248506885,
+        "surface_g_L": 69.63161489869755,
+        "flux_LMH": 9.005345642358968,
+        "permeate_mg_L": 397.9453038754762
+      },
+      {
+        "element": 5,
+        "axial_fraction": 0.7098214285714286,
+        "feed_m3h": 6.81471539112395,
+        "pressure_bar": 62.69087762080372,
+        "bulk_g_L": 65.6346133752059,
+        "surface_g_L": 69.79598710235005,
+        "flux_LMH": 8.843862587042754,
+        "permeate_mg_L": 406.12568183974776
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.71875,
+        "feed_m3h": 6.792052993244653,
+        "pressure_bar": 62.683759726912946,
+        "bulk_g_L": 65.85225507244267,
+        "surface_g_L": 69.95805021517417,
+        "flux_LMH": 8.684816628794646,
+        "permeate_mg_L": 414.47921213804943
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.7276785714285714,
+        "feed_m3h": 6.769798150633367,
+        "pressure_bar": 62.67668173183671,
+        "bulk_g_L": 66.06737336255999,
+        "surface_g_L": 70.11782028270015,
+        "flux_LMH": 8.528193925691115,
+        "permeate_mg_L": 423.00918478740044
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.7366071428571429,
+        "feed_m3h": 6.7479446536987835,
+        "pressure_bar": 62.669642827131014,
+        "bulk_g_L": 66.27996534203707,
+        "surface_g_L": 70.27531408205839,
+        "flux_LMH": 8.373979973302353,
+        "permeate_mg_L": 431.7189257776872
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.7455357142857143,
+        "feed_m3h": 6.726486330017196,
+        "pressure_bar": 62.66264222010542,
+        "bulk_g_L": 66.4900293957109,
+        "surface_g_L": 70.43054909236638,
+        "flux_LMH": 8.222159632022137,
+        "permeate_mg_L": 440.61179566274825
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.7544642857142857,
+        "feed_m3h": 6.705417045960139,
+        "pressure_bar": 62.6556791335785,
+        "bulk_g_L": 66.69756517337845,
+        "surface_g_L": 70.58354346519852,
+        "flux_LMH": 8.07271715419918,
+        "permeate_mg_L": 449.6911880063038
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.7633928571428571,
+        "feed_m3h": 6.684730708252504,
+        "pressure_bar": 62.648752805635176,
+        "bulk_g_L": 66.90257356541173,
+        "surface_g_L": 70.73431599517664,
+        "flux_LMH": 7.9256362110261875,
+        "permeate_mg_L": 458.9605276756349
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.7723214285714286,
+        "feed_m3h": 6.664421265461749,
+        "pressure_bar": 62.641862489385936,
+        "bulk_g_L": 67.10505667745544,
+        "surface_g_L": 70.8828860907182,
+        "flux_LMH": 7.780899919145814,
+        "permeate_mg_L": 468.4232689758236
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.78125,
+        "feed_m3h": 6.644482709418938,
+        "pressure_bar": 62.635007452728,
+        "bulk_g_L": 67.30501780427662,
+        "surface_g_L": 71.02927374497584,
+        "flux_LMH": 7.638490866934341,
+        "permeate_mg_L": 478.082893617363
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.7901785714285714,
+        "feed_m3h": 6.624909076572418,
+        "pressure_bar": 62.62818697810861,
+        "bulk_g_L": 67.50246140283484,
+        "surface_g_L": 71.17349950699983,
+        "flux_LMH": 7.498391140426406,
+        "permeate_mg_L": 487.94290850994656
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.7991071428571429,
+        "feed_m3h": 6.6056944492750755,
+        "pressure_bar": 62.62140036229031,
+        "bulk_g_L": 67.69739306464076,
+        "surface_g_L": 71.31558445315328,
+        "flux_LMH": 7.360582348846429,
+        "permeate_mg_L": 498.0068433752903
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.8080357142857143,
+        "feed_m3h": 6.586832957006156,
+        "pressure_bar": 62.614646916118474,
+        "bulk_g_L": 67.88981948746971,
+        "surface_g_L": 71.45555015880677,
+        "flux_LMH": 7.225045649714438,
+        "permeate_mg_L": 508.27824817195375
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.8169642857142857,
+        "feed_m3h": 6.568318777528763,
+        "pressure_bar": 62.607925964290985,
+        "bulk_g_L": 68.07974844649583,
+        "surface_g_L": 71.59341867033808,
+        "flux_LMH": 7.091761773496269,
+        "permeate_mg_L": 518.760690325271
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.8258928571428571,
+        "feed_m3h": 6.5501461379841786,
+        "pressure_bar": 62.60123684513021,
+        "bulk_g_L": 68.2671887649109,
+        "surface_g_L": 71.72921247745907,
+        "flux_LMH": 6.960711047770309,
+        "permeate_mg_L": 529.457751755722
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.8348214285714286,
+        "feed_m3h": 6.532309315924267,
+        "pressure_bar": 62.594578910357264,
+        "bulk_g_L": 68.45215028409041,
+        "surface_g_L": 71.86295448589134,
+        "flux_LMH": 6.8318734208857705,
+        "permeate_mg_L": 540.3730256992969
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.84375,
+        "feed_m3h": 6.514802640283247,
+        "pressure_bar": 62.587951524868636,
+        "bulk_g_L": 68.63464383336792,
+        "surface_g_L": 71.99466799040886,
+        "flux_LMH": 6.705228485088386,
+        "permeate_mg_L": 551.5101133138401
+      },
+      {
+        "element": 6,
+        "axial_fraction": 0.8526785714285714,
+        "feed_m3h": 6.497620492290208,
+        "pressure_bar": 62.58135406651517,
+        "bulk_g_L": 68.81468119947692,
+        "surface_g_L": 72.12437664826479,
+        "flux_LMH": 6.580755499093381,
+        "permeate_mg_L": 562.8726200656482
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.8616071428571429,
+        "feed_m3h": 6.480757306323781,
+        "pressure_bar": 62.57478592588351,
+        "bulk_g_L": 68.9922750957175,
+        "surface_g_L": 72.2521044530173,
+        "flux_LMH": 6.458433410086173,
+        "permeate_mg_L": 574.4641518912032
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.8705357142857143,
+        "feed_m3h": 6.464207570710435,
+        "pressure_bar": 62.56824650607991,
+        "bulk_g_L": 69.1674391309033,
+        "surface_g_L": 72.37787570876766,
+        "flux_LMH": 6.338240875134596,
+        "permeate_mg_L": 586.2883111294076
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.8794642857142857,
+        "feed_m3h": 6.447965828467903,
+        "pressure_bar": 62.561735222516596,
+        "bulk_g_L": 69.3401877781423,
+        "surface_g_L": 72.50171500482223,
+        "flux_LMH": 6.2201562819978635,
+        "permeate_mg_L": 598.3486922204149
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.8883928571428571,
+        "feed_m3h": 6.4320266779952835,
+        "pressure_bar": 62.55525150270055,
+        "bulk_g_L": 69.51053634350251,
+        "surface_g_L": 72.62364719078828,
+        "flux_LMH": 6.1041577693201425,
+        "permeate_mg_L": 610.6488771678692
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.8973214285714286,
+        "feed_m3h": 6.416384773711401,
+        "pressure_bar": 62.54879478602486,
+        "bulk_g_L": 69.67850093461217,
+        "surface_g_L": 72.74369735211211,
+        "flux_LMH": 5.99022324619852,
+        "permeate_mg_L": 623.1924307622355
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.90625,
+        "feed_m3h": 6.401034826643017,
+        "pressure_bar": 62.542364523562526,
+        "bulk_g_L": 69.84409842924116,
+        "surface_g_L": 72.86189078606674,
+        "flux_LMH": 5.878330411117283,
+        "permeate_mg_L": 635.9828955638757
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.9151785714285714,
+        "feed_m3h": 6.38597160496453,
+        "pressure_bar": 62.53596017786287,
+        "bulk_g_L": 70.00734644390876,
+        "surface_g_L": 72.978252978195,
+        "flux_LMH": 5.76845677024255,
+        "permeate_mg_L": 649.0237866455844
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.9241071428571429,
+        "feed_m3h": 6.371189934490783,
+        "pressure_bar": 62.529581222750416,
+        "bulk_g_L": 70.16826330256045,
+        "surface_g_L": 73.09280957921261,
+        "flux_LMH": 5.660579655073358,
+        "permeate_mg_L": 662.3185860954817
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.9330357142857143,
+        "feed_m3h": 6.356684699124657,
+        "pressure_bar": 62.52322714312638,
+        "bulk_g_L": 70.32686800535403,
+        "surface_g_L": 73.20558638237532,
+        "flux_LMH": 5.554676239447655,
+        "permeate_mg_L": 675.8707372824234
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.9419642857142857,
+        "feed_m3h": 6.342450841261073,
+        "pressure_bar": 62.51689743477263,
+        "bulk_g_L": 70.48318019759382,
+        "surface_g_L": 73.3166093013126,
+        "flux_LMH": 5.450723555902841,
+        "permeate_mg_L": 689.6836388875836
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.9508928571428571,
+        "feed_m3h": 6.328483362149072,
+        "pressure_bar": 62.510591604158265,
+        "bulk_g_L": 70.63722013884859,
+        "surface_g_L": 73.42590434833008,
+        "flux_LMH": 5.348698511393879,
+        "permeate_mg_L": 703.7606387072265
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.9598214285714286,
+        "feed_m3h": 6.314777322213625,
+        "pressure_bar": 62.50430916824871,
+        "bulk_g_L": 70.78900867228762,
+        "surface_g_L": 73.53349761318228,
+        "flux_LMH": 5.2485779023726975,
+        "permeate_mg_L": 718.1050272334656
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.96875,
+        "feed_m3h": 6.301327841338795,
+        "pressure_bar": 62.49804965431732,
+        "bulk_g_L": 70.9385671942667,
+        "surface_g_L": 73.63941524231606,
+        "flux_LMH": 5.15033842923519,
+        "permeate_mg_L": 732.720031021459
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.9776785714285714,
+        "feed_m3h": 6.2881300991138795,
+        "pressure_bar": 62.49181259975953,
+        "bulk_g_L": 71.08591762419385,
+        "surface_g_L": 73.74368341858565,
+        "flux_LMH": 5.0539567101439795,
+        "permeate_mg_L": 747.6088058533518
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.9866071428571429,
+        "feed_m3h": 6.275179335044135,
+        "pressure_bar": 62.485597551909535,
+        "bulk_g_L": 71.2310823747029,
+        "surface_g_L": 73.84632834143903,
+        "flux_LMH": 4.959409294237121,
+        "permeate_mg_L": 762.7744297111784
+      },
+      {
+        "element": 7,
+        "axial_fraction": 0.9955357142857143,
+        "feed_m3h": 6.262470848727652,
+        "pressure_bar": 62.47940406785944,
+        "bulk_g_L": 71.37408432216051,
+        "surface_g_L": 73.9473762075759,
+        "flux_LMH": 4.866672674234416,
+        "permeate_mg_L": 778.2198955730138
+      }
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "clean_design",
+      "overrides": {},
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1320.6012518449527,
+      "plant_power_kW": 15847.215022139433,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.8813118222071212,
+      "RO_SEC_kWh_m3": 2.1535340444293483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 906.0376940214885,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 10.416666666666666,
+          "permeate_m3h": 1.07724624087646,
+          "brine_m3h": 9.339420425790204,
+          "average_flux_LMH": 26.27429855796244,
+          "recovery": 0.10341563912414017,
+          "dp_bar": 0.2154299909434627,
+          "permeate_mg_L": 103.11922516074662
+        },
+        {
+          "element": 2,
+          "feed_m3h": 9.339420425790204,
+          "permeate_m3h": 0.8820788136031942,
+          "brine_m3h": 8.45734161218701,
+          "average_flux_LMH": 21.514117404955954,
+          "recovery": 0.09444684716916596,
+          "dp_bar": 0.18024691996585318,
+          "permeate_mg_L": 137.12589473068556
+        },
+        {
+          "element": 3,
+          "feed_m3h": 8.45734161218701,
+          "permeate_m3h": 0.7030051875196949,
+          "brine_m3h": 7.754336424667316,
+          "average_flux_LMH": 17.14646798828524,
+          "recovery": 0.0831236598633625,
+          "dp_bar": 0.15370328143388434,
+          "permeate_mg_L": 184.9844823603472
+        },
+        {
+          "element": 4,
+          "feed_m3h": 7.754336424667316,
+          "permeate_m3h": 0.5464638331297661,
+          "brine_m3h": 7.207872591537551,
+          "average_flux_LMH": 13.328386173896734,
+          "recovery": 0.07047203051332804,
+          "dp_bar": 0.1340301138585076,
+          "permeate_mg_L": 252.51048074183174
+        },
+        {
+          "element": 5,
+          "feed_m3h": 7.207872591537551,
+          "permeate_m3h": 0.4158195982928978,
+          "brine_m3h": 6.792052993244653,
+          "average_flux_LMH": 10.141941421777993,
+          "recovery": 0.057689643235521865,
+          "dp_bar": 0.11965223208861886,
+          "permeate_mg_L": 347.71557290645114
+        },
+        {
+          "element": 6,
+          "feed_m3h": 6.792052993244653,
+          "permeate_m3h": 0.3112956869208702,
+          "brine_m3h": 6.480757306323781,
+          "average_flux_LMH": 7.592577729777322,
+          "recovery": 0.04583234071207683,
+          "dp_bar": 0.10924585495057215,
+          "permeate_mg_L": 481.2635591102024
+        },
+        {
+          "element": 7,
+          "feed_m3h": 6.480757306323781,
+          "permeate_m3h": 0.23075730632385433,
+          "brine_m3h": 6.249999999999926,
+          "average_flux_LMH": 5.628226983508642,
+          "recovery": 0.035606534146663135,
+          "dp_bar": 0.10175008013122522,
+          "permeate_mg_L": 666.3864705141934
+        }
+      ]
+    },
+    {
+      "id": "winter_15C",
+      "overrides": {
+        "temperature_C": 15
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.33333334148426,
+      "plant_q_m3_day": 132000.00000234746,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999918488,
+      "train_power_kW": 1387.551017002597,
+      "plant_power_kW": 16650.612204031164,
+      "feed_pressure_bar": 67.23286893409482,
+      "vessel_dp_bar": 1.3334883694100483,
+      "permeate_salinity_mg_L": 152.10159097471188,
+      "brine_salinity_g_L": 71.56526560686365,
+      "SEC_kWh_m3": 3.027384037042737,
+      "RO_SEC_kWh_m3": 2.299606259269899,
+      "power_components_train_kW": {
+        "high_pressure_pump": 962.0936251192926,
+        "erd_booster": 91.89257706482164,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000366794
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 3.517186542012496e-12,
+      "salt_balance_residual_kg_h": -7.19997395037808e-10,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 10.416666666666666,
+          "permeate_m3h": 0.9383440015260051,
+          "brine_m3h": 9.478322665140661,
+          "average_flux_LMH": 22.88643906160988,
+          "recovery": 0.09008102414649649,
+          "dp_bar": 0.2781640495211235,
+          "permeate_mg_L": 78.58555576496559
+        },
+        {
+          "element": 2,
+          "feed_m3h": 9.478322665140661,
+          "permeate_m3h": 0.8124935706820222,
+          "brine_m3h": 8.665829094458639,
+          "average_flux_LMH": 19.8169163580981,
+          "recovery": 0.08572123986348427,
+          "dp_bar": 0.23773762842137103,
+          "permeate_mg_L": 98.28216071275989
+        },
+        {
+          "element": 3,
+          "feed_m3h": 8.665829094458639,
+          "permeate_m3h": 0.6903111063975145,
+          "brine_m3h": 7.975517988061126,
+          "average_flux_LMH": 16.83685625359791,
+          "recovery": 0.07965897998599276,
+          "dp_bar": 0.20514183231402683,
+          "permeate_mg_L": 124.3480914457234
+        },
+        {
+          "element": 4,
+          "feed_m3h": 7.975517988061126,
+          "permeate_m3h": 0.5753931243055933,
+          "brine_m3h": 7.400124863755531,
+          "average_flux_LMH": 14.033978641599838,
+          "recovery": 0.07214492214385604,
+          "dp_bar": 0.1792400225950388,
+          "permeate_mg_L": 159.01249155173787
+        },
+        {
+          "element": 5,
+          "feed_m3h": 7.400124863755531,
+          "permeate_m3h": 0.47085423191840614,
+          "brine_m3h": 6.929270631837125,
+          "average_flux_LMH": 11.484249558985516,
+          "recovery": 0.06362787663550987,
+          "dp_bar": 0.15892909209252082,
+          "permeate_mg_L": 205.25843203383002
+        },
+        {
+          "element": 6,
+          "feed_m3h": 6.929270631837125,
+          "permeate_m3h": 0.3788587923857324,
+          "brine_m3h": 6.550411839451391,
+          "average_flux_LMH": 9.240458350871522,
+          "recovery": 0.054675132855258005,
+          "dp_bar": 0.14318404485912595,
+          "permeate_mg_L": 267.0447211163664
+        },
+        {
+          "element": 7,
+          "feed_m3h": 6.550411839451391,
+          "permeate_m3h": 0.300411839525494,
+          "brine_m3h": 6.2499999999258975,
+          "average_flux_LMH": 7.32711803720717,
+          "recovery": 0.04586151938053624,
+          "dp_bar": 0.13109169960684142,
+          "permeate_mg_L": 349.55385204143016
+        }
+      ]
+    },
+    {
+      "id": "hot_35C",
+      "overrides": {
+        "temperature_C": 35
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.33333333333314,
+      "plant_q_m3_day": 131999.99999999994,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.5000000000003,
+      "train_power_kW": 1290.7570841457991,
+      "plant_power_kW": 15489.08500974959,
+      "feed_pressure_bar": 61.932670532982115,
+      "vessel_dp_bar": 0.7947766798941203,
+      "permeate_salinity_mg_L": 340.4888765007964,
+      "brine_salinity_g_L": 71.4396740823328,
+      "SEC_kWh_m3": 2.8161972744999266,
+      "RO_SEC_kWh_m3": 2.0884194967221483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 882.7061218175423,
+        "erd_booster": 74.486147513442,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.24999999999991
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -3.517186542012496e-12,
+      "salt_balance_residual_kg_h": -3.5992542279927875e-10,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 10.416666666666666,
+          "permeate_m3h": 1.2273666736650408,
+          "brine_m3h": 9.189299993001628,
+          "average_flux_LMH": 29.935772528415626,
+          "recovery": 0.11782720067184392,
+          "dp_bar": 0.17152294376090538,
+          "permeate_mg_L": 136.58505610948154
+        },
+        {
+          "element": 2,
+          "feed_m3h": 9.189299993001628,
+          "permeate_m3h": 0.9440239911224062,
+          "brine_m3h": 8.24527600187922,
+          "average_flux_LMH": 23.02497539322942,
+          "recovery": 0.10273078382916592,
+          "dp_bar": 0.14034347276221837,
+          "permeate_mg_L": 194.31261454603472
+        },
+        {
+          "element": 3,
+          "feed_m3h": 8.24527600187922,
+          "permeate_m3h": 0.7010438537347182,
+          "brine_m3h": 7.544232148144504,
+          "average_flux_LMH": 17.098630578895566,
+          "recovery": 0.08502369763910146,
+          "dp_bar": 0.11848056503550453,
+          "permeate_mg_L": 280.98080558964773
+        },
+        {
+          "element": 4,
+          "feed_m3h": 7.544232148144504,
+          "permeate_m3h": 0.5059180721873366,
+          "brine_m3h": 7.0383140759571665,
+          "average_flux_LMH": 12.339465175300894,
+          "recovery": 0.06706024712028072,
+          "dp_bar": 0.10344089953900948,
+          "permeate_mg_L": 410.74216246543466
+        },
+        {
+          "element": 5,
+          "feed_m3h": 7.0383140759571665,
+          "permeate_m3h": 0.3581178331846398,
+          "brine_m3h": 6.680196242772526,
+          "average_flux_LMH": 8.734581297186336,
+          "recovery": 0.05088119531465183,
+          "dp_bar": 0.09321108293807612,
+          "permeate_mg_L": 602.8795101566474
+        },
+        {
+          "element": 6,
+          "feed_m3h": 6.680196242772526,
+          "permeate_m3h": 0.25171834141745103,
+          "brine_m3h": 6.428477901355076,
+          "average_flux_LMH": 6.139471741889049,
+          "recovery": 0.037681279451901056,
+          "dp_bar": 0.08626762497106455,
+          "permeate_mg_L": 880.338853752745
+        },
+        {
+          "element": 7,
+          "feed_m3h": 6.428477901355076,
+          "permeate_m3h": 0.1784779013550736,
+          "brine_m3h": 6.2500000000000036,
+          "average_flux_LMH": 4.353119545245698,
+          "recovery": 0.027763633023837848,
+          "dp_bar": 0.08151009088734185,
+          "permeate_mg_L": 1262.6036315968877
+        }
+      ]
+    },
+    {
+      "id": "high_salinity_50gL",
+      "overrides": {
+        "feed_salinity_g_L": 50
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.3333333414086,
+      "plant_q_m3_day": 132000.0000023257,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999919245,
+      "train_power_kW": 1462.9617160656649,
+      "plant_power_kW": 17555.540592787976,
+      "feed_pressure_bar": 72.44377521234752,
+      "vessel_dp_bar": 1.0011948639206878,
+      "permeate_salinity_mg_L": 266.39667024424796,
+      "brine_salinity_g_L": 83.15573555414417,
+      "SEC_kWh_m3": 3.1919164713597583,
+      "RO_SEC_kWh_m3": 2.4641386935868748,
+      "power_components_train_kW": {
+        "high_pressure_pump": 1040.143691924403,
+        "erd_booster": 89.25320932281328,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.2500000036339
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 2.3447910280083306e-12,
+      "salt_balance_residual_kg_h": -3.0042635046356736e-10,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 10.416666666666666,
+          "permeate_m3h": 1.1410080149223778,
+          "brine_m3h": 9.27565865174429,
+          "average_flux_LMH": 27.82946377859458,
+          "recovery": 0.10953676943254828,
+          "dp_bar": 0.21421863043502753,
+          "permeate_mg_L": 114.63338765801865
+        },
+        {
+          "element": 2,
+          "feed_m3h": 9.27565865174429,
+          "permeate_m3h": 0.9097416242199532,
+          "brine_m3h": 8.365917027524338,
+          "average_flux_LMH": 22.18882010292569,
+          "recovery": 0.09807838541459005,
+          "dp_bar": 0.17753355630722467,
+          "permeate_mg_L": 156.7404721878558
+        },
+        {
+          "element": 3,
+          "feed_m3h": 8.365917027524338,
+          "permeate_m3h": 0.7038798328445977,
+          "brine_m3h": 7.662037194679738,
+          "average_flux_LMH": 17.167800801087747,
+          "recovery": 0.08413660218345381,
+          "dp_bar": 0.15070141059287323,
+          "permeate_mg_L": 217.52603739776342
+        },
+        {
+          "element": 4,
+          "feed_m3h": 7.662037194679738,
+          "permeate_m3h": 0.5303741395079452,
+          "brine_m3h": 7.131663055171794,
+          "average_flux_LMH": 12.935954622145005,
+          "recovery": 0.06922103430615284,
+          "dp_bar": 0.1314285329692666,
+          "permeate_mg_L": 305.36762190395274
+        },
+        {
+          "element": 5,
+          "feed_m3h": 7.131663055171794,
+          "permeate_m3h": 0.3912806545282482,
+          "brine_m3h": 6.740382400643545,
+          "average_flux_LMH": 9.543430598249955,
+          "recovery": 0.054865274971802866,
+          "dp_bar": 0.11776522085381202,
+          "permeate_mg_L": 431.92532642348607
+        },
+        {
+          "element": 6,
+          "feed_m3h": 6.740382400643545,
+          "permeate_m3h": 0.2845739011886985,
+          "brine_m3h": 6.4558084994548475,
+          "average_flux_LMH": 6.94082685826094,
+          "recovery": 0.042219251709150585,
+          "dp_bar": 0.108151614258432,
+          "permeate_mg_L": 612.6270303645523
+        },
+        {
+          "element": 7,
+          "feed_m3h": 6.4558084994548475,
+          "permeate_m3h": 0.2058084995282604,
+          "brine_m3h": 6.249999999926586,
+          "average_flux_LMH": 5.019719500689279,
+          "recovery": 0.031879585577180555,
+          "dp_bar": 0.10139589850405173,
+          "permeate_mg_L": 865.7670194496768
+        }
+      ]
+    },
+    {
+      "id": "permeability_loss_20pct",
+      "overrides": {
+        "A_factor": 0.8
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.33333333333456,
+      "plant_q_m3_day": 132000.00000000035,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999994,
+      "train_power_kW": 1361.8535930114458,
+      "plant_power_kW": 16342.24311613735,
+      "feed_pressure_bar": 66.05204548710788,
+      "vessel_dp_bar": 1.0331272401415674,
+      "permeate_salinity_mg_L": 225.34600934310984,
+      "brine_salinity_g_L": 71.51643599377134,
+      "SEC_kWh_m3": 2.971316930206783,
+      "RO_SEC_kWh_m3": 2.243539152429006,
+      "power_components_train_kW": {
+        "high_pressure_pump": 944.4069993984049,
+        "erd_booster": 83.88177879822577,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000057
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -8.206768598029157e-12,
+      "salt_balance_residual_kg_h": -1.70290448409105e-10,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 10.416666666666666,
+          "permeate_m3h": 0.9894841891076617,
+          "brine_m3h": 9.427182477559006,
+          "average_flux_LMH": 24.13376070994297,
+          "recovery": 0.09499048215433553,
+          "dp_bar": 0.21708607108202216,
+          "permeate_mg_L": 110.35645432663368
+        },
+        {
+          "element": 2,
+          "feed_m3h": 9.427182477559006,
+          "permeate_m3h": 0.8399980259779201,
+          "brine_m3h": 8.587184451581088,
+          "average_flux_LMH": 20.487756731168783,
+          "recovery": 0.08910382587559947,
+          "dp_bar": 0.18406761551597128,
+          "permeate_mg_L": 141.21240267673605
+        },
+        {
+          "element": 3,
+          "feed_m3h": 8.587184451581088,
+          "permeate_m3h": 0.6971992528296804,
+          "brine_m3h": 7.889985198751409,
+          "average_flux_LMH": 17.004859825114156,
+          "recovery": 0.08119066927708894,
+          "dp_bar": 0.15807733667305968,
+          "permeate_mg_L": 183.1151600340014
+        },
+        {
+          "element": 4,
+          "feed_m3h": 7.889985198751409,
+          "permeate_m3h": 0.5660445401009133,
+          "brine_m3h": 7.323940658650496,
+          "average_flux_LMH": 13.805964392705203,
+          "recovery": 0.07174215487634754,
+          "dp_bar": 0.13795427506754265,
+          "permeate_mg_L": 240.25850315761622
+        },
+        {
+          "element": 5,
+          "feed_m3h": 7.323940658650496,
+          "permeate_m3h": 0.4503119378667282,
+          "brine_m3h": 6.873628720783767,
+          "average_flux_LMH": 10.983217996749467,
+          "recovery": 0.06148492442178011,
+          "dp_bar": 0.12259602706653538,
+          "permeate_mg_L": 318.3105483620335
+        },
+        {
+          "element": 6,
+          "feed_m3h": 6.873628720783767,
+          "permeate_m3h": 0.3520558780598872,
+          "brine_m3h": 6.521572842723881,
+          "average_flux_LMH": 8.58672873316798,
+          "recovery": 0.051218343666916,
+          "dp_bar": 0.11100866041184076,
+          "permeate_mg_L": 424.77290097713046
+        },
+        {
+          "element": 7,
+          "feed_m3h": 6.521572842723881,
+          "permeate_m3h": 0.2715728427238862,
+          "brine_m3h": 6.249999999999995,
+          "average_flux_LMH": 6.623727871314298,
+          "recovery": 0.04164223098832363,
+          "dp_bar": 0.1023372543245955,
+          "permeate_mg_L": 569.2027031976019
+        }
+      ]
+    },
+    {
+      "id": "channel_resistance_3x",
+      "overrides": {
+        "dp_factor": 3
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.33333333333667,
+      "plant_q_m3_day": 132000.00000000096,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999968,
+      "train_power_kW": 1388.5380476632954,
+      "plant_power_kW": 16662.456571959545,
+      "feed_pressure_bar": 64.8733818533707,
+      "vessel_dp_bar": 3.0170191795700845,
+      "permeate_salinity_mg_L": 228.57911408363933,
+      "brine_salinity_g_L": 71.51428059061124,
+      "SEC_kWh_m3": 3.029537558538077,
+      "RO_SEC_kWh_m3": 2.301759780760301,
+      "power_components_train_kW": {
+        "high_pressure_pump": 926.7527238386203,
+        "erd_booster": 128.22050900985877,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.2500000000015
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -2.3447910280083306e-12,
+      "salt_balance_residual_kg_h": 2.447375635483695e-11,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 10.416666666666666,
+          "permeate_m3h": 1.117154766292408,
+          "brine_m3h": 9.299511900374256,
+          "average_flux_LMH": 27.247677226644093,
+          "recovery": 0.10724685756407117,
+          "dp_bar": 0.6440100417934644,
+          "permeate_mg_L": 100.21848254599942
+        },
+        {
+          "element": 2,
+          "feed_m3h": 9.299511900374256,
+          "permeate_m3h": 0.8997437721502842,
+          "brine_m3h": 8.399768128223977,
+          "average_flux_LMH": 21.944970052445957,
+          "recovery": 0.09675172006759562,
+          "dp_bar": 0.535630501418936,
+          "permeate_mg_L": 135.60227998471976
+        },
+        {
+          "element": 3,
+          "feed_m3h": 8.399768128223977,
+          "permeate_m3h": 0.7047165038256628,
+          "brine_m3h": 7.695051624398315,
+          "average_flux_LMH": 17.188207410382017,
+          "recovery": 0.08389713776238082,
+          "dp_bar": 0.45538402949208745,
+          "permeate_mg_L": 186.0332671267453
+        },
+        {
+          "element": 4,
+          "feed_m3h": 7.695051624398315,
+          "permeate_m3h": 0.5377466317120934,
+          "brine_m3h": 7.157304992686222,
+          "average_flux_LMH": 13.11577150517301,
+          "recovery": 0.06988213438452928,
+          "dp_bar": 0.39700128474288476,
+          "permeate_mg_L": 258.24666142698067
+        },
+        {
+          "element": 5,
+          "feed_m3h": 7.157304992686222,
+          "permeate_m3h": 0.40108588847830406,
+          "brine_m3h": 6.756219104207917,
+          "average_flux_LMH": 9.782582645812294,
+          "recovery": 0.05603867501638654,
+          "dp_bar": 0.35512674552958856,
+          "permeate_mg_L": 361.8845561585767
+        },
+        {
+          "element": 6,
+          "feed_m3h": 6.756219104207917,
+          "permeate_m3h": 0.293734614127869,
+          "brine_m3h": 6.462484490080046,
+          "average_flux_LMH": 7.1642588811675365,
+          "recovery": 0.04347618240280645,
+          "dp_bar": 0.3254096305992036,
+          "permeate_mg_L": 510.45906341256284
+        },
+        {
+          "element": 7,
+          "feed_m3h": 6.462484490080046,
+          "permeate_m3h": 0.2124844900800754,
+          "brine_m3h": 6.249999999999971,
+          "average_flux_LMH": 5.182548538538423,
+          "recovery": 0.03287969052865665,
+          "dp_bar": 0.3044569459939197,
+          "permeate_mg_L": 721.8778285753167
+        }
+      ]
+    },
+    {
+      "id": "salt_permeability_2_5x",
+      "overrides": {
+        "B_factor": 2.5
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.33333333333843,
+      "plant_q_m3_day": 132000.00000000146,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999953,
+      "train_power_kW": 1312.2121159879175,
+      "plant_power_kW": 15746.54539185501,
+      "feed_pressure_bar": 62.95846419575386,
+      "vessel_dp_bar": 1.017801474209925,
+      "permeate_salinity_mg_L": 562.5884340906038,
+      "brine_salinity_g_L": 71.2916077106068,
+      "SEC_kWh_m3": 2.8630082530645153,
+      "RO_SEC_kWh_m3": 2.1352304752867406,
+      "power_components_train_kW": {
+        "high_pressure_pump": 898.0706783133169,
+        "erd_booster": 80.57662285978351,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.2500000000023
+      },
+      "feasible": false,
+      "violations": [
+        "salt_quality_gate"
+      ],
+      "water_balance_residual_m3_h": -5.8619775700208265e-12,
+      "salt_balance_residual_kg_h": -4.877165338257328e-10,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 10.416666666666666,
+          "permeate_m3h": 1.063609146565861,
+          "brine_m3h": 9.35305752010081,
+          "average_flux_LMH": 25.941686501606366,
+          "recovery": 0.10210647807032266,
+          "dp_bar": 0.21567863343351945,
+          "permeate_mg_L": 259.46848271733626
+        },
+        {
+          "element": 2,
+          "feed_m3h": 9.35305752010081,
+          "permeate_m3h": 0.8735035779480165,
+          "brine_m3h": 8.479553942152794,
+          "average_flux_LMH": 21.30496531580528,
+          "recovery": 0.09339230257814149,
+          "dp_bar": 0.18086692294570383,
+          "permeate_mg_L": 343.37039029201856
+        },
+        {
+          "element": 3,
+          "feed_m3h": 8.479553942152794,
+          "permeate_m3h": 0.6993597435917154,
+          "brine_m3h": 7.78019419856108,
+          "average_flux_LMH": 17.057554721749156,
+          "recovery": 0.08247600621008155,
+          "dp_bar": 0.1544862151029065,
+          "permeate_mg_L": 460.34074654502604
+        },
+        {
+          "element": 4,
+          "feed_m3h": 7.78019419856108,
+          "permeate_m3h": 0.5473380090533227,
+          "brine_m3h": 7.232856189507757,
+          "average_flux_LMH": 13.34970753788592,
+          "recovery": 0.07035017315564578,
+          "dp_bar": 0.13481622328996679,
+          "permeate_mg_L": 623.2345261121213
+        },
+        {
+          "element": 5,
+          "feed_m3h": 7.232856189507757,
+          "permeate_m3h": 0.4207056753087536,
+          "brine_m3h": 6.812150514199003,
+          "average_flux_LMH": 10.261114031920819,
+          "recovery": 0.05816591181766402,
+          "dp_bar": 0.12032155318221527,
+          "permeate_mg_L": 848.5217091338222
+        },
+        {
+          "element": 6,
+          "feed_m3h": 6.812150514199003,
+          "permeate_m3h": 0.3197433437031971,
+          "brine_m3h": 6.492407170495805,
+          "average_flux_LMH": 7.798618139102369,
+          "recovery": 0.046937210655685825,
+          "dp_bar": 0.10970613447255317,
+          "permeate_mg_L": 1155.415604909636
+        },
+        {
+          "element": 7,
+          "feed_m3h": 6.492407170495805,
+          "permeate_m3h": 0.24240717049584912,
+          "brine_m3h": 6.249999999999957,
+          "average_flux_LMH": 5.912370012093882,
+          "recovery": 0.037337025255816975,
+          "dp_bar": 0.10192579178306005,
+          "permeate_mg_L": 1562.3798584738167
+        }
+      ]
+    },
+    {
+      "id": "combined_degradation",
+      "overrides": {
+        "A_factor": 0.7,
+        "B_factor": 1.5,
+        "dp_factor": 2
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.33333333593265,
+      "plant_q_m3_day": 132000.0000007486,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999974012,
+      "train_power_kW": 1424.865978636037,
+      "plant_power_kW": 17098.391743632445,
+      "feed_pressure_bar": 68.49786778666537,
+      "vessel_dp_bar": 2.082272683716482,
+      "permeate_salinity_mg_L": 335.6525845171234,
+      "brine_salinity_g_L": 71.44289827725727,
+      "SEC_kWh_m3": 3.1087984988246316,
+      "RO_SEC_kWh_m3": 2.3810207210484298,
+      "power_components_train_kW": {
+        "high_pressure_pump": 981.0410480084493,
+        "erd_booster": 110.26011581160327,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.2500000011697
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -7.034373084024992e-12,
+      "salt_balance_residual_kg_h": 8.417799790549907e-10,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 10.416666666666666,
+          "permeate_m3h": 0.9559589872220582,
+          "brine_m3h": 9.460707679444612,
+          "average_flux_LMH": 23.31607285907459,
+          "recovery": 0.09177206277331759,
+          "dp_bar": 0.4354209984049078,
+          "permeate_mg_L": 170.00362516148024
+        },
+        {
+          "element": 2,
+          "feed_m3h": 9.460707679444612,
+          "permeate_m3h": 0.821730590992699,
+          "brine_m3h": 8.638977088451911,
+          "average_flux_LMH": 20.04220953640729,
+          "recovery": 0.08685720126181284,
+          "dp_bar": 0.37113602459625383,
+          "permeate_mg_L": 214.48843656673554
+        },
+        {
+          "element": 3,
+          "feed_m3h": 8.638977088451911,
+          "permeate_m3h": 0.6925039411653969,
+          "brine_m3h": 7.946473147286515,
+          "average_flux_LMH": 16.890340028424315,
+          "recovery": 0.08016040951087791,
+          "dp_bar": 0.31974451063490505,
+          "permeate_mg_L": 273.83625034030365
+        },
+        {
+          "element": 4,
+          "feed_m3h": 7.946473147286515,
+          "permeate_m3h": 0.5721039229965711,
+          "brine_m3h": 7.3743692242899455,
+          "average_flux_LMH": 13.953754219428564,
+          "recovery": 0.07199469656446617,
+          "dp_bar": 0.2792687225884407,
+          "permeate_mg_L": 353.3877178841432
+        },
+        {
+          "element": 5,
+          "feed_m3h": 7.3743692242899455,
+          "permeate_m3h": 0.4637938192555973,
+          "brine_m3h": 6.910575405034349,
+          "average_flux_LMH": 11.31204437208774,
+          "recovery": 0.0628926766682549,
+          "dp_bar": 0.2478161875802556,
+          "permeate_mg_L": 460.2541057769745
+        },
+        {
+          "element": 6,
+          "feed_m3h": 6.910575405034349,
+          "permeate_m3h": 0.3697461924808388,
+          "brine_m3h": 6.5408292125535095,
+          "average_flux_LMH": 9.018199816605824,
+          "recovery": 0.05350440025753557,
+          "dp_bar": 0.223649403891244,
+          "permeate_mg_L": 603.6966602066401
+        },
+        {
+          "element": 7,
+          "feed_m3h": 6.5408292125535095,
+          "permeate_m3h": 0.2908292125771344,
+          "brine_m3h": 6.2499999999763745,
+          "average_flux_LMH": 7.093395428710595,
+          "recovery": 0.044463660971144056,
+          "dp_bar": 0.20523683602047527,
+          "permeate_mg_L": 795.3104056008608
+        }
+      ]
+    },
+    {
+      "id": "mild_degradation",
+      "overrides": {
+        "A_factor": 0.85,
+        "B_factor": 1.15,
+        "dp_factor": 1.5
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.3333333333338,
+      "plant_q_m3_day": 132000.00000000012,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999995,
+      "train_power_kW": 1365.9237262500008,
+      "plant_power_kW": 16391.084715000008,
+      "feed_pressure_bar": 65.57893126854563,
+      "vessel_dp_bar": 1.539671126080222,
+      "permeate_salinity_mg_L": 259.80780564112837,
+      "brine_salinity_g_L": 71.49346146290597,
+      "SEC_kWh_m3": 2.9801972209090892,
+      "RO_SEC_kWh_m3": 2.252419443131312,
+      "power_components_train_kW": {
+        "high_pressure_pump": 937.3205936192848,
+        "erd_booster": 95.03831781590111,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000023
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -1.1723955140041653e-12,
+      "salt_balance_residual_kg_h": -6.506795102723117e-11,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 10.416666666666666,
+          "permeate_m3h": 1.0197918439388167,
+          "brine_m3h": 9.39687482272785,
+          "average_flux_LMH": 24.872971803385774,
+          "recovery": 0.09790001701812641,
+          "dp_bar": 0.32477012766928226,
+          "permeate_mg_L": 123.82215018639619
+        },
+        {
+          "element": 2,
+          "feed_m3h": 9.39687482272785,
+          "permeate_m3h": 0.8546652709281694,
+          "brine_m3h": 8.542209551799683,
+          "average_flux_LMH": 20.84549441288218,
+          "recovery": 0.0909520757753444,
+          "dp_bar": 0.27411416188537885,
+          "permeate_mg_L": 160.60967167423456
+        },
+        {
+          "element": 3,
+          "feed_m3h": 8.542209551799683,
+          "permeate_m3h": 0.6994883148776255,
+          "brine_m3h": 7.842721236922056,
+          "average_flux_LMH": 17.060690606771352,
+          "recovery": 0.08188611045373577,
+          "dp_bar": 0.23482895715434893,
+          "permeate_mg_L": 211.11662307482158
+        },
+        {
+          "element": 4,
+          "feed_m3h": 7.842721236922056,
+          "permeate_m3h": 0.559541948527496,
+          "brine_m3h": 7.28317928839456,
+          "average_flux_LMH": 13.647364598231608,
+          "recovery": 0.07134538275991217,
+          "dp_bar": 0.20486545609094264,
+          "permeate_mg_L": 280.7262995141809
+        },
+        {
+          "element": 5,
+          "feed_m3h": 7.28317928839456,
+          "permeate_m3h": 0.4384560857463405,
+          "brine_m3h": 6.84472320264822,
+          "average_flux_LMH": 10.694050871861963,
+          "recovery": 0.06020119351517294,
+          "dp_bar": 0.18233224549321392,
+          "permeate_mg_L": 376.7588568645964
+        },
+        {
+          "element": 6,
+          "feed_m3h": 6.84472320264822,
+          "permeate_m3h": 0.33774604236629535,
+          "brine_m3h": 6.506977160281923,
+          "average_flux_LMH": 8.237708350397448,
+          "recovery": 0.04934400301762701,
+          "dp_bar": 0.1655704277865624,
+          "permeate_mg_L": 508.9140115768008
+        },
+        {
+          "element": 7,
+          "feed_m3h": 6.506977160281923,
+          "permeate_m3h": 0.256977160281927,
+          "brine_m3h": 6.249999999999996,
+          "average_flux_LMH": 6.267735616632367,
+          "recovery": 0.039492556059746976,
+          "dp_bar": 0.15318975000049306,
+          "permeate_mg_L": 689.4174462036367
+        }
+      ]
+    },
+    {
+      "id": "hot_salt_passage",
+      "overrides": {
+        "temperature_C": 35,
+        "B_factor": 2.5
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.3333333333326,
+      "plant_q_m3_day": 131999.99999999977,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999999,
+      "train_power_kW": 1276.1474606793454,
+      "plant_power_kW": 15313.769528152145,
+      "feed_pressure_bar": 61.00666678385399,
+      "vessel_dp_bar": 0.8010805358491382,
+      "permeate_salinity_mg_L": 835.2415175000795,
+      "brine_salinity_g_L": 71.10983898833324,
+      "SEC_kWh_m3": 2.7843217323913034,
+      "RO_SEC_kWh_m3": 2.056543954613525,
+      "power_components_train_kW": {
+        "high_pressure_pump": 868.8362399542386,
+        "erd_booster": 73.74640591029224,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.24999999999966
+      },
+      "feasible": false,
+      "violations": [
+        "salt_quality_gate"
+      ],
+      "water_balance_residual_m3_h": 9.379164112033322e-12,
+      "salt_balance_residual_kg_h": 3.6402880709829333e-10,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 10.416666666666666,
+          "permeate_m3h": 1.1962026613112013,
+          "brine_m3h": 9.220464005355462,
+          "average_flux_LMH": 29.175674666126863,
+          "recovery": 0.11483545548587533,
+          "dp_bar": 0.1719831302178747,
+          "permeate_mg_L": 346.6822780503037
+        },
+        {
+          "element": 2,
+          "feed_m3h": 9.220464005355462,
+          "permeate_m3h": 0.9260401724721562,
+          "brine_m3h": 8.294423832883304,
+          "average_flux_LMH": 22.58634567005259,
+          "recovery": 0.1004331421861514,
+          "dp_bar": 0.14145291085885958,
+          "permeate_mg_L": 488.2930852222615
+        },
+        {
+          "element": 3,
+          "feed_m3h": 8.294423832883304,
+          "permeate_m3h": 0.6948923597501482,
+          "brine_m3h": 7.599531473133156,
+          "average_flux_LMH": 16.94859414024752,
+          "recovery": 0.08377825557879529,
+          "dp_bar": 0.11983211596736254,
+          "permeate_mg_L": 696.7602344121226
+        },
+        {
+          "element": 4,
+          "feed_m3h": 7.599531473133156,
+          "permeate_m3h": 0.5096083587284058,
+          "brine_m3h": 7.089923114404749,
+          "average_flux_LMH": 12.429472164107459,
+          "recovery": 0.06705786541315593,
+          "dp_bar": 0.10475361111254955,
+          "permeate_mg_L": 999.9638129905128
+        },
+        {
+          "element": 5,
+          "feed_m3h": 7.089923114404749,
+          "permeate_m3h": 0.3697050670455587,
+          "brine_m3h": 6.72021804735919,
+          "average_flux_LMH": 9.01719675720875,
+          "recovery": 0.052145144746974896,
+          "dp_bar": 0.09429439885148838,
+          "permeate_mg_L": 1429.2771818986105
+        },
+        {
+          "element": 6,
+          "feed_m3h": 6.72021804735919,
+          "permeate_m3h": 0.26949856220263496,
+          "brine_m3h": 6.450719485156554,
+          "average_flux_LMH": 6.573135663478902,
+          "recovery": 0.04010265147699165,
+          "dp_bar": 0.08698862880636682,
+          "permeate_mg_L": 2008.9034336226202
+        },
+        {
+          "element": 7,
+          "feed_m3h": 6.450719485156554,
+          "permeate_m3h": 0.20071948515655438,
+          "brine_m3h": 6.249999999999999,
+          "average_flux_LMH": 4.895597198940351,
+          "recovery": 0.031115829113081184,
+          "dp_bar": 0.08177574003463661,
+          "permeate_mg_L": 2738.7516879248783
+        }
+      ]
+    },
+    {
+      "id": "overproduction_20LMH",
+      "overrides": {
+        "target_flux_LMH": 20
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 631.4000000063808,
+      "plant_q_m3_day": 181843.2000018377,
+      "train_feed_m3_h": 1578.5,
+      "train_brine_m3_h": 947.0999999936198,
+      "train_power_kW": 1955.5183957133877,
+      "plant_power_kW": 23466.220748560652,
+      "feed_pressure_bar": 68.57959329783317,
+      "vessel_dp_bar": 1.7917816260316641,
+      "permeate_salinity_mg_L": 165.26363519249216,
+      "brine_salinity_g_L": 71.55649091035261,
+      "SEC_kWh_m3": 3.0971149757580387,
+      "RO_SEC_kWh_m3": 2.369337197983068,
+      "power_components_train_kW": {
+        "high_pressure_pump": 1353.1684708715788,
+        "erd_booster": 142.83103595004863,
+        "feed_pump": 175.38888888888889,
+        "assumed_auxiliaries": 284.1300000028713
+      },
+      "feasible": false,
+      "violations": [
+        "element_average_flux",
+        "feed_flow"
+      ],
+      "water_balance_residual_m3_h": -7.034373084024992e-12,
+      "salt_balance_residual_kg_h": -1.318944953254686e-12,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 14.35,
+          "permeate_m3h": 1.3276031999971891,
+          "brine_m3h": 13.022396800002811,
+          "average_flux_LMH": 32.38056585358998,
+          "recovery": 0.09251590243882851,
+          "dp_bar": 0.37505584488111765,
+          "permeate_mg_L": 83.37416341975123
+        },
+        {
+          "element": 2,
+          "feed_m3h": 13.022396800002811,
+          "permeate_m3h": 1.1371929253535182,
+          "brine_m3h": 11.88520387464929,
+          "average_flux_LMH": 27.736412813500444,
+          "recovery": 0.08732593107232554,
+          "dp_bar": 0.31931203494086446,
+          "permeate_mg_L": 105.4565328394168
+        },
+        {
+          "element": 3,
+          "feed_m3h": 11.88520387464929,
+          "permeate_m3h": 0.9548910406173894,
+          "brine_m3h": 10.930312834031902,
+          "average_flux_LMH": 23.29002538091194,
+          "recovery": 0.080342840618337,
+          "dp_bar": 0.2749241458105445,
+          "permeate_mg_L": 134.94304345849406
+        },
+        {
+          "element": 4,
+          "feed_m3h": 10.930312834031902,
+          "permeate_m3h": 0.7860610368246944,
+          "brine_m3h": 10.144251797207207,
+          "average_flux_LMH": 19.1722204103584,
+          "recovery": 0.0719156943410866,
+          "dp_bar": 0.24009561792760792,
+          "permeate_mg_L": 174.50158626052587
+        },
+        {
+          "element": 5,
+          "feed_m3h": 10.144251797207207,
+          "permeate_m3h": 0.6350122029842045,
+          "brine_m3h": 9.509239594223004,
+          "average_flux_LMH": 15.488102511809865,
+          "recovery": 0.06259822958643715,
+          "dp_bar": 0.21312567584180897,
+          "permeate_mg_L": 227.7285711055586
+        },
+        {
+          "element": 6,
+          "feed_m3h": 9.509239594223004,
+          "permeate_m3h": 0.5043621833672537,
+          "brine_m3h": 9.004877410855752,
+          "average_flux_LMH": 12.301516667493992,
+          "recovery": 0.053039170836925886,
+          "dp_bar": 0.1924726640449137,
+          "permeate_mg_L": 299.4303975116831
+        },
+        {
+          "element": 7,
+          "feed_m3h": 9.004877410855752,
+          "permeate_m3h": 0.39487741091375456,
+          "brine_m3h": 8.609999999941998,
+          "average_flux_LMH": 9.631156363750112,
+          "recovery": 0.043851503235092744,
+          "dp_bar": 0.17679564258480696,
+          "permeate_mg_L": 395.93159996388744
+        }
+      ]
+    },
+    {
+      "id": "pump_efficiency_75pct",
+      "overrides": {
+        "hp_pump_efficiency": 0.75
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1441.4062777144843,
+      "plant_power_kW": 17296.87533257381,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 3.1448864241042767,
+      "RO_SEC_kWh_m3": 2.4171086463265037,
+      "power_components_train_kW": {
+        "high_pressure_pump": 1026.8427198910201,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 10.416666666666666,
+          "permeate_m3h": 1.07724624087646,
+          "brine_m3h": 9.339420425790204,
+          "average_flux_LMH": 26.27429855796244,
+          "recovery": 0.10341563912414017,
+          "dp_bar": 0.2154299909434627,
+          "permeate_mg_L": 103.11922516074662
+        },
+        {
+          "element": 2,
+          "feed_m3h": 9.339420425790204,
+          "permeate_m3h": 0.8820788136031942,
+          "brine_m3h": 8.45734161218701,
+          "average_flux_LMH": 21.514117404955954,
+          "recovery": 0.09444684716916596,
+          "dp_bar": 0.18024691996585318,
+          "permeate_mg_L": 137.12589473068556
+        },
+        {
+          "element": 3,
+          "feed_m3h": 8.45734161218701,
+          "permeate_m3h": 0.7030051875196949,
+          "brine_m3h": 7.754336424667316,
+          "average_flux_LMH": 17.14646798828524,
+          "recovery": 0.0831236598633625,
+          "dp_bar": 0.15370328143388434,
+          "permeate_mg_L": 184.9844823603472
+        },
+        {
+          "element": 4,
+          "feed_m3h": 7.754336424667316,
+          "permeate_m3h": 0.5464638331297661,
+          "brine_m3h": 7.207872591537551,
+          "average_flux_LMH": 13.328386173896734,
+          "recovery": 0.07047203051332804,
+          "dp_bar": 0.1340301138585076,
+          "permeate_mg_L": 252.51048074183174
+        },
+        {
+          "element": 5,
+          "feed_m3h": 7.207872591537551,
+          "permeate_m3h": 0.4158195982928978,
+          "brine_m3h": 6.792052993244653,
+          "average_flux_LMH": 10.141941421777993,
+          "recovery": 0.057689643235521865,
+          "dp_bar": 0.11965223208861886,
+          "permeate_mg_L": 347.71557290645114
+        },
+        {
+          "element": 6,
+          "feed_m3h": 6.792052993244653,
+          "permeate_m3h": 0.3112956869208702,
+          "brine_m3h": 6.480757306323781,
+          "average_flux_LMH": 7.592577729777322,
+          "recovery": 0.04583234071207683,
+          "dp_bar": 0.10924585495057215,
+          "permeate_mg_L": 481.2635591102024
+        },
+        {
+          "element": 7,
+          "feed_m3h": 6.480757306323781,
+          "permeate_m3h": 0.23075730632385433,
+          "brine_m3h": 6.249999999999926,
+          "average_flux_LMH": 5.628226983508642,
+          "recovery": 0.035606534146663135,
+          "dp_bar": 0.10175008013122522,
+          "permeate_mg_L": 666.3864705141934
+        }
+      ]
+    },
+    {
+      "id": "without_energy_recovery",
+      "overrides": {
+        "use_erd": false
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 2598.6590498685014,
+      "plant_power_kW": 31183.908598422015,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 5.669801563349363,
+      "RO_SEC_kWh_m3": 4.942023785571589,
+      "power_components_train_kW": {
+        "high_pressure_pump": 2265.094235053683,
+        "erd_booster": 0.0,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10,
+      "elements": [
+        {
+          "element": 1,
+          "feed_m3h": 10.416666666666666,
+          "permeate_m3h": 1.07724624087646,
+          "brine_m3h": 9.339420425790204,
+          "average_flux_LMH": 26.27429855796244,
+          "recovery": 0.10341563912414017,
+          "dp_bar": 0.2154299909434627,
+          "permeate_mg_L": 103.11922516074662
+        },
+        {
+          "element": 2,
+          "feed_m3h": 9.339420425790204,
+          "permeate_m3h": 0.8820788136031942,
+          "brine_m3h": 8.45734161218701,
+          "average_flux_LMH": 21.514117404955954,
+          "recovery": 0.09444684716916596,
+          "dp_bar": 0.18024691996585318,
+          "permeate_mg_L": 137.12589473068556
+        },
+        {
+          "element": 3,
+          "feed_m3h": 8.45734161218701,
+          "permeate_m3h": 0.7030051875196949,
+          "brine_m3h": 7.754336424667316,
+          "average_flux_LMH": 17.14646798828524,
+          "recovery": 0.0831236598633625,
+          "dp_bar": 0.15370328143388434,
+          "permeate_mg_L": 184.9844823603472
+        },
+        {
+          "element": 4,
+          "feed_m3h": 7.754336424667316,
+          "permeate_m3h": 0.5464638331297661,
+          "brine_m3h": 7.207872591537551,
+          "average_flux_LMH": 13.328386173896734,
+          "recovery": 0.07047203051332804,
+          "dp_bar": 0.1340301138585076,
+          "permeate_mg_L": 252.51048074183174
+        },
+        {
+          "element": 5,
+          "feed_m3h": 7.207872591537551,
+          "permeate_m3h": 0.4158195982928978,
+          "brine_m3h": 6.792052993244653,
+          "average_flux_LMH": 10.141941421777993,
+          "recovery": 0.057689643235521865,
+          "dp_bar": 0.11965223208861886,
+          "permeate_mg_L": 347.71557290645114
+        },
+        {
+          "element": 6,
+          "feed_m3h": 6.792052993244653,
+          "permeate_m3h": 0.3112956869208702,
+          "brine_m3h": 6.480757306323781,
+          "average_flux_LMH": 7.592577729777322,
+          "recovery": 0.04583234071207683,
+          "dp_bar": 0.10924585495057215,
+          "permeate_mg_L": 481.2635591102024
+        },
+        {
+          "element": 7,
+          "feed_m3h": 6.480757306323781,
+          "permeate_m3h": 0.23075730632385433,
+          "brine_m3h": 6.249999999999926,
+          "average_flux_LMH": 5.628226983508642,
+          "recovery": 0.035606534146663135,
+          "dp_bar": 0.10175008013122522,
+          "permeate_mg_L": 666.3864705141934
+        }
+      ]
+    }
+  ],
+  "sensitivity": [
+    {
+      "parameter": "A_factor",
+      "value": 0.85,
+      "overrides": {
+        "A_factor": 0.85
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.3333333333328,
+      "plant_q_m3_day": 131999.99999999985,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.5000000000002,
+      "train_power_kW": 1349.4824114342312,
+      "plant_power_kW": 16193.788937210775,
+      "feed_pressure_bar": 65.28285286659174,
+      "vessel_dp_bar": 1.0280838295955874,
+      "permeate_salinity_mg_L": 225.93393940772054,
+      "brine_salinity_g_L": 71.51604404039485,
+      "SEC_kWh_m3": 2.9443252613110533,
+      "RO_SEC_kWh_m3": 2.216547483533275,
+      "power_components_train_kW": {
+        "high_pressure_pump": 932.8858680998208,
+        "erd_booster": 83.03172851959586,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.24999999999977
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 3.517186542012496e-12,
+      "salt_balance_residual_kg_h": -1.3350653915722432e-10
+    },
+    {
+      "parameter": "A_factor",
+      "value": 1.0,
+      "overrides": {
+        "A_factor": 1.0
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1320.6012518449527,
+      "plant_power_kW": 15847.215022139433,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.8813118222071212,
+      "RO_SEC_kWh_m3": 2.1535340444293483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 906.0376940214885,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "A_factor",
+      "value": 1.15,
+      "overrides": {
+        "A_factor": 1.15
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.3333333333324,
+      "plant_q_m3_day": 131999.99999999974,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.5000000000002,
+      "train_power_kW": 1300.1604007547573,
+      "plant_power_kW": 15601.924809057087,
+      "feed_pressure_bar": 62.22542922000142,
+      "vessel_dp_bar": 1.0015593971333132,
+      "permeate_salinity_mg_L": 229.05861951499233,
+      "brine_salinity_g_L": 71.51396092032333,
+      "SEC_kWh_m3": 2.836713601646749,
+      "RO_SEC_kWh_m3": 2.108935823868971,
+      "power_components_train_kW": {
+        "high_pressure_pump": 887.091123937928,
+        "erd_booster": 79.50446200201493,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.24999999999957
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 8.206768598029157e-12,
+      "salt_balance_residual_kg_h": -1.6061818541857065e-10
+    },
+    {
+      "parameter": "B_factor",
+      "value": 0.75,
+      "overrides": {
+        "B_factor": 0.75
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.33333333334247,
+      "plant_q_m3_day": 132000.00000000262,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999909,
+      "train_power_kW": 1322.0581870514322,
+      "plant_power_kW": 15864.698244617186,
+      "feed_pressure_bar": 63.58277107844853,
+      "vessel_dp_bar": 1.013391710568058,
+      "permeate_salinity_mg_L": 171.01633445010492,
+      "brine_salinity_g_L": 71.5526557770343,
+      "SEC_kWh_m3": 2.88449058993034,
+      "RO_SEC_kWh_m3": 2.156712812152568,
+      "power_components_train_kW": {
+        "high_pressure_pump": 907.4216800966057,
+        "erd_booster": 81.07169214000776,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000412
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -1.1723955140041653e-12,
+      "salt_balance_residual_kg_h": -8.675726803630823e-10
+    },
+    {
+      "parameter": "B_factor",
+      "value": 1.0,
+      "overrides": {
+        "B_factor": 1.0
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1320.6012518449527,
+      "plant_power_kW": 15847.215022139433,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.8813118222071212,
+      "RO_SEC_kWh_m3": 2.1535340444293483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 906.0376940214885,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "B_factor",
+      "value": 1.25,
+      "overrides": {
+        "B_factor": 1.25
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.33333333334156,
+      "plant_q_m3_day": 132000.00000000236,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999917,
+      "train_power_kW": 1319.162492956144,
+      "plant_power_kW": 15829.949915473728,
+      "feed_pressure_bar": 63.399131270472736,
+      "vessel_dp_bar": 1.0147118269969724,
+      "permeate_salinity_mg_L": 283.9292705278361,
+      "brine_salinity_g_L": 71.47738048631567,
+      "SEC_kWh_m3": 2.8781727119042624,
+      "RO_SEC_kWh_m3": 2.15039493412649,
+      "power_components_train_kW": {
+        "high_pressure_pump": 904.671083844243,
+        "erd_booster": 80.92659429708253,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.2500000000037
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 0.0,
+      "salt_balance_residual_kg_h": -3.197708764446361e-10
+    },
+    {
+      "parameter": "mass_transfer_factor",
+      "value": 0.75,
+      "overrides": {
+        "mass_transfer_factor": 0.75
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333335,
+      "plant_q_m3_day": 132000.00000000047,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999991,
+      "train_power_kW": 1342.3080340448334,
+      "plant_power_kW": 16107.696408538002,
+      "feed_pressure_bar": 64.8433467219396,
+      "vessel_dp_bar": 1.0205917630675572,
+      "permeate_salinity_mg_L": 233.43350680808356,
+      "brine_salinity_g_L": 71.51104432879463,
+      "SEC_kWh_m3": 2.9286720742796257,
+      "RO_SEC_kWh_m3": 2.200894296501849,
+      "power_components_train_kW": {
+        "high_pressure_pump": 926.3028512273123,
+        "erd_booster": 82.4403680027057,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000077
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -1.0551559626037488e-11,
+      "salt_balance_residual_kg_h": 5.908873390580993e-10
+    },
+    {
+      "parameter": "mass_transfer_factor",
+      "value": 1.0,
+      "overrides": {
+        "mass_transfer_factor": 1.0
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1320.6012518449527,
+      "plant_power_kW": 15847.215022139433,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.8813118222071212,
+      "RO_SEC_kWh_m3": 2.1535340444293483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 906.0376940214885,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "mass_transfer_factor",
+      "value": 1.25,
+      "overrides": {
+        "mass_transfer_factor": 1.25
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.33333333333377,
+      "plant_q_m3_day": 132000.00000000012,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999991,
+      "train_power_kW": 1308.1212515041216,
+      "plant_power_kW": 15697.455018049459,
+      "feed_pressure_bar": 62.7133471936524,
+      "vessel_dp_bar": 1.0097114233452658,
+      "permeate_salinity_mg_L": 224.21853674174668,
+      "brine_salinity_g_L": 71.51718764217226,
+      "SEC_kWh_m3": 2.8540827305544445,
+      "RO_SEC_kWh_m3": 2.1263049527766666,
+      "power_components_train_kW": {
+        "high_pressure_pump": 894.399263521483,
+        "erd_booster": 80.15717316782343,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.2500000000002
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -3.0042635046356736e-11
+    },
+    {
+      "parameter": "dp_factor",
+      "value": 0.7,
+      "overrides": {
+        "dp_factor": 0.7
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.33333333334264,
+      "plant_q_m3_day": 132000.00000000268,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.499999999991,
+      "train_power_kW": 1310.312484057505,
+      "plant_power_kW": 15723.74980869006,
+      "feed_pressure_bar": 63.280891181463446,
+      "vessel_dp_bar": 0.7107373948138189,
+      "permeate_salinity_mg_L": 227.42815665587895,
+      "brine_salinity_g_L": 71.51504789556367,
+      "SEC_kWh_m3": 2.8588636015799525,
+      "RO_SEC_kWh_m3": 2.1310858238021804,
+      "power_components_train_kW": {
+        "high_pressure_pump": 902.9000585459033,
+        "erd_booster": 73.84761069678254,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000418
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -4.689582056016661e-12,
+      "salt_balance_residual_kg_h": 7.16626757935046e-11
+    },
+    {
+      "parameter": "dp_factor",
+      "value": 1.0,
+      "overrides": {
+        "dp_factor": 1.0
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1320.6012518449527,
+      "plant_power_kW": 15847.215022139433,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.8813118222071212,
+      "RO_SEC_kWh_m3": 2.1535340444293483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 906.0376940214885,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "dp_factor",
+      "value": 1.3,
+      "overrides": {
+        "dp_factor": 1.3
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.3333333333408,
+      "plant_q_m3_day": 132000.00000000215,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999922,
+      "train_power_kW": 1330.8640961051383,
+      "plant_power_kW": 15970.36915326166,
+      "feed_pressure_bar": 63.699318009371964,
+      "vessel_dp_bar": 1.3166189734068396,
+      "permeate_salinity_mg_L": 227.73105268395565,
+      "brine_salinity_g_L": 71.5148459648782,
+      "SEC_kWh_m3": 2.9037034824111636,
+      "RO_SEC_kWh_m3": 2.17592570463339,
+      "power_components_train_kW": {
+        "high_pressure_pump": 909.1673449116321,
+        "erd_booster": 88.13193637868807,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000338
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 3.517186542012496e-12,
+      "salt_balance_residual_kg_h": -3.360378642014439e-10
+    },
+    {
+      "parameter": "hp_pump_efficiency",
+      "value": 0.75,
+      "overrides": {
+        "hp_pump_efficiency": 0.75
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1441.4062777144843,
+      "plant_power_kW": 17296.87533257381,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 3.1448864241042767,
+      "RO_SEC_kWh_m3": 2.4171086463265037,
+      "power_components_train_kW": {
+        "high_pressure_pump": 1026.8427198910201,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "hp_pump_efficiency",
+      "value": 0.85,
+      "overrides": {
+        "hp_pump_efficiency": 0.85
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1320.6012518449527,
+      "plant_power_kW": 15847.215022139433,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.8813118222071212,
+      "RO_SEC_kWh_m3": 2.1535340444293483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 906.0376940214885,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "hp_pump_efficiency",
+      "value": 0.9,
+      "overrides": {
+        "hp_pump_efficiency": 0.9
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1270.2658243993144,
+      "plant_power_kW": 15243.189892791772,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.7714890714166396,
+      "RO_SEC_kWh_m3": 2.0437112936388666,
+      "power_components_train_kW": {
+        "high_pressure_pump": 855.7022665758502,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "erd_pressure_efficiency",
+      "value": 0.93,
+      "overrides": {
+        "erd_pressure_efficiency": 0.93
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1363.1949653398917,
+      "plant_power_kW": 16358.339584078702,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.9742435607415323,
+      "RO_SEC_kWh_m3": 2.2464657829637593,
+      "power_components_train_kW": {
+        "high_pressure_pump": 906.0376940214885,
+        "erd_booster": 123.59245650358505,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "erd_pressure_efficiency",
+      "value": 0.96,
+      "overrides": {
+        "erd_pressure_efficiency": 0.96
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1320.6012518449527,
+      "plant_power_kW": 15847.215022139433,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.8813118222071212,
+      "RO_SEC_kWh_m3": 2.1535340444293483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 906.0376940214885,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "erd_pressure_efficiency",
+      "value": 0.98,
+      "overrides": {
+        "erd_pressure_efficiency": 0.98
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1292.2054428483264,
+      "plant_power_kW": 15506.465314179917,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.8193573298508467,
+      "RO_SEC_kWh_m3": 2.0915795520730733,
+      "power_components_train_kW": {
+        "high_pressure_pump": 906.0376940214885,
+        "erd_booster": 52.60293401201952,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "auxiliary_kWh_per_m3",
+      "value": 0.25,
+      "overrides": {
+        "auxiliary_kWh_per_m3": 0.25
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1228.9345851782846,
+      "plant_power_kW": 14747.215022139415,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.6813118222071215,
+      "RO_SEC_kWh_m3": 2.1535340444293483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 906.0376940214885,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 114.58333333333525
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "auxiliary_kWh_per_m3",
+      "value": 0.45,
+      "overrides": {
+        "auxiliary_kWh_per_m3": 0.45
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1320.6012518449527,
+      "plant_power_kW": 15847.215022139433,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.8813118222071212,
+      "RO_SEC_kWh_m3": 2.1535340444293483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 906.0376940214885,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000344
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "auxiliary_kWh_per_m3",
+      "value": 0.75,
+      "overrides": {
+        "auxiliary_kWh_per_m3": 0.75
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.333333333341,
+      "plant_q_m3_day": 132000.0000000022,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999919,
+      "train_power_kW": 1458.101251844955,
+      "plant_power_kW": 17497.21502213946,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 3.1813118222071215,
+      "RO_SEC_kWh_m3": 2.1535340444293483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 906.0376940214885,
+        "erd_booster": 80.9987430086459,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 343.75000000000574
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 4.689582056016661e-12,
+      "salt_balance_residual_kg_h": -8.061684653171142e-10
+    },
+    {
+      "parameter": "B_temperature_coefficient_per_C",
+      "value": 0.02,
+      "overrides": {
+        "B_temperature_coefficient_per_C": 0.02,
+        "temperature_C": 35
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.33333333333485,
+      "plant_q_m3_day": 132000.00000000044,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999987,
+      "train_power_kW": 1292.6886932954058,
+      "plant_power_kW": 15512.264319544869,
+      "feed_pressure_bar": 62.055154731990605,
+      "vessel_dp_bar": 0.7939065388257944,
+      "permeate_salinity_mg_L": 279.460552466438,
+      "brine_salinity_g_L": 71.48035963168911,
+      "SEC_kWh_m3": 2.820411694462694,
+      "RO_SEC_kWh_m3": 2.092633916684917,
+      "power_components_train_kW": {
+        "high_pressure_pump": 884.5407163016052,
+        "erd_booster": 74.5831621789849,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000068
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -3.517186542012496e-12,
+      "salt_balance_residual_kg_h": 4.525446684056078e-10
+    },
+    {
+      "parameter": "B_temperature_coefficient_per_C",
+      "value": 0.04,
+      "overrides": {
+        "B_temperature_coefficient_per_C": 0.04,
+        "temperature_C": 35
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.33333333333314,
+      "plant_q_m3_day": 131999.99999999994,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.5000000000003,
+      "train_power_kW": 1290.7570841457991,
+      "plant_power_kW": 15489.08500974959,
+      "feed_pressure_bar": 61.932670532982115,
+      "vessel_dp_bar": 0.7947766798941203,
+      "permeate_salinity_mg_L": 340.4888765007964,
+      "brine_salinity_g_L": 71.4396740823328,
+      "SEC_kWh_m3": 2.8161972744999266,
+      "RO_SEC_kWh_m3": 2.0884194967221483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 882.7061218175423,
+        "erd_booster": 74.486147513442,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.24999999999991
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -3.517186542012496e-12,
+      "salt_balance_residual_kg_h": -3.5992542279927875e-10
+    },
+    {
+      "parameter": "B_temperature_coefficient_per_C",
+      "value": 0.06,
+      "overrides": {
+        "B_temperature_coefficient_per_C": 0.06,
+        "temperature_C": 35
+      },
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 458.3333333333335,
+      "plant_q_m3_day": 132000.00000000006,
+      "train_feed_m3_h": 1145.8333333333333,
+      "train_brine_m3_h": 687.4999999999998,
+      "train_power_kW": 1288.4559770277658,
+      "plant_power_kW": 15461.47172433319,
+      "feed_pressure_bar": 61.78677405663776,
+      "vessel_dp_bar": 0.7958009268543265,
+      "permeate_salinity_mg_L": 414.64444950283865,
+      "brine_salinity_g_L": 71.39023703366476,
+      "SEC_kWh_m3": 2.8111766771514883,
+      "RO_SEC_kWh_m3": 2.0833988993737105,
+      "power_components_train_kW": {
+        "high_pressure_pump": 880.5208532448469,
+        "erd_booster": 74.37030896810403,
+        "feed_pump": 127.31481481481481,
+        "assumed_auxiliaries": 206.25000000000009
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 0.0,
+      "salt_balance_residual_kg_h": 2.0165202840871643e-10
+    }
+  ],
+  "verification": {
+    "water_balance_max_absolute_m3_h": 1.6413537196058314e-11,
+    "salt_balance_max_absolute_kg_h": 1.7070078683900647e-09,
+    "calibration": {
+      "A25_LMH_bar": 1.182518339785311,
+      "B25_LMH": 0.051761448282675634,
+      "reference": {
+        "temperature_C": 25.0,
+        "feed_salinity_g_L": 32.0,
+        "pressure_bar": 55.0,
+        "recovery": 0.08,
+        "permeate_m3_day": 30.2,
+        "salt_rejection": 0.998,
+        "area_m2": 41.0
+      },
+      "calculated_permeate_m3_day": 30.20000000000002,
+      "calculated_salt_rejection": 0.998,
+      "relative_flow_error": 6.661338147750939e-16,
+      "absolute_rejection_error": 0.0,
+      "claim": "One-point manufacturer calibration only; not field validation."
+    },
+    "axial_resolution": {
+      "feed_pressure_bar": {
+        "n16": 63.49037113539727,
+        "n32": 63.542681432853094,
+        "n64": 63.56884083780023,
+        "relative_n16_vs_n64": 0.0012344051168587944
+      },
+      "permeate_salinity_mg_L": {
+        "n16": 227.57983370454167,
+        "n32": 227.81231769403325,
+        "n64": 227.92857585955443,
+        "relative_n16_vs_n64": 0.0015300501646079434
+      },
+      "SEC_kWh_m3": {
+        "n16": 2.8813118222071212,
+        "n32": 2.8830360903373924,
+        "n64": 2.883898465203814,
+        "relative_n16_vs_n64": 0.0008969258203443964
+      }
+    },
+    "dispatch_linearization": {
+      "low_flux": 12,
+      "high_flux": 14.518002322880372,
+      "low_q": 378.8399999999994,
+      "high_q": 458.333333333341,
+      "low_power_kW": 1056.7508592978566,
+      "high_power_kW": 1320.6012518449527,
+      "midpoint_exact_kW": 1186.5867407877022,
+      "midpoint_linear_kW": 1188.6760555714045,
+      "midpoint_relative_overestimate": 0.001760777119686363,
+      "slope_kWh_m3": 3.31915119775749,
+      "intercept_kW": -200.67638046058914
+    },
+    "all_nominal_design_gates_pass": true,
+    "pressure_increases_when_A_falls": true,
+    "energy_rises_without_ERD": true,
+    "salt_passage_gate_detects_salt_stress": true
+  },
+  "operating_grid_summary": {
+    "points": 540,
+    "feasible": 389
+  },
+  "runtime": {
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "numpy": "2.3.5",
+    "platform": "Linux-6.18.44-fc-v185-x86_64-with-glibc2.39"
+  }
+}

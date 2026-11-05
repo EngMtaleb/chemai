@@ -1,0 +1,171 @@
+{
+  "clean": {
+    "low": {
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 6.887999999999989,
+      "plant_q_m3_day": 495.9359999999992,
+      "train_feed_m3_h": 17.22,
+      "train_brine_m3_h": 10.332000000000008,
+      "train_power_kW": 19.213651987233753,
+      "plant_power_kW": 57.64095596170126,
+      "feed_pressure_bar": 61.268898434177764,
+      "vessel_dp_bar": 0.7210951700888657,
+      "permeate_salinity_mg_L": 275.67061824226084,
+      "brine_salinity_g_L": 71.48288625450515,
+      "SEC_kWh_m3": 2.7894384418167513,
+      "RO_SEC_kWh_m3": 2.0616606640389734,
+      "power_components_train_kW": {
+        "high_pressure_pump": 13.116214784791367,
+        "erd_booster": 1.0845038691090578,
+        "feed_pump": 1.913333333333333,
+        "assumed_auxiliaries": 3.0995999999999952
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 5.329070518200751e-15,
+      "salt_balance_residual_kg_h": -1.4168666240266248e-12
+    },
+    "high": {
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 8.333333333333472,
+      "plant_q_m3_day": 600.00000000001,
+      "train_feed_m3_h": 20.833333333333332,
+      "train_brine_m3_h": 12.499999999999853,
+      "train_power_kW": 24.01093185172641,
+      "plant_power_kW": 72.03279555517923,
+      "feed_pressure_bar": 63.49037113539727,
+      "vessel_dp_bar": 1.014058473372124,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "brine_salinity_g_L": 71.51494677753124,
+      "SEC_kWh_m3": 2.8813118222071212,
+      "RO_SEC_kWh_m3": 2.1535340444293483,
+      "power_components_train_kW": {
+        "high_pressure_pump": 16.473412618572517,
+        "erd_booster": 1.4727044183390166,
+        "feed_pump": 2.314814814814815,
+        "assumed_auxiliaries": 3.7500000000000626
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": 2.1316282072803006e-14,
+      "salt_balance_residual_kg_h": -3.664402115077792e-12
+    }
+  },
+  "mild": {
+    "low": {
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 6.8880000000000035,
+      "plant_q_m3_day": 495.9360000000002,
+      "train_feed_m3_h": 17.22,
+      "train_brine_m3_h": 10.332,
+      "train_power_kW": 19.720686111109192,
+      "plant_power_kW": 59.16205833332758,
+      "feed_pressure_bar": 62.84625517066527,
+      "vessel_dp_bar": 1.0966443750244608,
+      "permeate_salinity_mg_L": 314.4128784074477,
+      "brine_salinity_g_L": 71.45705808106162,
+      "SEC_kWh_m3": 2.863049667698778,
+      "RO_SEC_kWh_m3": 2.1352718899210004,
+      "power_components_train_kW": {
+        "high_pressure_pump": 13.471274693318387,
+        "erd_booster": 1.236478084457471,
+        "feed_pump": 1.913333333333333,
+        "assumed_auxiliaries": 3.0996000000000015
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -1.5987211554602254e-14,
+      "salt_balance_residual_kg_h": 2.334132886971929e-12
+    },
+    "high": {
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 8.333333333333343,
+      "plant_q_m3_day": 600.0000000000007,
+      "train_feed_m3_h": 20.833333333333332,
+      "train_brine_m3_h": 12.499999999999991,
+      "train_power_kW": 24.834976840909103,
+      "plant_power_kW": 74.5049305227273,
+      "feed_pressure_bar": 65.57893126854563,
+      "vessel_dp_bar": 1.539671126080222,
+      "permeate_salinity_mg_L": 259.80780564112837,
+      "brine_salinity_g_L": 71.49346146290597,
+      "SEC_kWh_m3": 2.9801972209090892,
+      "RO_SEC_kWh_m3": 2.252419443131312,
+      "power_components_train_kW": {
+        "high_pressure_pump": 17.042192611259722,
+        "erd_booster": 1.7279694148345657,
+        "feed_pump": 2.314814814814815,
+        "assumed_auxiliaries": 3.7500000000000044
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -5.329070518200751e-15,
+      "salt_balance_residual_kg_h": -2.957634137601417e-13
+    }
+  },
+  "degraded": {
+    "low": {
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 6.887999999999987,
+      "plant_q_m3_day": 495.935999999999,
+      "train_feed_m3_h": 17.22,
+      "train_brine_m3_h": 10.332000000000013,
+      "train_power_kW": 20.386823442361386,
+      "plant_power_kW": 61.160470327084155,
+      "feed_pressure_bar": 65.06795467965885,
+      "vessel_dp_bar": 1.4861790442964278,
+      "permeate_salinity_mg_L": 405.61427478804995,
+      "brine_salinity_g_L": 71.39625715014128,
+      "SEC_kWh_m3": 2.959759500923552,
+      "RO_SEC_kWh_m3": 2.2319817231457737,
+      "power_components_train_kW": {
+        "high_pressure_pump": 13.971374896519261,
+        "erd_booster": 1.4025152125087972,
+        "feed_pump": 1.913333333333333,
+        "assumed_auxiliaries": 3.099599999999994
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -2.6645352591003757e-15,
+      "salt_balance_residual_kg_h": -2.611244553918368e-12
+    },
+    "high": {
+      "evidence_type": "simulated_industrial_design",
+      "train_q_m3_h": 8.333333333380594,
+      "plant_q_m3_day": 600.0000000034028,
+      "train_feed_m3_h": 20.833333333333332,
+      "train_brine_m3_h": 12.499999999952749,
+      "train_power_kW": 25.906654157018856,
+      "plant_power_kW": 77.71996247105656,
+      "feed_pressure_bar": 68.49786778666537,
+      "vessel_dp_bar": 2.082272683716482,
+      "permeate_salinity_mg_L": 335.6525845171234,
+      "brine_salinity_g_L": 71.44289827725727,
+      "SEC_kWh_m3": 3.108798498824632,
+      "RO_SEC_kWh_m3": 2.3810207210484293,
+      "power_components_train_kW": {
+        "high_pressure_pump": 17.837109963789985,
+        "erd_booster": 2.0047293783927866,
+        "feed_pump": 2.314814814814815,
+        "assumed_auxiliaries": 3.7500000000212674
+      },
+      "feasible": true,
+      "violations": [],
+      "water_balance_residual_m3_h": -3.197442310920451e-14,
+      "salt_balance_residual_kg_h": 3.8262726320681395e-12
+    }
+  },
+  "linearization": {
+    "low_flux": 12,
+    "high_flux": 14.518002322880372,
+    "low_q": 6.887999999999989,
+    "high_q": 8.333333333333472,
+    "low_power_kW": 19.213651987233753,
+    "high_power_kW": 24.01093185172641,
+    "midpoint_exact_kW": 21.57430437795822,
+    "midpoint_linear_kW": 21.612291919480082,
+    "midpoint_relative_overestimate": 0.0017607771196865851,
+    "slope_kWh_m3": 3.3191511977574915,
+    "intercept_kW": -3.6486614629198115
+  }
+}

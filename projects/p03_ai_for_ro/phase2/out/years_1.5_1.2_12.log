@@ -1,0 +1,32 @@
+2015 done
+2016 done
+2017 done
+2018 done
+2019 done
+2020 done
+2021 done
+2022 done
+2023 done
+2024 done
+strategy                   plan-fcst  plan-known    rule  steady
+kWh_per_m3           mean       3.53        3.53    3.54    3.52
+                     min        3.52        3.52    3.53    3.52
+                     max        3.54        3.54    3.54    3.53
+solar_share_pct      mean      68.81       70.48   70.46   43.59
+                     min       67.02       69.18   69.16   43.12
+                     max       70.33       71.67   71.62   43.92
+grid_kWh_per_m3      mean       1.10        1.04    1.04    1.99
+                     min        1.05        1.00    1.01    1.98
+                     max        1.16        1.09    1.09    2.00
+curtailed_pct        mean      53.46       52.33   52.33   70.60
+                     min       51.52       50.38   50.38   69.35
+                     max       54.75       53.77   53.77   71.71
+permeate_mgL_avg     mean     264.92      264.85  261.89  255.42
+                     min      261.34      261.24  257.91  251.94
+                     max      269.41      269.34  266.59  259.37
+train_starts_per_day mean       4.02        3.95    7.94    0.00
+                     min        3.88        3.78    7.87    0.00
+                     max        4.29        4.15    7.99    0.00
+short_hours          mean       0.00        0.00    0.00    0.00
+                     min        0.00        0.00    0.00    0.00
+                     max        0.00        0.00    0.00    0.00

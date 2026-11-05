@@ -1,0 +1,117 @@
+{
+ "inputs": [
+  "dp_pct",
+  "dp_pct_lag1",
+  "dp_pct_lag3",
+  "dp_pct_lag7",
+  "dp_pct_lag14",
+  "dp_pct_slope14",
+  "dp_pct_state",
+  "dp_pct_law",
+  "days_since_cip"
+ ],
+ "pairs": 4107,
+ "seconds": 17,
+ "verdicts": [
+  [
+   1,
+   "smoothed no change",
+   false
+  ],
+  [
+   1,
+   "trend",
+   false
+  ],
+  [
+   1,
+   "fouling law",
+   false
+  ],
+  [
+   1,
+   "XGBoost",
+   false
+  ],
+  [
+   1,
+   "hybrid",
+   false
+  ],
+  [
+   3,
+   "smoothed no change",
+   false
+  ],
+  [
+   3,
+   "trend",
+   false
+  ],
+  [
+   3,
+   "fouling law",
+   false
+  ],
+  [
+   3,
+   "XGBoost",
+   false
+  ],
+  [
+   3,
+   "hybrid",
+   false
+  ],
+  [
+   7,
+   "smoothed no change",
+   false
+  ],
+  [
+   7,
+   "trend",
+   false
+  ],
+  [
+   7,
+   "fouling law",
+   false
+  ],
+  [
+   7,
+   "XGBoost",
+   false
+  ],
+  [
+   7,
+   "hybrid",
+   false
+  ],
+  [
+   14,
+   "smoothed no change",
+   false
+  ],
+  [
+   14,
+   "trend",
+   false
+  ],
+  [
+   14,
+   "fouling law",
+   false
+  ],
+  [
+   14,
+   "XGBoost",
+   false
+  ],
+  [
+   14,
+   "hybrid",
+   false
+  ]
+ ]
+}

@@ -1,0 +1,190 @@
+{
+ "rows": 87672,
+ "missing": {
+  "ghi": 0,
+  "dni": 0,
+  "dhi": 0,
+  "ghi_clear": 0,
+  "t_air": 0,
+  "wind": 0
+ },
+ "stamp_check_2024_06_21": {
+  "first_sunlit_hour_UTC": 2,
+  "last_sunlit_hour_UTC": 15
+ },
+ "annual_kwh_per_kwp": {
+  "mean": 1591.6619837275489,
+  "min": 1519.416488271551,
+  "max": 1670.432671443622,
+  "by_year": {
+   "2015": 1574.0,
+   "2016": 1670.4,
+   "2017": 1606.8,
+   "2018": 1562.2,
+   "2019": 1609.9,
+   "2020": 1648.8,
+   "2021": 1630.6,
+   "2022": 1519.4,
+   "2023": 1520.3,
+   "2024": 1574.0
+  }
+ },
+ "daily_kwh_per_kwp": {
+  "mean": 4.357136555509304,
+  "summer_JJA": 4.814207772374768,
+  "winter_DJF": 3.892525402267248
+ },
+ "ghi_kwh_m2_day_mean": 5.641611078565561,
+ "cloud_loss_pct_year": 5.312635243426145,
+ "heat_loss_pct_year": 8.636126632694086,
+ "bad_days_per_year": 18.9,
+ "bad_days_by_month": {
+  "1": 2.8,
+  "2": 2.9,
+  "3": 2.9,
+  "4": 2.2,
+  "5": 0.7,
+  "10": 1.0,
+  "11": 2.7,
+  "12": 3.7
+ },
+ "longest_bad_run_days": 4,
+ "worst_day": {
+  "date": "2023-11-15",
+  "kwh_per_kwp": 0.33737391135615774
+ },
+ "monthly": [
+  {
+   "month": 1,
+   "ghi": 3.605,
+   "ghi_clear": 3.973,
+   "pv": 3.869,
+   "pv_min_year": 2.77,
+   "pv_max_year": 4.252,
+   "t_max": 18.393,
+   "cloud_loss_pct": 9.262,
+   "heat_loss_pct": 2.708
+  },
+  {
+   "month": 2,
+   "ghi": 4.495,
+   "ghi_clear": 4.938,
+   "pv": 4.295,
+   "pv_min_year": 3.877,
+   "pv_max_year": 4.891,
+   "t_max": 20.336,
+   "cloud_loss_pct": 8.955,
+   "heat_loss_pct": 3.979
+  },
+  {
+   "month": 3,
+   "ghi": 5.452,
+   "ghi_clear": 5.986,
+   "pv": 4.46,
+   "pv_min_year": 4.034,
+   "pv_max_year": 4.779,
+   "t_max": 24.744,
+   "cloud_loss_pct": 8.915,
+   "heat_loss_pct": 5.935
+  },
+  {
+   "month": 4,
+   "ghi": 6.265,
+   "ghi_clear": 6.95,
+   "pv": 4.48,
+   "pv_min_year": 4.021,
+   "pv_max_year": 4.955,
+   "t_max": 30.42,
+   "cloud_loss_pct": 9.86,
+   "heat_loss_pct": 7.899
+  },
+  {
+   "month": 5,
+   "ghi": 7.089,
+   "ghi_clear": 7.534,
+   "pv": 4.596,
+   "pv_min_year": 4.246,
+   "pv_max_year": 4.833,
+   "t_max": 36.599,
+   "cloud_loss_pct": 5.911,
+   "heat_loss_pct": 10.085
+  },
+  {
+   "month": 6,
+   "ghi": 7.949,
+   "ghi_clear": 8.041,
+   "pv": 4.949,
+   "pv_min_year": 4.724,
+   "pv_max_year": 5.167,
+   "t_max": 41.315,
+   "cloud_loss_pct": 1.143,
+   "heat_loss_pct": 11.498
+  },
+  {
+   "month": 7,
+   "ghi": 7.582,
+   "ghi_clear": 7.685,
+   "pv": 4.755,
+   "pv_min_year": 4.441,
+   "pv_max_year": 5.082,
+   "t_max": 42.854,
+   "cloud_loss_pct": 1.345,
+   "heat_loss_pct": 12.278
+  },
+  {
+   "month": 8,
+   "ghi": 7.079,
+   "ghi_clear": 7.171,
+   "pv": 4.744,
+   "pv_min_year": 4.412,
+   "pv_max_year": 5.037,
+   "t_max": 42.871,
+   "cloud_loss_pct": 1.287,
+   "heat_loss_pct": 12.984
+  },
+  {
+   "month": 9,
+   "ghi": 6.329,
+   "ghi_clear": 6.379,
+   "pv": 4.776,
+   "pv_min_year": 4.482,
+   "pv_max_year": 4.996,
+   "t_max": 40.343,
+   "cloud_loss_pct": 0.787,
+   "heat_loss_pct": 12.173
+  },
+  {
+   "month": 10,
+   "ghi": 4.97,
+   "ghi_clear": 5.14,
+   "pv": 4.248,
+   "pv_min_year": 3.784,
+   "pv_max_year": 5.015,
+   "t_max": 34.462,
+   "cloud_loss_pct": 3.312,
+   "heat_loss_pct": 9.803
+  },
+  {
+   "month": 11,
+   "ghi": 3.597,
+   "ghi_clear": 4.055,
+   "pv": 3.571,
+   "pv_min_year": 2.884,
+   "pv_max_year": 4.095,
+   "t_max": 26.043,
+   "cloud_loss_pct": 11.301,
+   "heat_loss_pct": 5.611
+  },
+  {
+   "month": 12,
+   "ghi": 3.238,
+   "ghi_clear": 3.608,
+   "pv": 3.549,
+   "pv_min_year": 3.161,
+   "pv_max_year": 4.044,
+   "t_max": 20.294,
+   "cloud_loss_pct": 10.238,
+   "heat_loss_pct": 3.038
+  }
+ ]
+}

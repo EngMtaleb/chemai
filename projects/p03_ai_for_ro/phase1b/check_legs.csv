@@ -1,0 +1,161 @@
+test,target,h,method,skill_pct,beats,cut
+rolling origin,dp_pct,1,smoothed no change,-20.805857577100518,False,ledger only (as declared)
+rolling origin,dp_pct,1,trend,-4.520012388594852,False,ledger only (as declared)
+rolling origin,dp_pct,1,fouling law,-48.52397697513322,False,ledger only (as declared)
+rolling origin,dp_pct,1,XGBoost,-14.992036843482182,False,ledger only (as declared)
+rolling origin,dp_pct,1,hybrid,-49.98687209987125,False,ledger only (as declared)
+rolling origin,dp_pct,3,smoothed no change,2.2409231561785314,False,ledger only (as declared)
+rolling origin,dp_pct,3,trend,-12.499699812966526,False,ledger only (as declared)
+rolling origin,dp_pct,3,fouling law,-6.280946690306632,False,ledger only (as declared)
+rolling origin,dp_pct,3,XGBoost,-1.9139838068469306,False,ledger only (as declared)
+rolling origin,dp_pct,3,hybrid,-38.549411548888266,False,ledger only (as declared)
+rolling origin,dp_pct,7,smoothed no change,1.8498015855314631,False,ledger only (as declared)
+rolling origin,dp_pct,7,trend,-26.444497609069685,False,ledger only (as declared)
+rolling origin,dp_pct,7,fouling law,-16.22760738190252,False,ledger only (as declared)
+rolling origin,dp_pct,7,XGBoost,-8.136351254306717,False,ledger only (as declared)
+rolling origin,dp_pct,7,hybrid,-23.992119231056908,False,ledger only (as declared)
+rolling origin,dp_pct,14,smoothed no change,3.565253299096105,False,ledger only (as declared)
+rolling origin,dp_pct,14,trend,-53.188153619755376,False,ledger only (as declared)
+rolling origin,dp_pct,14,fouling law,-20.407650973043843,False,ledger only (as declared)
+rolling origin,dp_pct,14,XGBoost,-11.943958515426377,False,ledger only (as declared)
+rolling origin,dp_pct,14,hybrid,-29.66732588549439,False,ledger only (as declared)
+rolling origin,flux_pct,1,smoothed no change,-15.867909547163395,False,ledger only (as declared)
+rolling origin,flux_pct,1,trend,-3.0985199174983435,False,ledger only (as declared)
+rolling origin,flux_pct,1,fouling law,-44.900808959350954,False,ledger only (as declared)
+rolling origin,flux_pct,1,XGBoost,-10.894290968592024,False,ledger only (as declared)
+rolling origin,flux_pct,1,hybrid,-29.79672599852865,False,ledger only (as declared)
+rolling origin,flux_pct,3,smoothed no change,1.4349902726286445,False,ledger only (as declared)
+rolling origin,flux_pct,3,trend,-8.930389033979825,False,ledger only (as declared)
+rolling origin,flux_pct,3,fouling law,-13.627153109341616,False,ledger only (as declared)
+rolling origin,flux_pct,3,XGBoost,-3.453844435450959,False,ledger only (as declared)
+rolling origin,flux_pct,3,hybrid,-16.353988218852745,False,ledger only (as declared)
+rolling origin,flux_pct,7,smoothed no change,2.6784196837525642,False,ledger only (as declared)
+rolling origin,flux_pct,7,trend,-22.084516725483503,False,ledger only (as declared)
+rolling origin,flux_pct,7,fouling law,-7.901905844921231,False,ledger only (as declared)
+rolling origin,flux_pct,7,XGBoost,-7.043664834655061,False,ledger only (as declared)
+rolling origin,flux_pct,7,hybrid,-18.25872641712469,False,ledger only (as declared)
+rolling origin,flux_pct,14,smoothed no change,7.077976476298453,True,ledger only (as declared)
+rolling origin,flux_pct,14,trend,-27.336816456104707,False,ledger only (as declared)
+rolling origin,flux_pct,14,fouling law,1.0090905482893708,False,ledger only (as declared)
+rolling origin,flux_pct,14,XGBoost,3.2555932751957117,False,ledger only (as declared)
+rolling origin,flux_pct,14,hybrid,-3.3109610175903192,False,ledger only (as declared)
+unseen train,dp_pct,1,smoothed no change,-20.805857577100518,False,ledger only (as declared)
+unseen train,dp_pct,1,trend,-4.520012388594852,False,ledger only (as declared)
+unseen train,dp_pct,1,fouling law,-48.52397697513322,False,ledger only (as declared)
+unseen train,dp_pct,1,XGBoost,-23.036840922358227,False,ledger only (as declared)
+unseen train,dp_pct,1,hybrid,-81.02824161455703,False,ledger only (as declared)
+unseen train,dp_pct,3,smoothed no change,2.2409231561785314,False,ledger only (as declared)
+unseen train,dp_pct,3,trend,-12.499699812966526,False,ledger only (as declared)
+unseen train,dp_pct,3,fouling law,-6.280946690306632,False,ledger only (as declared)
+unseen train,dp_pct,3,XGBoost,-14.012050439511924,False,ledger only (as declared)
+unseen train,dp_pct,3,hybrid,-59.989778053733204,False,ledger only (as declared)
+unseen train,dp_pct,7,smoothed no change,1.8498015855314631,False,ledger only (as declared)
+unseen train,dp_pct,7,trend,-26.444497609069685,False,ledger only (as declared)
+unseen train,dp_pct,7,fouling law,-16.22760738190252,False,ledger only (as declared)
+unseen train,dp_pct,7,XGBoost,-32.92605907286463,False,ledger only (as declared)
+unseen train,dp_pct,7,hybrid,-67.97662166483065,False,ledger only (as declared)
+unseen train,dp_pct,14,smoothed no change,3.565253299096105,False,ledger only (as declared)
+unseen train,dp_pct,14,trend,-53.188153619755376,False,ledger only (as declared)
+unseen train,dp_pct,14,fouling law,-20.407650973043843,False,ledger only (as declared)
+unseen train,dp_pct,14,XGBoost,-17.563400623515555,False,ledger only (as declared)
+unseen train,dp_pct,14,hybrid,-54.43656525244926,False,ledger only (as declared)
+unseen train,flux_pct,1,smoothed no change,-15.867909547163395,False,ledger only (as declared)
+unseen train,flux_pct,1,trend,-3.0985199174983435,False,ledger only (as declared)
+unseen train,flux_pct,1,fouling law,-44.900808959350954,False,ledger only (as declared)
+unseen train,flux_pct,1,XGBoost,-18.59175486395841,False,ledger only (as declared)
+unseen train,flux_pct,1,hybrid,-40.76733960154031,False,ledger only (as declared)
+unseen train,flux_pct,3,smoothed no change,1.4349902726286445,False,ledger only (as declared)
+unseen train,flux_pct,3,trend,-8.930389033979825,False,ledger only (as declared)
+unseen train,flux_pct,3,fouling law,-13.627153109341616,False,ledger only (as declared)
+unseen train,flux_pct,3,XGBoost,-13.430881562759044,False,ledger only (as declared)
+unseen train,flux_pct,3,hybrid,-26.489953362423833,False,ledger only (as declared)
+unseen train,flux_pct,7,smoothed no change,2.6784196837525642,False,ledger only (as declared)
+unseen train,flux_pct,7,trend,-22.084516725483503,False,ledger only (as declared)
+unseen train,flux_pct,7,fouling law,-7.901905844921231,False,ledger only (as declared)
+unseen train,flux_pct,7,XGBoost,-16.86605521548621,False,ledger only (as declared)
+unseen train,flux_pct,7,hybrid,-31.418068366319197,False,ledger only (as declared)
+unseen train,flux_pct,14,smoothed no change,7.077976476298453,True,ledger only (as declared)
+unseen train,flux_pct,14,trend,-27.336816456104707,False,ledger only (as declared)
+unseen train,flux_pct,14,fouling law,1.0090905482893708,False,ledger only (as declared)
+unseen train,flux_pct,14,XGBoost,1.621952955797945,False,ledger only (as declared)
+unseen train,flux_pct,14,hybrid,-5.723547385714767,False,ledger only (as declared)
+rolling origin,dp_pct,1,smoothed no change,-20.805857577100518,False,ledger + second legs
+rolling origin,dp_pct,1,trend,-4.569562948655048,False,ledger + second legs
+rolling origin,dp_pct,1,fouling law,-48.63103009794363,False,ledger + second legs
+rolling origin,dp_pct,1,XGBoost,-15.152537670153032,False,ledger + second legs
+rolling origin,dp_pct,1,hybrid,-46.188250472474614,False,ledger + second legs
+rolling origin,dp_pct,3,smoothed no change,2.2409231561785314,False,ledger + second legs
+rolling origin,dp_pct,3,trend,-12.592112074154404,False,ledger + second legs
+rolling origin,dp_pct,3,fouling law,-6.447350904867144,False,ledger + second legs
+rolling origin,dp_pct,3,XGBoost,-2.0518311962652858,False,ledger + second legs
+rolling origin,dp_pct,3,hybrid,-28.223730842924844,False,ledger + second legs
+rolling origin,dp_pct,7,smoothed no change,1.8498015855314631,False,ledger + second legs
+rolling origin,dp_pct,7,trend,-26.736715256545395,False,ledger + second legs
+rolling origin,dp_pct,7,fouling law,-16.58313120860435,False,ledger + second legs
+rolling origin,dp_pct,7,XGBoost,-10.129799599502686,False,ledger + second legs
+rolling origin,dp_pct,7,hybrid,-19.96861272190813,False,ledger + second legs
+rolling origin,dp_pct,14,smoothed no change,3.565253299096105,False,ledger + second legs
+rolling origin,dp_pct,14,trend,-53.84326030964037,False,ledger + second legs
+rolling origin,dp_pct,14,fouling law,-21.06976307237005,False,ledger + second legs
+rolling origin,dp_pct,14,XGBoost,-17.436695960350047,False,ledger + second legs
+rolling origin,dp_pct,14,hybrid,-34.003541048160926,False,ledger + second legs
+rolling origin,flux_pct,1,smoothed no change,-15.867909547163395,False,ledger + second legs
+rolling origin,flux_pct,1,trend,-3.107460847140886,False,ledger + second legs
+rolling origin,flux_pct,1,fouling law,-44.92340300909756,False,ledger + second legs
+rolling origin,flux_pct,1,XGBoost,-10.730391083181324,False,ledger + second legs
+rolling origin,flux_pct,1,hybrid,-27.822945692721348,False,ledger + second legs
+rolling origin,flux_pct,3,smoothed no change,1.4349902726286445,False,ledger + second legs
+rolling origin,flux_pct,3,trend,-8.951411861554615,False,ledger + second legs
+rolling origin,flux_pct,3,fouling law,-13.628932232462155,False,ledger + second legs
+rolling origin,flux_pct,3,XGBoost,-3.229400217442402,False,ledger + second legs
+rolling origin,flux_pct,3,hybrid,-15.00671494234287,False,ledger + second legs
+rolling origin,flux_pct,7,smoothed no change,2.6784196837525642,False,ledger + second legs
+rolling origin,flux_pct,7,trend,-22.124618165394683,False,ledger + second legs
+rolling origin,flux_pct,7,fouling law,-7.863443006874071,False,ledger + second legs
+rolling origin,flux_pct,7,XGBoost,-8.595146754378934,False,ledger + second legs
+rolling origin,flux_pct,7,hybrid,-16.42102023844356,False,ledger + second legs
+rolling origin,flux_pct,14,smoothed no change,7.077976476298453,True,ledger + second legs
+rolling origin,flux_pct,14,trend,-27.38216556619082,False,ledger + second legs
+rolling origin,flux_pct,14,fouling law,1.1664842860498292,False,ledger + second legs
+rolling origin,flux_pct,14,XGBoost,4.2640356287281245,False,ledger + second legs
+rolling origin,flux_pct,14,hybrid,-2.2350542719963062,False,ledger + second legs
+unseen train,dp_pct,1,smoothed no change,-20.805857577100518,False,ledger + second legs
+unseen train,dp_pct,1,trend,-4.569562948655048,False,ledger + second legs
+unseen train,dp_pct,1,fouling law,-48.63103009794363,False,ledger + second legs
+unseen train,dp_pct,1,XGBoost,-24.643833173323216,False,ledger + second legs
+unseen train,dp_pct,1,hybrid,-75.10179264156591,False,ledger + second legs
+unseen train,dp_pct,3,smoothed no change,2.2409231561785314,False,ledger + second legs
+unseen train,dp_pct,3,trend,-12.592112074154404,False,ledger + second legs
+unseen train,dp_pct,3,fouling law,-6.447350904867144,False,ledger + second legs
+unseen train,dp_pct,3,XGBoost,-17.388019877809246,False,ledger + second legs
+unseen train,dp_pct,3,hybrid,-58.620933178341296,False,ledger + second legs
+unseen train,dp_pct,7,smoothed no change,1.8498015855314631,False,ledger + second legs
+unseen train,dp_pct,7,trend,-26.736715256545395,False,ledger + second legs
+unseen train,dp_pct,7,fouling law,-16.58313120860435,False,ledger + second legs
+unseen train,dp_pct,7,XGBoost,-28.462806022099475,False,ledger + second legs
+unseen train,dp_pct,7,hybrid,-56.203370767700456,False,ledger + second legs
+unseen train,dp_pct,14,smoothed no change,3.565253299096105,False,ledger + second legs
+unseen train,dp_pct,14,trend,-53.84326030964037,False,ledger + second legs
+unseen train,dp_pct,14,fouling law,-21.06976307237005,False,ledger + second legs
+unseen train,dp_pct,14,XGBoost,-18.788084747954148,False,ledger + second legs
+unseen train,dp_pct,14,hybrid,-64.11931498328916,False,ledger + second legs
+unseen train,flux_pct,1,smoothed no change,-15.867909547163395,False,ledger + second legs
+unseen train,flux_pct,1,trend,-3.107460847140886,False,ledger + second legs
+unseen train,flux_pct,1,fouling law,-44.92340300909756,False,ledger + second legs
+unseen train,flux_pct,1,XGBoost,-17.929572037827523,False,ledger + second legs
+unseen train,flux_pct,1,hybrid,-41.26204708534944,False,ledger + second legs
+unseen train,flux_pct,3,smoothed no change,1.4349902726286445,False,ledger + second legs
+unseen train,flux_pct,3,trend,-8.951411861554615,False,ledger + second legs
+unseen train,flux_pct,3,fouling law,-13.628932232462155,False,ledger + second legs
+unseen train,flux_pct,3,XGBoost,-10.141256447933799,False,ledger + second legs
+unseen train,flux_pct,3,hybrid,-26.349381550040807,False,ledger + second legs
+unseen train,flux_pct,7,smoothed no change,2.6784196837525642,False,ledger + second legs
+unseen train,flux_pct,7,trend,-22.124618165394683,False,ledger + second legs
+unseen train,flux_pct,7,fouling law,-7.863443006874071,False,ledger + second legs
+unseen train,flux_pct,7,XGBoost,-20.596118270827233,False,ledger + second legs
+unseen train,flux_pct,7,hybrid,-37.46667462146513,False,ledger + second legs
+unseen train,flux_pct,14,smoothed no change,7.077976476298453,True,ledger + second legs
+unseen train,flux_pct,14,trend,-27.38216556619082,False,ledger + second legs
+unseen train,flux_pct,14,fouling law,1.1664842860498292,False,ledger + second legs
+unseen train,flux_pct,14,XGBoost,2.7506449027057123,False,ledger + second legs
+unseen train,flux_pct,14,hybrid,-5.360110126479012,False,ledger + second legs

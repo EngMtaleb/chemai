@@ -1,0 +1,431 @@
+{
+ "question": "Can the solar RO plant (1,000 m3/day) run off-grid: zero grid kWh in every year 2015-2024, demand always met?",
+ "model": "phase-2 scripts (schedule.py, design_grid.py, costs.py, cost_inputs.json); ten years as one series in a repeating state",
+ "units": {
+  "capacity": "plant output at design flux / demand",
+  "panels": "kWp per m3/day of demand",
+  "tank": "hours of demand",
+  "battery": "kWh per 1,000 m3/day of demand (deliverable energy)",
+  "cost": "USD per m3, the part the design decides (RO plant capital and upkeep growing with capacity, panels, tank, battery, grid electricity)"
+ },
+ "options": [
+  {
+   "option": "deck design, grid makes up the rest",
+   "design": {
+    "capacity": 2.0,
+    "kwp_per_m3d": 0.8,
+    "tank_h": 12
+   },
+   "sun_share_pct": 79.19054582240534,
+   "sun_share_pct_by_year_range": [
+    76.98088183439505,
+    81.47583095894116
+   ],
+   "unused_panel_energy_pct": 19.952068690978418,
+   "battery_kWh": null,
+   "grid_kWh_per_m3": 0.7330355668676082,
+   "usd_per_m3_by_grid_price": {
+    "0.02": 1.0515338656429056,
+    "0.04": 1.0661945769802577,
+    "0.05": 1.0735249326489338,
+    "0.06": 1.08085528831761,
+    "0.08": 1.095515999654962,
+    "0.10": 1.1101767109923142,
+    "0.12": 1.1248374223296664,
+    "0.14": 1.1394981336670185,
+    "0.15": 1.1468284893356946,
+    "0.16": 1.1541588450043707,
+    "0.18": 1.168819556341723,
+    "0.20": 1.183480267679075,
+    "0.22": 1.1981409790164272,
+    "0.24": 1.2128016903537793,
+    "0.26": 1.2274624016911315,
+    "0.28": 1.2421231130284838,
+    "0.30": 1.2567838243658358,
+    "0.32": 1.271444535703188,
+    "0.34": 1.28610524704054,
+    "0.36": 1.3007659583778923,
+    "0.38": 1.3154266697152446,
+    "0.40": 1.3300873810525966
+   },
+   "usd_per_m3_without_grid": 1.0368731543055534
+  },
+  {
+   "option": "off-grid, water storage only (cheapest)",
+   "design": {
+    "capacity": 2.45,
+    "kwp_per_m3d": 2.15,
+    "tank_h": 77.0
+   },
+   "sun_share_pct": 100.0,
+   "unused_panel_energy_pct": 61.89322695714932,
+   "battery_kWh": null,
+   "usd_per_m3": 1.5608120335085243,
+   "usd_per_m3_parts": {
+    "RO plant": 0.9025403779535495,
+    "RO upkeep": 0.17136502070287127,
+    "panels": 0.3905473548670782,
+    "tank": 0.09635927998502551
+   },
+   "deck_design_costs_the_same_at_grid_price": 0.714752329742819
+  },
+  {
+   "option": "off-grid with a battery (cheapest found)",
+   "design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0
+   },
+   "sun_share_pct": 100.0,
+   "unused_panel_energy_pct": 69.97417729285334,
+   "battery_kWh": 5106.0,
+   "battery_kW": 449.0,
+   "battery_smallest_kWh_power_not_limiting": 5105.509202618152,
+   "usd_per_m3": 1.5631691356982225,
+   "usd_per_m3_parts": {
+    "RO plant": 0.36838382773614214,
+    "RO upkeep": 0.06994490640933511,
+    "panels": 0.5358673008641298,
+    "tank": 0.0025028384411694905,
+    "battery": 0.5864702622474459
+   },
+   "deck_design_costs_the_same_at_grid_price": 0.717967865654358,
+   "battery_usd_per_m3_at_2023_4h_price": 1.908396812327135
+  },
+  {
+   "option": "off-grid with a battery, keeping the deck's 2× plant (cheapest found)",
+   "design": {
+    "capacity": 2.0,
+    "kwp_per_m3d": 2.8,
+    "tank_h": 13.0
+   },
+   "sun_share_pct": 100.0,
+   "unused_panel_energy_pct": 70.43217280913547,
+   "battery_kWh": 3364.0,
+   "battery_kW": 232.0,
+   "battery_smallest_kWh_power_not_limiting": 3363.195179287344,
+   "usd_per_m3": 1.777969622554457,
+   "usd_per_m3_parts": {
+    "RO plant": 0.7367676554722843,
+    "RO upkeep": 0.13988981281867022,
+    "panels": 0.5086198109896826,
+    "tank": 0.01626844986760169,
+    "battery": 0.3764238934062181
+   },
+   "deck_design_costs_the_same_at_grid_price": 1.0109966033650197,
+   "battery_usd_per_m3_at_2023_4h_price": 2.0153788404643516
+  }
+ ],
+ "battery_on_named_designs": {
+  "2x, 0.8 kWp, 12 h": {
+   "off_grid_possible": false,
+   "reason": "over the ten years the sun the plant cannot use, after the 15 % battery loss, is less than the grid energy to replace",
+   "ten_year_grid_without_battery_kWh": 2676556.501340567,
+   "ten_year_store_if_all_charged_kWh": 2159472.5477862703
+  },
+  "2x, 1.2 kWp, 12 h": {
+   "off_grid_possible": true,
+   "battery_kWh": 17962.0,
+   "battery_kW": 352.0,
+   "battery_smallest_kWh_power_not_limiting": 17956.090197265148,
+   "usd_per_m3": 2.9811344719324704,
+   "unused_panel_energy_pct": 30.549872398881934,
+   "full_cycles_per_year": 9.094678944114746,
+   "critical_stretch": {
+    "start": "2020-11-26 04:00:00+03:00",
+    "end": "2020-12-07 06:00:00+03:00",
+    "days": 11.125,
+    "kWh": 17960.943097244948,
+    "months": [
+     11,
+     12
+    ]
+   }
+  },
+  "2x, 1.6 kWp, 24 h": {
+   "off_grid_possible": true,
+   "battery_kWh": 11926.0,
+   "battery_kW": 592.0,
+   "battery_smallest_kWh_power_not_limiting": 11918.084544979036,
+   "usd_per_m3": 2.495844212168982,
+   "unused_panel_energy_pct": 48.06141430318935,
+   "full_cycles_per_year": 8.743932754969107,
+   "critical_stretch": {
+    "start": "2020-11-27 01:00:00+03:00",
+    "end": "2020-12-07 06:00:00+03:00",
+    "days": 10.25,
+    "kWh": 11924.848924716003,
+    "months": [
+     11,
+     12
+    ]
+   }
+  },
+  "2x, 2 kWp, 24 h": {
+   "off_grid_possible": true,
+   "battery_kWh": 6542.0,
+   "battery_kW": 833.0,
+   "battery_smallest_kWh_power_not_limiting": 6533.334726128727,
+   "usd_per_m3": 2.061631033544345,
+   "unused_panel_energy_pct": 58.51519814705118,
+   "full_cycles_per_year": 12.069490084827349,
+   "critical_stretch": {
+    "start": "2020-11-27 02:00:00+03:00",
+    "end": "2020-12-07 06:00:00+03:00",
+    "days": 10.208333333333334,
+    "kWh": 6541.1605856232345,
+    "months": [
+     11,
+     12
+    ]
+   }
+  }
+ },
+ "deck_design_usd_per_m3_by_grid_price": {
+  "0.02": 1.0515338656429056,
+  "0.04": 1.0661945769802577,
+  "0.05": 1.0735249326489338,
+  "0.06": 1.08085528831761,
+  "0.08": 1.095515999654962,
+  "0.10": 1.1101767109923142,
+  "0.12": 1.1248374223296664,
+  "0.14": 1.1394981336670185,
+  "0.15": 1.1468284893356946,
+  "0.16": 1.1541588450043707,
+  "0.18": 1.168819556341723,
+  "0.20": 1.183480267679075,
+  "0.22": 1.1981409790164272,
+  "0.24": 1.2128016903537793,
+  "0.26": 1.2274624016911315,
+  "0.28": 1.2421231130284838,
+  "0.30": 1.2567838243658358,
+  "0.32": 1.271444535703188,
+  "0.34": 1.28610524704054,
+  "0.36": 1.3007659583778923,
+  "0.38": 1.3154266697152446,
+  "0.40": 1.3300873810525966
+ },
+ "deck_design_usd_per_m3_parts_at_0_10": {
+  "RO plant": 0.7366814804564566,
+  "RO upkeep": 0.13987345079905084,
+  "panels": 0.14530294884937153,
+  "tank": 0.015015274200674491,
+  "grid electricity": 0.07330355668676082
+ },
+ "sensitivities": [
+  {
+   "case": "base",
+   "deck_usd_per_m3": {
+    "0.05": 1.0735249326489338,
+    "0.10": 1.1101767109923142,
+    "0.15": 1.1468284893356946,
+    "0.20": 1.183480267679075,
+    "0.30": 1.2567838243658358
+   },
+   "water_only_usd_per_m3": 1.5598205151621551,
+   "water_only_design": {
+    "capacity": 2.45,
+    "kwp_per_m3d": 2.15,
+    "tank_h": 76.20768489882722,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.5631019169947158,
+   "battery_design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0,
+    "battery_kWh": 5105.50920262048,
+    "at_edge_of_search": false
+   },
+   "breakeven_water_only": 0.7133997100457883,
+   "breakeven_battery": 0.7178761665519613
+  },
+  {
+   "case": "only the RO system grows (30 %)",
+   "deck_usd_per_m3": {
+    "0.05": 0.8156864144891741,
+    "0.10": 0.8523381928325545,
+    "0.15": 0.8889899711759349,
+    "0.20": 0.9256417495193153,
+    "0.30": 0.9989453062060761
+   },
+   "water_only_usd_per_m3": 1.166346236117406,
+   "water_only_design": {
+    "capacity": 2.65,
+    "kwp_per_m3d": 1.65,
+    "tank_h": 104.31038687996194,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.363172320167172,
+   "battery_design": {
+    "capacity": 2.5,
+    "kwp_per_m3d": 2.5,
+    "tank_h": 48.0,
+    "battery_kWh": 1166.1934729227796,
+    "at_edge_of_search": true
+   },
+   "breakeven_water_only": 0.5283667225407137,
+   "breakeven_battery": 0.7968749545366577
+  },
+  {
+   "case": "small steel tank, 750 USD/m3",
+   "deck_usd_per_m3": {
+    "0.05": 1.171124214953318,
+    "0.10": 1.2077759932966985,
+    "0.15": 1.244427771640079,
+    "0.20": 1.2810795499834593,
+    "0.30": 1.35438310667022
+   },
+   "water_only_usd_per_m3": 2.012789540218095,
+   "water_only_design": {
+    "capacity": 2.4,
+    "kwp_per_m3d": 3.5,
+    "tank_h": 34.630102013826374,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.5793703668623171,
+   "battery_design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0,
+    "battery_kWh": 5105.50920262048,
+    "at_edge_of_search": false
+   },
+   "breakeven_water_only": 1.1981916612332508,
+   "breakeven_battery": 0.606925434946503
+  },
+  {
+   "case": "discount rate 5 %",
+   "deck_usd_per_m3": {
+    "0.05": 0.8911163162662358,
+    "0.10": 0.9277680946096162,
+    "0.15": 0.9644198729529966,
+    "0.20": 1.001071651296377,
+    "0.30": 1.0743752079831377
+   },
+   "water_only_usd_per_m3": 1.2854410965300043,
+   "water_only_design": {
+    "capacity": 2.45,
+    "kwp_per_m3d": 2.15,
+    "tank_h": 76.20768489882722,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.3254796760299261,
+   "battery_design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 3.0,
+    "tank_h": 2.0,
+    "battery_kWh": 5046.296751845628,
+    "at_edge_of_search": false
+   },
+   "breakeven_water_only": 0.5879340349729392,
+   "breakeven_battery": 0.6425542762130932
+  },
+  {
+   "case": "RO plant 1,200 USD per m3/d",
+   "deck_usd_per_m3": {
+    "0.05": 0.9261886365576427,
+    "0.10": 0.9628404149010231,
+    "0.15": 0.9994921932444035,
+    "0.20": 1.036143971587784,
+    "0.30": 1.1094475282745448
+   },
+   "water_only_usd_per_m3": 1.3784467443060102,
+   "water_only_design": {
+    "capacity": 2.5,
+    "kwp_per_m3d": 1.95,
+    "tank_h": 89.97740532541881,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.4894251514474872,
+   "battery_design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0,
+    "battery_kWh": 5105.50920262048,
+    "at_edge_of_search": false
+   },
+   "breakeven_water_only": 0.6669661175936485,
+   "breakeven_battery": 0.8183617826303501
+  },
+  {
+   "case": "RO plant 1,800 USD per m3/d",
+   "deck_usd_per_m3": {
+    "0.05": 1.2208612287402252,
+    "0.10": 1.2575130070836056,
+    "0.15": 1.294164785426986,
+    "0.20": 1.3308165637703664,
+    "0.30": 1.4041201204571272
+   },
+   "water_only_usd_per_m3": 1.7403285907528647,
+   "water_only_design": {
+    "capacity": 2.45,
+    "kwp_per_m3d": 2.15,
+    "tank_h": 76.20768489882722,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.6367786825419441,
+   "battery_design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0,
+    "battery_kWh": 5105.50920262048,
+    "at_edge_of_search": false
+   },
+   "breakeven_water_only": 0.7586523294257277,
+   "breakeven_battery": 0.6173905504735715
+  },
+  {
+   "case": "plant costs in 2024 USD (x 1.31, phase-2 notebook)",
+   "deck_usd_per_m3": {
+    "0.05": 1.345256961338141,
+    "0.10": 1.3819087396815215,
+    "0.15": 1.418560518024902,
+    "0.20": 1.4552122963682823,
+    "0.30": 1.5285158530550431
+   },
+   "water_only_usd_per_m3": 1.891500950013662,
+   "water_only_design": {
+    "capacity": 2.4,
+    "kwp_per_m3d": 2.35,
+    "tank_h": 69.13595945371036,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.6989838245798135,
+   "battery_design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0,
+    "battery_kWh": 5105.50920262048,
+    "at_edge_of_search": false
+   },
+   "breakeven_water_only": 0.795180743425205,
+   "breakeven_battery": 0.5325507509181449
+  },
+  {
+   "case": "battery 482 USD/kWh, 4-hour, O&M 2.5 % (NREL 2023 update, behind ATB 2024; 2022 USD)",
+   "deck_usd_per_m3": {
+    "0.05": 1.0735249326489338,
+    "0.10": 1.1101767109923142,
+    "0.15": 1.1468284893356946,
+    "0.20": 1.183480267679075,
+    "0.30": 1.2567838243658358
+   },
+   "water_only_usd_per_m3": 1.5608120335085243,
+   "battery_usd_per_m3": 1.7746361887969937,
+   "battery_design": {
+    "capacity": 2.25,
+    "kwp_per_m3d": 3.5,
+    "tank_h": 36.0,
+    "battery_kWh": 589.5214272309095
+   },
+   "breakeven_water_only": 0.714752329742819,
+   "breakeven_battery": 1.0064491654123053
+  }
+ ],
+ "sources": {
+  "battery": "NREL/TP-6A40-93281 (Cole, Ramasamy & Turan, June 2025) p. 3, 6, 8, 11, 12",
+  "battery_sensitivity": "NREL/TP-6A40-85332 (Cole & Karmakar, June 2023) p. 2, 4, 7, 8, Table 2 p. 13",
+  "other_costs": "phase-2 cost_inputs.json _sources"
+ }
+}

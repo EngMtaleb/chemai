@@ -1,0 +1,18 @@
+{
+ "settings": 6,
+ "fingerprint_pass": 0,
+ "core_inside": 0,
+ "forecast_gate_tested": 6,
+ "pass_both": 0,
+ "chosen_settings": [],
+ "chosen": [],
+ "seeds": [
+  3001,
+  3002,
+  3003,
+  3004,
+  3005,
+  3006
+ ],
+ "seconds": 470
+}

@@ -1,0 +1,189 @@
+{
+ "N": 151,
+ "counts_by_N": {
+  "18": 1608,
+  "138": 225,
+  "145": 224,
+  "148": 220,
+  "149": 219,
+  "150": 216,
+  "151": 212,
+  "152": 205,
+  "153": 193,
+  "154": 180,
+  "168": 180,
+  "198": 135,
+  "259": 90,
+  "500": 45
+ },
+ "check": {
+  "P1": {
+   "pairs": 665,
+   "mae_model_points": 2.7,
+   "mae_today_points": 2.82
+  },
+  "P2": {
+   "pairs": 913,
+   "mae_model_points": 3.03,
+   "mae_today_points": 2.67
+  },
+  "P3": {
+   "pairs": 891,
+   "mae_model_points": 2.61,
+   "mae_today_points": 2.4
+  }
+ },
+ "total": {
+  "model": {
+   "trains": 45,
+   "cleanings": 211,
+   "days_above": 375,
+   "running_days": 23108,
+   "cleanings_per_train_year": 3.33,
+   "days_above_per_train_year": 5.9,
+   "share_of_running_days_above": 1.6,
+   "mean_rise_pct": 10.0
+  },
+  "calendar": {
+   "trains": 45,
+   "cleanings": 212,
+   "days_above": 3625,
+   "running_days": 23074,
+   "cleanings_per_train_year": 3.35,
+   "days_above_per_train_year": 57.3,
+   "share_of_running_days_above": 15.7,
+   "mean_rise_pct": 17.1
+  },
+  "operator": {
+   "trains": 45,
+   "cleanings": 234,
+   "days_above": 1102,
+   "running_days": 23071,
+   "cleanings_per_train_year": 3.7,
+   "days_above_per_train_year": 17.4,
+   "share_of_running_days_above": 4.8,
+   "mean_rise_pct": 9.2
+  }
+ },
+ "by_law": {
+  "linear": {
+   "model": {
+    "trains": 15,
+    "cleanings": 81,
+    "days_above": 186,
+    "running_days": 7760,
+    "cleanings_per_train_year": 3.81,
+    "days_above_per_train_year": 8.7,
+    "share_of_running_days_above": 2.4,
+    "mean_rise_pct": 12.0
+   },
+   "calendar": {
+    "trains": 15,
+    "cleanings": 71,
+    "days_above": 1360,
+    "running_days": 7757,
+    "cleanings_per_train_year": 3.34,
+    "days_above_per_train_year": 64.0,
+    "share_of_running_days_above": 17.5,
+    "mean_rise_pct": 18.2
+   },
+   "operator": {
+    "trains": 15,
+    "cleanings": 79,
+    "days_above": 536,
+    "running_days": 7760,
+    "cleanings_per_train_year": 3.72,
+    "days_above_per_train_year": 25.2,
+    "share_of_running_days_above": 6.9,
+    "mean_rise_pct": 11.3
+   }
+  },
+  "biofilm": {
+   "model": {
+    "trains": 15,
+    "cleanings": 89,
+    "days_above": 189,
+    "running_days": 7540,
+    "cleanings_per_train_year": 4.31,
+    "days_above_per_train_year": 9.1,
+    "share_of_running_days_above": 2.5,
+    "mean_rise_pct": 8.5
+   },
+   "calendar": {
+    "trains": 15,
+    "cleanings": 72,
+    "days_above": 2218,
+    "running_days": 7539,
+    "cleanings_per_train_year": 3.49,
+    "days_above_per_train_year": 107.4,
+    "share_of_running_days_above": 29.4,
+    "mean_rise_pct": 26.2
+   },
+   "operator": {
+    "trains": 15,
+    "cleanings": 88,
+    "days_above": 542,
+    "running_days": 7529,
+    "cleanings_per_train_year": 4.27,
+    "days_above_per_train_year": 26.3,
+    "share_of_running_days_above": 7.2,
+    "mean_rise_pct": 9.3
+   }
+  },
+  "asymptotic": {
+   "model": {
+    "trains": 15,
+    "cleanings": 41,
+    "days_above": 0,
+    "running_days": 7808,
+    "cleanings_per_train_year": 1.92,
+    "days_above_per_train_year": 0.0,
+    "share_of_running_days_above": 0.0,
+    "mean_rise_pct": 9.4
+   },
+   "calendar": {
+    "trains": 15,
+    "cleanings": 69,
+    "days_above": 47,
+    "running_days": 7778,
+    "cleanings_per_train_year": 3.24,
+    "days_above_per_train_year": 2.2,
+    "share_of_running_days_above": 0.6,
+    "mean_rise_pct": 7.3
+   },
+   "operator": {
+    "trains": 15,
+    "cleanings": 67,
+    "days_above": 24,
+    "running_days": 7782,
+    "cleanings_per_train_year": 3.14,
+    "days_above_per_train_year": 1.1,
+    "share_of_running_days_above": 0.3,
+    "mean_rise_pct": 7.1
+   }
+  }
+ },
+ "example": {
+  "seed": 4202,
+  "train": "A",
+  "law": "linear",
+  "N": 151,
+  "level": 1.3367,
+  "calendar": {
+   "cleanings": [
+    152,
+    328,
+    483,
+    635
+   ],
+   "days_above": 11
+  },
+  "model": {
+   "cleanings": [
+    407,
+    669
+   ],
+   "days_above": 0
+  }
+ }
+}

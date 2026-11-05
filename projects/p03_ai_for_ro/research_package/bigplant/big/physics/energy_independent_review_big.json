@@ -1,0 +1,722 @@
+{
+  "scope": "Independent code and numerical review, not field validation",
+  "trajectories_checked": 33,
+  "all_numerical_audits_pass": true,
+  "dense_physics_interval": [
+    {
+      "flux_LMH": 12.0,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0,
+      "pressure_bar": 61.268898434177764,
+      "product_salt_mg_L": 275.67061824226084
+    },
+    {
+      "flux_LMH": 12.10491676345335,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.00030945384205027793,
+      "pressure_bar": 61.35978291026486,
+      "product_salt_mg_L": 273.2619572353623
+    },
+    {
+      "flux_LMH": 12.209833526906698,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.000586699338992247,
+      "pressure_bar": 61.45081284591861,
+      "product_salt_mg_L": 270.8951363934639
+    },
+    {
+      "flux_LMH": 12.314750290360045,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.000832579438923231,
+      "pressure_bar": 61.54198883604271,
+      "product_salt_mg_L": 268.5690926005185
+    },
+    {
+      "flux_LMH": 12.419667053813395,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0010479104976206521,
+      "pressure_bar": 61.633311342268065,
+      "product_salt_mg_L": 266.28279788433406
+    },
+    {
+      "flux_LMH": 12.524583817266745,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0012334833431137948,
+      "pressure_bar": 61.72478070152307,
+      "product_salt_mg_L": 264.03525799167784
+    },
+    {
+      "flux_LMH": 12.629500580720093,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0013900642870587898,
+      "pressure_bar": 61.81639713415552,
+      "product_salt_mg_L": 261.82551103202735
+    },
+    {
+      "flux_LMH": 12.73441734417344,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.001518396086050755,
+      "pressure_bar": 61.908160751633694,
+      "product_salt_mg_L": 259.65262618612167
+    },
+    {
+      "flux_LMH": 12.83933410762679,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0016191988560123605,
+      "pressure_bar": 62.000071563833636,
+      "product_salt_mg_L": 257.5157024756727
+    },
+    {
+      "flux_LMH": 12.94425087108014,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0016931709422673968,
+      "pressure_bar": 62.09212948594335,
+      "product_salt_mg_L": 255.41386759088886
+    },
+    {
+      "flux_LMH": 13.049167634533488,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0017409897480780145,
+      "pressure_bar": 62.18433434498816,
+      "product_salt_mg_L": 253.34627677260858
+    },
+    {
+      "flux_LMH": 13.154084397986836,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.001763312523893612,
+      "pressure_bar": 62.27668588600655,
+      "product_salt_mg_L": 251.31211174613512
+    },
+    {
+      "flux_LMH": 13.259001161440185,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0017607771196779254,
+      "pressure_bar": 62.36918377788384,
+      "product_salt_mg_L": 249.3105797039335
+    },
+    {
+      "flux_LMH": 13.363917924893535,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0017340027024235205,
+      "pressure_bar": 62.46182761885944,
+      "product_salt_mg_L": 247.34091233460913
+    },
+    {
+      "flux_LMH": 13.468834688346883,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0016835904406824476,
+      "pressure_bar": 62.55461694173369,
+      "product_salt_mg_L": 245.40236489573545
+    },
+    {
+      "flux_LMH": 13.57375145180023,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.001610124158146986,
+      "pressure_bar": 62.64755121877123,
+      "product_salt_mg_L": 243.49421532820097
+    },
+    {
+      "flux_LMH": 13.67866821525358,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0015141709577299878,
+      "pressure_bar": 62.74062986633868,
+      "product_salt_mg_L": 241.61576340993983
+    },
+    {
+      "flux_LMH": 13.78358497870693,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0013962818180717207,
+      "pressure_bar": 62.833852249261916,
+      "product_salt_mg_L": 239.7663299469977
+    },
+    {
+      "flux_LMH": 13.888501742160278,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0012569921636773618,
+      "pressure_bar": 62.92721768494138,
+      "product_salt_mg_L": 237.94525600003115
+    },
+    {
+      "flux_LMH": 13.993418505613626,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0010968224102123614,
+      "pressure_bar": 63.02072544722638,
+      "product_salt_mg_L": 236.15190214443933
+    },
+    {
+      "flux_LMH": 14.098335269066975,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0009162784863196993,
+      "pressure_bar": 63.11437477005984,
+      "product_salt_mg_L": 234.38564776243584
+    },
+    {
+      "flux_LMH": 14.203252032520325,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0007158523330830224,
+      "pressure_bar": 63.20816485090325,
+      "product_salt_mg_L": 232.64589036547437
+    },
+    {
+      "flux_LMH": 14.308168795973673,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0004960223823424759,
+      "pressure_bar": 63.302094853972264,
+      "product_salt_mg_L": 230.93204494547714
+    },
+    {
+      "flux_LMH": 14.41308555942702,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0002572540149492486,
+      "pressure_bar": 63.39616391326231,
+      "product_salt_mg_L": 229.24354335351214
+    },
+    {
+      "flux_LMH": 14.51800232288037,
+      "physics_feasible": true,
+      "power_linear_relative_error": 0.0,
+      "pressure_bar": 63.49037113539729,
+      "product_salt_mg_L": 227.5798337045408
+    }
+  ],
+  "max_linear_power_error": 0.001763312523893612,
+  "causal_weather_index_latest_relative_hour": -1,
+  "causality_code_review": "Forecast uses preceding24observations; feedbackyield uses precedingmeasuredratios; demand is assumedknown. No futureactualPV is supplied to optimization.",
+  "findings": [
+    "No critical water/energy accounting or minimum-on-boundary defect found.",
+    "Capacity-loss factor is an imposed accepted-yield stress, not a physical fouling forecast.",
+    "Use fixed schedule label for the full-capacity case because all trains are initially ON.",
+    "Every savings comparison must exclude cases that fail service/terminal/reserve gates.",
+    "Dispatch uses fixed25C43g/Lphysics; outdoorairtemperature inPVdata doesnotchangefeedwaterphysics."
+  ],
+  "runs": [
+    {
+      "file": "2023-01_nominal__daylight_tank_rule.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 9.094947017729282e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "2023-01_nominal__fixed_eight_trains.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 8.810729923425242e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "2023-01_nominal__rolling_milp.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 9.094947017729282e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "2023-04_nominal__daylight_tank_rule.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 4.547473508864641e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "2023-04_nominal__fixed_eight_trains.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 7.958078640513122e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "2023-04_nominal__rolling_milp.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 7.275957614183426e-12,
+        "recorded_start_diversion": 0.0,
+        "accepted": 7.275957614183426e-12,
+        "power": 2.3646862246096134e-11,
+        "stock": 7.275957614183426e-12,
+        "PV": 0.0,
+        "electrical": 7.958078640513122e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "2023-07_nominal__daylight_tank_rule.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 7.389644451905042e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "2023-07_nominal__fixed_eight_trains.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 7.389644451905042e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "2023-07_nominal__rolling_milp.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 2.6147972675971687e-11,
+        "recorded_start_diversion": 0.0,
+        "accepted": 2.6147972675971687e-11,
+        "power": 8.731149137020111e-11,
+        "stock": 2.1827872842550278e-11,
+        "PV": 0.0,
+        "electrical": 7.389644451905042e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "2023-10_nominal__daylight_tank_rule.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 9.094947017729282e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "2023-10_nominal__fixed_eight_trains.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "2023-10_nominal__rolling_milp.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_PV52800__daylight_tank_rule.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 9.094947017729282e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_PV52800__fixed_eight_trains.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_PV52800__rolling_milp.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_PV88000__daylight_tank_rule.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_PV88000__fixed_eight_trains.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_PV88000__rolling_milp.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_capacity_limit_yield90__daylight_tank_rule.json",
+      "audit_pass": true,
+      "service_pass": false,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 9.094947017729282e-13
+      },
+      "additional_unavailable_yield_m3": 26400.00000000051,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_capacity_limit_yield90__fixed_eight_trains.json",
+      "audit_pass": true,
+      "service_pass": false,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 9.094947017729282e-13
+      },
+      "additional_unavailable_yield_m3": 26400.00000000052,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_capacity_limit_yield90__rolling_milp.json",
+      "audit_pass": true,
+      "service_pass": false,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 9.094947017729282e-13
+      },
+      "additional_unavailable_yield_m3": 26400.00000000052,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_forecast140__daylight_tank_rule.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 9.094947017729282e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_forecast140__fixed_eight_trains.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_forecast140__rolling_milp.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_tank24h__daylight_tank_rule.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 9.094947017729282e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_tank24h__fixed_eight_trains.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_tank24h__rolling_milp.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_tank6h__daylight_tank_rule.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 9.094947017729282e-13
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_tank6h__fixed_eight_trains.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_tank6h__rolling_milp.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 0.0,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_yield90__daylight_tank_rule.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 9.094947017729282e-13
+      },
+      "additional_unavailable_yield_m3": 19555.55555555556,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_yield90__fixed_eight_trains.json",
+      "audit_pass": true,
+      "service_pass": false,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 17600.000000000342,
+      "minimum_on_at_every_start_verified": true
+    },
+    {
+      "file": "october_yield90__rolling_milp.json",
+      "audit_pass": true,
+      "service_pass": true,
+      "max_errors": {
+        "recorded_gross": 0.0,
+        "recorded_start_diversion": 0.0,
+        "accepted": 0.0,
+        "power": 0.0,
+        "stock": 0.0,
+        "PV": 0.0,
+        "electrical": 0.0
+      },
+      "additional_unavailable_yield_m3": 19598.63074074078,
+      "minimum_on_at_every_start_verified": true
+    }
+  ]
+}

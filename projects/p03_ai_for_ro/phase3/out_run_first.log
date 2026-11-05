@@ -1,0 +1,19 @@
+phase 2 reproduced [288 s]
+penalty map done [847 s]
+plant's fouling done [2438 s]
+year at clean (d 0.000, f 0.000) done; 35 % recovery at [35.0] [2438 s]
+year at median day (d 0.161, f 0.000) done; 35 % recovery at [35.0] [2575 s]
+year at operators' cleaning level (d 0.228, f 0.000) done; 35 % recovery at [35.0] [2710 s]
+Traceback (most recent call last):
+  File "phase4/run_link.py", line 124, in <module>
+    perf, hot = (perf0, hot0) if name == "clean" else L.perf_table(d, f)
+                                                      ~~~~~~~~~~~~^^^^^^
+  File "phase4/p4lib.py", line 195, in perf_table
+    p35 = table(0.35, hot, d, f)
+  File "phase4/p4lib.py", line 184, in table
+    t["ok"] = (t.note == "ok") & (t.c_p <= 500)
+               ^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/pandas/core/generic.py", line 6194, in __getattr__
+    return object.__getattribute__(self, name)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: 'DataFrame' object has no attribute 'note'. Did you mean: 'notna'?

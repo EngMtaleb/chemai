@@ -1,0 +1,72 @@
+[
+  {
+    "name": "dispatch_endpoints.json",
+    "sha256": "430c62e5cf0a88aae7d5d0b4fab41cf6e81761bc35493d2f62aa88c7e870c6a2",
+    "bytes": 6511
+  },
+  {
+    "name": "make_plots.py",
+    "sha256": "1c4f686014ebbf51e41bdc1d6609eecbefce8bac90737e1048b16a8cf1dfc9a5",
+    "bytes": 3489
+  },
+  {
+    "name": "model.py",
+    "sha256": "813a589bd74063ee3311f3f608cabae6f35b2ad0d82090719c0d90e8d13c96a0",
+    "bytes": 10389
+  },
+  {
+    "name": "operating_envelope.png",
+    "sha256": "0afceb6dfa6a6d0b641c4f7b8d569373ef5b6690c761a2e3933dfef2d3cddf96",
+    "bytes": 91529
+  },
+  {
+    "name": "operating_envelope.svg",
+    "sha256": "6ed92a55a0e39c5a59f021025531707af762c146fd81f696350d777bde29f468",
+    "bytes": 16424
+  },
+  {
+    "name": "operating_grid.json",
+    "sha256": "fb9eac0d05cac3443572aa2e2e27d4824ab54376c6debae011dd4df14413f038",
+    "bytes": 507600
+  },
+  {
+    "name": "results.json",
+    "sha256": "bc59f6a5df4a0b3f4b10c2a3b295a36d648223eb73b4b279dece0286cbbe51b4",
+    "bytes": 119615
+  },
+  {
+    "name": "review_energy.py",
+    "sha256": "008786cf32e2a9a192165a9850e47a69da868025a5e1e65258613111c81abd2f",
+    "bytes": 6928
+  },
+  {
+    "name": "run_study.py",
+    "sha256": "10b239998868b7185040912cc6368fe22647ac0dd178b1ce8357fac5f8edc212",
+    "bytes": 7122
+  },
+  {
+    "name": "sources.json",
+    "sha256": "4d7bf9c685baf8c06ab2d54b6ca72d97ad032bae8da82a8aa2823b66c81e2b80",
+    "bytes": 4499
+  },
+  {
+    "name": "stress_cases.png",
+    "sha256": "f6e5c54f12e0f74c5dc4decd98c958712d631dee5f5ea4f786a56e315f42919f",
+    "bytes": 113182
+  },
+  {
+    "name": "stress_cases.svg",
+    "sha256": "4953c204e4aa21c22f9e23839aa15f747b7f8d21af1e1677a55f22ee9893d331",
+    "bytes": 30257
+  },
+  {
+    "name": "vessel_profile.png",
+    "sha256": "f553287804e292c559e01fc5de55528bb72da9ffcc72fd1ada9a7dba9ab3b0f7",
+    "bytes": 128041
+  },
+  {
+    "name": "vessel_profile.svg",
+    "sha256": "2b356c49f2082888ed14e56c8ef4e9dd4f4ce396d120eacd3a4b30b17aa5736a",
+    "bytes": 39117
+  }
+]

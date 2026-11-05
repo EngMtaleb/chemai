@@ -1,0 +1,215 @@
+{
+ "sensitivities": [
+  {
+   "case": "base",
+   "deck_usd_per_m3": {
+    "0.05": 1.0735249326489338,
+    "0.10": 1.1101767109923142,
+    "0.15": 1.1468284893356946,
+    "0.20": 1.183480267679075,
+    "0.30": 1.2567838243658358
+   },
+   "water_only_usd_per_m3": 1.5598205151621551,
+   "water_only_design": {
+    "capacity": 2.45,
+    "kwp_per_m3d": 2.15,
+    "tank_h": 76.20768489882722,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.5631019169947158,
+   "battery_design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0,
+    "battery_kWh": 5105.50920262048,
+    "at_edge_of_search": false
+   },
+   "breakeven_water_only": 0.7133997100457883,
+   "breakeven_battery": 0.7178761665519613
+  },
+  {
+   "case": "only the RO system grows (30 %)",
+   "deck_usd_per_m3": {
+    "0.05": 0.8156864144891741,
+    "0.10": 0.8523381928325545,
+    "0.15": 0.8889899711759349,
+    "0.20": 0.9256417495193153,
+    "0.30": 0.9989453062060761
+   },
+   "water_only_usd_per_m3": 1.166346236117406,
+   "water_only_design": {
+    "capacity": 2.65,
+    "kwp_per_m3d": 1.65,
+    "tank_h": 104.31038687996194,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.363172320167172,
+   "battery_design": {
+    "capacity": 2.5,
+    "kwp_per_m3d": 2.5,
+    "tank_h": 48.0,
+    "battery_kWh": 1166.1934729227796,
+    "at_edge_of_search": true
+   },
+   "breakeven_water_only": 0.5283667225407137,
+   "breakeven_battery": 0.7968749545366577
+  },
+  {
+   "case": "small steel tank, 750 USD/m3",
+   "deck_usd_per_m3": {
+    "0.05": 1.171124214953318,
+    "0.10": 1.2077759932966985,
+    "0.15": 1.244427771640079,
+    "0.20": 1.2810795499834593,
+    "0.30": 1.35438310667022
+   },
+   "water_only_usd_per_m3": 2.012789540218095,
+   "water_only_design": {
+    "capacity": 2.4,
+    "kwp_per_m3d": 3.5,
+    "tank_h": 34.630102013826374,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.5793703668623171,
+   "battery_design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0,
+    "battery_kWh": 5105.50920262048,
+    "at_edge_of_search": false
+   },
+   "breakeven_water_only": 1.1981916612332508,
+   "breakeven_battery": 0.606925434946503
+  },
+  {
+   "case": "discount rate 5 %",
+   "deck_usd_per_m3": {
+    "0.05": 0.8911163162662358,
+    "0.10": 0.9277680946096162,
+    "0.15": 0.9644198729529966,
+    "0.20": 1.001071651296377,
+    "0.30": 1.0743752079831377
+   },
+   "water_only_usd_per_m3": 1.2854410965300043,
+   "water_only_design": {
+    "capacity": 2.45,
+    "kwp_per_m3d": 2.15,
+    "tank_h": 76.20768489882722,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.3254796760299261,
+   "battery_design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 3.0,
+    "tank_h": 2.0,
+    "battery_kWh": 5046.296751845628,
+    "at_edge_of_search": false
+   },
+   "breakeven_water_only": 0.5879340349729392,
+   "breakeven_battery": 0.6425542762130932
+  },
+  {
+   "case": "RO plant 1,200 USD per m3/d",
+   "deck_usd_per_m3": {
+    "0.05": 0.9261886365576427,
+    "0.10": 0.9628404149010231,
+    "0.15": 0.9994921932444035,
+    "0.20": 1.036143971587784,
+    "0.30": 1.1094475282745448
+   },
+   "water_only_usd_per_m3": 1.3784467443060102,
+   "water_only_design": {
+    "capacity": 2.5,
+    "kwp_per_m3d": 1.95,
+    "tank_h": 89.97740532541881,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.4894251514474872,
+   "battery_design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0,
+    "battery_kWh": 5105.50920262048,
+    "at_edge_of_search": false
+   },
+   "breakeven_water_only": 0.6669661175936485,
+   "breakeven_battery": 0.8183617826303501
+  },
+  {
+   "case": "RO plant 1,800 USD per m3/d",
+   "deck_usd_per_m3": {
+    "0.05": 1.2208612287402252,
+    "0.10": 1.2575130070836056,
+    "0.15": 1.294164785426986,
+    "0.20": 1.3308165637703664,
+    "0.30": 1.4041201204571272
+   },
+   "water_only_usd_per_m3": 1.7403285907528647,
+   "water_only_design": {
+    "capacity": 2.45,
+    "kwp_per_m3d": 2.15,
+    "tank_h": 76.20768489882722,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.6367786825419441,
+   "battery_design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0,
+    "battery_kWh": 5105.50920262048,
+    "at_edge_of_search": false
+   },
+   "breakeven_water_only": 0.7586523294257277,
+   "breakeven_battery": 0.6173905504735715
+  },
+  {
+   "case": "plant costs in 2024 USD (x 1.31, phase-2 notebook)",
+   "deck_usd_per_m3": {
+    "0.05": 1.345256961338141,
+    "0.10": 1.3819087396815215,
+    "0.15": 1.418560518024902,
+    "0.20": 1.4552122963682823,
+    "0.30": 1.5285158530550431
+   },
+   "water_only_usd_per_m3": 1.891500950013662,
+   "water_only_design": {
+    "capacity": 2.4,
+    "kwp_per_m3d": 2.35,
+    "tank_h": 69.13595945371036,
+    "at_edge_of_search": false
+   },
+   "battery_usd_per_m3": 1.6989838245798135,
+   "battery_design": {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0,
+    "battery_kWh": 5105.50920262048,
+    "at_edge_of_search": false
+   },
+   "breakeven_water_only": 0.795180743425205,
+   "breakeven_battery": 0.5325507509181449
+  },
+  {
+   "case": "battery 482 USD/kWh, 4-hour, O&M 2.5 % (NREL 2023 update, behind ATB 2024; 2022 USD)",
+   "deck_usd_per_m3": {
+    "0.05": 1.0735249326489338,
+    "0.10": 1.1101767109923142,
+    "0.15": 1.1468284893356946,
+    "0.20": 1.183480267679075,
+    "0.30": 1.2567838243658358
+   },
+   "water_only_usd_per_m3": 1.5608120335085243,
+   "battery_usd_per_m3": 1.7746361887969937,
+   "battery_design": {
+    "capacity": 2.25,
+    "kwp_per_m3d": 3.5,
+    "tank_h": 36.0,
+    "battery_kWh": 589.5214272309095
+   },
+   "breakeven_water_only": 0.714752329742819,
+   "breakeven_battery": 1.0064491654123053
+  }
+ ],
+ "deck_fixed_usd_per_m3": 1.0368731543055534,
+ "deck_grid_kWh_per_m3": 0.7330355668676082
+}

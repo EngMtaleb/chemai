@@ -1,0 +1,58 @@
+{
+  "retrieved_date": "2026-10-30",
+  "source_boundary": "Manufacturer information anchors a reproducible scenario model; none of the outputs are measured industrial plant results.",
+  "sources": [
+    {
+      "id": "dupont_pds",
+      "title": "DuPont FilmTec SW30HRLE-440i Product Data Sheet, Form 45-D00965-en Rev.5, November 2024",
+      "url": "https://www.dupont.com/content/dam/water/amer/us/en/water/public/documents/en/RO-FilmTec-SW30HRLE-440i-PDS-45-D00965-en.pdf",
+      "retrieval_ref": "turn45view0",
+      "used_for": ["41 m2 element area", "30.2 m3/day at 55 bar, 32 g/L NaCl, 25 C and 8% recovery", "99.8% stabilized salt rejection", "83 bar / 45 C absolute limits", "1 bar per-element and 3.5 bar per-vessel maximum pressure drop"],
+      "interpretation": "A/B fit uses one typical test point. Fit is not independent validation. Product quality gate does not establish pathogen/boron safety."
+    },
+    {
+      "id": "dupont_normalization",
+      "title": "DuPont FilmTec Technical Manual, normalization equations 73-76",
+      "url": "https://www.dupont.com/content/dam/water/amer/us/en/water/public/documents/en/RO-NF-FilmTec-Manual-45-D01504-en.pdf",
+      "retrieval_ref": "turn47search24",
+      "used_for": ["Water temperature factor exp[K(1/298 - 1/(273+T))] with K=2640 above 25 C and 3020 below", "Practical osmotic-pressure approximation in bar: c_mgL(T+320)/491000 below 20000 mg/L; ((0.0117c_mgL-34)/14.23)((T+320)/345) above"],
+      "interpretation": "A practical total-salt approximation, not an ion-resolved seawater chemistry model. The search parse repeats a less-than sign for the high-salinity branch; the older official normalization excerpt confirms greater-than 20000."
+    },
+    {
+      "id": "dupont_normalization_excerpt",
+      "title": "DuPont Plant Performance Normalization, Form 45-D01616-en Rev10, February2022",
+      "url": "https://www.dupont.com/content/dam/dupont/amer/us/en/water-solutions/public/documents/en/RO-NF-FilmTec-Plant-Performance-Norm-Manual-Exc-45-D01616-en.pdf",
+      "retrieval_ref": "turn46search27",
+      "used_for": ["Confirm low/high-salinity branches and temperature normalization"],
+      "interpretation": "Normalization helps comparison; it does not identify the cause of a change by itself."
+    },
+    {
+      "id": "dupont_temperature_limits",
+      "title": "DuPont Temperature and Pressure Limits for 8-inch FilmTec Seawater Elements, Form45-D00691-en Rev3, February2026",
+      "url": "https://www.dupont.com/content/dam/water/amer/us/en/water/public/documents/en/RO-NF-FilmTec-Temperature-Pressure-Limits-Manual-Exc-45-D00691-en.pdf",
+      "retrieval_ref": "turn45view2",
+      "used_for": ["iLEC special installation provisions above35 C at pressure above42bar"],
+      "interpretation": "Study envelope is15-35 C and <=80bar, not a generic manufacturer-approved installation design."
+    },
+    {
+      "id": "erd_manufacturer",
+      "title": "Energy Recovery high-pressure pressure exchangers",
+      "url": "https://energyrecovery.com/pressure-exchangers/high-pressure-px/",
+      "retrieval_ref": "turn49view1",
+      "used_for": ["Isobaric pressure recovery mechanism", "Small/mid-flow product range described with97%peak efficiency"],
+      "interpretation": "This study assumes96%pressure-transfer efficiency; no device-specific efficiency map is fitted and no actual PX installation is selected."
+    }
+  ],
+  "study_assumptions_not_manufacturer_guarantees": {
+    "design": "3 trains x2vessels/train x7elements/vessel,600m3/day gross nominal at25C43g/L40%recovery",
+    "hydraulics": "0.15bar/element at8m3/h, flow exponent1.7, pure-water viscosity ratio",
+    "mass_transfer": "k25=180LMH at10m3/h, flow exponent0.6, viscosity exponent-0.5",
+    "salt_temperature": "B(T)=B25 exp[0.04(T-25)]",
+    "efficiencies": "HP85%, booster80%, feed75%, ERDpressure96%",
+    "low_pressure_feed": "3bar",
+    "auxiliary_electricity": "0.45kWh/m3 grossROpermeate for omitted ancillary loads",
+    "conservative_design_gates": "<=80bar, <=32LMH element-average flux, <=13%element recovery, <=13m3/h feed/vessel, >=3.5m3/hbrine/vessel",
+    "salt_gate": "<=500mg/L calculated total-salt concentration; illustrative process gate, not a regulatory potable-water criterion",
+    "excluded": "Detailed intake/backwash yields; ion chemistry and scaling; boron and pathogens; ERD mixing/leakage; aging kinetics; device efficiency curves; actual field calibration; CIPwater/chemicals; capital-cost optimization"
+  }
+}

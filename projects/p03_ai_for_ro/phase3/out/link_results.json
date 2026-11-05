@@ -1,0 +1,108 @@
+{
+ "membrane": {
+  "A20": 0.9471,
+  "B20": 0.047,
+  "test_m3d": 30.2,
+  "rejection": 99.8
+ },
+ "check: d = f = 0 is phase 2": "pass: membrane fit, design points, 132 + 12 table points, rest of plant 1.23, 10-year steady and rule",
+ "2 this plant's fouling on our train, 25 C": {
+  "train_days": 1185,
+  "clean_RO_kWh_m3": 2.2882,
+  "extra_kWh_m3_median": 0.0253,
+  "extra_kWh_m3_p90": 0.0788,
+  "extra_pct_median": 1.11,
+  "extra_pct_p90": 3.44,
+  "dp_beyond_map_share": 0.0,
+  "f_beyond_map_share": 0.0
+ },
+ "check: Project 5's own constants": "pass: mid case, 0 of 15 cycles, as published",
+ "constants from the model": {
+  "NDP0_bar": 12.44,
+  "DP0_bar": 1.824,
+  "kWh_per_bar": 0.0344,
+  "Project 5 mid case: NDP0, DP0, kWh/bar": [
+   20.0,
+   2.0,
+   0.0368
+  ]
+ },
+ "states": {
+  "clean": [
+   0.0,
+   0.0
+  ],
+  "median day": [
+   0.1609,
+   0.0
+  ],
+  "operators' cleaning level": [
+   0.228,
+   0.0
+  ],
+  "both at 90th percentile": [
+   0.3412,
+   0.1295
+  ]
+ },
+ "grid share used in 4 (the largest over the three fouled states)": {
+  "no sun (Project 5)": 1.0,
+  "steady, with panels": 0.648,
+  "rule, with panels": 1.431
+ },
+ "E1": {
+  "extra_pct_median_day": 1.11,
+  "pass": false
+ },
+ "E2": {
+  "grid share, by state": {
+   "both at 90th percentile": {
+    "rule": -0.393,
+    "steady": 0.648
+   },
+   "median day": {
+    "rule": 1.431,
+    "steady": 0.643
+   },
+   "operators' cleaning level": {
+    "rule": 1.121,
+    "steady": 0.643
+   }
+  },
+  "pass": false
+ },
+ "E3": {
+  "max cycles, no sun": 1,
+  "max cycles, steady": 0,
+  "max cycles, rule": 2,
+  "pass": false
+ },
+ "sensitivity: 90th percentile with the recovery plan recomputed": {
+  "35 % recovery at": [],
+  "steady": {
+   "kWh/m3": 3.6201,
+   "grid kWh/m3": 2.1274,
+   "extra kWh/m3": 0.0859,
+   "extra grid kWh/m3": 0.0559,
+   "grid share of the penalty": 0.6512
+  },
+  "rule": {
+   "kWh/m3": 3.6089,
+   "grid kWh/m3": 0.7109,
+   "extra kWh/m3": 0.0764,
+   "extra grid kWh/m3": -0.0221,
+   "grid share of the penalty": -0.29
+  }
+ },
+ "E4": {
+  "state": [
+   0.3412,
+   0.1295
+  ],
+  "max_element_dP_bar": 0.529,
+  "lead_element_dP_bar": 0.529,
+  "limits": "ok",
+  "pass": true
+ },
+ "seconds": 841
+}

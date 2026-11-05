@@ -1,0 +1,5 @@
+option,capacity,kwp,tank_h,sun_pct,unused_pct,battery_kWh,usd_m3
+"deck design, grid makes up the rest",2.0,0.8,12.0,79.19054582240534,19.952068690978418,,1.1101767109923142
+"off-grid, water storage only (cheapest)",2.45,2.15,77.0,100.0,61.89322695714932,,1.5608120335085243
+off-grid with a battery (cheapest found),1.0,2.95,2.0,100.0,69.97417729285334,5106.0,1.5631691356982225
+"off-grid with a battery, keeping the deck's 2× plant (cheapest found)",2.0,2.8,13.0,100.0,70.43217280913547,3364.0,1.777969622554457

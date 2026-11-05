@@ -1,0 +1,1046 @@
+{
+ "inputs": {
+  "base": {
+   "name": "NREL 2025 update (2024 USD)",
+   "e_cost": 241.0,
+   "p_cost": 372.0,
+   "fom": 0.04,
+   "eta": 0.85,
+   "life": 15
+  },
+  "sensitivity": {
+   "name": "NREL 2023 update / ATB 2024 (2022 USD), 4-hour system",
+   "e_cost_4h": 482.0,
+   "fom": 0.025,
+   "eta": 0.85,
+   "life": 15
+  },
+  "discount_rate": 0.075,
+  "crf_15y": 0.11328723625419038
+ },
+ "named_designs": [
+  {
+   "capacity": 2.0,
+   "kwp_per_m3d": 0.8,
+   "tank_h": 12,
+   "tank_start_m3": 88.09041465032433,
+   "ten_year_grid_without_battery_kWh": 2676556.501340567,
+   "ten_year_sun_it_cannot_use_kWh": 2540555.9385720827,
+   "ten_year_store_if_all_charged_kWh": 2159472.5477862703,
+   "by_year": {
+    "2015": {
+     "grid_kWh_without_battery": 268130.6185668182,
+     "sun_it_cannot_use_kWh": 240538.08412009754,
+     "stored_if_all_charged_kWh": 204457.3715020829
+    },
+    "2016": {
+     "grid_kWh_without_battery": 239408.95480426238,
+     "sun_it_cannot_use_kWh": 282318.70352494606,
+     "stored_if_all_charged_kWh": 239970.89799620415
+    },
+    "2017": {
+     "grid_kWh_without_battery": 261552.62647110518,
+     "sun_it_cannot_use_kWh": 257948.89777410877,
+     "stored_if_all_charged_kWh": 219256.56310799246
+    },
+    "2018": {
+     "grid_kWh_without_battery": 271294.23354495695,
+     "sun_it_cannot_use_kWh": 236503.35890120335,
+     "stored_if_all_charged_kWh": 201027.85506602284
+    },
+    "2019": {
+     "grid_kWh_without_battery": 272494.42146320606,
+     "sun_it_cannot_use_kWh": 276040.4159276365,
+     "stored_if_all_charged_kWh": 234634.353538491
+    },
+    "2020": {
+     "grid_kWh_without_battery": 257134.08314751214,
+     "sun_it_cannot_use_kWh": 286501.45647712325,
+     "stored_if_all_charged_kWh": 243526.23800555477
+    },
+    "2021": {
+     "grid_kWh_without_battery": 253332.39252146188,
+     "sun_it_cannot_use_kWh": 271588.75677653326,
+     "stored_if_all_charged_kWh": 230850.44326005326
+    },
+    "2022": {
+     "grid_kWh_without_battery": 284376.29973539343,
+     "sun_it_cannot_use_kWh": 215131.46874394198,
+     "stored_if_all_charged_kWh": 182861.74843235067
+    },
+    "2023": {
+     "grid_kWh_without_battery": 295034.59673881985,
+     "sun_it_cannot_use_kWh": 229448.20190442688,
+     "stored_if_all_charged_kWh": 195030.97161876285
+    },
+    "2024": {
+     "grid_kWh_without_battery": 273798.2743470311,
+     "sun_it_cannot_use_kWh": 244536.5944220651,
+     "stored_if_all_charged_kWh": 207856.10525875533
+    }
+   },
+   "feasible": false,
+   "E_min_kWh": Infinity,
+   "off_grid_possible": false
+  },
+  {
+   "capacity": 2.0,
+   "kwp_per_m3d": 1.2,
+   "tank_h": 12,
+   "tank_start_m3": 150.76389963466224,
+   "ten_year_grid_without_battery_kWh": 1633586.2319418904,
+   "ten_year_sun_it_cannot_use_kWh": 7756874.615829107,
+   "ten_year_store_if_all_charged_kWh": 6593343.423454741,
+   "by_year": {
+    "2015": {
+     "grid_kWh_without_battery": 162003.95740847624,
+     "sun_it_cannot_use_kWh": 752636.3759637927,
+     "stored_if_all_charged_kWh": 639740.9195692238
+    },
+    "2016": {
+     "grid_kWh_without_battery": 143101.29150136575,
+     "sun_it_cannot_use_kWh": 843796.710126658,
+     "stored_if_all_charged_kWh": 717227.2036076592
+    },
+    "2017": {
+     "grid_kWh_without_battery": 158187.4422445159,
+     "sun_it_cannot_use_kWh": 786177.44257105,
+     "stored_if_all_charged_kWh": 668250.8261853924
+    },
+    "2018": {
+     "grid_kWh_without_battery": 161332.58567306784,
+     "sun_it_cannot_use_kWh": 739835.2788423081,
+     "stored_if_all_charged_kWh": 628859.9870159619
+    },
+    "2019": {
+     "grid_kWh_without_battery": 171904.4910164578,
+     "sun_it_cannot_use_kWh": 809716.6005289446,
+     "stored_if_all_charged_kWh": 688259.110449603
+    },
+    "2020": {
+     "grid_kWh_without_battery": 157585.9781615001,
+     "sun_it_cannot_use_kWh": 836159.0575018516,
+     "stored_if_all_charged_kWh": 710735.1988765738
+    },
+    "2021": {
+     "grid_kWh_without_battery": 151108.4130761485,
+     "sun_it_cannot_use_kWh": 811097.8172872451,
+     "stored_if_all_charged_kWh": 689433.1446941583
+    },
+    "2022": {
+     "grid_kWh_without_battery": 171332.9835927465,
+     "sun_it_cannot_use_kWh": 697775.9528653978,
+     "stored_if_all_charged_kWh": 593109.5599355882
+    },
+    "2023": {
+     "grid_kWh_without_battery": 186643.4784045585,
+     "sun_it_cannot_use_kWh": 718768.3602516502,
+     "stored_if_all_charged_kWh": 610953.1062139027
+    },
+    "2024": {
+     "grid_kWh_without_battery": 170385.6108630534,
+     "sun_it_cannot_use_kWh": 760911.019890209,
+     "stored_if_all_charged_kWh": 646774.3669066776
+    }
+   },
+   "feasible": true,
+   "E_min_kWh": 17956.090197265148,
+   "P_needed_kW": 143.7532521949933,
+   "E_kWh": 17961.45782790985,
+   "P_kW": 351.52005878522766,
+   "capex_usd": 4459476.798394378,
+   "off_grid_possible": true,
+   "check": {
+    "battery_kWh": 17962.0,
+    "battery_kW": 352.0,
+    "duration_h": 51.02840909090909,
+    "grid_kWh_by_year": {
+     "2015": 0.0,
+     "2016": 0.0,
+     "2017": 0.0,
+     "2018": 0.0,
+     "2019": 0.0,
+     "2020": 0.0,
+     "2021": 0.0,
+     "2022": 0.0,
+     "2023": 0.0,
+     "2024": 0.0
+    },
+    "off_grid": true,
+    "short_hours": 0,
+    "battery_start_kWh": 15615.92177036846,
+    "battery_full_hours_by_year": {
+     "2015": 5366,
+     "2016": 5869,
+     "2017": 5509,
+     "2018": 5150,
+     "2019": 4986,
+     "2020": 5453,
+     "2021": 5815,
+     "2022": 4795,
+     "2023": 4533,
+     "2024": 5363
+    },
+    "battery_lowest_kWh_by_year": {
+     "2015": 12505.194829414862,
+     "2016": 12649.519114198793,
+     "2017": 12659.65001061625,
+     "2018": 10203.255777656537,
+     "2019": 180.4404866355698,
+     "2020": 1.0569027712193133,
+     "2021": 6646.243530947042,
+     "2022": 5167.349686903033,
+     "2023": 4958.46755853369,
+     "2024": 14081.387812932584
+    },
+    "with_99pct_energy_grid_kWh_10y": 179.0998475980325
+   },
+   "discharge_kWh_per_year": 163358.62319418904,
+   "full_cycles_per_year": 9.094678944114746,
+   "battery_loss_kWh_per_year": 28827.992328386743,
+   "unused_panel_energy_pct": 30.549872398881934,
+   "unused_panel_energy_pct_without_battery": 40.612028470512676,
+   "sun_share_pct": 100.0,
+   "sun_share_pct_without_battery": 87.41134615227595,
+   "kWh_per_m3": 3.5524498979142103,
+   "water_m3_year": 365287.5,
+   "usd_per_m3": 2.9811344719324704,
+   "usd_per_m3_parts": {
+    "RO plant": 0.7367676554722843,
+    "RO upkeep": 0.13988981281867022,
+    "panels": 0.21797991899557823,
+    "tank": 0.015017030647016942,
+    "battery": 1.8714800539989207
+   },
+   "sensitivity_4h_2023": {
+    "E_kWh": 17957.0,
+    "usd_per_m3": 4.3862897270606105
+   },
+   "critical_stretch": {
+    "start": "2020-11-26 04:00:00+03:00",
+    "end": "2020-12-07 06:00:00+03:00",
+    "days": 11.125,
+    "kWh": 17960.943097244948,
+    "months": [
+     11,
+     12
+    ]
+   }
+  },
+  {
+   "capacity": 2.0,
+   "kwp_per_m3d": 1.6,
+   "tank_h": 24,
+   "tank_start_m3": 167.93394509122461,
+   "ten_year_grid_without_battery_kWh": 1042801.4203576158,
+   "ten_year_sun_it_cannot_use_kWh": 13466429.365311276,
+   "ten_year_store_if_all_charged_kWh": 11446464.960514585,
+   "by_year": {
+    "2015": {
+     "grid_kWh_without_battery": 105635.37475928257,
+     "sun_it_cannot_use_kWh": 1319376.8978297408,
+     "stored_if_all_charged_kWh": 1121470.3631552795
+    },
+    "2016": {
+     "grid_kWh_without_battery": 88167.35538568642,
+     "sun_it_cannot_use_kWh": 1450659.8699609586,
+     "stored_if_all_charged_kWh": 1233060.8894668147
+    },
+    "2017": {
+     "grid_kWh_without_battery": 98964.71348622667,
+     "sun_it_cannot_use_kWh": 1362381.4901431368,
+     "stored_if_all_charged_kWh": 1158024.2666216663
+    },
+    "2018": {
+     "grid_kWh_without_battery": 100424.61058232588,
+     "sun_it_cannot_use_kWh": 1296919.905468288,
+     "stored_if_all_charged_kWh": 1102381.919648045
+    },
+    "2019": {
+     "grid_kWh_without_battery": 108833.96838468142,
+     "sun_it_cannot_use_kWh": 1383145.2462120536,
+     "stored_if_all_charged_kWh": 1175673.4592802455
+    },
+    "2020": {
+     "grid_kWh_without_battery": 102721.77768303885,
+     "sun_it_cannot_use_kWh": 1434822.235519956,
+     "stored_if_all_charged_kWh": 1219598.9001919627
+    },
+    "2021": {
+     "grid_kWh_without_battery": 95314.90114917561,
+     "sun_it_cannot_use_kWh": 1401349.8178025307,
+     "stored_if_all_charged_kWh": 1191147.3451321512
+    },
+    "2022": {
+     "grid_kWh_without_battery": 110004.1025124837,
+     "sun_it_cannot_use_kWh": 1237391.7941730989,
+     "stored_if_all_charged_kWh": 1051783.025047134
+    },
+    "2023": {
+     "grid_kWh_without_battery": 123898.21784296462,
+     "sun_it_cannot_use_kWh": 1257469.9953763785,
+     "stored_if_all_charged_kWh": 1068849.4960699216
+    },
+    "2024": {
+     "grid_kWh_without_battery": 108836.39857175008,
+     "sun_it_cannot_use_kWh": 1322912.1128251334,
+     "stored_if_all_charged_kWh": 1124475.2959013632
+    }
+   },
+   "feasible": true,
+   "E_min_kWh": 11918.084544979036,
+   "P_needed_kW": 143.7532521949933,
+   "E_kWh": 11925.414905013517,
+   "P_kW": 591.6037099612332,
+   "capex_usd": 3094101.572213836,
+   "off_grid_possible": true,
+   "check": {
+    "battery_kWh": 11926.0,
+    "battery_kW": 592.0,
+    "duration_h": 20.14527027027027,
+    "grid_kWh_by_year": {
+     "2015": 0.0,
+     "2016": 0.0,
+     "2017": 0.0,
+     "2018": 0.0,
+     "2019": 0.0,
+     "2020": 0.0,
+     "2021": 0.0,
+     "2022": 0.0,
+     "2023": 0.0,
+     "2024": 0.0
+    },
+    "off_grid": true,
+    "short_hours": 0,
+    "battery_start_kWh": 11926.0,
+    "battery_full_hours_by_year": {
+     "2015": 7078,
+     "2016": 7323,
+     "2017": 7208,
+     "2018": 7162,
+     "2019": 6827,
+     "2020": 7087,
+     "2021": 7184,
+     "2022": 6812,
+     "2023": 6641,
+     "2024": 7035
+    },
+    "battery_lowest_kWh_by_year": {
+     "2015": 7131.4548873423555,
+     "2016": 8951.819897445459,
+     "2017": 8652.187505319675,
+     "2018": 6965.2135934451835,
+     "2019": 7293.217556658432,
+     "2020": 1.1510752923342125,
+     "2021": 6005.030345157412,
+     "2022": 7473.930917018733,
+     "2023": 6616.763155187456,
+     "2024": 9359.471357725355
+    },
+    "with_99pct_energy_grid_kWh_10y": 118.68816874428595
+   },
+   "discharge_kWh_per_year": 104280.14203576157,
+   "full_cycles_per_year": 8.743932754969107,
+   "battery_loss_kWh_per_year": 18402.378006310715,
+   "unused_panel_energy_pct": 48.06141430318935,
+   "unused_panel_energy_pct_without_battery": 52.87880491816934,
+   "sun_share_pct": 100.0,
+   "sun_share_pct_without_battery": 92.00487376356602,
+   "kWh_per_m3": 3.5706022775723567,
+   "water_m3_year": 365287.5,
+   "usd_per_m3": 2.495844212168982,
+   "usd_per_m3_parts": {
+    "RO plant": 0.7367676554722843,
+    "RO upkeep": 0.13988981281867022,
+    "panels": 0.29063989199410434,
+    "tank": 0.030034061294033885,
+    "battery": 1.2985127905898892
+   },
+   "sensitivity_4h_2023": {
+    "E_kWh": 11919.0,
+    "usd_per_m3": 3.372205634949112
+   },
+   "critical_stretch": {
+    "start": "2020-11-27 01:00:00+03:00",
+    "end": "2020-12-07 06:00:00+03:00",
+    "days": 10.25,
+    "kWh": 11924.848924716003,
+    "months": [
+     11,
+     12
+    ]
+   }
+  },
+  {
+   "capacity": 2.0,
+   "kwp_per_m3d": 2.0,
+   "tank_h": 24,
+   "tank_start_m3": 184.61981231641175,
+   "ten_year_grid_without_battery_kWh": 789586.0413494052,
+   "ten_year_sun_it_cannot_use_kWh": 19556208.026717927,
+   "ten_year_store_if_all_charged_kWh": 16622776.822710238,
+   "by_year": {
+    "2015": {
+     "grid_kWh_without_battery": 81363.83262865923,
+     "sun_it_cannot_use_kWh": 1922513.1763295082,
+     "stored_if_all_charged_kWh": 1634136.199880082
+    },
+    "2016": {
+     "grid_kWh_without_battery": 63804.33925031414,
+     "sun_it_cannot_use_kWh": 2091945.604463817,
+     "stored_if_all_charged_kWh": 1778153.7637942445
+    },
+    "2017": {
+     "grid_kWh_without_battery": 72944.872091429,
+     "sun_it_cannot_use_kWh": 1976504.7544140373,
+     "stored_if_all_charged_kWh": 1680029.0412519318
+    },
+    "2018": {
+     "grid_kWh_without_battery": 76728.35601594881,
+     "sun_it_cannot_use_kWh": 1895847.247848804,
+     "stored_if_all_charged_kWh": 1611470.1606714835
+    },
+    "2019": {
+     "grid_kWh_without_battery": 81415.25215017136,
+     "sun_it_cannot_use_kWh": 1996911.34690432,
+     "stored_if_all_charged_kWh": 1697374.644868672
+    },
+    "2020": {
+     "grid_kWh_without_battery": 78217.69660978085,
+     "sun_it_cannot_use_kWh": 2067713.0584377865,
+     "stored_if_all_charged_kWh": 1757556.0996721184
+    },
+    "2021": {
+     "grid_kWh_without_battery": 71697.43530355097,
+     "sun_it_cannot_use_kWh": 2027813.9726237627,
+     "stored_if_all_charged_kWh": 1723641.8767301983
+    },
+    "2022": {
+     "grid_kWh_without_battery": 85339.16175392579,
+     "sun_it_cannot_use_kWh": 1818455.4273404698,
+     "stored_if_all_charged_kWh": 1545687.1132393994
+    },
+    "2023": {
+     "grid_kWh_without_battery": 96688.46837091052,
+     "sun_it_cannot_use_kWh": 1835804.1985989031,
+     "stored_if_all_charged_kWh": 1560433.5688090676
+    },
+    "2024": {
+     "grid_kWh_without_battery": 81386.6271747145,
+     "sun_it_cannot_use_kWh": 1922699.239756517,
+     "stored_if_all_charged_kWh": 1634294.3537930395
+    }
+   },
+   "feasible": true,
+   "E_min_kWh": 6533.334726128727,
+   "P_needed_kW": 143.7532521949933,
+   "E_kWh": 6541.854430153966,
+   "P_kW": 832.183712315531,
+   "capex_usd": 1886159.2586484833,
+   "off_grid_possible": true,
+   "check": {
+    "battery_kWh": 6542.0,
+    "battery_kW": 833.0,
+    "duration_h": 7.853541416566626,
+    "grid_kWh_by_year": {
+     "2015": 0.0,
+     "2016": 0.0,
+     "2017": 0.0,
+     "2018": 0.0,
+     "2019": 0.0,
+     "2020": 0.0,
+     "2021": 0.0,
+     "2022": 0.0,
+     "2023": 0.0,
+     "2024": 0.0
+    },
+    "off_grid": true,
+    "short_hours": 0,
+    "battery_start_kWh": 6542.0,
+    "battery_full_hours_by_year": {
+     "2015": 7530,
+     "2016": 7787,
+     "2017": 7655,
+     "2018": 7599,
+     "2019": 7448,
+     "2020": 7526,
+     "2021": 7573,
+     "2022": 7439,
+     "2023": 7247,
+     "2024": 7545
+    },
+    "battery_lowest_kWh_by_year": {
+     "2015": 2393.907235639747,
+     "2016": 4575.892176204604,
+     "2017": 4298.148611637321,
+     "2018": 2163.157035224811,
+     "2019": 2585.0191123928544,
+     "2020": 0.8394144404103656,
+     "2021": 2460.94460013145,
+     "2022": 3597.6533255161075,
+     "2023": 3189.8247085354565,
+     "2024": 4479.62876801442
+    },
+    "with_99pct_energy_grid_kWh_10y": 64.7246997071631
+   },
+   "discharge_kWh_per_year": 78958.60413494051,
+   "full_cycles_per_year": 12.069490084827349,
+   "battery_loss_kWh_per_year": 13933.871317930741,
+   "unused_panel_energy_pct": 58.51519814705118,
+   "unused_panel_energy_pct_without_battery": 61.43329496668258,
+   "sun_share_pct": 100.0,
+   "sun_share_pct_without_battery": 93.95722703356444,
+   "kWh_per_m3": 3.5770776961112714,
+   "water_m3_year": 365287.4999999999,
+   "usd_per_m3": 2.061631033544345,
+   "usd_per_m3_parts": {
+    "RO plant": 0.7367676554722845,
+    "RO upkeep": 0.13988981281867027,
+    "panels": 0.3632998649926305,
+    "tank": 0.030034061294033895,
+    "battery": 0.7916396389667255
+   },
+   "sensitivity_4h_2023": {
+    "E_kWh": 6534.0,
+    "usd_per_m3": 2.4622582047260977
+   },
+   "critical_stretch": {
+    "start": "2020-11-27 02:00:00+03:00",
+    "end": "2020-12-07 06:00:00+03:00",
+    "days": 10.208333333333334,
+    "kWh": 6541.1605856232345,
+    "months": [
+     11,
+     12
+    ]
+   }
+  }
+ ],
+ "screen": {
+  "grid": {
+   "capacity": [
+    1.0,
+    1.25,
+    1.5,
+    1.75,
+    2.0,
+    2.25,
+    2.5
+   ],
+   "kwp_per_m3d": [
+    0.8,
+    1.0,
+    1.2,
+    1.4,
+    1.6,
+    1.8,
+    2.0,
+    2.5,
+    3.0,
+    3.5,
+    4.0,
+    5.0,
+    6.0
+   ],
+   "tank_h": [
+    0,
+    3,
+    6,
+    12,
+    18,
+    24,
+    36,
+    48
+   ]
+  },
+  "designs": 728,
+  "off_grid_possible": 672,
+  "with_a_battery": 655,
+  "best_on_screen": {
+   "capacity": 1.0,
+   "kwp_per_m3d": 3.0,
+   "tank_h": 3.0,
+   "usd_per_m3": 1.564833974032946
+  },
+  "local_search_designs": 23,
+  "local_search_steps": [
+   [
+    0.2,
+    0.4,
+    6.0
+   ],
+   [
+    0.1,
+    0.2,
+    3.0
+   ],
+   [
+    0.05,
+    0.1,
+    1.0
+   ],
+   [
+    0.05,
+    0.05,
+    1.0
+   ]
+  ],
+  "capacity_at_lower_bound_1x": true,
+  "within_1pct_of_cheapest": [
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 3.0,
+    "tank_h": 3.0,
+    "E_kWh": 5046.296751845628,
+    "P_kW": 432.1447418660705,
+    "usd_per_m3": 1.564833974032946
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 3.0,
+    "tank_h": 6.0,
+    "E_kWh": 5046.296751845628,
+    "P_kW": 432.1447418660705,
+    "usd_per_m3": 1.5685882316947002
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 3.0,
+    "tank_h": 12.0,
+    "E_kWh": 5046.296751845628,
+    "P_kW": 432.1447418660705,
+    "usd_per_m3": 1.5760967470182088
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 3.0,
+    "tank_h": 9.0,
+    "E_kWh": 5046.296751845628,
+    "P_kW": 432.1447418660705,
+    "usd_per_m3": 1.5723424893564544
+   },
+   {
+    "capacity": 1.1,
+    "kwp_per_m3d": 3.0,
+    "tank_h": 3.0,
+    "E_kWh": 4780.127814772073,
+    "P_kW": 393.7969469475364,
+    "usd_per_m3": 1.57576242802901
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 3.2,
+    "tank_h": 3.0,
+    "E_kWh": 4810.616834759945,
+    "P_kW": 383.50722639982627,
+    "usd_per_m3": 1.5697366871788752
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.8,
+    "tank_h": 3.0,
+    "E_kWh": 5284.738244688138,
+    "P_kW": 529.7486803006233,
+    "usd_per_m3": 1.567854400426051
+   },
+   {
+    "capacity": 1.05,
+    "kwp_per_m3d": 3.0,
+    "tank_h": 3.0,
+    "E_kWh": 4909.0912897102535,
+    "P_kW": 411.201931542981,
+    "usd_per_m3": 1.5696053026301364
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 3.1,
+    "tank_h": 3.0,
+    "E_kWh": 4924.812624531798,
+    "P_kW": 404.537923930346,
+    "usd_per_m3": 1.5664035093863777
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.9,
+    "tank_h": 3.0,
+    "E_kWh": 5164.721653398126,
+    "P_kW": 470.3124432412386,
+    "usd_per_m3": 1.5646036498187097
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.9,
+    "tank_h": 4.0,
+    "E_kWh": 5164.721653398126,
+    "P_kW": 470.3124432412386,
+    "usd_per_m3": 1.5658550690392945
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.9,
+    "tank_h": 2.0,
+    "E_kWh": 5164.721653398126,
+    "P_kW": 470.3124432412386,
+    "usd_per_m3": 1.5633522305981251
+   },
+   {
+    "capacity": 1.05,
+    "kwp_per_m3d": 2.9,
+    "tank_h": 2.0,
+    "E_kWh": 5098.411374729127,
+    "P_kW": 450.5684507864566,
+    "usd_per_m3": 1.5754804650774807
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 3.0,
+    "tank_h": 2.0,
+    "E_kWh": 5046.296751845628,
+    "P_kW": 432.1447418660705,
+    "usd_per_m3": 1.5635825548123612
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.8,
+    "tank_h": 2.0,
+    "E_kWh": 5284.738244688138,
+    "P_kW": 529.7486803006233,
+    "usd_per_m3": 1.5666029812054663
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.9,
+    "tank_h": 1.0,
+    "E_kWh": 5300.925109541509,
+    "P_kW": 480.27058209702585,
+    "usd_per_m3": 1.5774298331888996
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0,
+    "E_kWh": 5105.50920262048,
+    "P_kW": 448.8873608519617,
+    "usd_per_m3": 1.5631019169947156
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 3.0,
+    "E_kWh": 5105.50920262048,
+    "P_kW": 448.8873608519617,
+    "usd_per_m3": 1.5643533362153001
+   },
+   {
+    "capacity": 1.0,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 1.0,
+    "E_kWh": 5241.712658763863,
+    "P_kW": 457.583961616991,
+    "usd_per_m3": 1.5769825884019744
+   },
+   {
+    "capacity": 1.05,
+    "kwp_per_m3d": 2.95,
+    "tank_h": 2.0,
+    "E_kWh": 5037.638680288568,
+    "P_kW": 432.22873772662695,
+    "usd_per_m3": 1.5755539996416006
+   }
+  ]
+ },
+ "cheapest": {
+  "capacity": 1.0,
+  "kwp_per_m3d": 2.95,
+  "tank_h": 2.0,
+  "tank_start_m3": 0.0,
+  "ten_year_grid_without_battery_kWh": 6121423.171798294,
+  "ten_year_sun_it_cannot_use_kWh": 40057369.48245832,
+  "ten_year_store_if_all_charged_kWh": 34048764.06008957,
+  "by_year": {
+   "2015": {
+    "grid_kWh_without_battery": 609116.3486780515,
+    "sun_it_cannot_use_kWh": 3950032.1907272744,
+    "stored_if_all_charged_kWh": 3357527.362118183
+   },
+   "2016": {
+    "grid_kWh_without_battery": 609355.2383270889,
+    "sun_it_cannot_use_kWh": 4230769.619611204,
+    "stored_if_all_charged_kWh": 3596154.176669523
+   },
+   "2017": {
+    "grid_kWh_without_battery": 610516.3862729719,
+    "sun_it_cannot_use_kWh": 4046260.974943257,
+    "stored_if_all_charged_kWh": 3439321.8287017685
+   },
+   "2018": {
+    "grid_kWh_without_battery": 608841.6195552266,
+    "sun_it_cannot_use_kWh": 3916942.5711452914,
+    "stored_if_all_charged_kWh": 3329401.1854734975
+   },
+   "2019": {
+    "grid_kWh_without_battery": 614475.1414147483,
+    "sun_it_cannot_use_kWh": 4063617.5527680265,
+    "stored_if_all_charged_kWh": 3454074.9198528226
+   },
+   "2020": {
+    "grid_kWh_without_battery": 612594.5523396165,
+    "sun_it_cannot_use_kWh": 4173223.394097428,
+    "stored_if_all_charged_kWh": 3547239.8849828136
+   },
+   "2021": {
+    "grid_kWh_without_battery": 609399.3078245868,
+    "sun_it_cannot_use_kWh": 4119950.6225582715,
+    "stored_if_all_charged_kWh": 3501958.029174531
+   },
+   "2022": {
+    "grid_kWh_without_battery": 612792.9680579538,
+    "sun_it_cannot_use_kWh": 3793580.707833631,
+    "stored_if_all_charged_kWh": 3224543.6016585864
+   },
+   "2023": {
+    "grid_kWh_without_battery": 616682.2085417653,
+    "sun_it_cannot_use_kWh": 3803162.226640243,
+    "stored_if_all_charged_kWh": 3232687.8926442065
+   },
+   "2024": {
+    "grid_kWh_without_battery": 617649.400786285,
+    "sun_it_cannot_use_kWh": 3959829.6221336955,
+    "stored_if_all_charged_kWh": 3365855.178813641
+   }
+  },
+  "feasible": true,
+  "E_min_kWh": 5105.509202618152,
+  "P_needed_kW": 153.00899332868497,
+  "E_kWh": 5105.50920262048,
+  "P_kW": 448.791766761519,
+  "capex_usd": 1397378.255066821,
+  "off_grid_possible": true,
+  "check": {
+   "battery_kWh": 5106.0,
+   "battery_kW": 449.0,
+   "duration_h": 11.371937639198219,
+   "grid_kWh_by_year": {
+    "2015": 0.0,
+    "2016": 0.0,
+    "2017": 0.0,
+    "2018": 0.0,
+    "2019": 0.0,
+    "2020": 0.0,
+    "2021": 0.0,
+    "2022": 0.0,
+    "2023": 0.0,
+    "2024": 0.0
+   },
+   "off_grid": true,
+   "short_hours": 0,
+   "battery_start_kWh": 4349.968827714743,
+   "battery_full_hours_by_year": {
+    "2015": 2626,
+    "2016": 2697,
+    "2017": 2661,
+    "2018": 2647,
+    "2019": 2584,
+    "2020": 2627,
+    "2021": 2661,
+    "2022": 2599,
+    "2023": 2511,
+    "2024": 2608
+   },
+   "battery_lowest_kWh_by_year": {
+    "2015": 64.96737300987905,
+    "2016": 2015.055964644474,
+    "2017": 2122.594825612158,
+    "2018": 0.49079738231131387,
+    "2019": 460.8272635386245,
+    "2020": 4.0131256551458705,
+    "2021": 997.9947760723162,
+    "2022": 960.1164718272659,
+    "2023": 805.7604774261498,
+    "2024": 1860.27543420249
+   },
+   "with_99pct_energy_grid_kWh_10y": 98.58785577399229
+  },
+  "discharge_kWh_per_year": 612142.3171798296,
+  "full_cycles_per_year": 119.88686196236381,
+  "battery_loss_kWh_per_year": 108025.1147964409,
+  "unused_panel_energy_pct": 69.97417729285334,
+  "unused_panel_energy_pct_without_battery": 85.31189068351776,
+  "sun_share_pct": 100.0,
+  "sun_share_pct_without_battery": 52.9775348367062,
+  "kWh_per_m3": 3.563790770092781,
+  "water_m3_year": 365287.5,
+  "usd_per_m3": 1.5631691356982225,
+  "usd_per_m3_parts": {
+   "RO plant": 0.36838382773614214,
+   "RO upkeep": 0.06994490640933511,
+   "panels": 0.5358673008641298,
+   "tank": 0.0025028384411694905,
+   "battery": 0.5864702622474459
+  },
+  "sensitivity_4h_2023": {
+   "E_kWh": 5106.0,
+   "usd_per_m3": 1.908396812327135
+  },
+  "critical_stretch": {
+   "start": "2018-11-13 18:00:00+03:00",
+   "end": "2018-11-16 06:00:00+03:00",
+   "days": 2.5416666666666665,
+   "kWh": 5105.50920262048,
+   "months": [
+    11
+   ]
+  }
+ },
+ "cheapest_at_2x": {
+  "capacity": 2.0,
+  "kwp_per_m3d": 2.8,
+  "tank_h": 13.0,
+  "tank_start_m3": 215.46632786953168,
+  "ten_year_grid_without_battery_kWh": 568961.6037382107,
+  "ten_year_sun_it_cannot_use_kWh": 32058545.922289606,
+  "ten_year_store_if_all_charged_kWh": 27249764.033946164,
+  "by_year": {
+   "2015": {
+    "grid_kWh_without_battery": 58742.212520098146,
+    "sun_it_cannot_use_kWh": 3157892.968381716,
+    "stored_if_all_charged_kWh": 2684209.0231244583
+   },
+   "2016": {
+    "grid_kWh_without_battery": 45380.525166722975,
+    "sun_it_cannot_use_kWh": 3409605.0303636147,
+    "stored_if_all_charged_kWh": 2898164.2758090724
+   },
+   "2017": {
+    "grid_kWh_without_battery": 51945.569911355386,
+    "sun_it_cannot_use_kWh": 3240010.295252368,
+    "stored_if_all_charged_kWh": 2754008.7509645126
+   },
+   "2018": {
+    "grid_kWh_without_battery": 57841.31242475083,
+    "sun_it_cannot_use_kWh": 3125654.786652603,
+    "stored_if_all_charged_kWh": 2656806.5686547128
+   },
+   "2019": {
+    "grid_kWh_without_battery": 61887.10077290349,
+    "sun_it_cannot_use_kWh": 3264266.1719978866,
+    "stored_if_all_charged_kWh": 2774626.2461982034
+   },
+   "2020": {
+    "grid_kWh_without_battery": 53782.24237363361,
+    "sun_it_cannot_use_kWh": 3361168.7162262155,
+    "stored_if_all_charged_kWh": 2856993.408792283
+   },
+   "2021": {
+    "grid_kWh_without_battery": 49582.662895144276,
+    "sun_it_cannot_use_kWh": 3309414.1551287808,
+    "stored_if_all_charged_kWh": 2813002.0318594635
+   },
+   "2022": {
+    "grid_kWh_without_battery": 61130.79521758409,
+    "sun_it_cannot_use_kWh": 3008373.126762132,
+    "stored_if_all_charged_kWh": 2557117.157747812
+   },
+   "2023": {
+    "grid_kWh_without_battery": 71320.80368973991,
+    "sun_it_cannot_use_kWh": 3025209.3344089435,
+    "stored_if_all_charged_kWh": 2571427.934247602
+   },
+   "2024": {
+    "grid_kWh_without_battery": 57348.37876627799,
+    "sun_it_cannot_use_kWh": 3156951.3371153465,
+    "stored_if_all_charged_kWh": 2683408.6365480446
+   }
+  },
+  "feasible": true,
+  "E_min_kWh": 3363.195179287344,
+  "P_needed_kW": 143.7532521949933,
+  "E_kWh": 3363.1951792733744,
+  "P_kW": 231.55549285867608,
+  "capex_usd": 896668.6815483107,
+  "off_grid_possible": true,
+  "check": {
+   "battery_kWh": 3364.0,
+   "battery_kW": 232.0,
+   "duration_h": 14.5,
+   "grid_kWh_by_year": {
+    "2015": 0.0,
+    "2016": 0.0,
+    "2017": 0.0,
+    "2018": 0.0,
+    "2019": 0.0,
+    "2020": 0.0,
+    "2021": 0.0,
+    "2022": 0.0,
+    "2023": 0.0,
+    "2024": 0.0
+   },
+   "off_grid": true,
+   "short_hours": 0,
+   "battery_start_kWh": 3364.0,
+   "battery_full_hours_by_year": {
+    "2015": 7735,
+    "2016": 7969,
+    "2017": 7885,
+    "2018": 7721,
+    "2019": 7629,
+    "2020": 7768,
+    "2021": 7844,
+    "2022": 7667,
+    "2023": 7446,
+    "2024": 7800
+   },
+   "battery_lowest_kWh_by_year": {
+    "2015": 187.3558893953398,
+    "2016": 2103.4454061679735,
+    "2017": 1911.6747203033965,
+    "2018": 0.8048207247286854,
+    "2019": 611.1400330498054,
+    "2020": 8.013192988366967,
+    "2021": 778.0587436471674,
+    "2022": 838.3389728761251,
+    "2023": 718.8607162728808,
+    "2024": 1908.8009980946158
+   },
+   "with_99pct_energy_grid_kWh_10y": 60.05553132562285
+  },
+  "discharge_kWh_per_year": 56896.160373821076,
+  "full_cycles_per_year": 16.913246246676895,
+  "battery_loss_kWh_per_year": 10040.49888949786,
+  "unused_panel_energy_pct": 70.43217280913547,
+  "unused_panel_energy_pct_without_battery": 71.93412171419843,
+  "sun_share_pct": 100.0,
+  "sun_share_pct_without_battery": 95.64912651341227,
+  "kWh_per_m3": 3.5799065738137674,
+  "water_m3_year": 365287.5,
+  "usd_per_m3": 1.777969622554457,
+  "usd_per_m3_parts": {
+   "RO plant": 0.7367676554722843,
+   "RO upkeep": 0.13988981281867022,
+   "panels": 0.5086198109896826,
+   "tank": 0.01626844986760169,
+   "battery": 0.3764238934062181
+  },
+  "sensitivity_4h_2023": {
+   "E_kWh": 3364.0,
+   "usd_per_m3": 2.0153788404643516
+  },
+  "critical_stretch": {
+   "start": "2018-11-14 05:00:00+03:00",
+   "end": "2018-11-16 06:00:00+03:00",
+   "days": 2.0833333333333335,
+   "kWh": 3363.1951792733744,
+   "months": [
+    11
+   ]
+  }
+ },
+ "cheapest_with_2023_4h_prices": {
+  "capacity": 2.25,
+  "kwp_per_m3d": 3.5,
+  "tank_h": 36.0,
+  "E_kWh": 589.5214272309095,
+  "usd_per_m3": 1.7746361887969937
+ },
+ "run_seconds": 508.18369030952454
+}

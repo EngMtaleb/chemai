@@ -1,0 +1,44 @@
+plant,train,day,legs,reason
+P1,A,207,2,time since last cleaning
+P1,C,207,1,time since last cleaning
+P1,B,208,2,time since last cleaning
+P1,B,333,2,dP on screen
+P1,A,370,1,dP on screen
+P1,C,375,1,dP on screen
+P1,B,458,2,dP on screen
+P1,C,505,2,dP on screen
+P1,A,515,1,dP on screen
+P1,B,632,2,dP on screen
+P1,C,677,2,dP on screen
+P1,A,722,2,time since last cleaning
+P1,B,758,1,dP on screen
+P2,B,50,1,other reason
+P2,A,112,2,dP on screen
+P2,C,118,1,dP on screen
+P2,A,153,2,other reason
+P2,B,175,1,dP on screen
+P2,B,258,1,dP on screen
+P2,C,271,2,dP on screen
+P2,C,314,2,other reason
+P2,A,330,1,time since last cleaning
+P2,B,435,1,dP on screen
+P2,C,491,1,time since last cleaning
+P2,B,492,2,dP on screen
+P2,A,507,2,time since last cleaning
+P2,B,669,1,time since last cleaning
+P2,C,672,1,time since last cleaning
+P2,A,684,2,time since last cleaning
+P2,B,697,1,dP on screen
+P2,B,720,1,dP on screen
+P2,B,764,2,dP on screen
+P2,C,771,1,dP on screen
+P3,B,210,1,time since last cleaning
+P3,C,210,2,time since last cleaning
+P3,A,213,1,time since last cleaning
+P3,A,347,2,other reason
+P3,B,420,1,time since last cleaning
+P3,C,425,1,time since last cleaning
+P3,A,560,1,time since last cleaning
+P3,B,600,1,other reason
+P3,C,635,1,time since last cleaning
+P3,A,770,2,time since last cleaning
