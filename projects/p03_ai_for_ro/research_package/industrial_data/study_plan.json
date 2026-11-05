@@ -1,0 +1,25 @@
+{
+  "study_id": "industrial-derived-indicator-forecast-20261030",
+  "frozen_before_fit": true,
+  "scope": "Reanalysis of publicly deposited industrial-derived daily indicators; not raw SCADA reconstruction, diagnostic ground truth, or operational CIP control.",
+  "source_record": "https://zenodo.org/records/21055948",
+  "targets": ["dp_pct", "flux_pct"],
+  "horizons_days": [1, 3, 7, 14],
+  "development": "training label day < 450; validation origin >= 450 and label day < 550",
+  "rolling_test_blocks": [[550, 604], [605, 659], [660, 714], [715, 771]],
+  "rolling_fit_rule": "Every training target is observed strictly before the test-block start. Fixed model specifications; no test tuning.",
+  "held_out_train_test": "For each of A/B/C, fit other two trains using target day < 550; test held-out train at origins >= 550. No held-out train rows in fitted preprocessors or models.",
+  "pair_rule": "Exact observed t+h label only; exclude pairs with CIP at t or between t and t+h inclusive. This is a conditional no-intervening-cleaning retrospective benchmark, not a policy forecast.",
+  "history_rule": "Use only observed rows <= origin day after most recent known CIP; no interpolation, future imputation, or future-aware metadata.",
+  "excluded_features": ["days_to_next_cip", "state", "episode", "day_index", "train_id"],
+  "methods": {
+    "persistence": "next indicator equals current value",
+    "median3_7d": "median of latest up to 3 observed rows in trailing 7 calendar days, no CIP crossing",
+    "ridge_residual": {"alpha": 10.0, "standardize": "fit training rows only", "target": "future minus current"},
+    "histgb_residual": {"learning_rate": 0.04, "max_iter": 150, "max_leaf_nodes": 7, "min_samples_leaf": 20, "l2_regularization": 5.0, "early_stopping": false, "random_state": 20261030, "target": "future minus current"}
+  },
+  "metrics": ["MAE", "RMSE", "skill_vs_persistence=1-MAE_model/MAE_persistence", "per-block and per-train MAE"],
+  "candidate_gate": "A model is only a promising candidate if pooled rolling MAE improves by >=5%, improvement is positive in >=3 of 4 blocks, and held-out-train pooled MAE improves by >=5%. This gate is a research screen, not operational acceptance.",
+  "unit": "dimensionless published indicator units; multiply MAE by 100 only to express points on the deposited 0–1 score, not percent physical pressure or general accuracy",
+  "source_semantic_limit": "Deposit dictionary says fixed-baseline deviations, while deposited scripts distinguish per-CIP dp_pct/ndp_pct from fixed-baseline DP_norm. Keep exact deposited labels; do not assign raw pressure or energy semantics. Upstream derivation cannot be audited without withheld raw data."
+}

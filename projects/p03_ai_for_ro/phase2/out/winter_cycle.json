@@ -1,0 +1,38 @@
+{
+ "17.2": {
+  "P_f": 67.14,
+  "sec_ro": 2.4,
+  "c_p": 186.3,
+  "lead_flux": 24.37,
+  "lead_rec": 9.95,
+  "ndp_tail": 5.32,
+  "note": "ok"
+ },
+ "20.0": {
+  "P_f": 65.85,
+  "sec_ro": 2.355,
+  "c_p": 206.7,
+  "lead_flux": 25.47,
+  "lead_rec": 10.4,
+  "ndp_tail": 4.32,
+  "note": "ok"
+ },
+ "25.0": {
+  "P_f": 63.97,
+  "sec_ro": 2.288,
+  "c_p": 247.9,
+  "lead_flux": 27.63,
+  "lead_rec": 11.28,
+  "ndp_tail": 2.99,
+  "note": "ok"
+ },
+ "28.0": {
+  "P_f": 63.15,
+  "sec_ro": 2.259,
+  "c_p": 271.9,
+  "lead_flux": 28.85,
+  "lead_rec": 11.78,
+  "ndp_tail": 2.48,
+  "note": "ok"
+ }
+}

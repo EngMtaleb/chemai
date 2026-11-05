@@ -7,7 +7,8 @@ and an anonymised cleaning (CIP) ledger. Calendar dates are withheld: days are
 integers counted from the first record. Not committed - `download_deposit`
 fetches the zip and checks the md5 published on the record page.
 
-What the files are, as found by reading them (projects/p03_ro_fouling/VALIDATION.md):
+What the files are, as found by reading them (the earlier Project 3's VALIDATION.md,
+projects/p03_ro_fouling at commit 0b12b39):
 
   * `dp_pct` is the normalised feed-channel pressure drop against a FIXED
     commissioning baseline, minus one and clipped to [0, 1]: DP_norm = 1 + dp_pct.

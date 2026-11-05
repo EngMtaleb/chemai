@@ -1,0 +1,45 @@
+{
+  "design": "3 independently switchable trains, 2 vessels per train, 7 industrial SWRO elements per vessel; physics model supplies q and power",
+  "demand_m3_day": 400,
+  "tank_m3": 200,
+  "initial_and_terminal_inventory_m3": 100,
+  "reserve_m3": 20,
+  "PV_kWp": 320,
+  "constant_feed_temperature_C": 25,
+  "feed_salinity_g_L": 43,
+  "recovery": 0.4,
+  "low_flux_LMH": 12,
+  "high_flux_LMH": 14.51800232288037,
+  "routine_start_product_diversion_minutes": 5,
+  "minimum_on_hours": 2,
+  "step_h": 1,
+  "horizon_h": 24,
+  "window_h": 72,
+  "seasons": [
+    "2023-01-15",
+    "2023-04-15",
+    "2023-07-15",
+    "2023-10-15"
+  ],
+  "policies": [
+    "fixed_two_trains",
+    "daylight_tank_rule",
+    "rolling_milp"
+  ],
+  "power_component_scope": "exact physics model electricity components; feed25C constant; outdoor air temperature only affects PV source output",
+  "forecast": "previous observed 24h PV pattern, no future actual PV input; optionally 40% upward bias stress",
+  "capacity_disturbance": "prescribed accepted-production yield becomes0.9 fromhour24, electrical draw unchanged; a sensitivity stress, not a fitted fouling law",
+  "initial_on_state": [
+    1,
+    1,
+    0
+  ],
+  "initial_on_age_h": [
+    10,
+    10,
+    0
+  ],
+  "comparison": "equal demand, same hardware, same initial and target terminal stock; failed stock/service cases excluded from saving claims",
+  "quality": "all physics dispatch points must meet modeled TDS500mg/L screen plus physics feasibility; not a drinking-water certificate",
+  "startup_note": "5minute routine restart diversion and2hmin-on are study assumptions. No post-CIPrestart or chemical cleaningprotocol is simulated."
+}

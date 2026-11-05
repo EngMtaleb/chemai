@@ -1,0 +1,51 @@
+{
+ "1 switches off = base, draw for draw": "pass (3 plants, one per fouling law, every column and every state)",
+ "2 repeatable": "pass",
+ "3 temperature = series window": {
+  "window_start_in_series": 899,
+  "range_C": [
+   16.2,
+   34.41
+  ],
+  "sensor_noise_sd_C": 0.194
+ },
+ "4 driver (400 simulated years)": {
+  "variance": 0.997,
+  "yearly_share": 0.296,
+  "lag1_of_the_rest": 0.8667,
+  "declared_lag1": 0.8669
+ },
+ "5 instruments": "pass: correlation with Z = sqrt(s)/sqrt(1+r^2) within 0.02 at all 15 grid points",
+ "6 rate formula": "pass: 2298 train-days, largest difference 1.4e-17 (linear law, no daily noise, no upsets)",
+ "7 indicator": {
+  "rows": 1339,
+  "within_0_1": true,
+  "corr_with_true_dP": 0.791,
+  "cleaning_legs": {
+   "A": 5,
+   "B": 5,
+   "C": 4
+  }
+ },
+ "7b first cleaning per train (30 plants)": {
+  "median_day": 182.5,
+  "share_before_day_30": 0.02,
+  "reasons": {
+   "time since last cleaning": 43,
+   "dP on screen": 25,
+   "other reason": 22
+  }
+ },
+ "8 the plant does not depend on s, r": "pass",
+ "uncalibrated fingerprint (6 plants, 18 trains)": {
+  "inside": 4,
+  "of": 15,
+  "cycles": {
+   "cycles": 80,
+   "complete_cycles": 62,
+   "campaigns": 62,
+   "evaluable_drops": 52
+  }
+ },
+ "seconds": 12
+}

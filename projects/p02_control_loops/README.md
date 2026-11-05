@@ -33,7 +33,7 @@ output (OP) · MV the valve position, which historians rarely keep.
 | Simulated plants with known faults, for training | 240 (480 runs) |
 | Eastman plant-wide root cause, found among 30 loops unaided | **tag 22**, 13× the next priority |
 | Cascade pairs discovered from structure alone, across 3 plants | 8 |
-| Tests | 357 (whole repository) |
+| Tests | 252 (whole repository) |
 
 ---
 

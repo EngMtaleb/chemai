@@ -1,0 +1,228 @@
+{
+  "title": "Kuwait City reference PVGIS 5.3 ERA5 modeled hourly photovoltaic output, 2023",
+  "retrieved_utc": "2026-10-28T17:22:38.328144+00:00",
+  "provider": "European Commission Joint Research Centre (JRC), PVGIS",
+  "endpoint": "https://re.jrc.ec.europa.eu/api/v5_3/seriescalc",
+  "request_params": {
+    "lat": 29.3759,
+    "lon": 47.9774,
+    "raddatabase": "PVGIS-ERA5",
+    "startyear": 2023,
+    "endyear": 2023,
+    "pvcalculation": 1,
+    "peakpower": 4.5,
+    "loss": 14,
+    "angle": 30,
+    "aspect": 0,
+    "mountingplace": "free",
+    "pvtechchoice": "crystSi",
+    "usehorizon": 1,
+    "outputformat": "json",
+    "components": 0
+  },
+  "request_url": "https://re.jrc.ec.europa.eu/api/v5_3/seriescalc?lat=29.3759&lon=47.9774&raddatabase=PVGIS-ERA5&startyear=2023&endyear=2023&pvcalculation=1&peakpower=4.5&loss=14&angle=30&aspect=0&mountingplace=free&pvtechchoice=crystSi&usehorizon=1&outputformat=json&components=0",
+  "response_url": "https://re.jrc.ec.europa.eu/api/v5_3/seriescalc?lat=29.3759&lon=47.9774&raddatabase=PVGIS-ERA5&startyear=2023&endyear=2023&pvcalculation=1&peakpower=4.5&loss=14&angle=30&aspect=0&mountingplace=free&pvtechchoice=crystSi&usehorizon=1&outputformat=json&components=0",
+  "http_status": 200,
+  "content_type": "application/json",
+  "raw_file": "data/pvgis_era5_kuwait_2023_original.json",
+  "raw_sha256": "013bb7f9c8322b553fdddb0dbb1c0f6037a14f4d7314f90554e526fa68d12ca6",
+  "raw_bytes": 833407,
+  "returned_inputs": {
+    "location": {
+      "latitude": 29.3759,
+      "longitude": 47.9774,
+      "elevation": 19.0
+    },
+    "meteo_data": {
+      "radiation_db": "PVGIS-ERA5",
+      "meteo_db": "ERA5",
+      "year_min": 2023,
+      "year_max": 2023,
+      "use_horizon": true,
+      "horizon_db": null,
+      "horizon_data": "DEM-calculated"
+    },
+    "mounting_system": {
+      "fixed": {
+        "slope": {
+          "value": 30,
+          "optimal": false
+        },
+        "azimuth": {
+          "value": 0,
+          "optimal": false
+        },
+        "type": "free-standing"
+      }
+    },
+    "pv_module": {
+      "technology": "c-Si",
+      "peak_power": 4.5,
+      "system_loss": 14.0
+    }
+  },
+  "returned_meta": {
+    "inputs": {
+      "location": {
+        "description": "Selected location",
+        "variables": {
+          "latitude": {
+            "description": "Latitude",
+            "units": "decimal degree"
+          },
+          "longitude": {
+            "description": "Longitude",
+            "units": "decimal degree"
+          },
+          "elevation": {
+            "description": "Elevation",
+            "units": "m"
+          }
+        }
+      },
+      "meteo_data": {
+        "description": "Sources of meteorological data",
+        "variables": {
+          "radiation_db": {
+            "description": "Solar radiation database"
+          },
+          "meteo_db": {
+            "description": "Database used for meteorological variables other than solar radiation"
+          },
+          "year_min": {
+            "description": "First year of the calculations"
+          },
+          "year_max": {
+            "description": "Last year of the calculations"
+          },
+          "use_horizon": {
+            "description": "Include horizon shadows"
+          },
+          "horizon_db": {
+            "description": "Source of horizon data"
+          }
+        }
+      },
+      "mounting_system": {
+        "description": "Mounting system",
+        "choices": "fixed, vertical_axis, inclined_axis, two_axis",
+        "fields": {
+          "slope": {
+            "description": "Inclination angle from the horizontal plane",
+            "units": "degree"
+          },
+          "azimuth": {
+            "description": "Orientation (azimuth) angle of the (fixed) PV system (0 = S, 90 = W, -90 = E)",
+            "units": "degree"
+          }
+        }
+      },
+      "pv_module": {
+        "description": "PV module parameters",
+        "variables": {
+          "technology": {
+            "description": "PV technology"
+          },
+          "peak_power": {
+            "description": "Nominal (peak) power of the PV module",
+            "units": "kW"
+          },
+          "system_loss": {
+            "description": "Sum of system losses",
+            "units": "%"
+          }
+        }
+      }
+    },
+    "outputs": {
+      "hourly": {
+        "type": "time series",
+        "timestamp": "hourly averages",
+        "variables": {
+          "P": {
+            "description": "PV system power",
+            "units": "W"
+          },
+          "G(i)": {
+            "description": "Global irradiance on the inclined plane (plane of the array)",
+            "units": "W/m2"
+          },
+          "H_sun": {
+            "description": "Sun height",
+            "units": "degree"
+          },
+          "T2m": {
+            "description": "2-m air temperature",
+            "units": "degree Celsius"
+          },
+          "WS10m": {
+            "description": "10-m total wind speed",
+            "units": "m/s"
+          },
+          "Int": {
+            "description": "1 means solar radiation values are reconstructed"
+          }
+        }
+      }
+    }
+  },
+  "data_semantics": "Modeled PV system power based on PVGIS-ERA5 reanalysis solar resource and configured PV assumptions. Not measured PV plant output, not a customer demand record, not a real RO plant deployment.",
+  "location_semantics": "Public Kuwait City reference coordinates, not the user's plant or residence.",
+  "system_assumptions": "4.5 kWp nominal crystalline-silicon array; fixed 30-degree slope, south (PVGIS aspect 0), free-standing mounting, 14% system-loss setting, provider terrain horizon.",
+  "time_semantics": "PVGIS ERA5 outputs hourly averages centered at HH:30 UTC. Each original timestamp is preserved. Start=timestamp-30min; end=timestamp+30min. Kuwait intervals use Asia/Kuwait, UTC+03:00. This is interval labeling, not interpolation or a change of energy values.",
+  "documentation_urls": [
+    "https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/using-pvgis-5/api-non-interactive-service_en",
+    "https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/using-pvgis-5/pvgis-5-user-manual_en",
+    "https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/using-pvgis-5/pvgis-5-tools/hourly-radiation_en"
+  ],
+  "license_status": "Official PVGIS usage notice states that the information is free to use without restrictions and asks for source acknowledgment. No separate SPDX/Creative Commons label is asserted for this API response.",
+  "audit": {
+    "rows": 8760,
+    "expected_rows": 8760,
+    "duplicate_timestamps": 0,
+    "nonhourly_gaps": 0,
+    "source_minutes": [
+      30
+    ],
+    "first_interval_start_utc": "2023-01-01 00:00:00+00:00",
+    "last_interval_end_utc": "2024-01-01 00:00:00+00:00",
+    "nonfinite_pv_rows": 0,
+    "negative_pv_rows": 0,
+    "pv_energy_2023_kwh": 7790.42341,
+    "max_modeled_pv_kw": 4.02777,
+    "missing_cells_by_column": {
+      "source_timestamp": 0,
+      "interval_center_utc": 0,
+      "interval_start_utc": 0,
+      "interval_end_utc": 0,
+      "interval_start_kuwait": 0,
+      "interval_end_kuwait": 0,
+      "pv_kw": 0,
+      "temperature_C": 0,
+      "irradiance_Wm2": 0,
+      "wind_10m_mps": 0,
+      "source_reconstruction_flag": 0
+    },
+    "reconstruction_flag_counts": {
+      "0.0": 8760
+    }
+  },
+  "window_policy": "Parent study selects Jan 15, Apr 15, Jul 15, Oct 15 2023 local 72-hour windows with 24 preceding hours. No windows selected here based on favorable results.",
+  "usage_notice_url": "https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/general-information/usage-conditions-data-protection_en",
+  "requested_attribution": "Photovoltaic Geographic Information System (PVGIS) of the European Commission Joint Research Centre",
+  "attribution_url": "https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis_en",
+  "processed_file": "data/solar_hourly.csv",
+  "processed_sha256": "65f8f68e50e5ab425104f5101fae39dc888e147b0440b5bad1b71b504781ed09",
+  "new_study_use": {
+    "PV_kWp": 320,
+    "scaling": "Originalmodeled4.5kWparraytimes320/4.5; sameorientation/module/loss assumptions. Inverter/landdesignnotoptimized.",
+    "RO_feed_temperature_C": 25,
+    "weather_air_temperature_is_not_RO_feed_temperature": true,
+    "all8760sourcehours_retained": true,
+    "selected_replay_hours": 288
+  },
+  "independently_opened_primary_pages_2026_10_30": [
+    "https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/using-pvgis-5/pvgis-5-user-manual_en",
+    "https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/general-information/usage-conditions-data-protection_en"
+  ]
+}

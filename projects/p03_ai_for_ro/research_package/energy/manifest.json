@@ -1,0 +1,252 @@
+[
+  {
+    "path": "config.json",
+    "bytes": 1674,
+    "sha256": "8017683f74a8c6eed8f59b906d50e62669ce2b2914a065ca02dde7628224683c"
+  },
+  {
+    "path": "data/pvgis_era5_kuwait_2023_original.json",
+    "bytes": 833407,
+    "sha256": "013bb7f9c8322b553fdddb0dbb1c0f6037a14f4d7314f90554e526fa68d12ca6"
+  },
+  {
+    "path": "data/solar_hourly.csv",
+    "bytes": 1502521,
+    "sha256": "65f8f68e50e5ab425104f5101fae39dc888e147b0440b5bad1b71b504781ed09"
+  },
+  {
+    "path": "data/solar_source.json",
+    "bytes": 8208,
+    "sha256": "ba3d247efaa2e26b1b32b57fc6541fa51a956962037e88d20a31d888987eb53e"
+  },
+  {
+    "path": "figures/october_timeline.png",
+    "bytes": 163540,
+    "sha256": "de98974c3c5cd72e1ec056ab9b909dcadfcd0dddbb68120013431821dafccd22"
+  },
+  {
+    "path": "figures/october_timeline.svg",
+    "bytes": 45134,
+    "sha256": "049e64dbb9bff31e97188d01de8e55792bb3269f40dbcd0bc5aa660e155bd5d9"
+  },
+  {
+    "path": "figures/seasonal_dispatch.png",
+    "bytes": 118396,
+    "sha256": "b2f71b3bad072f60a61805c084838f9eabbb96060bd6ebdb9c937a7e86b62597"
+  },
+  {
+    "path": "figures/seasonal_dispatch.svg",
+    "bytes": 22709,
+    "sha256": "ce36d825c552fa4eaa3c3de8f531c74288a9d7b236851d575d4ade6baa0e2317"
+  },
+  {
+    "path": "figures/yield_and_capacity_stress.png",
+    "bytes": 139357,
+    "sha256": "c4730a493bf9641dcd8ec220d9c304db36c8b841b00635e7d010e0a74833c66e"
+  },
+  {
+    "path": "figures/yield_and_capacity_stress.svg",
+    "bytes": 44864,
+    "sha256": "97dba7b5365a5c9a4d457ec5e48ba58b13aa168c5edfe9b746df6cfaeaf7a7ba"
+  },
+  {
+    "path": "make_report.py",
+    "bytes": 17116,
+    "sha256": "1842cb770b402fc559c64266de4650937e650f20b813c28a43db0bf83a7db2e7"
+  },
+  {
+    "path": "plot_data.json",
+    "bytes": 453088,
+    "sha256": "cff4d43a6d16d81a4735069e16fe265b1789d1e0740fdef073c820d413d72788"
+  },
+  {
+    "path": "report.md",
+    "bytes": 9545,
+    "sha256": "5d6f0b129c17c02cac032d33ca80a017857289ca3928938af1b357415065d316"
+  },
+  {
+    "path": "requirements.txt",
+    "bytes": 60,
+    "sha256": "d0066322d3ef6a963dfc3d2534ab36e16274c51b251f0aa9d5e6e4cdfab4504c"
+  },
+  {
+    "path": "results/2023-01_nominal__daylight_tank_rule.json",
+    "bytes": 66369,
+    "sha256": "83e94c42b0dd57d493d35d950d66cf9a71dd8ba70d436e0804de4bddaae46591"
+  },
+  {
+    "path": "results/2023-01_nominal__fixed_two_trains.json",
+    "bytes": 64257,
+    "sha256": "ffd220912bec45465e45f6499b3ad526f0954307c550009826951d17859f452f"
+  },
+  {
+    "path": "results/2023-01_nominal__rolling_milp.json",
+    "bytes": 73108,
+    "sha256": "ce697519bedfa9a168379f6d3b1dfd3c36d9714b21fb92ed62423fcac6b562e5"
+  },
+  {
+    "path": "results/2023-04_nominal__daylight_tank_rule.json",
+    "bytes": 66692,
+    "sha256": "364cc522bfbf4fe8a042c2a3585ec2ba1cc3338679403ac6101673b5c5b141e3"
+  },
+  {
+    "path": "results/2023-04_nominal__fixed_two_trains.json",
+    "bytes": 64600,
+    "sha256": "cf0f5b6170600840dd419b6a92606cb9fdebbb3eb03dbebd4c89b3eecd379fab"
+  },
+  {
+    "path": "results/2023-04_nominal__rolling_milp.json",
+    "bytes": 73322,
+    "sha256": "720fcc442891cf0b4f5e908ab91405f0b4ac3261b051f39112ff4379f86f896a"
+  },
+  {
+    "path": "results/2023-07_nominal__daylight_tank_rule.json",
+    "bytes": 66714,
+    "sha256": "7284a4fb28d3d767abbd369e02594f9e26c7af75bc702900df6af7959586a4d9"
+  },
+  {
+    "path": "results/2023-07_nominal__fixed_two_trains.json",
+    "bytes": 64615,
+    "sha256": "1fe80a286a24215d5fbb54df4f8b023bb30a849c0f3eba797772b510d43ad8ae"
+  },
+  {
+    "path": "results/2023-07_nominal__rolling_milp.json",
+    "bytes": 73362,
+    "sha256": "a30f84cefd8ccb53f718239306784734c82933a175b83013b619304d9c99e77e"
+  },
+  {
+    "path": "results/2023-10_nominal__daylight_tank_rule.json",
+    "bytes": 66506,
+    "sha256": "8217d974ee1cd3f58da6fe11686eb431ed1ac0435071cbea99ca8e2c1f8a3ae8"
+  },
+  {
+    "path": "results/2023-10_nominal__fixed_two_trains.json",
+    "bytes": 64402,
+    "sha256": "3f3f1642a585f39948df3f1a1342b97c48f81154f65b00cdb3b94530c6f2527b"
+  },
+  {
+    "path": "results/2023-10_nominal__rolling_milp.json",
+    "bytes": 73110,
+    "sha256": "7950b00129282d826cb589ce872d4eac5a3cfdfd2abe8996e7c9174a76913df2"
+  },
+  {
+    "path": "results/october_PV240__daylight_tank_rule.json",
+    "bytes": 66505,
+    "sha256": "e55c7f61eba05b1ece5e2d42471bfff23a86948416a355b24bb99e06f54cdc02"
+  },
+  {
+    "path": "results/october_PV240__fixed_two_trains.json",
+    "bytes": 64392,
+    "sha256": "7c7dd20b967842f69d9754764b67e21a7c7c823f8fca5085dcff48e7ffc56288"
+  },
+  {
+    "path": "results/october_PV240__rolling_milp.json",
+    "bytes": 73204,
+    "sha256": "e4892411262affbd892bbe4c844e746b14d4961a7b1c2cfccb732a49318d6987"
+  },
+  {
+    "path": "results/october_PV400__daylight_tank_rule.json",
+    "bytes": 66501,
+    "sha256": "24367629d8d52cb822076674f6da192a2069d52d6992e44833950aa0dedffed7"
+  },
+  {
+    "path": "results/october_PV400__fixed_two_trains.json",
+    "bytes": 64413,
+    "sha256": "eb2b805ef8cd3b4b22ea33831d87a7d9edc4522e43047372ee3052814f46f96b"
+  },
+  {
+    "path": "results/october_PV400__rolling_milp.json",
+    "bytes": 72935,
+    "sha256": "665e74b8a8dde38dfd525b9ce4d0d7665b6175b1350f11854e0bf4a88302f307"
+  },
+  {
+    "path": "results/october_capacity_limit_yield90__daylight_tank_rule.json",
+    "bytes": 63100,
+    "sha256": "d673af400615b37434badd6f29b8c257879ca7b7ba9328ba7a2dadeea16acd16"
+  },
+  {
+    "path": "results/october_capacity_limit_yield90__fixed_two_trains.json",
+    "bytes": 63043,
+    "sha256": "524d410136bf35b7cc53d65b84bde022c2180df9bdfb6801f9cf8ce6a4b03740"
+  },
+  {
+    "path": "results/october_capacity_limit_yield90__rolling_milp.json",
+    "bytes": 73300,
+    "sha256": "390ae84d81a7d0040056bf651285feb398f2d9be9ee8ebede9cfefac9dd17b2e"
+  },
+  {
+    "path": "results/october_forecast140__daylight_tank_rule.json",
+    "bytes": 66546,
+    "sha256": "8d36cdc58900c6eec17d9e1ec88c3dd8aa846aa063bc698ffd4d94a4e9467c71"
+  },
+  {
+    "path": "results/october_forecast140__fixed_two_trains.json",
+    "bytes": 64442,
+    "sha256": "f6d7f0a1dde176ef29a2a41d396f78a7de8d835553f76e49ea3bc65da48118fc"
+  },
+  {
+    "path": "results/october_forecast140__rolling_milp.json",
+    "bytes": 73015,
+    "sha256": "0eeae904068a96296f33cbca890cce571f53f38c016eb4c4461cebf54366eb3a"
+  },
+  {
+    "path": "results/october_tank24h__daylight_tank_rule.json",
+    "bytes": 66601,
+    "sha256": "ab72626d8a67432eac186515b4406eae738c25313cda922820aa1972360ee1de"
+  },
+  {
+    "path": "results/october_tank24h__fixed_two_trains.json",
+    "bytes": 64412,
+    "sha256": "19bf330ed95006bb801052a3c799bdfea13b51d8057d87dd8f1f0829f4ae7b6a"
+  },
+  {
+    "path": "results/october_tank24h__rolling_milp.json",
+    "bytes": 72357,
+    "sha256": "67fbd9b3b020c6d14dd8d604fe37e22c6142ef0a7278a137571cb6f12a665178"
+  },
+  {
+    "path": "results/october_tank6h__daylight_tank_rule.json",
+    "bytes": 66463,
+    "sha256": "30c7806bb36ff3f34a955d6418103c6d51af45838159d3a8353cc037d27a02b1"
+  },
+  {
+    "path": "results/october_tank6h__fixed_two_trains.json",
+    "bytes": 64373,
+    "sha256": "44861afae348a64f4252e784c7b4ff7cf3aa8297e75d41dbeb1c26e703b9a7e6"
+  },
+  {
+    "path": "results/october_tank6h__rolling_milp.json",
+    "bytes": 73393,
+    "sha256": "49b617bad6fc197a8573d0df7a280ae6e950d5efb962f342691a86c2b39904fc"
+  },
+  {
+    "path": "results/october_yield90__daylight_tank_rule.json",
+    "bytes": 66034,
+    "sha256": "35e3d7d4c82f49cd1f9c521102ca24b239654bd0f8282aead511f4fb919b0049"
+  },
+  {
+    "path": "results/october_yield90__fixed_two_trains.json",
+    "bytes": 65120,
+    "sha256": "9246f7b6fea050ef74b2af47bff32032ac01ae7b824611c413e230e08b35b21c"
+  },
+  {
+    "path": "results/october_yield90__rolling_milp.json",
+    "bytes": 73988,
+    "sha256": "9b43a1a037b15bedf25a128cd473724349d725f053181f8613f931df9b47116a"
+  },
+  {
+    "path": "results.json",
+    "bytes": 144166,
+    "sha256": "3422bc525407765459b158998e556386a90ddb82d4791b38bda37611821de607"
+  },
+  {
+    "path": "run_study.py",
+    "bytes": 14840,
+    "sha256": "09d5bab2cb1c10678018faa82a5b67c3a08eda06e6a8f2a1422c4d641b7327a8"
+  },
+  {
+    "path": "sources.json",
+    "bytes": 8907,
+    "sha256": "4aced900c592fbf5a8c182ce3dbe161c84100e9e198c08472c9a758866eed31e"
+  }
+]

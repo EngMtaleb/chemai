@@ -1,0 +1,17 @@
+prophet start 2026-11-01T23:32:11Z
+Importing plotly failed. Interactive plots will not work.
+646 origins x 2 indicators x 2 forms
+  50 origins done [72 s]
+  100 origins done [147 s]
+  150 origins done [232 s]
+  200 origins done [307 s]
+  250 origins done [374 s]
+  300 origins done [435 s]
+  350 origins done [495 s]
+  400 origins done [562 s]
+  450 origins done [630 s]
+  500 origins done [696 s]
+  550 origins done [764 s]
+  600 origins done [869 s]
+{"origins": 646, "fits": 2584, "failed_fits": 0, "seconds_fitting": 921.7, "seconds_total": 938.7, "prophet_version": "1.5.0", "pandas": "3.0.5", "numpy": "2.5.3"}
+prophet end 2026-11-01T23:48:19Z

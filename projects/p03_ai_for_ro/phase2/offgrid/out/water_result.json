@@ -1,0 +1,524 @@
+{
+ "definition": "zero grid kWh (<= 1e-6 kWh, floating-point noise) in every year 2015-2024 and no short hours; ten years as one series, tank level on 1 Jan 2015 = level on 31 Dec 2024",
+ "coarse": {
+  "designs": 448,
+  "off_grid": 233,
+  "exact_min_tank_agrees": 448,
+  "grid": {
+   "capacity": [
+    2.0,
+    2.25,
+    2.5,
+    2.75,
+    3.0,
+    3.5,
+    4.0
+   ],
+   "kwp_per_m3d": [
+    1.0,
+    1.5,
+    2.0,
+    2.5,
+    3.0,
+    4.0,
+    5.0,
+    6.0
+   ],
+   "tank_h": [
+    24,
+    36,
+    48,
+    72,
+    96,
+    120,
+    144,
+    168
+   ]
+  }
+ },
+ "fine": {
+  "capacity": [
+   1.8,
+   3.5,
+   0.05
+  ],
+  "kwp_per_m3d": [
+   0.8,
+   4.0,
+   0.05
+  ],
+  "pairs": 2275,
+  "pairs_off_grid_possible": 1796,
+  "lowest_feasible_capacity": 1.95,
+  "cheapest_by_capacity": {
+   "1.95": 2.0809968304429574,
+   "2": 1.9371376978601638,
+   "2.05": 1.8419430477600864,
+   "2.1": 1.760658118434878,
+   "2.15": 1.6935074576057343,
+   "2.2": 1.6419254573369044,
+   "2.25": 1.6096678007366636,
+   "2.3": 1.5873930607834488,
+   "2.35": 1.5763385781814923,
+   "2.4": 1.565384371809427,
+   "2.45": 1.5598205151621551,
+   "2.5": 1.562638658174081,
+   "2.55": 1.5688361810330504,
+   "2.6": 1.579978486313627,
+   "2.65": 1.59182955715265,
+   "2.7": 1.6084149981948777,
+   "2.75": 1.6211865731770567,
+   "2.8": 1.638402197098334,
+   "2.85": 1.6560460093453155,
+   "2.9": 1.6770509502688018,
+   "2.95": 1.6949427933597667,
+   "3": 1.7133205914849523,
+   "3.05": 1.7347553906584763,
+   "3.1": 1.7534927463520344,
+   "3.15": 1.7748593086951074,
+   "3.2": 1.7963821970634708,
+   "3.25": 1.8169817759563354,
+   "3.3": 1.8367193593267561,
+   "3.35": 1.8582691370529045,
+   "3.4": 1.8798221774899022,
+   "3.45": 1.9013773841870854,
+   "3.5": 1.9223419454164103
+  },
+  "capacity_at_edge": false,
+  "panels_at_edge": false
+ },
+ "cheapest": {
+  "capacity": 2.45,
+  "kwp_per_m3d": 2.15,
+  "min_tank_h_exact": 76.20768489882722,
+  "tank_h": 77.0,
+  "usd_per_m3": 1.5608120335085243,
+  "usd_per_m3_parts": {
+   "RO plant": 0.9025403779535495,
+   "RO upkeep": 0.17136502070287127,
+   "panels": 0.3905473548670782,
+   "tank": 0.09635927998502551
+  },
+  "critical_stretch": {
+   "capacity": 2.45,
+   "kwp_per_m3d": 2.15,
+   "tank_h_needed": 76.20768489882722,
+   "start": "2020-11-25 16:00:00+03:00",
+   "end": "2020-12-07 06:00:00+03:00",
+   "days": 11.625,
+   "days_sun_short_of_demand": 12,
+   "days_in_stretch": 13,
+   "low_sun_days_in_stretch": 8,
+   "months": [
+    11,
+    12
+   ],
+   "sun_alone_makes_pct_of_demand_in_stretch": 72.68541759900685
+  },
+  "check": {
+   "grid_kWh_year_max": 3.3465452631276094e-12,
+   "grid_kWh_year_mean": 2.925460221292475e-12,
+   "years_with_grid": 0,
+   "short_hours": 0,
+   "sun_share_pct_mean": 100.0,
+   "sun_share_pct_min": 100.0,
+   "unused_panel_energy_pct": 61.89322695714932,
+   "kWh_per_m3": 3.5699050541259814,
+   "water_m3_year": 365287.49999999953,
+   "off_grid": true,
+   "start_level_m3": 2697.7847995071184,
+   "iterations": 2,
+   "tank_full_hours_by_year": {
+    "2015": 1092,
+    "2016": 1123,
+    "2017": 1087,
+    "2018": 1056,
+    "2019": 973,
+    "2020": 1100,
+    "2021": 1131,
+    "2022": 992,
+    "2023": 892,
+    "2024": 1020
+   },
+   "tank_lowest_m3_by_year": {
+    "2015": 1244.04455051218,
+    "2016": 1147.808722491216,
+    "2017": 2086.6459887384444,
+    "2018": 1448.5987014744458,
+    "2019": 564.023249753287,
+    "2020": 33.01312921517456,
+    "2021": 750.9823172124636,
+    "2022": 542.3205053837801,
+    "2023": 86.80906424615523,
+    "2024": 2107.7644372561444
+   }
+  },
+  "check_tank_minus_half_hour": {
+   "tank_h": 75.70768489882722,
+   "off_grid": false,
+   "grid_kWh_worst_year": 70.53364349418224,
+   "years_with_grid": 1
+  }
+ },
+ "within_1pct_of_cheapest": [
+  {
+   "capacity": 2.45,
+   "kwp_per_m3d": 2.15,
+   "min_tank_h": 76.20768489882722,
+   "usd_m3_total": 1.5598205151621551
+  },
+  {
+   "capacity": 2.45,
+   "kwp_per_m3d": 2.1,
+   "min_tank_h": 83.81638775537444,
+   "usd_m3_total": 1.5602596955357408
+  },
+  {
+   "capacity": 2.5,
+   "kwp_per_m3d": 1.95,
+   "min_tank_h": 89.97740532541881,
+   "usd_m3_total": 1.562638658174081
+  },
+  {
+   "capacity": 2.45,
+   "kwp_per_m3d": 2.05,
+   "min_tank_h": 93.25330305279047,
+   "usd_m3_total": 1.5629867360971417
+  },
+  {
+   "capacity": 2.5,
+   "kwp_per_m3d": 2.0,
+   "min_tank_h": 83.44499914219044,
+   "usd_m3_total": 1.5635463761445383
+  },
+  {
+   "capacity": 2.4,
+   "kwp_per_m3d": 2.35,
+   "min_tank_h": 69.13595945371036,
+   "usd_m3_total": 1.565384371809427
+  },
+  {
+   "capacity": 2.45,
+   "kwp_per_m3d": 2.2,
+   "min_tank_h": 73.46051951543475,
+   "usd_m3_total": 1.5654651562240687
+  },
+  {
+   "capacity": 2.4,
+   "kwp_per_m3d": 2.3,
+   "min_tank_h": 76.50635843716795,
+   "usd_m3_total": 1.5655253341358881
+  },
+  {
+   "capacity": 2.4,
+   "kwp_per_m3d": 2.25,
+   "min_tank_h": 84.18568544988335,
+   "usd_m3_total": 1.56605289493594
+  },
+  {
+   "capacity": 2.45,
+   "kwp_per_m3d": 2.0,
+   "min_tank_h": 103.01555011130172,
+   "usd_m3_total": 1.5661209030774437
+  },
+  {
+   "capacity": 2.4,
+   "kwp_per_m3d": 2.2,
+   "min_tank_h": 92.02322259124742,
+   "usd_m3_total": 1.566778442931874
+  },
+  {
+   "capacity": 2.5,
+   "kwp_per_m3d": 1.9,
+   "min_tank_h": 101.01089648859949,
+   "usd_m3_total": 1.5673636844610213
+  },
+  {
+   "capacity": 2.4,
+   "kwp_per_m3d": 2.15,
+   "min_tank_h": 100.09081211422384,
+   "usd_m3_total": 1.5677918828998993
+  },
+  {
+   "capacity": 2.5,
+   "kwp_per_m3d": 2.05,
+   "min_tank_h": 80.36517071345263,
+   "usd_m3_total": 1.568774716277528
+  },
+  {
+   "capacity": 2.55,
+   "kwp_per_m3d": 1.85,
+   "min_tank_h": 91.93204958938016,
+   "usd_m3_total": 1.5688361810330504
+  },
+  {
+   "capacity": 2.4,
+   "kwp_per_m3d": 2.1,
+   "min_tank_h": 108.55184823662835,
+   "usd_m3_total": 1.5692976895047224
+  },
+  {
+   "capacity": 2.45,
+   "kwp_per_m3d": 1.95,
+   "min_tank_h": 113.29304254470114,
+   "usd_m3_total": 1.5698998580231982
+  },
+  {
+   "capacity": 2.4,
+   "kwp_per_m3d": 2.4,
+   "min_tank_h": 65.74876036756766,
+   "usd_m3_total": 1.5702280623938965
+  },
+  {
+   "capacity": 2.45,
+   "kwp_per_m3d": 2.25,
+   "min_tank_h": 70.83625220574719,
+   "usd_m3_total": 1.571263594297589
+  },
+  {
+   "capacity": 2.4,
+   "kwp_per_m3d": 2.05,
+   "min_tank_h": 117.53463782383595,
+   "usd_m3_total": 1.5714564284238066
+  },
+  {
+   "capacity": 2.5,
+   "kwp_per_m3d": 1.85,
+   "min_tank_h": 112.69775589151494,
+   "usd_m3_total": 1.5729063483212857
+  },
+  {
+   "capacity": 2.55,
+   "kwp_per_m3d": 1.8,
+   "min_tank_h": 103.09034050575458,
+   "usd_m3_total": 1.5737173841298615
+  },
+  {
+   "capacity": 2.55,
+   "kwp_per_m3d": 1.9,
+   "min_tank_h": 88.5808926453162,
+   "usd_m3_total": 1.5737249754468683
+  },
+  {
+   "capacity": 2.5,
+   "kwp_per_m3d": 2.1,
+   "min_tank_h": 77.35974139718945,
+   "usd_m3_total": 1.5740961608898631
+  },
+  {
+   "capacity": 2.45,
+   "kwp_per_m3d": 1.9,
+   "min_tank_h": 123.99579185585306,
+   "usd_m3_total": 1.574210987599458
+  },
+  {
+   "capacity": 2.4,
+   "kwp_per_m3d": 2.0,
+   "min_tank_h": 127.01708295474155,
+   "usd_m3_total": 1.5742404458939465
+  }
+ ],
+ "what_stops_2x": [
+  {
+   "capacity": 2.0,
+   "kwp_per_m3d": 3.0,
+   "tank_h_needed": 480.8657206959661,
+   "start": "2022-07-27 18:00:00+03:00",
+   "end": "2015-02-23 06:00:00+03:00",
+   "days": 941.4166666666666,
+   "days_sun_short_of_demand": 601,
+   "days_in_stretch": 943,
+   "low_sun_days_in_stretch": 62,
+   "months": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "sun_alone_makes_pct_of_demand_in_stretch": 97.87171053954273
+  },
+  {
+   "capacity": 2.0,
+   "kwp_per_m3d": 4.0,
+   "tank_h_needed": 291.1762950031038,
+   "start": "2018-08-19 18:00:00+03:00",
+   "end": "2019-02-16 06:00:00+03:00",
+   "days": 180.54166666666666,
+   "days_sun_short_of_demand": 168,
+   "days_in_stretch": 182,
+   "low_sun_days_in_stretch": 22,
+   "months": [
+    1,
+    2,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "sun_alone_makes_pct_of_demand_in_stretch": 93.28003011762769
+  },
+  {
+   "capacity": 2.0,
+   "kwp_per_m3d": 6.0,
+   "tank_h_needed": 171.4865646017217,
+   "start": "2022-08-26 18:00:00+03:00",
+   "end": "2023-02-07 06:00:00+03:00",
+   "days": 164.54166666666666,
+   "days_sun_short_of_demand": 142,
+   "days_in_stretch": 166,
+   "low_sun_days_in_stretch": 20,
+   "months": [
+    1,
+    2,
+    8,
+    9,
+    10,
+    11,
+    12
+   ],
+   "sun_alone_makes_pct_of_demand_in_stretch": 95.65746860976246
+  },
+  {
+   "capacity": 2.0,
+   "kwp_per_m3d": 8.0,
+   "tank_h_needed": 114.03585055257894,
+   "start": "2022-09-04 18:00:00+03:00",
+   "end": "2023-01-18 06:00:00+03:00",
+   "days": 135.54166666666666,
+   "days_sun_short_of_demand": 115,
+   "days_in_stretch": 137,
+   "low_sun_days_in_stretch": 18,
+   "months": [
+    1,
+    9,
+    10,
+    11,
+    12
+   ],
+   "sun_alone_makes_pct_of_demand_in_stretch": 96.49444049949109
+  },
+  {
+   "capacity": 2.5,
+   "kwp_per_m3d": 2.0,
+   "tank_h_needed": 83.44499914219044,
+   "start": "2020-11-25 16:00:00+03:00",
+   "end": "2020-12-07 06:00:00+03:00",
+   "days": 11.625,
+   "days_sun_short_of_demand": 12,
+   "days_in_stretch": 13,
+   "low_sun_days_in_stretch": 8,
+   "months": [
+    11,
+    12
+   ],
+   "sun_alone_makes_pct_of_demand_in_stretch": 70.09139815694898
+  },
+  {
+   "capacity": 3.0,
+   "kwp_per_m3d": 2.0,
+   "tank_h_needed": 72.49036830923149,
+   "start": "2020-11-26 16:00:00+03:00",
+   "end": "2020-12-07 06:00:00+03:00",
+   "days": 10.625,
+   "days_sun_short_of_demand": 10,
+   "days_in_stretch": 12,
+   "low_sun_days_in_stretch": 8,
+   "months": [
+    11,
+    12
+   ],
+   "sun_alone_makes_pct_of_demand_in_stretch": 71.57240458472977
+  }
+ ],
+ "capacity_limit_unlimited_panels": {
+  "1.5x": {
+   "days_below_demand_pct": 88.61209964412812,
+   "ten_year_output_vs_demand": 0.8718548501425002,
+   "month_mean_output_vs_demand": {
+    "1": 0.765,
+    "2": 0.888,
+    "3": 0.91,
+    "4": 0.971,
+    "5": 1.042,
+    "6": 0.96,
+    "7": 0.903,
+    "8": 0.854,
+    "9": 0.786,
+    "10": 0.774,
+    "11": 0.826,
+    "12": 0.786
+   },
+   "min_tank_h_unlimited_panels": Infinity
+  },
+  "1.75x": {
+   "days_below_demand_pct": 47.659457979742676,
+   "ten_year_output_vs_demand": 1.0171639918329167,
+   "month_mean_output_vs_demand": {
+    "1": 0.893,
+    "2": 1.036,
+    "3": 1.062,
+    "4": 1.133,
+    "5": 1.216,
+    "6": 1.12,
+    "7": 1.053,
+    "8": 0.996,
+    "9": 0.917,
+    "10": 0.902,
+    "11": 0.964,
+    "12": 0.917
+   },
+   "min_tank_h_unlimited_panels": 354.1250000001487
+  },
+  "2x": {
+   "days_below_demand_pct": 2.7922255680262795,
+   "ten_year_output_vs_demand": 1.1624731335233334,
+   "month_mean_output_vs_demand": {
+    "1": 1.02,
+    "2": 1.184,
+    "3": 1.214,
+    "4": 1.295,
+    "5": 1.39,
+    "6": 1.28,
+    "7": 1.203,
+    "8": 1.139,
+    "9": 1.048,
+    "10": 1.031,
+    "11": 1.101,
+    "12": 1.048
+   },
+   "min_tank_h_unlimited_panels": 19.857142858022826
+  }
+ },
+ "phase2_largest_design_2x_2kWp_24h": {
+  "grid_share_by_month_pct": {
+   "1": 15.51,
+   "2": 7.18,
+   "3": 1.49,
+   "4": 0.14,
+   "5": 0.0,
+   "6": 0.0,
+   "7": 1.39,
+   "8": 8.83,
+   "9": 13.95,
+   "10": 15.39,
+   "11": 16.6,
+   "12": 19.53
+  },
+  "days_with_grid_per_year": 209.2,
+  "longest_run_days_with_grid": 203,
+  "low_sun_days_per_year": 18.9,
+  "longest_low_sun_run_days": 4,
+  "worst_day": "2023-11-15",
+  "worst_day_kWh_per_kWp": 0.3373739113561572
+ },
+ "run_seconds": 86.11656284332275
+}

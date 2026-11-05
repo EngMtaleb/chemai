@@ -1,0 +1,6 @@
+second legs added: [('B', 526), ('B', 545), ('C', 345), ('C', 525), ('C', 547)]
+ledger only (as declared): 4127 pairs in all [394 s]
+ledger + second legs: 4107 pairs in all [757 s]
+verdicts that change: 0 | largest change of skill, points: 11.8
+passes with the legs: [('rolling origin', 'flux_pct', 14, 'smoothed no change'), ('unseen train', 'flux_pct', 14, 'smoothed no change')]
+done in 758 s

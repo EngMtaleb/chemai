@@ -1,0 +1,86 @@
+{
+ "plants": [
+  {
+   "plant": "P1",
+   "seed": 4101,
+   "law": "linear",
+   "temp_window_start": 661,
+   "operator_level": 1.2736988007682226,
+   "max_days_without_cip": 206,
+   "rows": 1185,
+   "cleanings": 14,
+   "recorded_share": {
+    "A": 0.479,
+    "B": 0.522,
+    "C": 0.534
+   }
+  },
+  {
+   "plant": "P2",
+   "seed": 4102,
+   "law": "biofilm",
+   "temp_window_start": 1697,
+   "operator_level": 1.2124648995219776,
+   "max_days_without_cip": 176,
+   "rows": 1434,
+   "cleanings": 23,
+   "recorded_share": {
+    "A": 0.646,
+    "B": 0.608,
+    "C": 0.604
+   }
+  },
+  {
+   "plant": "P3",
+   "seed": 4103,
+   "law": "asymptotic",
+   "temp_window_start": 26,
+   "operator_level": 1.2574091960850788,
+   "max_days_without_cip": 209,
+   "rows": 1354,
+   "cleanings": 11,
+   "recorded_share": {
+    "A": 0.608,
+    "B": 0.548,
+    "C": 0.598
+   }
+  }
+ ],
+ "groups": {
+  "causes": [
+   "temperature_c",
+   "flux_lmh",
+   "sdi",
+   "turbidity_ntu"
+  ],
+  "operation": [
+   "feed_flow_m3h",
+   "perm_flow_m3h",
+   "conc_flow_m3h",
+   "recovery",
+   "feed_tds_mgl",
+   "perm_pressure_bar"
+  ],
+  "results": [
+   "feed_pressure_bar",
+   "conc_pressure_bar",
+   "dp_bar",
+   "perm_tds_mgl",
+   "dp_pct",
+   "flux_pct",
+   "sp_pct",
+   "ndp_pct"
+  ],
+  "no link": [
+   "ph",
+   "orp_mv",
+   "free_chlorine_mgl",
+   "sbs_mgl",
+   "antiscalant_mgl",
+   "coagulant_mgl_fe",
+   "cf_dp_bar"
+  ]
+ },
+ "sea_file": "POWER_Point_Daily_20150101_20241231_029d00N_048d75E_LST.csv",
+ "sea_sha256": "a0bb8657a651064a1e5246573c4dd4f5ad19c5a13cb0314cf5642779cd887c37"
+}

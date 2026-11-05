@@ -271,10 +271,11 @@ ACTIONS: dict[str, tuple[str, str]] = {
 }
 
 
-# ============================================================ Project 3
+# ============================================================ Project 3 · AI for RO
 # RO membrane fouling and cleaning (CIP). Every value below is either physics
 # with a stated source, a vendor convention named as such, or a modelling choice
-# reported with the results; see projects/p03_ro_fouling/VALIDATION.md.
+# reported with the results; see the validation record of the earlier Project 3,
+# projects/p03_ro_fouling/VALIDATION.md at commit 0b12b39 (its section numbers are cited below).
 
 @dataclass(frozen=True)
 class RODepositConfig:
@@ -353,7 +354,7 @@ class ROConfig:
     smooth_days: int = 7                # trailing median used for "now"
     interval: float = 0.80              # P10-P90: a planning interval
     n_draws: int = 400                  # plausible lines drawn around the fit
-    interval_inflation: float = 2.0     # calibrated on simulated development plants: 80 % coverage
+    interval_inflation: float = 2.0     # calibrated on simulated development plants: the smallest to cover 80 %
     random_state: int = 42
 
     # --- weekly plan
@@ -435,123 +436,3 @@ class ROSimConfig:
     outlier_probability: float = 0.05
     outlier_scale: float = 4.0
     random_state: int = 42
-
-
-# ============================================================ Project 4
-# Tide and membrane fouling. Public UF pilot record (CC0): Zenodo 4630769,
-# also Dryad doi:10.5068/D1310B. Only the record's DOI is cited; the site is
-# never named in this repository.
-
-@dataclass(frozen=True)
-class UFPilotConfig:
-    """Where the UF pilot record lives and which run files are trusted."""
-
-    record: str = "4630769"
-    archive: str = "data_in_UF-RO_system.rar"
-    archive_md5: str = "317ba90d029d86fd7d69208c53b3c4d6"   # printed on the record page
-    folder: str = "uf_pilot"                                  # under DATA_DIR
-    inner: str = "data in UF-RO system"                       # folder inside the archive
-
-    # A run's logged clock is trusted only if its first sample falls on the
-    # day its file is named for: [0, 1) days after the filename date. Six
-    # files fail (one is a year off, one has day and month swapped).
-    clock_window_days: tuple[float, float] = (0.0, 1.0)
-    min_run_hours: float = 6.0              # shorter runs cannot hold half a tidal cycle
-    episode_gap_minutes: float = 30.0       # files closer than this are one continuous episode
-
-    # The logger runs on local civil time (the daily temperature peak sits at
-    # 15-17 h in every long run). Daylight saving is removed so that all runs
-    # share one clock: -1 h from the second Sunday of March 02:00 to the first
-    # Sunday of November 02:00. Sensitivity run: no correction.
-    remove_daylight_saving: bool = True
-
-    @property
-    def url(self) -> str:
-        return f"https://zenodo.org/records/{self.record}/files/{self.archive}?download=1"
-
-
-@dataclass(frozen=True)
-class UFSegmentConfig:
-    """How a filtration segment is cut and how its fouling rate is measured.
-
-    A segment is a stretch of steady filtration with the same set of elements
-    online. Its fouling rate is the slope of ln(R) against time, where
-    R = TMP / (viscosity * flow) is a resistance index (membrane area is not
-    in the record, so R is relative - it cancels in a log slope).
-    """
-
-    element_on_gpm: float = 5.0             # an element with more flow than this is filtering
-    debounce_s: float = 60.0                # a configuration change must persist this long
-    flow_band: float = 0.15                 # steady: total flow within +-15 % of the run median
-    min_tmp_psi: float = 0.5
-    trim_start_s: float = 180.0             # switching and backwash-pulse transients
-    trim_end_s: float = 60.0
-    min_minutes: float = 10.0
-    min_points: int = 5                     # binned medians left after trimming
-    bin_s: float = 60.0                     # slopes are fitted on 1-minute medians, or on the
-                                            # logging interval where it is coarser (60-120 s in 2013)
-    feed_turbidity_min_ntu: float = 0.20    # a run whose median is lower reads filtrate, not feed
-
-
-# ============================================================ Project 5
-# When to stop. Four decisions with one rule: end a batch, backwash a filter,
-# clean it chemically, clean an RO train - each when the live cost of the next
-# cubic metre reaches the average cost of the cycle so far. Data: a public
-# closed-circuit RO testbed record (CC BY 4.0, doi:10.7481/1963162), the UF
-# pilot record of Project 4 and the RO plant deposit of Project 3. Only DOIs
-# and published papers are cited; no site, operator or vendor is named.
-
-@dataclass(frozen=True)
-class CCROConfig:
-    """The closed-circuit RO (CCRO) testbed record and the stopping rule's settings.
-
-    A CCRO batch: the feed pump tops up a closed loop as fast as permeate
-    leaves, so the loop concentrates; at a chosen reject conductivity the
-    batch ends and the brine is drained with fresh feed. One file of the
-    record holds the drain of the previous batch, then the start-up,
-    stabilisation and filtration of the next.
-
-    The rule's settings below were chosen on the development batches only
-    (ESC and open-loop experiments) and frozen in
-    projects/p05_when_to_stop/DECLARED_BEFORE_RUN_A.md before the test batches
-    (the Bayesian-optimisation experiments) were scored.
-    """
-
-    folder: str = "nawi_ccro"                      # under DATA_DIR
-    doi: str = "10.7481/1963162"
-    base_url: str = "https://data.openei.org/files/6474/"
-    # (file name, bytes, sha256) as downloaded on 2026-10-23
-    files: tuple[tuple[str, int, str], ...] = (
-        ("Dataset1_2021_06_ConventionalOperation.zip", 478236,
-         "80136a1eac595f46c453c0b924b6e156e34da27c596cea75246f24e209e76e0b"),
-        ("Dataset2_2021_06_OpenLoopExperiments.zip", 5286360,
-         "5f2f237f1b90ab7efd240dfd993558d767a8342c095608492baad1f368569d97"),
-        ("Dataset3_2021_08_ESC Experiments.zip", 95406957,
-         "e574ec3acc2032e68cb2323217abd8368a112a21cda693a287ad7c5b2bd67b50"),
-        ("Dataset4_2021_08_OpenLoopExperiments.zip", 36529648,
-         "2d2906bdfd93019ceb1fa4ff495ff428acd47209e2a2f634b27ba08bd792057d"),
-        ("Dataset5_2021_09_ModelPredictiveControl.zip", 89902700,
-         "303715b1e4c0ea7928dceabe3f360ac49e383ab34a8772086c78d4869cce632e"),
-        ("Dataset6_20221_10_BayesianOptimization.zip", 132204179,
-         "0219be81f2f5df2b743232ba9893fac8c796f61b56245c25a41fa1dd89379593"),
-        ("Global_MetaData.zip", 7856115,
-         "a388adf748ba8e77c1fb3df6439612e68470304958b88536e54dbc52c3ee2e52"),
-    )
-    development: tuple[str, ...] = ("dataset3", "dataset4")    # ESC; open loop
-    test: tuple[str, ...] = ("dataset6",)                      # Bayesian optimisation, scored once
-
-    # Pairing a batch with the drain of its own brine (the start of the next file)
-    max_gap_s: float = 120.0
-
-    # The rule (frozen before the test)
-    live_window_s: float = 120.0          # rolling median of the live specific energy
-    min_batch_min: float = 5.0            # no stop in the first minutes of a batch
-    min_permeate_lpm: float = 0.5         # live specific energy is undefined without permeate
-    weights_b: tuple[float, ...] = (0.0, 1.0, 3.0, 10.0)   # brine price in kWh per m3 of brine
-    # Fixed costs when a run's first batch has no drain before it (development medians)
-    default_drain_kwh: float = 0.034
-    default_brine_l: float = 16.0
-    # Scoring
-    min_filtration_min: float = 10.0
-    inside_margin_min: float = 5.0        # a batch's own optimum must lie this far before its end
-    conductivity_smooth_samples: int = 15

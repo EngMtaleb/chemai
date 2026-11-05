@@ -264,7 +264,7 @@ def simulate_plant(pp: PlantParams, cfg: ROSimConfig | None = None,
         for p in pp.trains:
             st[p.name][0] = p.biofilm_seed * 0.3
     pending = {p.name: {} for p in pp.trains}     # scheduled cleaning day -> reason
-    last_cip = {p.name: -10_000 for p in pp.trains}
+    last_cip = {p.name: 0 for p in pp.trains}     # the clock starts with the record
     seen = {p.name: [] for p in pp.trains}        # operator's screen: recent DP_norm values
     base_ref = {p.name: [] for p in pp.trains}
     q_ref = {p.name: None for p in pp.trains}

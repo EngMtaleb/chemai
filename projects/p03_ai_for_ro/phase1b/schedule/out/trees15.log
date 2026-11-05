@@ -1,0 +1,6 @@
+merged: 2469 pairs 7 days ahead, 153 inputs [27 s]
+record 2 block 0: train 1804, test 121 [78 s]
+record 2 block 1: train 1921, test 139 [101 s]
+record 2 block 2: train 2051, test 156 [127 s]
+record 2 block 3: train 2210, test 232 [222 s]
+record 2 without SDI and turbidity block 0: train 1804, test 121 [489 s]

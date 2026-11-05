@@ -1,0 +1,11 @@
+{
+ "origins": 646,
+ "fits": 2584,
+ "failed_fits": 0,
+ "failures": [],
+ "seconds_fitting": 921.7,
+ "seconds_total": 938.7,
+ "prophet_version": "1.5.0",
+ "pandas": "3.0.5",
+ "numpy": "2.5.3"
+}

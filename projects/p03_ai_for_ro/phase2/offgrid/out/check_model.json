@@ -1,0 +1,205 @@
+{
+ "1_baseline": {
+  "2x, 0.8 kWp per m3/d, 12 h": {
+   "max_abs_diff_vs_design_grid_csv": 2.3283064365386963e-10,
+   "sun_share_pct_mean": 79.19054582240534,
+   "sun_share_pct_min": 76.98088183439505,
+   "sun_share_pct_max": 81.47583095894116,
+   "sun_share_pct_rerun_mean": 79.19054582240534,
+   "unused_panel_energy_pct_10y_total": 19.952068690978418,
+   "unused_panel_energy_pct_mean_of_years": 19.917440627097807,
+   "grid_kWh_per_year_mean": 267800.05249708873,
+   "water_m3_per_year_mean": 365330.2303480938,
+   "energy_kWh_per_m3": 3.523042821820604,
+   "short_hours_total": 0
+  },
+  "2x, 2 kWp per m3/d, 24 h": {
+   "max_abs_diff_vs_design_grid_csv": 4.656612873077393e-10,
+   "sun_share_pct_mean": 93.91478568083923,
+   "sun_share_pct_min": 92.53113304522743,
+   "sun_share_pct_max": 95.09391701313248,
+   "sun_share_pct_rerun_mean": 93.91478568083923,
+   "unused_panel_energy_pct_10y_total": 61.433294966682574,
+   "unused_panel_energy_pct_mean_of_years": 61.40614369003953,
+   "grid_kWh_per_year_mean": 79532.42559257113,
+   "water_m3_per_year_mean": 365457.31058365,
+   "energy_kWh_per_m3": 3.5769857450331703,
+   "short_hours_total": 0
+  }
+ },
+ "2_rule_s0_equals_rule_fast_max_abs_diff_m3h": 0.0,
+ "3_capacity_above_2x": {
+  "trains": 8,
+  "train_size_m3h_at_design_flux": {
+   "2.5x": 13.020833333333332,
+   "3x": 15.625,
+   "4x": 20.833333333333332,
+   "5x": 26.041666666666664,
+   "2x": 10.416666666666666
+  },
+  "max_deviation_from_exact_scaling": 2.2737367544323206e-13,
+  "f_window_by_T": {
+   "15": [
+    0.5714,
+    1.2143
+   ],
+   "17": [
+    0.5714,
+    1.2143
+   ],
+   "19": [
+    0.6429,
+    1.2143
+   ],
+   "21": [
+    0.6429,
+    1.2143
+   ],
+   "23": [
+    0.7143,
+    1.2143
+   ],
+   "25": [
+    0.7857,
+    1.2143
+   ],
+   "27": [
+    0.7857,
+    1.2143
+   ],
+   "29": [
+    0.8571,
+    1.1429
+   ],
+   "31": [
+    0.9286,
+    1.0714
+   ],
+   "33": [
+    1.0,
+    1.0
+   ],
+   "35": [
+    1.0,
+    1.0
+   ]
+  },
+  "kWh_per_m3_at_f_min_and_f_max_by_T": {
+   "15": [
+    3.3784655423505066,
+    3.8403903863649105
+   ],
+   "17": [
+    3.3599988200395465,
+    3.7937673678945467
+   ],
+   "19": [
+    3.38262587134636,
+    3.7515142562244126
+   ],
+   "21": [
+    3.365044175307083,
+    3.71321235184054
+   ],
+   "23": [
+    3.385614888102599,
+    3.6784774268923788
+   ],
+   "25": [
+    3.40505335296229,
+    3.646954920479791
+   ],
+   "27": [
+    3.3901749078349726,
+    3.6217921315626187
+   ],
+   "29": [
+    3.41066032072703,
+    3.558781749580408
+   ],
+   "31": [
+    3.4305870165269265,
+    3.5018066248300483
+   ],
+   "33": [
+    3.4500780526798396,
+    3.4500780526798396
+   ],
+   "35": [
+    3.4355522016829134,
+    3.4355522016829134
+   ]
+  },
+  "rule_fast_vs_run_rule_4x_4kWp_72h_2024": {
+   "max_abs_diff_q": 0.0,
+   "grid_kWh_per_m3_ref": 0.002661917643479455,
+   "grid_kWh_per_m3_fast": 0.002661917643479455,
+   "solar_share_ref": 99.92437600503281,
+   "solar_share_fast": 99.92437600503281,
+   "kWh_per_m3": 3.5199378777000603,
+   "trains_on_max": 8,
+   "train_starts_per_day": 8.010928961748634
+  },
+  "rule_fast_vs_run_rule_3x_2.5kWp_48h_2022": {
+   "max_abs_diff_q": 0.0,
+   "grid_kWh_per_m3_ref": 0.0027148756515943066,
+   "grid_kWh_per_m3_fast": 0.0027148756515943,
+   "solar_share_ref": 99.92351958710739,
+   "solar_share_fast": 99.92351958710739,
+   "kWh_per_m3": 3.549765945178821,
+   "trains_on_max": 8,
+   "train_starts_per_day": 7.997260273972603
+  }
+ },
+ "4_continuous_deck_design": {
+  "start_level_m3": 88.09041465032433,
+  "iterations": 2,
+  "sun_share_pct_mean": 79.19945054143861,
+  "sun_share_pct_min": 76.9839278825243,
+  "sun_share_pct_max": 81.49047321190012,
+  "grid_kWh_per_year_mean": 267655.6501340567,
+  "short_hours_total": 0
+ },
+ "5_phase2_start_empty_4x_6kWp_168h": {
+  "2015": {
+   "grid_kWh_year": 563.770978557731,
+   "grid_kWh_before_first_sunrise": 563.7709785577266
+  },
+  "2016": {
+   "grid_kWh_year": 999.2166379737802,
+   "grid_kWh_before_first_sunrise": 986.5992124760216
+  },
+  "2017": {
+   "grid_kWh_year": 986.5992124760253,
+   "grid_kWh_before_first_sunrise": 986.5992124760216
+  },
+  "2018": {
+   "grid_kWh_year": 986.5992124760264,
+   "grid_kWh_before_first_sunrise": 986.5992124760216
+  },
+  "2019": {
+   "grid_kWh_year": 986.5992124760253,
+   "grid_kWh_before_first_sunrise": 986.5992124760216
+  },
+  "2020": {
+   "grid_kWh_year": 981.4712177979043,
+   "grid_kWh_before_first_sunrise": 981.4712177978993
+  },
+  "2021": {
+   "grid_kWh_year": 986.599212476027,
+   "grid_kWh_before_first_sunrise": 986.5992124760216
+  },
+  "2022": {
+   "grid_kWh_year": 986.5992124760276,
+   "grid_kWh_before_first_sunrise": 986.5992124760216
+  },
+  "2023": {
+   "grid_kWh_year": 986.5992124760263,
+   "grid_kWh_before_first_sunrise": 986.5992124760216
+  },
+  "2024": {
+   "grid_kWh_year": 981.4712177979042,
+   "grid_kWh_before_first_sunrise": 981.4712177978993
+  }
+ }
+}

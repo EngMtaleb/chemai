@@ -43,11 +43,30 @@ split:
   7.8× larger error.
 - **Its main limit:** it under-predicts high values, so it is not an off-spec alarm.
 
+## AI for RO
+
+[![AI for RO](ai-for-ro/og.png)](https://engmtaleb.github.io/chemai/ai-for-ro/)
+
+One seawater RO plant, two goals: see its fouling coming, and run on the sun. Public data only — one real plant's published
+record, ten years of NASA sun and sea, public membrane datasheets — and our own models where the data stop.
+
+**[The deck](https://engmtaleb.github.io/chemai/ai-for-ro/)** ·
+[Write-up](projects/p03_ai_for_ro/README.md) ·
+[Notebooks](projects/p03_ai_for_ro/notebooks/)
+
+- **No forecaster beat "no change" on the real record.** Ten methods, from simple rules to deep learning, under one declared
+  test: none forecast a train's ΔP 1–14 days ahead better than "no change".
+- **A model can still plan the cleanings.** On simulated plants, reading only the routine columns any plant logs, it kept
+  about the same number of cleanings and cut the days above the cleaning limit by 90 % — a simulation, not a real plant.
+- **A plant that follows the sun takes about 80 % of its power from it:** twice the demand in size, with panels and a tank of
+  product water, and no battery.
+- **Fouling costs little energy** — about 1 % more on a typical day — and the sun still carries the solar plant.
+
 ## Run it
 
 ```bash
 pip install -e ".[dev]"
-pytest tests -q            # 357 tests, no data needed
+pytest tests -q            # 252 tests, no data needed
 python -m chemai.api.run   # http://localhost:8000
 ```
 
@@ -75,8 +94,9 @@ Data is not committed. The soft sensor uses the public
 chemai/        the package: physics features, models, uncertainty, envelope check, API
 projects/      one folder per project: training script and write-up
 docs/          validation record and data exploration
-tests/         357 tests that run without any dataset
-soft-sensor/   the project page, served by GitHub Pages
+tests/         252 tests that run without any dataset
+soft-sensor/   the soft sensor's project page, served by GitHub Pages
+ai-for-ro/     the AI for RO deck, served by GitHub Pages
 ```
 
 ## How it is built

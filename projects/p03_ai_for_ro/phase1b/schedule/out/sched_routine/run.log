@@ -1,0 +1,12 @@
+mode routine · inputs 12 ['now', 'state', 'lag1', 'lag3', 'lag7', 'lag14', 'slope14', 'days_since_cip', 'temperature_c', 'temperature_c_m7', 'flux_lmh', 'flux_lmh_m7']
+training pairs 2469 from [np.str_('P1'), np.str_('P2'), np.str_('P3')]
+leave one plant out (dp_pct 7 days ahead, MAE in points): {"P1": {"pairs": 665, "mae_model_points": 2.7, "mae_today_points": 2.82}, "P2": {"pairs": 913, "mae_model_points": 3.03, "mae_today_points": 2.67}, "P3": {"pairs": 891, "mae_model_points": 2.61, "mae_today_points": 2.4}}
+model: cleanings 211 · forecasts made 17368
+calendar: every 151 days · 212 cleanings (model 211 )
+model {"trains": 45, "cleanings": 211, "days_above": 375, "running_days": 23108, "cleanings_per_train_year": 3.33, "days_above_per_train_year": 5.9, "share_of_running_days_above": 1.6, "mean_rise_pct": 10.0}
+calendar {"trains": 45, "cleanings": 212, "days_above": 3625, "running_days": 23074, "cleanings_per_train_year": 3.35, "days_above_per_train_year": 57.3, "share_of_running_days_above": 15.7, "mean_rise_pct": 17.1}
+operator {"trains": 45, "cleanings": 234, "days_above": 1102, "running_days": 23071, "cleanings_per_train_year": 3.7, "days_above_per_train_year": 17.4, "share_of_running_days_above": 4.8, "mean_rise_pct": 9.2}
+linear · model 186 days above, 81 cleanings · calendar 1360 days above, 71 cleanings
+biofilm · model 189 days above, 89 cleanings · calendar 2218 days above, 72 cleanings
+asymptotic · model 0 days above, 41 cleanings · calendar 47 days above, 69 cleanings
+example train (median change): (np.int64(4202), 'A') change -11 · changes: {'count': 45.0, 'mean': -72.2, 'std': 109.1, 'min': -348.0, '25%': -107.0, '50%': -11.0, '75%': 0.0, 'max': 23.0}

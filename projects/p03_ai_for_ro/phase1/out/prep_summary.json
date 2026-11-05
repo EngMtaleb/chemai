@@ -1,0 +1,86 @@
+{
+ "counts": {
+  "1": {
+   "pairs": 1169,
+   "block 0": 142,
+   "block 1": 149,
+   "block 2": 150,
+   "block 3": 201,
+   "before 550": 527,
+   "train A": 325,
+   "train B": 427,
+   "train C": 417
+  },
+  "3": {
+   "pairs": 1083,
+   "block 0": 137,
+   "block 1": 147,
+   "block 2": 150,
+   "block 3": 183,
+   "before 550": 466,
+   "train A": 298,
+   "train B": 398,
+   "train C": 387
+  },
+  "7": {
+   "pairs": 994,
+   "block 0": 126,
+   "block 1": 143,
+   "block 2": 150,
+   "block 3": 153,
+   "before 550": 422,
+   "train A": 278,
+   "train B": 357,
+   "train C": 359
+  },
+  "14": {
+   "pairs": 881,
+   "block 0": 105,
+   "block 1": 136,
+   "block 2": 150,
+   "block 3": 111,
+   "before 550": 379,
+   "train A": 258,
+   "train B": 309,
+   "train C": 314
+  }
+ },
+ "onsets": [
+  {
+   "train": "A",
+   "day": 11
+  },
+  {
+   "train": "A",
+   "day": 610
+  },
+  {
+   "train": "A",
+   "day": 642
+  },
+  {
+   "train": "B",
+   "day": 404
+  },
+  {
+   "train": "B",
+   "day": 689
+  },
+  {
+   "train": "B",
+   "day": 753
+  },
+  {
+   "train": "C",
+   "day": 11
+  },
+  {
+   "train": "C",
+   "day": 428
+  },
+  {
+   "train": "C",
+   "day": 642
+  }
+ ]
+}

@@ -1,0 +1,200 @@
+Computed 540 operating points
+{
+  "nominal": {
+    "evidence_type": "simulated_industrial_design",
+    "train_q_m3_h": 458.333333333341,
+    "plant_q_m3_day": 132000.0000000022,
+    "train_feed_m3_h": 1145.8333333333333,
+    "train_brine_m3_h": 687.4999999999919,
+    "train_power_kW": 1320.6012518449527,
+    "plant_power_kW": 15847.215022139433,
+    "feed_pressure_bar": 63.49037113539727,
+    "vessel_dp_bar": 1.014058473372124,
+    "permeate_salinity_mg_L": 227.57983370454167,
+    "brine_salinity_g_L": 71.51494677753124,
+    "SEC_kWh_m3": 2.8813118222071212,
+    "RO_SEC_kWh_m3": 2.1535340444293483,
+    "power_components_train_kW": {
+      "high_pressure_pump": 906.0376940214885,
+      "erd_booster": 80.9987430086459,
+      "feed_pump": 127.31481481481481,
+      "assumed_auxiliaries": 206.25000000000344
+    },
+    "feasible": true,
+    "violations": [],
+    "water_balance_residual_m3_h": 4.689582056016661e-12,
+    "salt_balance_residual_kg_h": -8.061684653171142e-10
+  },
+  "verification": {
+    "water_balance_max_absolute_m3_h": 1.6413537196058314e-11,
+    "salt_balance_max_absolute_kg_h": 1.7070078683900647e-09,
+    "calibration": {
+      "A25_LMH_bar": 1.182518339785311,
+      "B25_LMH": 0.051761448282675634,
+      "reference": {
+        "temperature_C": 25.0,
+        "feed_salinity_g_L": 32.0,
+        "pressure_bar": 55.0,
+        "recovery": 0.08,
+        "permeate_m3_day": 30.2,
+        "salt_rejection": 0.998,
+        "area_m2": 41.0
+      },
+      "calculated_permeate_m3_day": 30.20000000000002,
+      "calculated_salt_rejection": 0.998,
+      "relative_flow_error": 6.661338147750939e-16,
+      "absolute_rejection_error": 0.0,
+      "claim": "One-point manufacturer calibration only; not field validation."
+    },
+    "axial_resolution": {
+      "feed_pressure_bar": {
+        "n16": 63.49037113539727,
+        "n32": 63.542681432853094,
+        "n64": 63.56884083780023,
+        "relative_n16_vs_n64": 0.0012344051168587944
+      },
+      "permeate_salinity_mg_L": {
+        "n16": 227.57983370454167,
+        "n32": 227.81231769403325,
+        "n64": 227.92857585955443,
+        "relative_n16_vs_n64": 0.0015300501646079434
+      },
+      "SEC_kWh_m3": {
+        "n16": 2.8813118222071212,
+        "n32": 2.8830360903373924,
+        "n64": 2.883898465203814,
+        "relative_n16_vs_n64": 0.0008969258203443964
+      }
+    },
+    "dispatch_linearization": {
+      "low_flux": 12,
+      "high_flux": 14.518002322880372,
+      "low_q": 378.8399999999994,
+      "high_q": 458.333333333341,
+      "low_power_kW": 1056.7508592978566,
+      "high_power_kW": 1320.6012518449527,
+      "midpoint_exact_kW": 1186.5867407877022,
+      "midpoint_linear_kW": 1188.6760555714045,
+      "midpoint_relative_overestimate": 0.001760777119686363,
+      "slope_kWh_m3": 3.31915119775749,
+      "intercept_kW": -200.67638046058914
+    },
+    "all_nominal_design_gates_pass": true,
+    "pressure_increases_when_A_falls": true,
+    "energy_rises_without_ERD": true,
+    "salt_passage_gate_detects_salt_stress": true
+  },
+  "scenarios": [
+    {
+      "id": "clean_design",
+      "feed_pressure_bar": 63.49037113539727,
+      "SEC_kWh_m3": 2.8813118222071212,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "feasible": true,
+      "violations": []
+    },
+    {
+      "id": "winter_15C",
+      "feed_pressure_bar": 67.23286893409482,
+      "SEC_kWh_m3": 3.027384037042737,
+      "permeate_salinity_mg_L": 152.10159097471188,
+      "feasible": true,
+      "violations": []
+    },
+    {
+      "id": "hot_35C",
+      "feed_pressure_bar": 61.932670532982115,
+      "SEC_kWh_m3": 2.8161972744999266,
+      "permeate_salinity_mg_L": 340.4888765007964,
+      "feasible": true,
+      "violations": []
+    },
+    {
+      "id": "high_salinity_50gL",
+      "feed_pressure_bar": 72.44377521234752,
+      "SEC_kWh_m3": 3.1919164713597583,
+      "permeate_salinity_mg_L": 266.39667024424796,
+      "feasible": true,
+      "violations": []
+    },
+    {
+      "id": "permeability_loss_20pct",
+      "feed_pressure_bar": 66.05204548710788,
+      "SEC_kWh_m3": 2.971316930206783,
+      "permeate_salinity_mg_L": 225.34600934310984,
+      "feasible": true,
+      "violations": []
+    },
+    {
+      "id": "channel_resistance_3x",
+      "feed_pressure_bar": 64.8733818533707,
+      "SEC_kWh_m3": 3.029537558538077,
+      "permeate_salinity_mg_L": 228.57911408363933,
+      "feasible": true,
+      "violations": []
+    },
+    {
+      "id": "salt_permeability_2_5x",
+      "feed_pressure_bar": 62.95846419575386,
+      "SEC_kWh_m3": 2.8630082530645153,
+      "permeate_salinity_mg_L": 562.5884340906038,
+      "feasible": false,
+      "violations": [
+        "salt_quality_gate"
+      ]
+    },
+    {
+      "id": "combined_degradation",
+      "feed_pressure_bar": 68.49786778666537,
+      "SEC_kWh_m3": 3.1087984988246316,
+      "permeate_salinity_mg_L": 335.6525845171234,
+      "feasible": true,
+      "violations": []
+    },
+    {
+      "id": "mild_degradation",
+      "feed_pressure_bar": 65.57893126854563,
+      "SEC_kWh_m3": 2.9801972209090892,
+      "permeate_salinity_mg_L": 259.80780564112837,
+      "feasible": true,
+      "violations": []
+    },
+    {
+      "id": "hot_salt_passage",
+      "feed_pressure_bar": 61.00666678385399,
+      "SEC_kWh_m3": 2.7843217323913034,
+      "permeate_salinity_mg_L": 835.2415175000795,
+      "feasible": false,
+      "violations": [
+        "salt_quality_gate"
+      ]
+    },
+    {
+      "id": "overproduction_20LMH",
+      "feed_pressure_bar": 68.57959329783317,
+      "SEC_kWh_m3": 3.0971149757580387,
+      "permeate_salinity_mg_L": 165.26363519249216,
+      "feasible": false,
+      "violations": [
+        "element_average_flux",
+        "feed_flow"
+      ]
+    },
+    {
+      "id": "pump_efficiency_75pct",
+      "feed_pressure_bar": 63.49037113539727,
+      "SEC_kWh_m3": 3.1448864241042767,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "feasible": true,
+      "violations": []
+    },
+    {
+      "id": "without_energy_recovery",
+      "feed_pressure_bar": 63.49037113539727,
+      "SEC_kWh_m3": 5.669801563349363,
+      "permeate_salinity_mg_L": 227.57983370454167,
+      "feasible": true,
+      "violations": []
+    }
+  ]
+}

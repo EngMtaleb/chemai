@@ -1,0 +1,16 @@
+{
+  "scope": "Independent code and numerical review, not field validation",
+  "trajectories_checked": 33,
+  "all_numerical_audits_pass": true,
+  "max_linear_power_error": 0.001763312523893612,
+  "causal_weather_index_latest_relative_hour": -1,
+  "causality_code_review": "Forecast uses preceding24observations; feedbackyield uses precedingmeasuredratios; demand is assumedknown. No futureactualPV is supplied to optimization.",
+  "findings": [
+    "No critical water/energy accounting or minimum-on-boundary defect found.",
+    "Capacity-loss factor is an imposed accepted-yield stress, not a physical fouling forecast.",
+    "Use fixed schedule label for the full-capacity case because all trains are initially ON.",
+    "Every savings comparison must exclude cases that fail service/terminal/reserve gates.",
+    "Dispatch uses fixed25C43g/Lphysics; outdoorairtemperature inPVdata doesnotchangefeedwaterphysics."
+  ]
+}
+exit 0

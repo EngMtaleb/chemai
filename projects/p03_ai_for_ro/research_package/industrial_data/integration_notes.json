@@ -1,0 +1,71 @@
+{
+  "attribution": "Yi Hsiang Su (Zenodo deposit); Yi Hsiang Su, Fan Cheng Meng, Pieh Yu Chang (paper). Dataset DOI10.5281/zenodo.21055948; article DOI10.3390/membranes16080257.",
+  "evidence_class": "independently downloaded and recomputed industrial-derived data",
+  "validated_upstream_raw_scada": false,
+  "source_dictionary_discrepancy": "Deposit dictionary says fixed-baseline deviations, while deposited scripts distinguish per-CIP dp_pct/ndp_pct from fixed-baseline DP_norm. Keep exact deposited labels; do not assign raw pressure or energy semantics. Upstream derivation cannot be audited without withheld raw data.",
+  "validation_best": [
+    {
+      "target": "dp_pct",
+      "horizon": 1,
+      "lowest_validation_mae_method": "persistence"
+    },
+    {
+      "target": "dp_pct",
+      "horizon": 3,
+      "lowest_validation_mae_method": "persistence"
+    },
+    {
+      "target": "dp_pct",
+      "horizon": 7,
+      "lowest_validation_mae_method": "persistence"
+    },
+    {
+      "target": "dp_pct",
+      "horizon": 14,
+      "lowest_validation_mae_method": "persistence"
+    },
+    {
+      "target": "flux_pct",
+      "horizon": 1,
+      "lowest_validation_mae_method": "persistence"
+    },
+    {
+      "target": "flux_pct",
+      "horizon": 3,
+      "lowest_validation_mae_method": "persistence"
+    },
+    {
+      "target": "flux_pct",
+      "horizon": 7,
+      "lowest_validation_mae_method": "persistence"
+    },
+    {
+      "target": "flux_pct",
+      "horizon": 14,
+      "lowest_validation_mae_method": "persistence"
+    }
+  ],
+  "central_finding": "No trained model passes the predefined research screen. Persistence has the lowest earlier-validation MAE for all target/horizon combinations. The 14-day flux smoothing gain is a later test observation, not a prospectively selected AI result.",
+  "role_in_episode": "The measured industrial evidence lane: forecasting of published derived indicators, kept separate from synthetic plant physics/energy scenarios.",
+  "web_sources": [
+    {
+      "url": "https://zenodo.org/records/21055948",
+      "role": "exact downloaded dataset version; license and checksums verified"
+    },
+    {
+      "url": "https://www.mdpi.com/2077-0375/16/8/257",
+      "web_ref": "turn43search0",
+      "role": "primary paper and data availability statement"
+    },
+    {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42646232/",
+      "web_ref": "turn43search1",
+      "role": "primary paper record"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13515404/",
+      "web_ref": "turn43search2",
+      "role": "full paper indexed; distinguishes per-CIP and fixed-baseline semantics"
+    }
+  ]
+}

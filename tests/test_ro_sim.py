@@ -1,11 +1,11 @@
-"""The RO plant simulator - the ground truth the forecast is chosen on."""
+"""The RO plant simulator - the ground truth AI for RO's phase 1B builds on. (The earlier Project 3's
+tests of its plant view and cycle splitter left with that project's evaluation module.)"""
 import numpy as np
 import pytest
 
 from chemai.config import ROSimConfig
 from chemai.data.ro_sim import (clean, counterfactual, gap_law, generate_plants, sample_plant,
                                 simulate_plant, step_state)
-from chemai.evaluation.fouling_eval import plant_view, sim_cycles
 
 cfg = ROSimConfig(days=300)
 
@@ -62,15 +62,16 @@ def test_the_operator_cleans_on_what_the_screen_shows(run):
     assert set(run.cleanings["reason"]) <= {"dP on screen", "time since last cleaning", "other reason"}
 
 
-def test_cycles_never_span_a_cleaning(run):
-    for c in sim_cycles(run, 0):
-        assert np.all(c.day > 0) and np.all(c.day < c.end - c.start)
-
-
-def test_the_view_censors_at_the_baseline_like_the_deposit(run):
-    v = plant_view(run)
-    assert (v["dp_norm_obs"] >= 1.0).all()
-    assert (v.loc[v["censored"], "dp_norm_obs"] == 1.0).all()
+def test_no_train_is_cleaned_for_time_before_its_limit_has_passed():
+    # The clock for "time since the last cleaning" starts with the record. It once started 10,000
+    # days earlier, and every simulated train was cleaned, for no reason, after its 14 baseline days.
+    for r in generate_plants(3, seed=11, cfg=cfg):
+        limit = r.params.max_days_without_cip
+        for _, ev in r.cleanings.groupby("train"):
+            day = ev["day"].to_numpy()
+            since = day - np.r_[0, day[:-1]]          # since the record began, or the last cleaning
+            timed = (ev["reason"] == "time since last cleaning").to_numpy()
+            assert (since[timed] >= limit).all()
 
 
 def test_generate_plants_cycles_the_laws():

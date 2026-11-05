@@ -1,0 +1,6 @@
+64 folds joined; 9332 forecast rows; epochs E* by network:
+       best_epoch                                          stopped_epoch                                           
+            count  mean   std  min  25%   50%   75%    max         count  mean   std   min   25%   50%   75%    max
+method                                                                                                             
+LSTM        640.0  18.7  25.3  1.0  2.0  10.0  23.0  150.0         640.0  33.6  24.8  16.0  17.0  25.0  38.0  150.0
+RNN         640.0  16.2  20.6  1.0  2.0   9.0  21.0  140.0         640.0  31.2  20.6  16.0  17.0  24.0  36.0  150.0

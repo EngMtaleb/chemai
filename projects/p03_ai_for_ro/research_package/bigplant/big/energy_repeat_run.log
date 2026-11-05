@@ -1,0 +1,11 @@
+2023-01_nominal rolling_milp grid 422034.91 PV% 43.61 terminal -0.0 pass True fallback 0 seconds 107.6
+2023-04_nominal rolling_milp grid 280191.27 PV% 62.75 terminal 0.0 pass True fallback 0 seconds 98.4
+2023-07_nominal rolling_milp grid 258071.06 PV% 65.7 terminal -0.0 pass True fallback 0 seconds 93.7
+2023-10_nominal rolling_milp grid 288925.93 PV% 61.56 terminal 0.0 pass True fallback 0 seconds 78.3
+october_yield90 rolling_milp grid 343541.57 PV% 57.39 terminal -0.0 pass True fallback 0 seconds 60.1
+october_forecast140 rolling_milp grid 289270.46 PV% 61.52 terminal -0.0 pass True fallback 0 seconds 72.3
+october_tank6h rolling_milp grid 289295.17 PV% 61.52 terminal 0.0 pass True fallback 0 seconds 99.0
+october_tank24h rolling_milp grid 289570.69 PV% 61.51 terminal 0.0 pass True fallback 0 seconds 87.4
+october_PV52800 rolling_milp grid 302122.81 PV% 59.8 terminal 0.0 pass True fallback 0 seconds 88.1
+october_PV88000 rolling_milp grid 280896.78 PV% 62.66 terminal 0.0 pass True fallback 0 seconds 73.3
+october_capacity_limit_yield90 rolling_milp grid 678233.81 PV% 40.56 terminal -26400.0 pass False fallback 47 seconds 10.2

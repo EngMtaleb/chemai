@@ -1,0 +1,170 @@
+{
+ "chosen": {
+  "x": 0.005,
+  "p": 0.0,
+  "w": 0.02,
+  "objective": 7.781725016228843
+ },
+ "five": {
+  "noise_pp": {
+   "sim": 1.12,
+   "real": 0.949,
+   "interval": [
+    0.78,
+    1.159
+   ],
+   "inside": true
+  },
+  "mean_abs_change_1d_pp": {
+   "sim": 1.336,
+   "real": 1.491,
+   "interval": [
+    1.29,
+    1.682
+   ],
+   "inside": true
+  },
+  "mean_abs_change_3d_pp": {
+   "sim": 1.834,
+   "real": 2.409,
+   "interval": [
+    2.06,
+    2.698
+   ],
+   "inside": false
+  },
+  "mean_abs_change_7d_pp": {
+   "sim": 2.52,
+   "real": 2.82,
+   "interval": [
+    2.477,
+    3.078
+   ],
+   "inside": true
+  },
+  "lag1_autocorr_of_daily_change": {
+   "sim": -0.286,
+   "real": -0.141,
+   "interval": [
+    -0.246,
+    -0.047
+   ],
+   "inside": false
+  }
+ },
+ "other": {
+  "cycle_length_days": {
+   "sim": 175.5,
+   "real": 42.0,
+   "interval": [
+    39.0,
+    45.0
+   ]
+  },
+  "share_of_cycles_over_60_days": {
+   "sim": 0.927,
+   "real": 0.267,
+   "interval": [
+    0.077,
+    0.462
+   ]
+  },
+  "rise_pp_per_week": {
+   "sim": 0.532,
+   "real": 0.301,
+   "interval": [
+    0.0,
+    0.641
+   ]
+  },
+  "cip_drop_pp": {
+   "sim": 12.761,
+   "real": 4.828,
+   "interval": [
+    3.917,
+    7.317
+   ]
+  },
+  "level_at_cleaning_pp": {
+   "sim": 19.844,
+   "real": 22.794,
+   "interval": [
+    20.911,
+    32.514
+   ]
+  },
+  "mean_abs_change_14d_pp": {
+   "sim": 3.239,
+   "real": 3.774,
+   "interval": [
+    3.131,
+    4.333
+   ]
+  },
+  "level_p10_pp": {
+   "sim": 2.441,
+   "real": 1.711,
+   "interval": [
+    0.0,
+    6.747
+   ]
+  },
+  "level_p50_pp": {
+   "sim": 9.318,
+   "real": 16.014,
+   "interval": [
+    14.226,
+    18.81
+   ]
+  },
+  "level_p90_pp": {
+   "sim": 18.901,
+   "real": 33.431,
+   "interval": [
+    24.58,
+    41.46
+   ]
+  }
+ },
+ "settings": 90,
+ "plants": [
+  [
+   4301,
+   "linear"
+  ],
+  [
+   4302,
+   "linear"
+  ],
+  [
+   4303,
+   "linear"
+  ],
+  [
+   4311,
+   "biofilm"
+  ],
+  [
+   4312,
+   "biofilm"
+  ],
+  [
+   4313,
+   "biofilm"
+  ],
+  [
+   4321,
+   "asymptotic"
+  ],
+  [
+   4322,
+   "asymptotic"
+  ],
+  [
+   4323,
+   "asymptotic"
+  ]
+ ],
+ "screen_flow_exponent": 1.75,
+ "seconds": 261
+}

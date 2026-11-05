@@ -1,0 +1,15 @@
+{
+  "published_grid_points_checked": 540,
+  "max_final_flux_over_mass_transfer": 0.2277503705859469,
+  "exponential_cap_threshold": 5,
+  "max_raw_segment_permeate_fraction_of_feed": 0.013015071666762128,
+  "segment_flow_cap_threshold": 0.25,
+  "minimum_forward_flux_LMH": 1.781804177546803,
+  "published_solution_caps_activated": false,
+  "independent_conservative_bounds_all_published_points": {
+    "points": 577,
+    "segment_permeate_fraction_upper_bound": 0.075234,
+    "flux_over_k_upper_bound": 1.036494,
+    "method": "J<=A(T)*(Pin-Pp); Q>=Qbrine; k>=k(Qbrine,T); checked per input case independently by industrial_fouling agent."
+  }
+}

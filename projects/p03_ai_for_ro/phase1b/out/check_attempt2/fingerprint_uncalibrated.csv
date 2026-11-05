@@ -1,0 +1,16 @@
+statistic,real,real 90 % interval,simulated (uncalibrated),inside
+cycle_length_days,42.0,39.000 to 45.000,130.5,False
+share_of_cycles_over_60_days,0.267,0.077 to 0.462,0.839,False
+rise_pp_per_week,0.301,0.000 to 0.641,0.391,True
+noise_pp,0.949,0.780 to 1.159,2.816,False
+cip_drop_pp,4.828,3.917 to 7.317,17.114,False
+level_at_cleaning_pp,22.794,20.911 to 32.514,25.531,True
+lag1_autocorr_of_daily_change,-0.141,-0.246 to -0.047,-0.391,False
+mean_abs_change_1d_pp,1.491,1.290 to 1.682,3.9,False
+mean_abs_change_3d_pp,2.409,2.060 to 2.698,4.832,False
+mean_abs_change_7d_pp,2.82,2.477 to 3.078,5.783,False
+mean_abs_change_14d_pp,3.774,3.131 to 4.333,6.598,False
+level_p10_pp,1.711,0.000 to 6.747,0.0,True
+level_p50_pp,16.014,14.226 to 18.810,12.586,False
+level_p90_pp,33.431,24.580 to 41.460,26.868,True
+missing_share,"A 0.30, B 0.08, C 0.09",0.08 to 0.30 (declared),0.393,False
