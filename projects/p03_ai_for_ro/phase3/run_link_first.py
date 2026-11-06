@@ -3,7 +3,8 @@ alone would clean.
 
     python run_link.py <sun csv> <sea csv> <deposit daily csv> <out folder>
 
-Project 5's cycle inputs and cleaning economics are imported from the repository (projects/p05_when_to_stop).
+Project 5's cycle inputs and cleaning economics are imported from the repository's history: projects/p05_when_to_stop
+at commit 0b12b39 (see project5.py).
 """
 import itertools
 import json
@@ -16,7 +17,8 @@ import pandas as pd
 
 HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, "/home/claude/chemai/projects/p05_when_to_stop")
+import project5  # noqa: E402
+project5.add_to_path()  # Project 5 is kept at commit 0b12b39: see project5.py
 import p4lib as L  # noqa: E402
 from step4_ro_cip_economics import cycle_inputs, SMOOTH_DAYS, MIN_DAYS, MID, GRID  # noqa: E402
 from chemai.data.ro_deposit import load_daily  # noqa: E402
