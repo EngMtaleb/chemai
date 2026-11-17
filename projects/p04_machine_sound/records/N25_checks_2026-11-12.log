@@ -1,0 +1,38 @@
+P04 · notebook 25 · the four checks, run 2026-11-12 on the unpacked results zip (MD5 c2cb4b12a4660bd7d729db5ffc73919d)
+
+== python3 -I check_n25_results.py run_2026-11-12_n25 --real
+development: 4900 test clips × 9 systems recomputed from the saved scores · largest difference 0.0e+00
+evaluation: scored with form ZP · 3893 clips in 12 files · official evaluator ran: True, agrees: True
+decision: {'current': [0.94, 0.9953], 'keep_at': [0.95, 0.9853], 'family': ['A', 'G', 'C', 'Z', 'ZP'], 'forms': {'A': [0.978, 0.9799], 'G': [0.9789, 0.9681], 'C': [0.9792, 0.9885], 'Z': [0.9782, 0.9631], 'ZP': [0.9794, 0.9991]}, 'selected': 'ZP', 'kept': True, 'passes_development': True, 'passes_confirmation': True, 'test_forced': False}
+no mismatches []
+exit 0
+
+== python3 -I verify_n25_run.py run_2026-11-12_n25 run_2026-11-11_n23
+development: 4900 test clips × 9 systems recomputed from the saved scores · largest difference 0.0e+00
+evaluation: scored with form ZP · 3893 clips in 12 files · official evaluator ran: True, agrees: True
+decision: {'current': [0.94, 0.9953], 'keep_at': [0.95, 0.9853], 'family': ['A', 'G', 'C', 'Z', 'ZP'], 'forms': {'A': [0.978, 0.9799], 'G': [0.9789, 0.9681], 'C': [0.9792, 0.9885], 'Z': [0.9782, 0.9631], 'ZP': [0.9794, 0.9991]}, 'selected': 'ZP', 'kept': True, 'passes_development': True, 'passes_confirmation': True, 'test_forced': False}
+no mismatches []
+evaluation: 3893 clips, the same as notebook 23's files; the paper's score implied by the two files runs from 0.0345 to 40.54
+zip MD5 c2cb4b12a4660bd7d729db5ffc73919d · JSON MD5 eefa15d8b8266d9739c4e1c2b0d49222
+no mismatches (verify_n25_run) []
+exit 0
+
+== python3 -I check_n25_eval_without_labels.py run_2026-11-12_n25 run_2026-11-11_n23
+  fan id_01: labels from notebook 25 give notebook 23's 0.9908 / 0.9763 (difference 0.0e+00)
+  fan id_05: labels from notebook 25 give notebook 23's 0.9270 / 0.8721 (difference 0.0e+00)
+  valve id_01: labels from notebook 25 give notebook 23's 1.0000 / 1.0000 (difference 0.0e+00)
+  valve id_01: labels from notebook 23 give notebook 25's 1.0000 / 1.0000 (difference 0.0e+00)
+  valve id_03: labels from notebook 25 give notebook 23's 1.0000 / 1.0000 (difference 0.0e+00)
+  valve id_03: labels from notebook 23 give notebook 25's 1.0000 / 1.0000 (difference 0.0e+00)
+  slider id_01: labels from notebook 25 give notebook 23's 1.0000 / 1.0000 (difference 0.0e+00)
+  slider id_01: labels from notebook 23 give notebook 25's 1.0000 / 1.0000 (difference 0.0e+00)
+  slider id_05: labels from notebook 25 give notebook 23's 0.9978 / 0.9923 (difference 0.0e+00)
+machines covered: 6 of 12 (fan id_01, fan id_05, slider id_01, slider id_05, valve id_01, valve id_03)
+machines where both runs report 1.0 and the same clips are on top: 3 (valve id_01, valve id_03, slider id_01)
+largest difference 0.0e+00 · no mismatches
+exit 0
+
+== python3 -I check_n25_record.py N25_outputs_2026-11-12.md run_2026-11-12_n25 run_2026-11-11_n23 RULES… NOTEBOOK…
+changes whose last digit differs from the difference of the rounded numbers: valve AUC, the mean pAUC, pump id_05 AUC, pump id_05 pAUC, valve id_05 pAUC, slide rail id_03 pAUC
+292 checks of the record against the saved files; 0 failed
+exit 0

@@ -1,0 +1,1367 @@
+{
+ "rules": "results/mimii_beats/RULES_pooling_first_shot_2025_written_before_running.md",
+ "readings": {
+  "A0": {
+   "what": "AT|F|mean",
+   "development": {
+    "omega": 0.5528293362542256,
+    "AUC_source": 0.47966723174604836,
+    "AUC_target": 0.6470041913556028,
+    "pAUC": 0.5567104686405332,
+    "per_type": {
+     "ToyCar": 0.35842815778871545,
+     "ToyTrain": 0.6144511498412237,
+     "bearing": 0.6441360719069296,
+     "fan": 0.5369298733910641,
+     "gearbox": 0.6630125974774984,
+     "slider": 0.5272708481363053,
+     "valve": 0.7017669717038901
+    }
+   },
+   "evaluation": {
+    "omega": 0.6229009691637002,
+    "AUC_source": 0.7209103037791285,
+    "AUC_target": 0.5846886382403412,
+    "pAUC": 0.5818257136392119,
+    "per_type": {
+     "AutoTrash": 0.8183366920308578,
+     "BandSealer": 0.6338097224741065,
+     "CoffeeGrinder": 0.6135323553626099,
+     "HomeCamera": 0.5477844845020473,
+     "Polisher": 0.553815856324816,
+     "ScrewFeeder": 0.7509142825339054,
+     "ToyPet": 0.6447037802057861,
+     "ToyRCCar": 0.5264609921060297
+    }
+   }
+  },
+  "A1": {
+   "what": "FZ|B3|rdpgem16|Ev",
+   "published_evaluation": 0.624,
+   "published_development": 0.64,
+   "development": {
+    "omega": 0.5875122746871229,
+    "AUC_source": 0.5813848045798194,
+    "AUC_target": 0.6487265324828356,
+    "pAUC": 0.5420749000724303,
+    "per_type": {
+     "ToyCar": 0.4975570118529941,
+     "ToyTrain": 0.6223809583594595,
+     "bearing": 0.6260706094660748,
+     "fan": 0.5281730160224467,
+     "gearbox": 0.6210260426781297,
+     "slider": 0.5796125749068544,
+     "valve": 0.6793570264999864
+    }
+   },
+   "evaluation": {
+    "omega": 0.5922864889304911,
+    "AUC_source": 0.6586397522936119,
+    "AUC_target": 0.5666379320585889,
+    "pAUC": 0.5611545214420712,
+    "per_type": {
+     "AutoTrash": 0.7683787882627063,
+     "BandSealer": 0.5813490621025359,
+     "CoffeeGrinder": 0.553166063532116,
+     "HomeCamera": 0.4860820169769554,
+     "Polisher": 0.6189450144237022,
+     "ScrewFeeder": 0.6992977139713078,
+     "ToyPet": 0.6062376737189813,
+     "ToyRCCar": 0.5194317675984197
+    }
+   }
+  },
+  "A2": {
+   "what": "AT|F|max",
+   "development_by_pooling": {
+    "mean": 0.5528293362542256,
+    "max": 0.5930097930835792,
+    "gem3": 0.5479485996033416,
+    "gem6": 0.556294484352057,
+    "gem10": 0.5666777391539897,
+    "rdp4": 0.5588337941089436,
+    "rdp10": 0.5704184183796502,
+    "rdp16": 0.5789870808916139,
+    "rdp19": 0.577617494030118,
+    "rdpgem9": 0.5589383187393845,
+    "rdpgem16": 0.56675191343601
+   },
+   "development": {
+    "omega": 0.5930097930835792,
+    "AUC_source": 0.551835666675499,
+    "AUC_target": 0.6784397059843034,
+    "pAUC": 0.5640684903539303,
+    "per_type": {
+     "ToyCar": 0.45186425519729795,
+     "ToyTrain": 0.6417958747411572,
+     "bearing": 0.6192301298380838,
+     "fan": 0.5543686573653149,
+     "gearbox": 0.6902312305328113,
+     "slider": 0.5561399223497464,
+     "valve": 0.7313432731331883
+    }
+   },
+   "evaluation": {
+    "omega": 0.612231998881685,
+    "AUC_source": 0.7055097798736534,
+    "AUC_target": 0.5842057924417493,
+    "pAUC": 0.5646645799630687,
+    "per_type": {
+     "AutoTrash": 0.818946696024392,
+     "BandSealer": 0.6104507880104526,
+     "CoffeeGrinder": 0.5730993125336293,
+     "HomeCamera": 0.5549998204846393,
+     "Polisher": 0.585571468171046,
+     "ScrewFeeder": 0.7297889108718472,
+     "ToyPet": 0.6438394182999797,
+     "ToyRCCar": 0.49264678074305657
+    }
+   }
+  },
+  "A3": {
+   "what": "z(AT|F|max) + z(FZ|B3|rdpgem16|Ev)",
+   "development": {
+    "omega": 0.5945763423439085,
+    "AUC_source": 0.567793750205766,
+    "AUC_target": 0.6666839887944768,
+    "pAUC": 0.5603981731081009,
+    "per_type": {
+     "ToyCar": 0.46709860131611025,
+     "ToyTrain": 0.6360081205169232,
+     "bearing": 0.6316986200914699,
+     "fan": 0.5281730160224467,
+     "gearbox": 0.6901486733835261,
+     "slider": 0.5561399223497464,
+     "valve": 0.7482330831872085
+    }
+   },
+   "evaluation": {
+    "omega": 0.6183390064712304,
+    "AUC_source": 0.7072000340670672,
+    "AUC_target": 0.5890964208169646,
+    "pAUC": 0.5746580033460508,
+    "per_type": {
+     "AutoTrash": 0.8189699081072159,
+     "BandSealer": 0.6120958017001915,
+     "CoffeeGrinder": 0.5730993125336293,
+     "HomeCamera": 0.5329111793675805,
+     "Polisher": 0.5952435304789881,
+     "ScrewFeeder": 0.7727262249028987,
+     "ToyPet": 0.657183396910049,
+     "ToyRCCar": 0.5086530755185742
+    }
+   }
+  },
+  "A4": {
+   "what": "per type, bound-minimising weights over 33 candidates; z_out = mix",
+   "development": {
+    "omega": 0.5442388607928926,
+    "AUC_source": 0.48312773977122586,
+    "AUC_target": 0.6320946234800879,
+    "pAUC": 0.5375194028107285,
+    "per_type": {
+     "ToyCar": 0.3684375728396538,
+     "ToyTrain": 0.5482360968494647,
+     "bearing": 0.6475859486535364,
+     "fan": 0.5427320057632111,
+     "gearbox": 0.6312374573057415,
+     "slider": 0.531975048426988,
+     "valve": 0.6788405227682399
+    }
+   },
+   "evaluation": {
+    "omega": 0.6270706854540441,
+    "AUC_source": 0.7333834359891624,
+    "AUC_target": 0.5817397677128511,
+    "pAUC": 0.5876736263984623,
+    "per_type": {
+     "AutoTrash": 0.8037987351834988,
+     "BandSealer": 0.6526040950411028,
+     "CoffeeGrinder": 0.6197928190568847,
+     "HomeCamera": 0.5387616519084781,
+     "Polisher": 0.5792934093064641,
+     "ScrewFeeder": 0.8273790891145347,
+     "ToyPet": 0.6377423287457344,
+     "ToyRCCar": 0.4977951685766094
+    }
+   },
+   "bound": {
+    "ToyCar": 1.0679981857966407,
+    "ToyTrain": 1.105023651632219,
+    "bearing": 1.1595988017753804,
+    "fan": 1.2727472977580019,
+    "gearbox": 1.306621998126619,
+    "slider": 1.0930739495894288,
+    "valve": 1.161053710536344,
+    "AutoTrash": 1.3542441794188973,
+    "BandSealer": 1.328061758229008,
+    "CoffeeGrinder": 1.125758882647219,
+    "HomeCamera": 1.6034428839465638,
+    "Polisher": 1.1207155380302556,
+    "ScrewFeeder": 1.5302645089275009,
+    "ToyPet": 1.3502899562193897,
+    "ToyRCCar": 1.4170802240654234
+   },
+   "largest_weights": {
+    "ToyCar": [
+     [
+      "AT|F|gem3",
+      0.171
+     ],
+     [
+      "AT|F|rdpgem16",
+      0.145
+     ],
+     [
+      "AT|F|rdpgem9",
+      0.138
+     ],
+     [
+      "AT|F|mean",
+      0.116
+     ]
+    ],
+    "ToyTrain": [
+     [
+      "FZ|B|rdp19|Ev",
+      0.312
+     ],
+     [
+      "FZ|B|rdp16|Ev",
+      0.267
+     ],
+     [
+      "AT|F|rdp19",
+      0.1
+     ],
+     [
+      "AT|F|rdp16",
+      0.073
+     ]
+    ],
+    "bearing": [
+     [
+      "AT|F|gem3",
+      0.25
+     ],
+     [
+      "FZ|B|rdp19|Ev",
+      0.161
+     ],
+     [
+      "AT|F|mean",
+      0.094
+     ],
+     [
+      "AT|F|rdpgem9",
+      0.088
+     ]
+    ],
+    "fan": [
+     [
+      "AT|F|gem3",
+      0.481
+     ],
+     [
+      "FZ|B3|rdp19|Ev",
+      0.125
+     ],
+     [
+      "FZ|B3|rdp16|Ev",
+      0.072
+     ],
+     [
+      "AT|F|rdpgem9",
+      0.063
+     ]
+    ],
+    "gearbox": [
+     [
+      "FZ|B|rdp16|Ev",
+      0.57
+     ],
+     [
+      "FZ|B|rdp10|Ev",
+      0.047
+     ],
+     [
+      "FZ|B|rdp4|Ev",
+      0.037
+     ],
+     [
+      "FZ|B|mean|Ev",
+      0.029
+     ]
+    ],
+    "slider": [
+     [
+      "AT|F|gem3",
+      0.255
+     ],
+     [
+      "AT|F|rdp19",
+      0.144
+     ],
+     [
+      "AT|F|rdp16",
+      0.12
+     ],
+     [
+      "AT|F|mean",
+      0.119
+     ]
+    ],
+    "valve": [
+     [
+      "FZ|B|mean|Ev",
+      0.472
+     ],
+     [
+      "FZ|B|gem3|Ev",
+      0.195
+     ],
+     [
+      "FZ|B|rdp19|Ev",
+      0.122
+     ],
+     [
+      "AT|F|mean",
+      0.085
+     ]
+    ],
+    "AutoTrash": [
+     [
+      "FZ|B|rdp19|Ev",
+      0.531
+     ],
+     [
+      "FZ|B|mean|Ev",
+      0.172
+     ],
+     [
+      "FZ|B|rdp16|Ev",
+      0.144
+     ],
+     [
+      "FZ|B|rdp4|Ev",
+      0.037
+     ]
+    ],
+    "BandSealer": [
+     [
+      "FZ|B|mean|Ev",
+      0.171
+     ],
+     [
+      "FZ|B3|rdp4|Ev",
+      0.139
+     ],
+     [
+      "FZ|B3|mean|Ev",
+      0.129
+     ],
+     [
+      "FZ|B|rdp4|Ev",
+      0.127
+     ]
+    ],
+    "CoffeeGrinder": [
+     [
+      "AT|F|rdp19",
+      0.214
+     ],
+     [
+      "AT|F|rdp16",
+      0.165
+     ],
+     [
+      "AT|F|rdpgem16",
+      0.119
+     ],
+     [
+      "AT|F|rdp10",
+      0.06
+     ]
+    ],
+    "HomeCamera": [
+     [
+      "FZ|B3|rdp16|Ev",
+      0.098
+     ],
+     [
+      "FZ|B3|rdp10|Ev",
+      0.088
+     ],
+     [
+      "FZ|B3|rdp19|Ev",
+      0.074
+     ],
+     [
+      "AT|F|mean",
+      0.068
+     ]
+    ],
+    "Polisher": [
+     [
+      "AT|F|rdpgem9",
+      0.222
+     ],
+     [
+      "AT|F|rdpgem16",
+      0.036
+     ],
+     [
+      "FZ|B3|rdp4|Ev",
+      0.031
+     ],
+     [
+      "FZ|B|gem3|Ev",
+      0.03
+     ]
+    ],
+    "ScrewFeeder": [
+     [
+      "AT|F|rdpgem9",
+      0.124
+     ],
+     [
+      "AT|F|gem3",
+      0.119
+     ],
+     [
+      "AT|F|rdpgem16",
+      0.107
+     ],
+     [
+      "FZ|B|rdp4|Ev",
+      0.056
+     ]
+    ],
+    "ToyPet": [
+     [
+      "AT|F|rdpgem9",
+      0.481
+     ],
+     [
+      "AT|F|rdpgem16",
+      0.215
+     ],
+     [
+      "AT|F|rdp19",
+      0.081
+     ],
+     [
+      "AT|F|rdp16",
+      0.071
+     ]
+    ],
+    "ToyRCCar": [
+     [
+      "FZ|B|rdp19|Ev",
+      0.538
+     ],
+     [
+      "FZ|B|rdp16|Ev",
+      0.136
+     ],
+     [
+      "FZ|B|rdp10|Ev",
+      0.037
+     ],
+     [
+      "AT|F|mean",
+      0.034
+     ]
+    ]
+   },
+   "weight_on_the_trained_expert": {
+    "ToyCar": 0.933,
+    "ToyTrain": 0.249,
+    "bearing": 0.685,
+    "fan": 0.653,
+    "gearbox": 0.144,
+    "slider": 0.655,
+    "valve": 0.119,
+    "AutoTrash": 0.059,
+    "BandSealer": 0.186,
+    "CoffeeGrinder": 0.647,
+    "HomeCamera": 0.511,
+    "Polisher": 0.437,
+    "ScrewFeeder": 0.595,
+    "ToyPet": 0.877,
+    "ToyRCCar": 0.214
+   }
+  },
+  "A4_other_types": {
+   "what": "per type, bound-minimising weights over 33 candidates; z_out = cross",
+   "development": {
+    "omega": 0.5691210511496609,
+    "AUC_source": 0.5180640130429817,
+    "AUC_target": 0.6504521978621176,
+    "pAUC": 0.5544371589134403,
+    "per_type": {
+     "ToyCar": 0.41168434352988076,
+     "ToyTrain": 0.622415374094746,
+     "bearing": 0.6319821672084783,
+     "fan": 0.5390477190722217,
+     "gearbox": 0.6270750930586976,
+     "slider": 0.5272824968726297,
+     "valve": 0.7488897509446006
+    }
+   },
+   "evaluation": {
+    "omega": 0.6296771718424606,
+    "AUC_source": 0.7342235384764384,
+    "AUC_target": 0.5893611190327981,
+    "pAUC": 0.5863003225708041,
+    "per_type": {
+     "AutoTrash": 0.8579396314217262,
+     "BandSealer": 0.6442380421392729,
+     "CoffeeGrinder": 0.6152615487167552,
+     "HomeCamera": 0.5278741794291596,
+     "Polisher": 0.5792934093064641,
+     "ScrewFeeder": 0.7621575579438361,
+     "ToyPet": 0.6369441334403781,
+     "ToyRCCar": 0.5378944777182909
+    }
+   },
+   "bound": {
+    "ToyCar": 1.0071144628828395,
+    "ToyTrain": 1.001081154767137,
+    "bearing": 1.0252914087365737,
+    "fan": 1.0308137262529535,
+    "gearbox": 1.0862120694433175,
+    "slider": 1.021167500647212,
+    "valve": 1.00137706457741,
+    "AutoTrash": 1.0083894885838667,
+    "BandSealer": 1.0187796385107009,
+    "CoffeeGrinder": 1.0089434220339542,
+    "HomeCamera": 1.0054836099981923,
+    "Polisher": 1.0137222679416962,
+    "ScrewFeeder": 1.0012723307024947,
+    "ToyPet": 1.0135005415690819,
+    "ToyRCCar": 1.0127528780234212
+   },
+   "largest_weights": {
+    "ToyCar": [
+     [
+      "AT|F|rdp19",
+      0.374
+     ],
+     [
+      "AT|F|rdp16",
+      0.164
+     ],
+     [
+      "FZ|B|mean|Ev",
+      0.125
+     ],
+     [
+      "FZ|B|max|Ev",
+      0.088
+     ]
+    ],
+    "ToyTrain": [
+     [
+      "AT|F|mean",
+      0.438
+     ],
+     [
+      "FZ|B3|mean|Ev",
+      0.208
+     ],
+     [
+      "AT|F|rdp4",
+      0.19
+     ],
+     [
+      "AT|F|rdp10",
+      0.071
+     ]
+    ],
+    "bearing": [
+     [
+      "AT|F|gem3",
+      0.703
+     ],
+     [
+      "FZ|B|rdp19|Ev",
+      0.161
+     ],
+     [
+      "AT|F|mean",
+      0.038
+     ],
+     [
+      "AT|F|rdpgem9",
+      0.033
+     ]
+    ],
+    "fan": [
+     [
+      "AT|F|gem3",
+      0.368
+     ],
+     [
+      "FZ|B3|rdp19|Ev",
+      0.176
+     ],
+     [
+      "FZ|B|rdp16|Ev",
+      0.076
+     ],
+     [
+      "FZ|B|rdp19|Ev",
+      0.068
+     ]
+    ],
+    "gearbox": [
+     [
+      "FZ|B|rdp16|Ev",
+      0.152
+     ],
+     [
+      "FZ|B|rdpgem16|Ev",
+      0.137
+     ],
+     [
+      "FZ|B|rdp10|Ev",
+      0.083
+     ],
+     [
+      "FZ|B|rdpgem9|Ev",
+      0.064
+     ]
+    ],
+    "slider": [
+     [
+      "AT|F|mean",
+      0.563
+     ],
+     [
+      "AT|F|rdp4",
+      0.06
+     ],
+     [
+      "FZ|B|rdp19|Ev",
+      0.016
+     ],
+     [
+      "FZ|B|rdp16|Ev",
+      0.016
+     ]
+    ],
+    "valve": [
+     [
+      "FZ|B|rdpgem16|Ev",
+      0.275
+     ],
+     [
+      "AT|F|rdp4",
+      0.274
+     ],
+     [
+      "FZ|B|max|Ev",
+      0.179
+     ],
+     [
+      "AT|F|mean",
+      0.107
+     ]
+    ],
+    "AutoTrash": [
+     [
+      "AT|F|rdp19",
+      0.342
+     ],
+     [
+      "AT|F|rdp16",
+      0.193
+     ],
+     [
+      "AT|F|mean",
+      0.106
+     ],
+     [
+      "AT|F|rdp10",
+      0.09
+     ]
+    ],
+    "BandSealer": [
+     [
+      "AT|F|mean",
+      0.392
+     ],
+     [
+      "AT|F|rdp4",
+      0.254
+     ],
+     [
+      "AT|F|gem3",
+      0.229
+     ],
+     [
+      "AT|F|rdp10",
+      0.041
+     ]
+    ],
+    "CoffeeGrinder": [
+     [
+      "AT|F|rdp19",
+      0.42
+     ],
+     [
+      "AT|F|max",
+      0.157
+     ],
+     [
+      "AT|F|rdp16",
+      0.04
+     ],
+     [
+      "FZ|B|max|Ev",
+      0.017
+     ]
+    ],
+    "HomeCamera": [
+     [
+      "AT|F|mean",
+      0.317
+     ],
+     [
+      "AT|F|rdp4",
+      0.258
+     ],
+     [
+      "AT|F|rdp10",
+      0.229
+     ],
+     [
+      "AT|F|rdp16",
+      0.086
+     ]
+    ],
+    "Polisher": [
+     [
+      "AT|F|rdpgem9",
+      0.227
+     ],
+     [
+      "AT|F|mean",
+      0.027
+     ],
+     [
+      "AT|F|gem3",
+      0.027
+     ],
+     [
+      "AT|F|rdp4",
+      0.027
+     ]
+    ],
+    "ScrewFeeder": [
+     [
+      "AT|F|mean",
+      0.322
+     ],
+     [
+      "AT|F|rdp4",
+      0.272
+     ],
+     [
+      "AT|F|rdp10",
+      0.146
+     ],
+     [
+      "AT|F|rdp16",
+      0.098
+     ]
+    ],
+    "ToyPet": [
+     [
+      "AT|F|gem3",
+      0.049
+     ],
+     [
+      "AT|F|mean",
+      0.037
+     ],
+     [
+      "AT|F|rdp16",
+      0.037
+     ],
+     [
+      "AT|F|rdp10",
+      0.037
+     ]
+    ],
+    "ToyRCCar": [
+     [
+      "AT|F|rdp19",
+      0.467
+     ],
+     [
+      "AT|F|rdp16",
+      0.274
+     ],
+     [
+      "AT|F|gem3",
+      0.032
+     ],
+     [
+      "AT|F|rdp10",
+      0.03
+     ]
+    ]
+   },
+   "weight_on_the_trained_expert": {
+    "ToyCar": 0.69,
+    "ToyTrain": 0.762,
+    "bearing": 0.822,
+    "fan": 0.499,
+    "gearbox": 0.33,
+    "slider": 0.641,
+    "valve": 0.457,
+    "AutoTrash": 0.97,
+    "BandSealer": 0.975,
+    "CoffeeGrinder": 0.632,
+    "HomeCamera": 0.957,
+    "Polisher": 0.443,
+    "ScrewFeeder": 0.96,
+    "ToyPet": 0.377,
+    "ToyRCCar": 0.939
+   }
+  },
+  "A5": {
+   "what": "equal weights over the same 33",
+   "development": {
+    "omega": 0.5633068293988085,
+    "AUC_source": 0.516499362757552,
+    "AUC_target": 0.6357734990171865,
+    "pAUC": 0.5504497247090521,
+    "per_type": {
+     "ToyCar": 0.41114298611228284,
+     "ToyTrain": 0.610602150553581,
+     "bearing": 0.6623910626797398,
+     "fan": 0.5185106777966797,
+     "gearbox": 0.6097496910655009,
+     "slider": 0.5325537178134304,
+     "valve": 0.713977775908181
+    }
+   },
+   "evaluation": {
+    "omega": 0.632732970325351,
+    "AUC_source": 0.7370753336900261,
+    "AUC_target": 0.5891725448942418,
+    "pAUC": 0.5926531619582727,
+    "per_type": {
+     "AutoTrash": 0.793091665301901,
+     "BandSealer": 0.6516217239826467,
+     "CoffeeGrinder": 0.6121529065445198,
+     "HomeCamera": 0.5518229588657992,
+     "Polisher": 0.5738737584722062,
+     "ScrewFeeder": 0.8648018356533917,
+     "ToyPet": 0.6369441334403781,
+     "ToyRCCar": 0.5172195521221311
+    }
+   }
+  }
+ },
+ "references_evaluation": {
+  "expert_AT_notebook30": 0.6228,
+  "first_team": 0.6163,
+  "arXiv_2603.04605_BEATs": 0.624,
+  "arXiv_2609.27362_NN_LDN": 0.6395
+ },
+ "best_reading_on_evaluation": "A5",
+ "single_candidates": {
+  "FZ|B|mean|E0": {
+   "development": 0.5938558811333315,
+   "evaluation": 0.5295005343141809
+  },
+  "FZ|B|mean|E1": {
+   "development": 0.5628351251014251,
+   "evaluation": 0.6097450384081121
+  },
+  "FZ|B|mean|Ev": {
+   "development": 0.5538048404649667,
+   "evaluation": 0.6122775690196467
+  },
+  "FZ|B|mean|C1": {
+   "development": 0.5618105277222699,
+   "evaluation": 0.6083654965745166
+  },
+  "FZ|B|max|E0": {
+   "development": 0.593181814541715,
+   "evaluation": 0.5498170577897367
+  },
+  "FZ|B|max|E1": {
+   "development": 0.5741785332862516,
+   "evaluation": 0.5940422461365494
+  },
+  "FZ|B|max|Ev": {
+   "development": 0.5621926264424267,
+   "evaluation": 0.5935523546630036
+  },
+  "FZ|B|max|C1": {
+   "development": 0.5720891255322788,
+   "evaluation": 0.5934342157291163
+  },
+  "FZ|B|gem3|E0": {
+   "development": 0.6014815879769976,
+   "evaluation": 0.5337416763646542
+  },
+  "FZ|B|gem3|E1": {
+   "development": 0.5543620759086195,
+   "evaluation": 0.612341037918361
+  },
+  "FZ|B|gem3|Ev": {
+   "development": 0.54422150746851,
+   "evaluation": 0.6133835701000601
+  },
+  "FZ|B|gem3|C1": {
+   "development": 0.553036581233458,
+   "evaluation": 0.6116872726306509
+  },
+  "FZ|B|gem6|E0": {
+   "development": 0.6036666418877562,
+   "evaluation": 0.5408751298505519
+  },
+  "FZ|B|gem6|E1": {
+   "development": 0.5600917256342934,
+   "evaluation": 0.6026690482090613
+  },
+  "FZ|B|gem6|Ev": {
+   "development": 0.5507461277103586,
+   "evaluation": 0.6010232296712499
+  },
+  "FZ|B|gem6|C1": {
+   "development": 0.5582680514962755,
+   "evaluation": 0.6026255527522862
+  },
+  "FZ|B|gem10|E0": {
+   "development": 0.6016895883626628,
+   "evaluation": 0.5437786693721207
+  },
+  "FZ|B|gem10|E1": {
+   "development": 0.5637823271235268,
+   "evaluation": 0.5944509631350277
+  },
+  "FZ|B|gem10|Ev": {
+   "development": 0.5512806009342801,
+   "evaluation": 0.5928771383685156
+  },
+  "FZ|B|gem10|C1": {
+   "development": 0.5620509665407596,
+   "evaluation": 0.5939888195446607
+  },
+  "FZ|B|rdp4|E0": {
+   "development": 0.5961558681548011,
+   "evaluation": 0.5353759118651462
+  },
+  "FZ|B|rdp4|E1": {
+   "development": 0.5650839546651751,
+   "evaluation": 0.610818624037086
+  },
+  "FZ|B|rdp4|Ev": {
+   "development": 0.556717251783518,
+   "evaluation": 0.612368484514516
+  },
+  "FZ|B|rdp4|C1": {
+   "development": 0.5650831525626788,
+   "evaluation": 0.6114079580721796
+  },
+  "FZ|B|rdp10|E0": {
+   "development": 0.6037440634784516,
+   "evaluation": 0.5426078767294678
+  },
+  "FZ|B|rdp10|E1": {
+   "development": 0.5683052479507719,
+   "evaluation": 0.6071747225918502
+  },
+  "FZ|B|rdp10|Ev": {
+   "development": 0.559042937692815,
+   "evaluation": 0.6078563045168776
+  },
+  "FZ|B|rdp10|C1": {
+   "development": 0.5699598712557342,
+   "evaluation": 0.6085115511103122
+  },
+  "FZ|B|rdp16|E0": {
+   "development": 0.6070557428166387,
+   "evaluation": 0.5463884583100282
+  },
+  "FZ|B|rdp16|E1": {
+   "development": 0.5678228123200636,
+   "evaluation": 0.5992277118305929
+  },
+  "FZ|B|rdp16|Ev": {
+   "development": 0.5501000090905704,
+   "evaluation": 0.5994635088705795
+  },
+  "FZ|B|rdp16|C1": {
+   "development": 0.5687034848249835,
+   "evaluation": 0.5991190917452406
+  },
+  "FZ|B|rdp19|E0": {
+   "development": 0.6063327610797984,
+   "evaluation": 0.5473742585788919
+  },
+  "FZ|B|rdp19|E1": {
+   "development": 0.5660576434716487,
+   "evaluation": 0.5952866667180166
+  },
+  "FZ|B|rdp19|Ev": {
+   "development": 0.5462755222494113,
+   "evaluation": 0.5960667207429019
+  },
+  "FZ|B|rdp19|C1": {
+   "development": 0.5663712130210086,
+   "evaluation": 0.5953129101513286
+  },
+  "FZ|B|rdpgem9|E0": {
+   "development": 0.6060924943060128,
+   "evaluation": 0.5437934361016463
+  },
+  "FZ|B|rdpgem9|E1": {
+   "development": 0.5616341420898098,
+   "evaluation": 0.6035032375122313
+  },
+  "FZ|B|rdpgem9|Ev": {
+   "development": 0.5509293400210645,
+   "evaluation": 0.6035845297168679
+  },
+  "FZ|B|rdpgem9|C1": {
+   "development": 0.5597028640820186,
+   "evaluation": 0.6043326477108625
+  },
+  "FZ|B|rdpgem16|E0": {
+   "development": 0.6079276674761532,
+   "evaluation": 0.544111914731257
+  },
+  "FZ|B|rdpgem16|E1": {
+   "development": 0.5602348351238977,
+   "evaluation": 0.6006270927258732
+  },
+  "FZ|B|rdpgem16|Ev": {
+   "development": 0.548088280478281,
+   "evaluation": 0.6009885867818942
+  },
+  "FZ|B|rdpgem16|C1": {
+   "development": 0.5598171829160322,
+   "evaluation": 0.6000218511068556
+  },
+  "FZ|B3|mean|E0": {
+   "development": 0.5896357044773333,
+   "evaluation": 0.5210728288736478
+  },
+  "FZ|B3|mean|E1": {
+   "development": 0.5939822141688249,
+   "evaluation": 0.589856692439085
+  },
+  "FZ|B3|mean|Ev": {
+   "development": 0.5842716400920452,
+   "evaluation": 0.5944911012302893
+  },
+  "FZ|B3|mean|C1": {
+   "development": 0.5975798941861594,
+   "evaluation": 0.5945529462950029
+  },
+  "FZ|B3|max|E0": {
+   "development": 0.5831590565019523,
+   "evaluation": 0.5194595328852195
+  },
+  "FZ|B3|max|E1": {
+   "development": 0.5972630130197488,
+   "evaluation": 0.5588665478456906
+  },
+  "FZ|B3|max|Ev": {
+   "development": 0.5956858106279839,
+   "evaluation": 0.560165206259367
+  },
+  "FZ|B3|max|C1": {
+   "development": 0.5987427633624328,
+   "evaluation": 0.5598850978657698
+  },
+  "FZ|B3|gem3|E0": {
+   "development": 0.6090093436339117,
+   "evaluation": 0.5255717032464888
+  },
+  "FZ|B3|gem3|E1": {
+   "development": 0.5946009590870873,
+   "evaluation": 0.5950727658005784
+  },
+  "FZ|B3|gem3|Ev": {
+   "development": 0.5896132920057927,
+   "evaluation": 0.5969482078180733
+  },
+  "FZ|B3|gem3|C1": {
+   "development": 0.5941476334053079,
+   "evaluation": 0.5947387408370791
+  },
+  "FZ|B3|gem6|E0": {
+   "development": 0.6081397800972164,
+   "evaluation": 0.5288994721158149
+  },
+  "FZ|B3|gem6|E1": {
+   "development": 0.5951541576476228,
+   "evaluation": 0.5879567153552471
+  },
+  "FZ|B3|gem6|Ev": {
+   "development": 0.5901445367832414,
+   "evaluation": 0.5890441975860917
+  },
+  "FZ|B3|gem6|C1": {
+   "development": 0.5910361756618122,
+   "evaluation": 0.58994828073192
+  },
+  "FZ|B3|gem10|E0": {
+   "development": 0.6055338605299221,
+   "evaluation": 0.5274557036219675
+  },
+  "FZ|B3|gem10|E1": {
+   "development": 0.597262414584758,
+   "evaluation": 0.581918447489864
+  },
+  "FZ|B3|gem10|Ev": {
+   "development": 0.5918158826880507,
+   "evaluation": 0.5835069095231891
+  },
+  "FZ|B3|gem10|C1": {
+   "development": 0.5973428591327642,
+   "evaluation": 0.5825411139364081
+  },
+  "FZ|B3|rdp4|E0": {
+   "development": 0.5929548955713995,
+   "evaluation": 0.5218465048994221
+  },
+  "FZ|B3|rdp4|E1": {
+   "development": 0.5924188109441701,
+   "evaluation": 0.5951794739213853
+  },
+  "FZ|B3|rdp4|Ev": {
+   "development": 0.5853244978194584,
+   "evaluation": 0.5988823671666991
+  },
+  "FZ|B3|rdp4|C1": {
+   "development": 0.5892835097355217,
+   "evaluation": 0.6006134049747727
+  },
+  "FZ|B3|rdp10|E0": {
+   "development": 0.6063016719504003,
+   "evaluation": 0.5418405285684887
+  },
+  "FZ|B3|rdp10|E1": {
+   "development": 0.586028113221372,
+   "evaluation": 0.5959269724081147
+  },
+  "FZ|B3|rdp10|Ev": {
+   "development": 0.5792049800109695,
+   "evaluation": 0.598427899806702
+  },
+  "FZ|B3|rdp10|C1": {
+   "development": 0.5831046110552729,
+   "evaluation": 0.6038012030085984
+  },
+  "FZ|B3|rdp16|E0": {
+   "development": 0.6062097861222487,
+   "evaluation": 0.5577164044370145
+  },
+  "FZ|B3|rdp16|E1": {
+   "development": 0.5839246663878479,
+   "evaluation": 0.5960971868848445
+  },
+  "FZ|B3|rdp16|Ev": {
+   "development": 0.573889954308776,
+   "evaluation": 0.596819217882766
+  },
+  "FZ|B3|rdp16|C1": {
+   "development": 0.5818039011135254,
+   "evaluation": 0.5963480678482292
+  },
+  "FZ|B3|rdp19|E0": {
+   "development": 0.6015930911202987,
+   "evaluation": 0.5559900410296309
+  },
+  "FZ|B3|rdp19|E1": {
+   "development": 0.5805398665273223,
+   "evaluation": 0.5886990398102758
+  },
+  "FZ|B3|rdp19|Ev": {
+   "development": 0.5700276659675041,
+   "evaluation": 0.588868210239052
+  },
+  "FZ|B3|rdp19|C1": {
+   "development": 0.5807866570973161,
+   "evaluation": 0.5911595217698495
+  },
+  "FZ|B3|rdpgem9|E0": {
+   "development": 0.6150741011048254,
+   "evaluation": 0.5430994994799396
+  },
+  "FZ|B3|rdpgem9|E1": {
+   "development": 0.5938656825665081,
+   "evaluation": 0.6002007462971395
+  },
+  "FZ|B3|rdpgem9|Ev": {
+   "development": 0.5885429226848633,
+   "evaluation": 0.601063014529046
+  },
+  "FZ|B3|rdpgem9|C1": {
+   "development": 0.5938162550230536,
+   "evaluation": 0.6007491226121939
+  },
+  "FZ|B3|rdpgem16|E0": {
+   "development": 0.607852588600953,
+   "evaluation": 0.5508265740133749
+  },
+  "FZ|B3|rdpgem16|E1": {
+   "development": 0.593979646745712,
+   "evaluation": 0.5937431626002501
+  },
+  "FZ|B3|rdpgem16|Ev": {
+   "development": 0.5875122746871229,
+   "evaluation": 0.5922864889304911
+  },
+  "FZ|B3|rdpgem16|C1": {
+   "development": 0.5948160020191597,
+   "evaluation": 0.5933463460857156
+  },
+  "ECHO|C1": {
+   "development": 0.5616916219689185,
+   "evaluation": 0.5854042213177011
+  },
+  "AT|F|mean": {
+   "development": 0.5528293362542256,
+   "evaluation": 0.6229009691637002
+  },
+  "AT|Fx|mean": {
+   "development": 0.5671940949364571,
+   "evaluation": 0.6189342719561053
+  },
+  "AT|P|mean": {
+   "development": 0.5784446036601056,
+   "evaluation": 0.6226971588212888
+  },
+  "AT|F|max": {
+   "development": 0.5930097930835792,
+   "evaluation": 0.612231998881685
+  },
+  "AT|Fx|max": {
+   "development": 0.6205065550349836,
+   "evaluation": 0.596910135844502
+  },
+  "AT|P|max": {
+   "development": 0.577996771126659,
+   "evaluation": 0.6064112560356726
+  },
+  "AT|F|gem3": {
+   "development": 0.5479485996033416,
+   "evaluation": 0.6202723436152614
+  },
+  "AT|Fx|gem3": {
+   "development": 0.5658706854495272,
+   "evaluation": 0.6196812647572885
+  },
+  "AT|P|gem3": {
+   "development": 0.5503501613617428,
+   "evaluation": 0.6259000670288918
+  },
+  "AT|F|gem6": {
+   "development": 0.556294484352057,
+   "evaluation": 0.6178358005294442
+  },
+  "AT|Fx|gem6": {
+   "development": 0.5753498920858405,
+   "evaluation": 0.6166392530304342
+  },
+  "AT|P|gem6": {
+   "development": 0.5600819862208226,
+   "evaluation": 0.6231919629918415
+  },
+  "AT|F|gem10": {
+   "development": 0.5666777391539897,
+   "evaluation": 0.6146430292644472
+  },
+  "AT|Fx|gem10": {
+   "development": 0.5934572121411587,
+   "evaluation": 0.6106519022081178
+  },
+  "AT|P|gem10": {
+   "development": 0.5720622942181555,
+   "evaluation": 0.6195425300567513
+  },
+  "AT|F|rdp4": {
+   "development": 0.5588337941089436,
+   "evaluation": 0.6230285392971887
+  },
+  "AT|Fx|rdp4": {
+   "development": 0.5728779788700735,
+   "evaluation": 0.6169160018908754
+  },
+  "AT|P|rdp4": {
+   "development": 0.5788645751683714,
+   "evaluation": 0.6249304420014536
+  },
+  "AT|F|rdp10": {
+   "development": 0.5704184183796502,
+   "evaluation": 0.6233503438635837
+  },
+  "AT|Fx|rdp10": {
+   "development": 0.5849086746449583,
+   "evaluation": 0.6183275452655458
+  },
+  "AT|P|rdp10": {
+   "development": 0.5819011240167936,
+   "evaluation": 0.6279429044555386
+  },
+  "AT|F|rdp16": {
+   "development": 0.5789870808916139,
+   "evaluation": 0.6252896269964179
+  },
+  "AT|Fx|rdp16": {
+   "development": 0.5888594447278167,
+   "evaluation": 0.6189560618036387
+  },
+  "AT|P|rdp16": {
+   "development": 0.5758027570567908,
+   "evaluation": 0.623134629749171
+  },
+  "AT|F|rdp19": {
+   "development": 0.577617494030118,
+   "evaluation": 0.6268683141228746
+  },
+  "AT|Fx|rdp19": {
+   "development": 0.5883266015079361,
+   "evaluation": 0.6194829273164907
+  },
+  "AT|P|rdp19": {
+   "development": 0.5721981195253832,
+   "evaluation": 0.6188110053077496
+  },
+  "AT|F|rdpgem9": {
+   "development": 0.5589383187393845,
+   "evaluation": 0.6238425213139935
+  },
+  "AT|Fx|rdpgem9": {
+   "development": 0.5764841438473396,
+   "evaluation": 0.6179629946664368
+  },
+  "AT|P|rdpgem9": {
+   "development": 0.5579653520637858,
+   "evaluation": 0.624292281220124
+  },
+  "AT|F|rdpgem16": {
+   "development": 0.56675191343601,
+   "evaluation": 0.6218534974397995
+  },
+  "AT|Fx|rdpgem16": {
+   "development": 0.5781270905308997,
+   "evaluation": 0.6151370262017903
+  },
+  "AT|P|rdpgem16": {
+   "development": 0.5653299284324446,
+   "evaluation": 0.6184252342871746
+  }
+ }
+}

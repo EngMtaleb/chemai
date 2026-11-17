@@ -1,0 +1,1414 @@
+{
+ "rules": "results/mimii_beats/RULES_pooling_first_shot_2025_written_before_running.md",
+ "date": "2026-11-17 06:26",
+ "test_run": false,
+ "gpu": "Tesla T4",
+ "torch": "2.14.1+cu130",
+ "types_development": [
+  "ToyCar",
+  "ToyTrain",
+  "bearing",
+  "fan",
+  "gearbox",
+  "slider",
+  "valve"
+ ],
+ "types_evaluation": [
+  "AutoTrash",
+  "BandSealer",
+  "CoffeeGrinder",
+  "HomeCamera",
+  "Polisher",
+  "ScrewFeeder",
+  "ToyPet",
+  "ToyRCCar"
+ ],
+ "poolings": [
+  "mean",
+  "max",
+  "gem3",
+  "gem6",
+  "gem10",
+  "rdp4",
+  "rdp10",
+  "rdp16",
+  "rdp19",
+  "rdpgem9",
+  "rdpgem16"
+ ],
+ "alphas_grid": [
+  0.0,
+  1.5,
+  0.05
+ ],
+ "candidates": [
+  "FZ|B|mean|E0",
+  "FZ|B|mean|E1",
+  "FZ|B|mean|Ev",
+  "FZ|B|mean|C1",
+  "FZ|B|max|E0",
+  "FZ|B|max|E1",
+  "FZ|B|max|Ev",
+  "FZ|B|max|C1",
+  "FZ|B|gem3|E0",
+  "FZ|B|gem3|E1",
+  "FZ|B|gem3|Ev",
+  "FZ|B|gem3|C1",
+  "FZ|B|gem6|E0",
+  "FZ|B|gem6|E1",
+  "FZ|B|gem6|Ev",
+  "FZ|B|gem6|C1",
+  "FZ|B|gem10|E0",
+  "FZ|B|gem10|E1",
+  "FZ|B|gem10|Ev",
+  "FZ|B|gem10|C1",
+  "FZ|B|rdp4|E0",
+  "FZ|B|rdp4|E1",
+  "FZ|B|rdp4|Ev",
+  "FZ|B|rdp4|C1",
+  "FZ|B|rdp10|E0",
+  "FZ|B|rdp10|E1",
+  "FZ|B|rdp10|Ev",
+  "FZ|B|rdp10|C1",
+  "FZ|B|rdp16|E0",
+  "FZ|B|rdp16|E1",
+  "FZ|B|rdp16|Ev",
+  "FZ|B|rdp16|C1",
+  "FZ|B|rdp19|E0",
+  "FZ|B|rdp19|E1",
+  "FZ|B|rdp19|Ev",
+  "FZ|B|rdp19|C1",
+  "FZ|B|rdpgem9|E0",
+  "FZ|B|rdpgem9|E1",
+  "FZ|B|rdpgem9|Ev",
+  "FZ|B|rdpgem9|C1",
+  "FZ|B|rdpgem16|E0",
+  "FZ|B|rdpgem16|E1",
+  "FZ|B|rdpgem16|Ev",
+  "FZ|B|rdpgem16|C1",
+  "FZ|B3|mean|E0",
+  "FZ|B3|mean|E1",
+  "FZ|B3|mean|Ev",
+  "FZ|B3|mean|C1",
+  "FZ|B3|max|E0",
+  "FZ|B3|max|E1",
+  "FZ|B3|max|Ev",
+  "FZ|B3|max|C1",
+  "FZ|B3|gem3|E0",
+  "FZ|B3|gem3|E1",
+  "FZ|B3|gem3|Ev",
+  "FZ|B3|gem3|C1",
+  "FZ|B3|gem6|E0",
+  "FZ|B3|gem6|E1",
+  "FZ|B3|gem6|Ev",
+  "FZ|B3|gem6|C1",
+  "FZ|B3|gem10|E0",
+  "FZ|B3|gem10|E1",
+  "FZ|B3|gem10|Ev",
+  "FZ|B3|gem10|C1",
+  "FZ|B3|rdp4|E0",
+  "FZ|B3|rdp4|E1",
+  "FZ|B3|rdp4|Ev",
+  "FZ|B3|rdp4|C1",
+  "FZ|B3|rdp10|E0",
+  "FZ|B3|rdp10|E1",
+  "FZ|B3|rdp10|Ev",
+  "FZ|B3|rdp10|C1",
+  "FZ|B3|rdp16|E0",
+  "FZ|B3|rdp16|E1",
+  "FZ|B3|rdp16|Ev",
+  "FZ|B3|rdp16|C1",
+  "FZ|B3|rdp19|E0",
+  "FZ|B3|rdp19|E1",
+  "FZ|B3|rdp19|Ev",
+  "FZ|B3|rdp19|C1",
+  "FZ|B3|rdpgem9|E0",
+  "FZ|B3|rdpgem9|E1",
+  "FZ|B3|rdpgem9|Ev",
+  "FZ|B3|rdpgem9|C1",
+  "FZ|B3|rdpgem16|E0",
+  "FZ|B3|rdpgem16|E1",
+  "FZ|B3|rdpgem16|Ev",
+  "FZ|B3|rdpgem16|C1",
+  "ECHO|C1",
+  "AT|F|mean",
+  "AT|Fx|mean",
+  "AT|P|mean",
+  "AT|F|max",
+  "AT|Fx|max",
+  "AT|P|max",
+  "AT|F|gem3",
+  "AT|Fx|gem3",
+  "AT|P|gem3",
+  "AT|F|gem6",
+  "AT|Fx|gem6",
+  "AT|P|gem6",
+  "AT|F|gem10",
+  "AT|Fx|gem10",
+  "AT|P|gem10",
+  "AT|F|rdp4",
+  "AT|Fx|rdp4",
+  "AT|P|rdp4",
+  "AT|F|rdp10",
+  "AT|Fx|rdp10",
+  "AT|P|rdp10",
+  "AT|F|rdp16",
+  "AT|Fx|rdp16",
+  "AT|P|rdp16",
+  "AT|F|rdp19",
+  "AT|Fx|rdp19",
+  "AT|P|rdp19",
+  "AT|F|rdpgem9",
+  "AT|Fx|rdpgem9",
+  "AT|P|rdpgem9",
+  "AT|F|rdpgem16",
+  "AT|Fx|rdpgem16",
+  "AT|P|rdpgem16"
+ ],
+ "n_mix": 200,
+ "n_cross_per_type": 20,
+ "clip_samples": 160000,
+ "counts": {
+  "ToyCar": {
+   "references": 1000,
+   "test": 200
+  },
+  "ToyTrain": {
+   "references": 1000,
+   "test": 200
+  },
+  "bearing": {
+   "references": 1000,
+   "test": 200
+  },
+  "fan": {
+   "references": 1000,
+   "test": 200
+  },
+  "gearbox": {
+   "references": 1000,
+   "test": 200
+  },
+  "slider": {
+   "references": 1000,
+   "test": 200
+  },
+  "valve": {
+   "references": 1000,
+   "test": 200
+  },
+  "AutoTrash": {
+   "references": 1000,
+   "test": 200
+  },
+  "BandSealer": {
+   "references": 1000,
+   "test": 200
+  },
+  "CoffeeGrinder": {
+   "references": 1000,
+   "test": 200
+  },
+  "HomeCamera": {
+   "references": 1000,
+   "test": 200
+  },
+  "Polisher": {
+   "references": 1000,
+   "test": 200
+  },
+  "ScrewFeeder": {
+   "references": 1000,
+   "test": 200
+  },
+  "ToyPet": {
+   "references": 1000,
+   "test": 200
+  },
+  "ToyRCCar": {
+   "references": 1000,
+   "test": 200
+  }
+ },
+ "G0": {
+  "a": true,
+  "b": true,
+  "c": {
+   "code_files": {
+    "BEATs.py": true,
+    "backbone.py": true,
+    "modules.py": true
+   },
+   "beats_iter3plus": true,
+   "beats_iter3": true,
+   "echo_weights": true,
+   "ok": true
+  },
+  "q": {
+   "smallest_cosine": {
+    "B_DC_XC_s0_f0": 1.0,
+    "B_DC_XC_s1_f0": 1.0,
+    "B_DC_XC_s2_f0": 1.0,
+    "B3_DC_XC_s0_f0": 1.0,
+    "B3_DC_XC_s1_f0": 1.0,
+    "B3_DC_XC_s2_f0": 1.0
+   },
+   "ok": true
+  },
+  "r": {
+   "per_type": {
+    "ToyCar": {
+     "spearman": 1.0,
+     "largest_relative_difference": 0.00031
+    },
+    "ToyTrain": {
+     "spearman": 0.999997,
+     "largest_relative_difference": 0.00047
+    },
+    "bearing": {
+     "spearman": 1.0,
+     "largest_relative_difference": 0.00018
+    },
+    "fan": {
+     "spearman": 0.999995,
+     "largest_relative_difference": 0.00075
+    },
+    "gearbox": {
+     "spearman": 0.999992,
+     "largest_relative_difference": 0.00033
+    },
+    "slider": {
+     "spearman": 0.999998,
+     "largest_relative_difference": 0.00053
+    },
+    "valve": {
+     "spearman": 0.99998,
+     "largest_relative_difference": 0.00059
+    },
+    "AutoTrash": {
+     "spearman": 0.999998,
+     "largest_relative_difference": 0.00045
+    },
+    "BandSealer": {
+     "spearman": 0.999994,
+     "largest_relative_difference": 0.00038
+    },
+    "CoffeeGrinder": {
+     "spearman": 0.999998,
+     "largest_relative_difference": 0.00033
+    },
+    "HomeCamera": {
+     "spearman": 0.999992,
+     "largest_relative_difference": 0.0004
+    },
+    "Polisher": {
+     "spearman": 1.0,
+     "largest_relative_difference": 0.00044
+    },
+    "ScrewFeeder": {
+     "spearman": 0.999994,
+     "largest_relative_difference": 0.00046
+    },
+    "ToyPet": {
+     "spearman": 0.999997,
+     "largest_relative_difference": 0.00029
+    },
+    "ToyRCCar": {
+     "spearman": 0.999977,
+     "largest_relative_difference": 0.00054
+    }
+   },
+   "ok": true
+  }
+ },
+ "alpha_star": {
+  "B|mean|ToyCar": 1.05,
+  "B|mean|ToyTrain": 1.1,
+  "B|mean|bearing": 1.05,
+  "B|mean|fan": 1.0,
+  "B|mean|gearbox": 1.0,
+  "B|mean|slider": 1.05,
+  "B|mean|valve": 1.1,
+  "B|mean|AutoTrash": 1.1,
+  "B|mean|BandSealer": 1.05,
+  "B|mean|CoffeeGrinder": 1.05,
+  "B|mean|HomeCamera": 1.1,
+  "B|mean|Polisher": 1.1,
+  "B|mean|ScrewFeeder": 1.05,
+  "B|mean|ToyPet": 1.1,
+  "B|mean|ToyRCCar": 1.1,
+  "B|max|ToyCar": 1.1,
+  "B|max|ToyTrain": 1.05,
+  "B|max|bearing": 1.05,
+  "B|max|fan": 1.0,
+  "B|max|gearbox": 1.0,
+  "B|max|slider": 1.05,
+  "B|max|valve": 1.1,
+  "B|max|AutoTrash": 1.1,
+  "B|max|BandSealer": 1.05,
+  "B|max|CoffeeGrinder": 1.05,
+  "B|max|HomeCamera": 1.1,
+  "B|max|Polisher": 1.1,
+  "B|max|ScrewFeeder": 1.05,
+  "B|max|ToyPet": 1.1,
+  "B|max|ToyRCCar": 1.1,
+  "B|gem3|ToyCar": 1.05,
+  "B|gem3|ToyTrain": 1.05,
+  "B|gem3|bearing": 1.05,
+  "B|gem3|fan": 1.0,
+  "B|gem3|gearbox": 1.0,
+  "B|gem3|slider": 1.05,
+  "B|gem3|valve": 1.1,
+  "B|gem3|AutoTrash": 1.1,
+  "B|gem3|BandSealer": 1.05,
+  "B|gem3|CoffeeGrinder": 1.05,
+  "B|gem3|HomeCamera": 1.1,
+  "B|gem3|Polisher": 1.05,
+  "B|gem3|ScrewFeeder": 1.05,
+  "B|gem3|ToyPet": 1.1,
+  "B|gem3|ToyRCCar": 1.1,
+  "B|gem6|ToyCar": 1.05,
+  "B|gem6|ToyTrain": 1.05,
+  "B|gem6|bearing": 1.05,
+  "B|gem6|fan": 1.0,
+  "B|gem6|gearbox": 1.0,
+  "B|gem6|slider": 1.05,
+  "B|gem6|valve": 1.15,
+  "B|gem6|AutoTrash": 1.1,
+  "B|gem6|BandSealer": 1.05,
+  "B|gem6|CoffeeGrinder": 1.05,
+  "B|gem6|HomeCamera": 1.1,
+  "B|gem6|Polisher": 1.1,
+  "B|gem6|ScrewFeeder": 1.05,
+  "B|gem6|ToyPet": 1.1,
+  "B|gem6|ToyRCCar": 1.1,
+  "B|gem10|ToyCar": 1.05,
+  "B|gem10|ToyTrain": 1.1,
+  "B|gem10|bearing": 1.05,
+  "B|gem10|fan": 1.0,
+  "B|gem10|gearbox": 1.0,
+  "B|gem10|slider": 1.05,
+  "B|gem10|valve": 1.1,
+  "B|gem10|AutoTrash": 1.1,
+  "B|gem10|BandSealer": 1.05,
+  "B|gem10|CoffeeGrinder": 1.05,
+  "B|gem10|HomeCamera": 1.1,
+  "B|gem10|Polisher": 1.1,
+  "B|gem10|ScrewFeeder": 1.05,
+  "B|gem10|ToyPet": 1.1,
+  "B|gem10|ToyRCCar": 1.1,
+  "B|rdp4|ToyCar": 1.05,
+  "B|rdp4|ToyTrain": 1.1,
+  "B|rdp4|bearing": 1.05,
+  "B|rdp4|fan": 1.0,
+  "B|rdp4|gearbox": 1.0,
+  "B|rdp4|slider": 1.05,
+  "B|rdp4|valve": 1.1,
+  "B|rdp4|AutoTrash": 1.1,
+  "B|rdp4|BandSealer": 1.05,
+  "B|rdp4|CoffeeGrinder": 1.05,
+  "B|rdp4|HomeCamera": 1.1,
+  "B|rdp4|Polisher": 1.1,
+  "B|rdp4|ScrewFeeder": 1.05,
+  "B|rdp4|ToyPet": 1.1,
+  "B|rdp4|ToyRCCar": 1.1,
+  "B|rdp10|ToyCar": 1.05,
+  "B|rdp10|ToyTrain": 1.1,
+  "B|rdp10|bearing": 1.05,
+  "B|rdp10|fan": 1.0,
+  "B|rdp10|gearbox": 1.0,
+  "B|rdp10|slider": 1.05,
+  "B|rdp10|valve": 1.1,
+  "B|rdp10|AutoTrash": 1.1,
+  "B|rdp10|BandSealer": 1.05,
+  "B|rdp10|CoffeeGrinder": 1.05,
+  "B|rdp10|HomeCamera": 1.1,
+  "B|rdp10|Polisher": 1.1,
+  "B|rdp10|ScrewFeeder": 1.05,
+  "B|rdp10|ToyPet": 1.1,
+  "B|rdp10|ToyRCCar": 1.1,
+  "B|rdp16|ToyCar": 1.1,
+  "B|rdp16|ToyTrain": 1.1,
+  "B|rdp16|bearing": 1.05,
+  "B|rdp16|fan": 1.0,
+  "B|rdp16|gearbox": 1.0,
+  "B|rdp16|slider": 1.05,
+  "B|rdp16|valve": 1.1,
+  "B|rdp16|AutoTrash": 1.1,
+  "B|rdp16|BandSealer": 1.05,
+  "B|rdp16|CoffeeGrinder": 1.05,
+  "B|rdp16|HomeCamera": 1.1,
+  "B|rdp16|Polisher": 1.1,
+  "B|rdp16|ScrewFeeder": 1.05,
+  "B|rdp16|ToyPet": 1.1,
+  "B|rdp16|ToyRCCar": 1.1,
+  "B|rdp19|ToyCar": 1.1,
+  "B|rdp19|ToyTrain": 1.1,
+  "B|rdp19|bearing": 1.05,
+  "B|rdp19|fan": 1.0,
+  "B|rdp19|gearbox": 1.05,
+  "B|rdp19|slider": 1.05,
+  "B|rdp19|valve": 1.1,
+  "B|rdp19|AutoTrash": 1.1,
+  "B|rdp19|BandSealer": 1.1,
+  "B|rdp19|CoffeeGrinder": 1.05,
+  "B|rdp19|HomeCamera": 1.1,
+  "B|rdp19|Polisher": 1.1,
+  "B|rdp19|ScrewFeeder": 1.05,
+  "B|rdp19|ToyPet": 1.1,
+  "B|rdp19|ToyRCCar": 1.1,
+  "B|rdpgem9|ToyCar": 1.05,
+  "B|rdpgem9|ToyTrain": 1.1,
+  "B|rdpgem9|bearing": 1.05,
+  "B|rdpgem9|fan": 1.0,
+  "B|rdpgem9|gearbox": 1.0,
+  "B|rdpgem9|slider": 1.05,
+  "B|rdpgem9|valve": 1.1,
+  "B|rdpgem9|AutoTrash": 1.1,
+  "B|rdpgem9|BandSealer": 1.05,
+  "B|rdpgem9|CoffeeGrinder": 1.05,
+  "B|rdpgem9|HomeCamera": 1.1,
+  "B|rdpgem9|Polisher": 1.1,
+  "B|rdpgem9|ScrewFeeder": 1.05,
+  "B|rdpgem9|ToyPet": 1.1,
+  "B|rdpgem9|ToyRCCar": 1.1,
+  "B|rdpgem16|ToyCar": 1.05,
+  "B|rdpgem16|ToyTrain": 1.1,
+  "B|rdpgem16|bearing": 1.05,
+  "B|rdpgem16|fan": 1.0,
+  "B|rdpgem16|gearbox": 1.0,
+  "B|rdpgem16|slider": 1.05,
+  "B|rdpgem16|valve": 1.1,
+  "B|rdpgem16|AutoTrash": 1.1,
+  "B|rdpgem16|BandSealer": 1.1,
+  "B|rdpgem16|CoffeeGrinder": 1.05,
+  "B|rdpgem16|HomeCamera": 1.1,
+  "B|rdpgem16|Polisher": 1.1,
+  "B|rdpgem16|ScrewFeeder": 1.05,
+  "B|rdpgem16|ToyPet": 1.1,
+  "B|rdpgem16|ToyRCCar": 1.1,
+  "B3|mean|ToyCar": 1.1,
+  "B3|mean|ToyTrain": 1.1,
+  "B3|mean|bearing": 1.05,
+  "B3|mean|fan": 1.05,
+  "B3|mean|gearbox": 1.05,
+  "B3|mean|slider": 1.05,
+  "B3|mean|valve": 1.1,
+  "B3|mean|AutoTrash": 1.05,
+  "B3|mean|BandSealer": 1.05,
+  "B3|mean|CoffeeGrinder": 1.05,
+  "B3|mean|HomeCamera": 1.1,
+  "B3|mean|Polisher": 1.1,
+  "B3|mean|ScrewFeeder": 1.05,
+  "B3|mean|ToyPet": 1.05,
+  "B3|mean|ToyRCCar": 1.1,
+  "B3|max|ToyCar": 1.1,
+  "B3|max|ToyTrain": 1.05,
+  "B3|max|bearing": 1.05,
+  "B3|max|fan": 1.0,
+  "B3|max|gearbox": 1.05,
+  "B3|max|slider": 1.05,
+  "B3|max|valve": 1.05,
+  "B3|max|AutoTrash": 1.05,
+  "B3|max|BandSealer": 1.05,
+  "B3|max|CoffeeGrinder": 1.05,
+  "B3|max|HomeCamera": 1.05,
+  "B3|max|Polisher": 1.05,
+  "B3|max|ScrewFeeder": 1.05,
+  "B3|max|ToyPet": 1.1,
+  "B3|max|ToyRCCar": 1.1,
+  "B3|gem3|ToyCar": 1.05,
+  "B3|gem3|ToyTrain": 1.1,
+  "B3|gem3|bearing": 1.05,
+  "B3|gem3|fan": 1.05,
+  "B3|gem3|gearbox": 1.05,
+  "B3|gem3|slider": 1.1,
+  "B3|gem3|valve": 1.1,
+  "B3|gem3|AutoTrash": 1.05,
+  "B3|gem3|BandSealer": 1.05,
+  "B3|gem3|CoffeeGrinder": 1.05,
+  "B3|gem3|HomeCamera": 1.1,
+  "B3|gem3|Polisher": 1.05,
+  "B3|gem3|ScrewFeeder": 1.05,
+  "B3|gem3|ToyPet": 1.05,
+  "B3|gem3|ToyRCCar": 1.05,
+  "B3|gem6|ToyCar": 1.05,
+  "B3|gem6|ToyTrain": 1.1,
+  "B3|gem6|bearing": 1.05,
+  "B3|gem6|fan": 1.05,
+  "B3|gem6|gearbox": 1.05,
+  "B3|gem6|slider": 1.1,
+  "B3|gem6|valve": 1.05,
+  "B3|gem6|AutoTrash": 1.05,
+  "B3|gem6|BandSealer": 1.05,
+  "B3|gem6|CoffeeGrinder": 1.05,
+  "B3|gem6|HomeCamera": 1.05,
+  "B3|gem6|Polisher": 1.05,
+  "B3|gem6|ScrewFeeder": 1.05,
+  "B3|gem6|ToyPet": 1.1,
+  "B3|gem6|ToyRCCar": 1.05,
+  "B3|gem10|ToyCar": 1.05,
+  "B3|gem10|ToyTrain": 1.05,
+  "B3|gem10|bearing": 1.05,
+  "B3|gem10|fan": 1.0,
+  "B3|gem10|gearbox": 1.05,
+  "B3|gem10|slider": 1.05,
+  "B3|gem10|valve": 1.05,
+  "B3|gem10|AutoTrash": 1.05,
+  "B3|gem10|BandSealer": 1.05,
+  "B3|gem10|CoffeeGrinder": 1.05,
+  "B3|gem10|HomeCamera": 1.05,
+  "B3|gem10|Polisher": 1.05,
+  "B3|gem10|ScrewFeeder": 1.05,
+  "B3|gem10|ToyPet": 1.1,
+  "B3|gem10|ToyRCCar": 1.05,
+  "B3|rdp4|ToyCar": 1.1,
+  "B3|rdp4|ToyTrain": 1.1,
+  "B3|rdp4|bearing": 1.05,
+  "B3|rdp4|fan": 1.05,
+  "B3|rdp4|gearbox": 1.05,
+  "B3|rdp4|slider": 1.05,
+  "B3|rdp4|valve": 1.1,
+  "B3|rdp4|AutoTrash": 1.05,
+  "B3|rdp4|BandSealer": 1.1,
+  "B3|rdp4|CoffeeGrinder": 1.05,
+  "B3|rdp4|HomeCamera": 1.1,
+  "B3|rdp4|Polisher": 1.05,
+  "B3|rdp4|ScrewFeeder": 1.05,
+  "B3|rdp4|ToyPet": 1.05,
+  "B3|rdp4|ToyRCCar": 1.1,
+  "B3|rdp10|ToyCar": 1.05,
+  "B3|rdp10|ToyTrain": 1.05,
+  "B3|rdp10|bearing": 1.05,
+  "B3|rdp10|fan": 1.05,
+  "B3|rdp10|gearbox": 1.05,
+  "B3|rdp10|slider": 1.05,
+  "B3|rdp10|valve": 1.1,
+  "B3|rdp10|AutoTrash": 1.05,
+  "B3|rdp10|BandSealer": 1.1,
+  "B3|rdp10|CoffeeGrinder": 1.05,
+  "B3|rdp10|HomeCamera": 1.1,
+  "B3|rdp10|Polisher": 1.1,
+  "B3|rdp10|ScrewFeeder": 1.05,
+  "B3|rdp10|ToyPet": 1.1,
+  "B3|rdp10|ToyRCCar": 1.1,
+  "B3|rdp16|ToyCar": 1.1,
+  "B3|rdp16|ToyTrain": 1.1,
+  "B3|rdp16|bearing": 1.05,
+  "B3|rdp16|fan": 1.0,
+  "B3|rdp16|gearbox": 1.05,
+  "B3|rdp16|slider": 1.05,
+  "B3|rdp16|valve": 1.05,
+  "B3|rdp16|AutoTrash": 1.05,
+  "B3|rdp16|BandSealer": 1.1,
+  "B3|rdp16|CoffeeGrinder": 1.05,
+  "B3|rdp16|HomeCamera": 1.1,
+  "B3|rdp16|Polisher": 1.1,
+  "B3|rdp16|ScrewFeeder": 1.05,
+  "B3|rdp16|ToyPet": 1.1,
+  "B3|rdp16|ToyRCCar": 1.05,
+  "B3|rdp19|ToyCar": 1.1,
+  "B3|rdp19|ToyTrain": 1.1,
+  "B3|rdp19|bearing": 1.05,
+  "B3|rdp19|fan": 1.0,
+  "B3|rdp19|gearbox": 1.05,
+  "B3|rdp19|slider": 1.05,
+  "B3|rdp19|valve": 1.05,
+  "B3|rdp19|AutoTrash": 1.05,
+  "B3|rdp19|BandSealer": 1.1,
+  "B3|rdp19|CoffeeGrinder": 1.05,
+  "B3|rdp19|HomeCamera": 1.1,
+  "B3|rdp19|Polisher": 1.1,
+  "B3|rdp19|ScrewFeeder": 1.05,
+  "B3|rdp19|ToyPet": 1.1,
+  "B3|rdp19|ToyRCCar": 1.05,
+  "B3|rdpgem9|ToyCar": 1.05,
+  "B3|rdpgem9|ToyTrain": 1.05,
+  "B3|rdpgem9|bearing": 1.05,
+  "B3|rdpgem9|fan": 1.05,
+  "B3|rdpgem9|gearbox": 1.05,
+  "B3|rdpgem9|slider": 1.1,
+  "B3|rdpgem9|valve": 1.1,
+  "B3|rdpgem9|AutoTrash": 1.05,
+  "B3|rdpgem9|BandSealer": 1.05,
+  "B3|rdpgem9|CoffeeGrinder": 1.05,
+  "B3|rdpgem9|HomeCamera": 1.1,
+  "B3|rdpgem9|Polisher": 1.1,
+  "B3|rdpgem9|ScrewFeeder": 1.05,
+  "B3|rdpgem9|ToyPet": 1.1,
+  "B3|rdpgem9|ToyRCCar": 1.05,
+  "B3|rdpgem16|ToyCar": 1.05,
+  "B3|rdpgem16|ToyTrain": 1.05,
+  "B3|rdpgem16|bearing": 1.05,
+  "B3|rdpgem16|fan": 1.0,
+  "B3|rdpgem16|gearbox": 1.05,
+  "B3|rdpgem16|slider": 1.1,
+  "B3|rdpgem16|valve": 1.05,
+  "B3|rdpgem16|AutoTrash": 1.1,
+  "B3|rdpgem16|BandSealer": 1.1,
+  "B3|rdpgem16|CoffeeGrinder": 1.05,
+  "B3|rdpgem16|HomeCamera": 1.1,
+  "B3|rdpgem16|Polisher": 1.1,
+  "B3|rdpgem16|ScrewFeeder": 1.05,
+  "B3|rdpgem16|ToyPet": 1.1,
+  "B3|rdpgem16|ToyRCCar": 1.05
+ },
+ "development": {
+  "FZ|B|mean|E0": {
+   "omega": 0.5939,
+   "AUC_source": 0.7099,
+   "AUC_target": 0.5526,
+   "pAUC": 0.5455
+  },
+  "FZ|B|mean|E1": {
+   "omega": 0.5628,
+   "AUC_source": 0.545,
+   "AUC_target": 0.6082,
+   "pAUC": 0.5402
+  },
+  "FZ|B|mean|Ev": {
+   "omega": 0.5538,
+   "AUC_source": 0.5254,
+   "AUC_target": 0.6038,
+   "pAUC": 0.5383
+  },
+  "FZ|B|mean|C1": {
+   "omega": 0.5618,
+   "AUC_source": 0.5361,
+   "AUC_target": 0.6102,
+   "pAUC": 0.5447
+  },
+  "FZ|B|max|E0": {
+   "omega": 0.5932,
+   "AUC_source": 0.7047,
+   "AUC_target": 0.5522,
+   "pAUC": 0.5473
+  },
+  "FZ|B|max|E1": {
+   "omega": 0.5742,
+   "AUC_source": 0.5442,
+   "AUC_target": 0.6329,
+   "pAUC": 0.5533
+  },
+  "FZ|B|max|Ev": {
+   "omega": 0.5622,
+   "AUC_source": 0.5151,
+   "AUC_target": 0.6318,
+   "pAUC": 0.5518
+  },
+  "FZ|B|max|C1": {
+   "omega": 0.5721,
+   "AUC_source": 0.5433,
+   "AUC_target": 0.6338,
+   "pAUC": 0.5479
+  },
+  "FZ|B|gem3|E0": {
+   "omega": 0.6015,
+   "AUC_source": 0.7192,
+   "AUC_target": 0.5608,
+   "pAUC": 0.5513
+  },
+  "FZ|B|gem3|E1": {
+   "omega": 0.5544,
+   "AUC_source": 0.5139,
+   "AUC_target": 0.6151,
+   "pAUC": 0.5435
+  },
+  "FZ|B|gem3|Ev": {
+   "omega": 0.5442,
+   "AUC_source": 0.4941,
+   "AUC_target": 0.6117,
+   "pAUC": 0.5394
+  },
+  "FZ|B|gem3|C1": {
+   "omega": 0.553,
+   "AUC_source": 0.5118,
+   "AUC_target": 0.6155,
+   "pAUC": 0.5417
+  },
+  "FZ|B|gem6|E0": {
+   "omega": 0.6037,
+   "AUC_source": 0.7209,
+   "AUC_target": 0.5633,
+   "pAUC": 0.5534
+  },
+  "FZ|B|gem6|E1": {
+   "omega": 0.5601,
+   "AUC_source": 0.5209,
+   "AUC_target": 0.6235,
+   "pAUC": 0.5457
+  },
+  "FZ|B|gem6|Ev": {
+   "omega": 0.5507,
+   "AUC_source": 0.5021,
+   "AUC_target": 0.6196,
+   "pAUC": 0.543
+  },
+  "FZ|B|gem6|C1": {
+   "omega": 0.5583,
+   "AUC_source": 0.5186,
+   "AUC_target": 0.6232,
+   "pAUC": 0.5432
+  },
+  "FZ|B|gem10|E0": {
+   "omega": 0.6017,
+   "AUC_source": 0.718,
+   "AUC_target": 0.5621,
+   "pAUC": 0.5512
+  },
+  "FZ|B|gem10|E1": {
+   "omega": 0.5638,
+   "AUC_source": 0.5239,
+   "AUC_target": 0.6296,
+   "pAUC": 0.5482
+  },
+  "FZ|B|gem10|Ev": {
+   "omega": 0.5513,
+   "AUC_source": 0.4999,
+   "AUC_target": 0.6226,
+   "pAUC": 0.5449
+  },
+  "FZ|B|gem10|C1": {
+   "omega": 0.5621,
+   "AUC_source": 0.5229,
+   "AUC_target": 0.6294,
+   "pAUC": 0.5445
+  },
+  "FZ|B|rdp4|E0": {
+   "omega": 0.5962,
+   "AUC_source": 0.7117,
+   "AUC_target": 0.5554,
+   "pAUC": 0.5475
+  },
+  "FZ|B|rdp4|E1": {
+   "omega": 0.5651,
+   "AUC_source": 0.5468,
+   "AUC_target": 0.6111,
+   "pAUC": 0.5424
+  },
+  "FZ|B|rdp4|Ev": {
+   "omega": 0.5567,
+   "AUC_source": 0.5269,
+   "AUC_target": 0.6085,
+   "pAUC": 0.5413
+  },
+  "FZ|B|rdp4|C1": {
+   "omega": 0.5651,
+   "AUC_source": 0.5393,
+   "AUC_target": 0.6145,
+   "pAUC": 0.5472
+  },
+  "FZ|B|rdp10|E0": {
+   "omega": 0.6037,
+   "AUC_source": 0.7197,
+   "AUC_target": 0.5652,
+   "pAUC": 0.5524
+  },
+  "FZ|B|rdp10|E1": {
+   "omega": 0.5683,
+   "AUC_source": 0.5484,
+   "AUC_target": 0.6183,
+   "pAUC": 0.5441
+  },
+  "FZ|B|rdp10|Ev": {
+   "omega": 0.559,
+   "AUC_source": 0.5296,
+   "AUC_target": 0.616,
+   "pAUC": 0.5392
+  },
+  "FZ|B|rdp10|C1": {
+   "omega": 0.57,
+   "AUC_source": 0.5466,
+   "AUC_target": 0.6214,
+   "pAUC": 0.548
+  },
+  "FZ|B|rdp16|E0": {
+   "omega": 0.6071,
+   "AUC_source": 0.7258,
+   "AUC_target": 0.5679,
+   "pAUC": 0.5545
+  },
+  "FZ|B|rdp16|E1": {
+   "omega": 0.5678,
+   "AUC_source": 0.5524,
+   "AUC_target": 0.6172,
+   "pAUC": 0.5397
+  },
+  "FZ|B|rdp16|Ev": {
+   "omega": 0.5501,
+   "AUC_source": 0.5117,
+   "AUC_target": 0.6162,
+   "pAUC": 0.5329
+  },
+  "FZ|B|rdp16|C1": {
+   "omega": 0.5687,
+   "AUC_source": 0.5469,
+   "AUC_target": 0.6236,
+   "pAUC": 0.5426
+  },
+  "FZ|B|rdp19|E0": {
+   "omega": 0.6063,
+   "AUC_source": 0.7269,
+   "AUC_target": 0.567,
+   "pAUC": 0.553
+  },
+  "FZ|B|rdp19|E1": {
+   "omega": 0.5661,
+   "AUC_source": 0.5442,
+   "AUC_target": 0.6207,
+   "pAUC": 0.5402
+  },
+  "FZ|B|rdp19|Ev": {
+   "omega": 0.5463,
+   "AUC_source": 0.4979,
+   "AUC_target": 0.6189,
+   "pAUC": 0.5355
+  },
+  "FZ|B|rdp19|C1": {
+   "omega": 0.5664,
+   "AUC_source": 0.5356,
+   "AUC_target": 0.6271,
+   "pAUC": 0.5449
+  },
+  "FZ|B|rdpgem9|E0": {
+   "omega": 0.6061,
+   "AUC_source": 0.7259,
+   "AUC_target": 0.5664,
+   "pAUC": 0.5535
+  },
+  "FZ|B|rdpgem9|E1": {
+   "omega": 0.5616,
+   "AUC_source": 0.5224,
+   "AUC_target": 0.6215,
+   "pAUC": 0.55
+  },
+  "FZ|B|rdpgem9|Ev": {
+   "omega": 0.5509,
+   "AUC_source": 0.5018,
+   "AUC_target": 0.6183,
+   "pAUC": 0.5449
+  },
+  "FZ|B|rdpgem9|C1": {
+   "omega": 0.5597,
+   "AUC_source": 0.519,
+   "AUC_target": 0.6216,
+   "pAUC": 0.5481
+  },
+  "FZ|B|rdpgem16|E0": {
+   "omega": 0.6079,
+   "AUC_source": 0.7265,
+   "AUC_target": 0.5681,
+   "pAUC": 0.5562
+  },
+  "FZ|B|rdpgem16|E1": {
+   "omega": 0.5602,
+   "AUC_source": 0.5244,
+   "AUC_target": 0.6166,
+   "pAUC": 0.5477
+  },
+  "FZ|B|rdpgem16|Ev": {
+   "omega": 0.5481,
+   "AUC_source": 0.4998,
+   "AUC_target": 0.6127,
+   "pAUC": 0.5433
+  },
+  "FZ|B|rdpgem16|C1": {
+   "omega": 0.5598,
+   "AUC_source": 0.5232,
+   "AUC_target": 0.6166,
+   "pAUC": 0.5478
+  },
+  "FZ|B3|mean|E0": {
+   "omega": 0.5896,
+   "AUC_source": 0.7185,
+   "AUC_target": 0.5355,
+   "pAUC": 0.5468
+  },
+  "FZ|B3|mean|E1": {
+   "omega": 0.594,
+   "AUC_source": 0.6215,
+   "AUC_target": 0.6225,
+   "pAUC": 0.5449
+  },
+  "FZ|B3|mean|Ev": {
+   "omega": 0.5843,
+   "AUC_source": 0.5945,
+   "AUC_target": 0.6236,
+   "pAUC": 0.5408
+  },
+  "FZ|B3|mean|C1": {
+   "omega": 0.5976,
+   "AUC_source": 0.628,
+   "AUC_target": 0.6216,
+   "pAUC": 0.5497
+  },
+  "FZ|B3|max|E0": {
+   "omega": 0.5832,
+   "AUC_source": 0.6995,
+   "AUC_target": 0.5323,
+   "pAUC": 0.5446
+  },
+  "FZ|B3|max|E1": {
+   "omega": 0.5973,
+   "AUC_source": 0.6236,
+   "AUC_target": 0.6182,
+   "pAUC": 0.555
+  },
+  "FZ|B3|max|Ev": {
+   "omega": 0.5957,
+   "AUC_source": 0.6173,
+   "AUC_target": 0.621,
+   "pAUC": 0.5537
+  },
+  "FZ|B3|max|C1": {
+   "omega": 0.5987,
+   "AUC_source": 0.6117,
+   "AUC_target": 0.6315,
+   "pAUC": 0.558
+  },
+  "FZ|B3|gem3|E0": {
+   "omega": 0.609,
+   "AUC_source": 0.738,
+   "AUC_target": 0.5564,
+   "pAUC": 0.5638
+  },
+  "FZ|B3|gem3|E1": {
+   "omega": 0.5946,
+   "AUC_source": 0.5933,
+   "AUC_target": 0.6414,
+   "pAUC": 0.5553
+  },
+  "FZ|B3|gem3|Ev": {
+   "omega": 0.5896,
+   "AUC_source": 0.5772,
+   "AUC_target": 0.644,
+   "pAUC": 0.5547
+  },
+  "FZ|B3|gem3|C1": {
+   "omega": 0.5941,
+   "AUC_source": 0.5884,
+   "AUC_target": 0.642,
+   "pAUC": 0.558
+  },
+  "FZ|B3|gem6|E0": {
+   "omega": 0.6081,
+   "AUC_source": 0.7363,
+   "AUC_target": 0.5559,
+   "pAUC": 0.5631
+  },
+  "FZ|B3|gem6|E1": {
+   "omega": 0.5952,
+   "AUC_source": 0.5905,
+   "AUC_target": 0.6446,
+   "pAUC": 0.5568
+  },
+  "FZ|B3|gem6|Ev": {
+   "omega": 0.5901,
+   "AUC_source": 0.5737,
+   "AUC_target": 0.6444,
+   "pAUC": 0.5591
+  },
+  "FZ|B3|gem6|C1": {
+   "omega": 0.591,
+   "AUC_source": 0.5763,
+   "AUC_target": 0.6451,
+   "pAUC": 0.5585
+  },
+  "FZ|B3|gem10|E0": {
+   "omega": 0.6055,
+   "AUC_source": 0.7293,
+   "AUC_target": 0.5511,
+   "pAUC": 0.5654
+  },
+  "FZ|B3|gem10|E1": {
+   "omega": 0.5973,
+   "AUC_source": 0.5978,
+   "AUC_target": 0.6434,
+   "pAUC": 0.5569
+  },
+  "FZ|B3|gem10|Ev": {
+   "omega": 0.5918,
+   "AUC_source": 0.5855,
+   "AUC_target": 0.6411,
+   "pAUC": 0.5551
+  },
+  "FZ|B3|gem10|C1": {
+   "omega": 0.5973,
+   "AUC_source": 0.5923,
+   "AUC_target": 0.6464,
+   "pAUC": 0.5596
+  },
+  "FZ|B3|rdp4|E0": {
+   "omega": 0.593,
+   "AUC_source": 0.7249,
+   "AUC_target": 0.5368,
+   "pAUC": 0.5503
+  },
+  "FZ|B3|rdp4|E1": {
+   "omega": 0.5924,
+   "AUC_source": 0.6167,
+   "AUC_target": 0.6224,
+   "pAUC": 0.5447
+  },
+  "FZ|B3|rdp4|Ev": {
+   "omega": 0.5853,
+   "AUC_source": 0.5945,
+   "AUC_target": 0.6215,
+   "pAUC": 0.5452
+  },
+  "FZ|B3|rdp4|C1": {
+   "omega": 0.5893,
+   "AUC_source": 0.6186,
+   "AUC_target": 0.6134,
+   "pAUC": 0.5423
+  },
+  "FZ|B3|rdp10|E0": {
+   "omega": 0.6063,
+   "AUC_source": 0.7406,
+   "AUC_target": 0.5481,
+   "pAUC": 0.5639
+  },
+  "FZ|B3|rdp10|E1": {
+   "omega": 0.586,
+   "AUC_source": 0.6097,
+   "AUC_target": 0.6047,
+   "pAUC": 0.5478
+  },
+  "FZ|B3|rdp10|Ev": {
+   "omega": 0.5792,
+   "AUC_source": 0.5902,
+   "AUC_target": 0.6027,
+   "pAUC": 0.5477
+  },
+  "FZ|B3|rdp10|C1": {
+   "omega": 0.5831,
+   "AUC_source": 0.6097,
+   "AUC_target": 0.6024,
+   "pAUC": 0.5421
+  },
+  "FZ|B3|rdp16|E0": {
+   "omega": 0.6062,
+   "AUC_source": 0.7288,
+   "AUC_target": 0.558,
+   "pAUC": 0.5604
+  },
+  "FZ|B3|rdp16|E1": {
+   "omega": 0.5839,
+   "AUC_source": 0.6,
+   "AUC_target": 0.6172,
+   "pAUC": 0.5404
+  },
+  "FZ|B3|rdp16|Ev": {
+   "omega": 0.5739,
+   "AUC_source": 0.5732,
+   "AUC_target": 0.6131,
+   "pAUC": 0.54
+  },
+  "FZ|B3|rdp16|C1": {
+   "omega": 0.5818,
+   "AUC_source": 0.598,
+   "AUC_target": 0.6215,
+   "pAUC": 0.5333
+  },
+  "FZ|B3|rdp19|E0": {
+   "omega": 0.6016,
+   "AUC_source": 0.7154,
+   "AUC_target": 0.562,
+   "pAUC": 0.5526
+  },
+  "FZ|B3|rdp19|E1": {
+   "omega": 0.5805,
+   "AUC_source": 0.5948,
+   "AUC_target": 0.6155,
+   "pAUC": 0.5371
+  },
+  "FZ|B3|rdp19|Ev": {
+   "omega": 0.57,
+   "AUC_source": 0.5658,
+   "AUC_target": 0.6107,
+   "pAUC": 0.5382
+  },
+  "FZ|B3|rdp19|C1": {
+   "omega": 0.5808,
+   "AUC_source": 0.5898,
+   "AUC_target": 0.6261,
+   "pAUC": 0.534
+  },
+  "FZ|B3|rdpgem9|E0": {
+   "omega": 0.6151,
+   "AUC_source": 0.7423,
+   "AUC_target": 0.563,
+   "pAUC": 0.5701
+  },
+  "FZ|B3|rdpgem9|E1": {
+   "omega": 0.5939,
+   "AUC_source": 0.5963,
+   "AUC_target": 0.6387,
+   "pAUC": 0.5528
+  },
+  "FZ|B3|rdpgem9|Ev": {
+   "omega": 0.5885,
+   "AUC_source": 0.5832,
+   "AUC_target": 0.6368,
+   "pAUC": 0.5518
+  },
+  "FZ|B3|rdpgem9|C1": {
+   "omega": 0.5938,
+   "AUC_source": 0.5926,
+   "AUC_target": 0.6397,
+   "pAUC": 0.5551
+  },
+  "FZ|B3|rdpgem16|E0": {
+   "omega": 0.6079,
+   "AUC_source": 0.7263,
+   "AUC_target": 0.5617,
+   "pAUC": 0.5623
+  },
+  "FZ|B3|rdpgem16|E1": {
+   "omega": 0.594,
+   "AUC_source": 0.594,
+   "AUC_target": 0.6545,
+   "pAUC": 0.5437
+  },
+  "FZ|B3|rdpgem16|Ev": {
+   "omega": 0.5875,
+   "AUC_source": 0.5814,
+   "AUC_target": 0.6487,
+   "pAUC": 0.5421
+  },
+  "FZ|B3|rdpgem16|C1": {
+   "omega": 0.5948,
+   "AUC_source": 0.5916,
+   "AUC_target": 0.6557,
+   "pAUC": 0.547
+  },
+  "ECHO|C1": {
+   "omega": 0.5617,
+   "AUC_source": 0.5255,
+   "AUC_target": 0.6393,
+   "pAUC": 0.5336
+  },
+  "AT|F|mean": {
+   "omega": 0.5528,
+   "AUC_source": 0.4797,
+   "AUC_target": 0.647,
+   "pAUC": 0.5567
+  },
+  "AT|Fx|mean": {
+   "omega": 0.5672,
+   "AUC_source": 0.4987,
+   "AUC_target": 0.6522,
+   "pAUC": 0.5712
+  },
+  "AT|P|mean": {
+   "omega": 0.5784,
+   "AUC_source": 0.5173,
+   "AUC_target": 0.6613,
+   "pAUC": 0.5744
+  },
+  "AT|F|max": {
+   "omega": 0.593,
+   "AUC_source": 0.5518,
+   "AUC_target": 0.6784,
+   "pAUC": 0.5641
+  },
+  "AT|Fx|max": {
+   "omega": 0.6205,
+   "AUC_source": 0.6099,
+   "AUC_target": 0.6806,
+   "pAUC": 0.5794
+  },
+  "AT|P|max": {
+   "omega": 0.578,
+   "AUC_source": 0.5151,
+   "AUC_target": 0.6619,
+   "pAUC": 0.5753
+  },
+  "AT|F|gem3": {
+   "omega": 0.5479,
+   "AUC_source": 0.4717,
+   "AUC_target": 0.6572,
+   "pAUC": 0.5455
+  },
+  "AT|Fx|gem3": {
+   "omega": 0.5659,
+   "AUC_source": 0.4928,
+   "AUC_target": 0.6618,
+   "pAUC": 0.5678
+  },
+  "AT|P|gem3": {
+   "omega": 0.5504,
+   "AUC_source": 0.4592,
+   "AUC_target": 0.6657,
+   "pAUC": 0.5646
+  },
+  "AT|F|gem6": {
+   "omega": 0.5563,
+   "AUC_source": 0.4872,
+   "AUC_target": 0.6605,
+   "pAUC": 0.5475
+  },
+  "AT|Fx|gem6": {
+   "omega": 0.5753,
+   "AUC_source": 0.5039,
+   "AUC_target": 0.671,
+   "pAUC": 0.5749
+  },
+  "AT|P|gem6": {
+   "omega": 0.5601,
+   "AUC_source": 0.4773,
+   "AUC_target": 0.6707,
+   "pAUC": 0.5648
+  },
+  "AT|F|gem10": {
+   "omega": 0.5667,
+   "AUC_source": 0.5061,
+   "AUC_target": 0.6642,
+   "pAUC": 0.5517
+  },
+  "AT|Fx|gem10": {
+   "omega": 0.5935,
+   "AUC_source": 0.545,
+   "AUC_target": 0.6707,
+   "pAUC": 0.5782
+  },
+  "AT|P|gem10": {
+   "omega": 0.5721,
+   "AUC_source": 0.5001,
+   "AUC_target": 0.6715,
+   "pAUC": 0.5696
+  },
+  "AT|F|rdp4": {
+   "omega": 0.5588,
+   "AUC_source": 0.492,
+   "AUC_target": 0.6466,
+   "pAUC": 0.559
+  },
+  "AT|Fx|rdp4": {
+   "omega": 0.5729,
+   "AUC_source": 0.5169,
+   "AUC_target": 0.6469,
+   "pAUC": 0.5693
+  },
+  "AT|P|rdp4": {
+   "omega": 0.5789,
+   "AUC_source": 0.5162,
+   "AUC_target": 0.6615,
+   "pAUC": 0.5769
+  },
+  "AT|F|rdp10": {
+   "omega": 0.5704,
+   "AUC_source": 0.5163,
+   "AUC_target": 0.6533,
+   "pAUC": 0.558
+  },
+  "AT|Fx|rdp10": {
+   "omega": 0.5849,
+   "AUC_source": 0.5449,
+   "AUC_target": 0.65,
+   "pAUC": 0.5696
+  },
+  "AT|P|rdp10": {
+   "omega": 0.5819,
+   "AUC_source": 0.52,
+   "AUC_target": 0.6713,
+   "pAUC": 0.5738
+  },
+  "AT|F|rdp16": {
+   "omega": 0.579,
+   "AUC_source": 0.5347,
+   "AUC_target": 0.6591,
+   "pAUC": 0.5574
+  },
+  "AT|Fx|rdp16": {
+   "omega": 0.5889,
+   "AUC_source": 0.5635,
+   "AUC_target": 0.6508,
+   "pAUC": 0.5607
+  },
+  "AT|P|rdp16": {
+   "omega": 0.5758,
+   "AUC_source": 0.5131,
+   "AUC_target": 0.6744,
+   "pAUC": 0.5622
+  },
+  "AT|F|rdp19": {
+   "omega": 0.5776,
+   "AUC_source": 0.5342,
+   "AUC_target": 0.6595,
+   "pAUC": 0.5539
+  },
+  "AT|Fx|rdp19": {
+   "omega": 0.5883,
+   "AUC_source": 0.57,
+   "AUC_target": 0.6486,
+   "pAUC": 0.5546
+  },
+  "AT|P|rdp19": {
+   "omega": 0.5722,
+   "AUC_source": 0.5125,
+   "AUC_target": 0.6748,
+   "pAUC": 0.5525
+  },
+  "AT|F|rdpgem9": {
+   "omega": 0.5589,
+   "AUC_source": 0.4915,
+   "AUC_target": 0.6592,
+   "pAUC": 0.5507
+  },
+  "AT|Fx|rdpgem9": {
+   "omega": 0.5765,
+   "AUC_source": 0.5211,
+   "AUC_target": 0.6587,
+   "pAUC": 0.566
+  },
+  "AT|P|rdpgem9": {
+   "omega": 0.558,
+   "AUC_source": 0.4726,
+   "AUC_target": 0.67,
+   "pAUC": 0.5656
+  },
+  "AT|F|rdpgem16": {
+   "omega": 0.5668,
+   "AUC_source": 0.5065,
+   "AUC_target": 0.6598,
+   "pAUC": 0.5545
+  },
+  "AT|Fx|rdpgem16": {
+   "omega": 0.5781,
+   "AUC_source": 0.5296,
+   "AUC_target": 0.6606,
+   "pAUC": 0.5595
+  },
+  "AT|P|rdpgem16": {
+   "omega": 0.5653,
+   "AUC_source": 0.4878,
+   "AUC_target": 0.6719,
+   "pAUC": 0.5655
+  }
+ },
+ "trainings_read": {
+  "BEATs|seed 0": "B_DC_XC_s0_f0",
+  "BEATs|seed 1": "B_DC_XC_s1_f0",
+  "BEATs|seed 2": "B_DC_XC_s2_f0",
+  "BEATs-iter3|seed 0": "B3_DC_XC_s0_f0",
+  "BEATs-iter3|seed 1": "B3_DC_XC_s1_f0",
+  "BEATs-iter3|seed 2": "B3_DC_XC_s2_f0"
+ },
+ "seconds": {
+  "data": 1261.8,
+  "passes_this_session": {
+   "frozen_B": 395.3,
+   "frozen_B3": 387.5,
+   "at_B_DC_XC_s0_f0": 411.0,
+   "at_B_DC_XC_s1_f0": 405.6,
+   "at_B_DC_XC_s2_f0": 406.6,
+   "at_B3_DC_XC_s0_f0": 410.5,
+   "at_B3_DC_XC_s1_f0": 415.2,
+   "at_B3_DC_XC_s2_f0": 412.1
+  },
+  "passes_cell": 3256.8,
+  "session": 4716.4
+ },
+ "evaluation_labels_read": false
+}

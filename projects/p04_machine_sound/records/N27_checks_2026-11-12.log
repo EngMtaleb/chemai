@@ -1,0 +1,71 @@
+ok   σ_F of ToyCar recomputed from 1200 clips · 0.173813
+ok   σ_F of ToyCar rests on additional-training clips only
+ok   σ_F of ToyCar uses every additional clip after the first 600 of a machine · 1200 clips
+ok   σ_F of ToyCar: per machine, as many clips as lie after the first 600 by name, none numbered below 600
+ok   σ_P of ToyCar recomputed from 341 held-out clips · 1.345007
+ok   σ_P of ToyCar rests on training clips only, as many as were held out
+ok   both spreads of ToyCar rest on at least 30 clips
+ok   σ_F of ToyConveyor recomputed from 1200 clips · 0.201393
+ok   σ_F of ToyConveyor rests on additional-training clips only
+ok   σ_F of ToyConveyor uses every additional clip after the first 600 of a machine · 1200 clips
+ok   σ_F of ToyConveyor: per machine, as many clips as lie after the first 600 by name, none numbered below 600
+ok   σ_P of ToyConveyor recomputed from 309 held-out clips · 0.531279
+ok   σ_P of ToyConveyor rests on training clips only, as many as were held out
+ok   both spreads of ToyConveyor rest on at least 30 clips
+ok   the development systems are the rules'
+ok   development score files of ToyCar: one per development machine
+ok   development score files of ToyConveyor: one per development machine
+ok   development: 144 AUC and pAUC values recomputed from 5968 clips × 8 systems · largest difference 0.0e+00
+ok   development: form ZP is log(frozen)/σ_F + log(view)/σ_P on every clip · largest relative difference 0.0e+00
+ok   development: the frozen recipe is the mean of its two encoder parts on every clip · largest relative difference 0.0e+00
+ok   gate G-DEV recomputed · {'ZP': {'ToyCar': True, 'ToyConveyor': True}, 'frozen': {'ToyCar': True, 'ToyConveyor': True}, 'view_paper': {'ToyCar': True, 'ToyConveyor': True}}
+ok   gate G-DEV passed (or the evaluation set would not have been scored)
+ok   question 2 on the development set, ToyCar: helps (+0.0186)
+ok   question 2 on the development set, ToyConveyor: helps (+0.0337)
+ok   the evaluation set was scored, and the kept system's scores are the result
+ok   results.json in the zip is what the main file reports
+ok   the scores were written before the results (and never after)
+ok   the lock lists three score sets of one file per evaluation machine
+ok   the written kept system is form ZP with the spreads above
+ok   the saved label rows are the two toy types' sections · ['ToyCar', 'ToyConveyor']
+ok   official_evaluator_check.json in the zip is what the main file reports
+ok   the official evaluator's result file of the kept scores gives this check's numbers · largest difference 0.0e+00
+ok   the notebook recorded that the official evaluator agrees on the kept scores
+ok   the official evaluator's result file of the frozen scores gives this check's numbers · largest difference 0.0e+00
+ok   the notebook recorded that the official evaluator agrees on the frozen scores
+ok   the official evaluator's result file of the view scores gives this check's numbers · largest difference 0.0e+00
+ok   the notebook recorded that the official evaluator agrees on the view scores
+ok   evaluation: 48 AUC and pAUC values of the three score sets recomputed from 9630 scores and the saved labels · largest difference 0.0e+00
+ok   evaluation: the kept system's score files are log(frozen)/σ_F + log(view)/σ_P of the other two sets' files · largest relative difference 0.0e+00
+ok   the final numbers of the kept scores come from the notebook
+ok   the final numbers of the frozen scores come from the notebook
+ok   the final numbers of the view scores come from the notebook
+ok   question 1, ToyCar: AUC 98.60 % → with the teams (above 5 of the 5 teams)
+ok   question 2 on the evaluation set, ToyCar: no clear difference (-0.0030)
+ok   question 1, ToyConveyor: AUC 89.17 % → with the teams (above 3 of the 5 teams)
+ok   question 2 on the evaluation set, ToyConveyor: helps (+0.0317)
+ok   question 3: T3′, the six-type mean AUC 0.9747 against 0.9458: reached True
+ok   question 3: the ranks among the six systems over the 12 columns · this system's mean rank 1.5
+ok   question 3: the values ranked are the rules' table and this system's
+ok   the rank-1 team's six-type mean AUC is the rules' T3′ bar
+ok   the yardsticks saved in the results are the rules'
+ok   the machine IDs are the rules'
+ok   both recipes were trained on the rules' 13 classes
+ok   the frozen recipe's training list: every development training clip and the first 600 additional clips of a machine · 10600 clips
+ok   the view's training list: every development training clip and every additional clip, 5 % held out · 13000 clips, 650 held out
+ok   six trainings of the frozen recipe, each with every epoch logged and a falling loss
+ok   three trainings of the view, each with every epoch logged; the saved model is the epoch with the lowest hold-out loss
+ok   the kept clips are the first seconds of each clip: no clip was shorter than the store
+ok   no archive metadata entry was skipped · {'ToyCar': 0, 'ToyConveyor': 0}
+ok   a real run
+ok   every gate passed
+ok   the six zips and the label file are the published ones (MD5)
+ok   the frozen recipe's settings are notebook 21's
+ok   the view's settings are notebook 25's
+ok   the sizes are the rules': 10 s kept, 313 frames, a last kernel of 8 × 20, 13 classes
+ok   the spreads rest on at least 30 clips
+ok   gate G-DEV used the rules' bars
+ok   the official evaluator is the pinned file
+ok   the label file given to the evaluator has the six machine types' sections
+
+69 checks · 0 failed

@@ -62,6 +62,25 @@ record, ten years of NASA sun and sea, public membrane datasheets — and our ow
   product water, and no battery.
 - **Fouling costs little energy** — about 1 % more on a typical day — and the sun still carries the solar plant.
 
+## Machine sound
+
+[![AI anomaly detection for industrial pumps](machine-sound/og.png)](https://engmtaleb.github.io/chemai/machine-sound/)
+
+Can a model that has only heard a healthy machine tell when it goes wrong? Anomaly detection for pumps, fans, valves and slide
+rails from a microphone, on public recordings only: five families of methods, from a limit on one number to a fine-tuned
+pre-trained audio model, on three public tests.
+
+**[The deck](https://engmtaleb.github.io/chemai/machine-sound/)** ·
+[Write-up](projects/p04_machine_sound/README.md) ·
+[Notebooks](projects/p04_machine_sound/notebooks/)
+
+- **Known machines: 97.47 % mean AUC** on the DCASE 2020 evaluation set; the best of the challenge's 116 submissions has 94.69 %.
+- **New operating conditions: 71.50 %** official score on DCASE 2022 (best team 70.97 %). **New machine types: 63.27 %** on
+  DCASE 2025 (best team 61.63 %).
+- **With the factory louder than the pump,** eight microphones lift the pump's AUC from 0.95 to 0.98.
+- **Its main limit:** these are not challenge entries. The challenges are closed, and the system uses a pre-trained model the
+  2020 and 2022 teams did not have; the two later results rest on choices made after a first scoring.
+
 ## Run it
 
 ```bash
@@ -97,6 +116,7 @@ docs/          validation record and data exploration
 tests/         252 tests that run without any dataset
 soft-sensor/   the soft sensor's project page, served by GitHub Pages
 ai-for-ro/     the AI for RO deck, served by GitHub Pages
+machine-sound/ the machine-sound deck, served by GitHub Pages
 ```
 
 ## How it is built

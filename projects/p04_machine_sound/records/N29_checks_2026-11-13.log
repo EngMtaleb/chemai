@@ -1,0 +1,13 @@
+ok   the 42 spreads recomputed from 31500 calibration scores; they rest on normal training clips only, enough of them
+ok   development: every value of 12 systems recomputed from 4200 clips · largest difference 2.2e-16
+ok   development: each fused candidate is log(F)/σ_F + log(V)/σ_P on every clip · largest relative difference 0.0e+00
+ok   the choice by the rules: best K_DN (0.6972), as it is 0.6961, difference +0.0011 → nothing adopted
+ok   gate G-SAME passed: notebook 28's scores were reproduced · 8400 clips, largest relative difference 0.0e+00
+ok   gate G-FILES passed
+ok   nothing was adopted: the evaluation set was not touched
+ok   a real run
+ok   gates G0(a) and G0(b) passed
+ok   notebook 28's result is the reference: 70.63 %
+ok   the settings are the rules'
+
+11 checks · 0 failed
