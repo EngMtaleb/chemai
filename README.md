@@ -71,6 +71,7 @@ rails from a microphone, on public recordings only: five families of methods, fr
 pre-trained audio model, on three public tests.
 
 **[The deck](https://engmtaleb.github.io/chemai/machine-sound/)** ·
+[Episode on YouTube (Arabic)](https://youtu.be/VDpuYnyDXvE) ·
 [Write-up](projects/p04_machine_sound/README.md) ·
 [Notebooks](projects/p04_machine_sound/notebooks/) ·
 [Kaggle notebook](https://www.kaggle.com/code/mohammedtaleb1/machine-sound-can-ai-hear-a-pump-going-wrong)
