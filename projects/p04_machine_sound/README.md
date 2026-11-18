@@ -276,6 +276,10 @@ disconnects, running it again continues from the last save. Notebook 1 must run 
 | [34 · array](notebooks/P04_N34_Array_Simple_Families_Colab.ipynb) · [Colab](https://colab.research.google.com/github/EngMtaleb/chemai/blob/main/projects/p04_machine_sound/notebooks/P04_N34_Array_Simple_Families_Colab.ipynb) | The eight microphones with the four simple families (CPU only) | — |
 | [35 · Test 3](notebooks/P04_N35_Pooling_First_Shot_DCASE2025_Colab.ipynb) · [Colab](https://colab.research.google.com/github/EngMtaleb/chemai/blob/main/projects/p04_machine_sound/notebooks/P04_N35_Pooling_First_Shot_DCASE2025_Colab.ipynb) | Test 3: other ways of pooling, two pre-trained helpers, the 33 listeners | 1, 30 |
 
+**No GPU, a few seconds:** [`P04_Machine_Sound_Three_Tests_Kaggle.ipynb`](notebooks/P04_Machine_Sound_Three_Tests_Kaggle.ipynb) trains nothing. It reads
+the scores our system gave to every test clip and recomputes the three tests, with a table and a chart for each. It is written for Kaggle,
+where those scores are attached as a dataset; it downloads the labels from the organisers when it runs.
+
 [`notebooks/development/`](notebooks/development/) holds notebooks 15, 19, 20, 21, 22 and 22b: the steps that fixed the expert's recipe.
 They run in that order, after notebooks 1 and 11, and notebooks 23 and 26 read the folders they leave in Drive. The earlier notebooks of the
 project are not published here.
