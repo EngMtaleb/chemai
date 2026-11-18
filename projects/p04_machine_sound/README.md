@@ -206,6 +206,20 @@ The expert at −6 dB, the factory louder than the machine (average AUC over fou
 
 Notebooks 11, 23 and 34.
 
+## What a plant should record to use this
+
+This project did not test a plant, and nothing here promises a gain. It is only what any method of this kind needs:
+
+| To record | What exactly |
+|---|---|
+| 🎙️ **A healthy period** | sound (or vibration) after maintenance, with no open work orders: this is the training data |
+| ⚙️ **The operating condition, with every recording** | speed and load: the cheapest thing to add, and the most useful |
+| 🛠️ **Maintenance work orders** | what broke, and when: the answers a system is graded with |
+| 🔁 **A new baseline after maintenance** | a repaired or a new machine has a new “normal” |
+
+The order matters more than the model: start with the simplest method (a limit, then distance), move to a network only if it beats
+them, and judge with real faults and false alarms.
+
 ## How it was tested
 
 - **The rules came first.** Each notebook has a rules file written before it ran: the question, the fixed settings and the bar a result must
@@ -269,7 +283,7 @@ project are not published here.
 **Run times we measured:** notebook 28 took 4.3 hours and notebooks 25 and 26 about 2 hours each on an RTX PRO 6000; notebook 35 took
 1.3 hours on a T4; notebook 29 took 13 minutes. The autoencoders of notebooks 31 to 34 are slow on CPU: between 2 and 6.5 hours per notebook.
 
-## Records and results
+## What is in this folder
 
 ```
 notebooks/   the Colab notebooks, without outputs
