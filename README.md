@@ -72,7 +72,8 @@ pre-trained audio model, on three public tests.
 
 **[The deck](https://engmtaleb.github.io/chemai/machine-sound/)** ·
 [Write-up](projects/p04_machine_sound/README.md) ·
-[Notebooks](projects/p04_machine_sound/notebooks/)
+[Notebooks](projects/p04_machine_sound/notebooks/) ·
+[Kaggle notebook](https://www.kaggle.com/code/mohammedtaleb1/machine-sound-can-ai-hear-a-pump-going-wrong)
 
 - **Known machines: 97.47 % mean AUC** on the DCASE 2020 evaluation set; the best of the challenge's 116 submissions has 94.69 %.
 - **New operating conditions: 71.50 %** official score on DCASE 2022 (best team 70.97 %). **New machine types: 63.27 %** on

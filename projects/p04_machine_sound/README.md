@@ -15,6 +15,8 @@
   &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="#notebooks"><b>📓&nbsp; Notebooks</b></a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="https://www.kaggle.com/code/mohammedtaleb1/machine-sound-can-ai-hear-a-pump-going-wrong"><b>⚡&nbsp; Run it on Kaggle</b></a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="#how-it-was-tested"><b>🧪&nbsp; How it was tested</b></a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="#data-and-sources"><b>📊&nbsp; Data</b></a>
@@ -277,8 +279,9 @@ disconnects, running it again continues from the last save. Notebook 1 must run 
 | [35 · Test 3](notebooks/P04_N35_Pooling_First_Shot_DCASE2025_Colab.ipynb) · [Colab](https://colab.research.google.com/github/EngMtaleb/chemai/blob/main/projects/p04_machine_sound/notebooks/P04_N35_Pooling_First_Shot_DCASE2025_Colab.ipynb) | Test 3: other ways of pooling, two pre-trained helpers, the 33 listeners | 1, 30 |
 
 **No GPU, a few seconds:** [`P04_Machine_Sound_Three_Tests_Kaggle.ipynb`](notebooks/P04_Machine_Sound_Three_Tests_Kaggle.ipynb) trains nothing. It reads
-the scores our system gave to every test clip and recomputes the three tests, with a table and a chart for each. It is written for Kaggle,
-where those scores are attached as a dataset; it downloads the labels from the organisers when it runs.
+the scores our system gave to every test clip and recomputes the three tests, with a table and a chart for each. It is written for Kaggle:
+[the notebook, with its results](https://www.kaggle.com/code/mohammedtaleb1/machine-sound-can-ai-hear-a-pump-going-wrong) and [the dataset of per-clip scores](https://www.kaggle.com/datasets/mohammedtaleb1/machine-sound-anomaly-detection-saved-scores).
+It downloads the labels from the organisers when it runs; where a publisher does not serve the file, it shows the recorded numbers and says so.
 
 [`notebooks/development/`](notebooks/development/) holds notebooks 15, 19, 20, 21, 22 and 22b: the steps that fixed the expert's recipe.
 They run in that order, after notebooks 1 and 11, and notebooks 23 and 26 read the folders they leave in Drive. The earlier notebooks of the
@@ -298,7 +301,8 @@ figures/     the figures of this page and the script that draws them from result
 ```
 
 - The per-clip score files are not in the repository. Each notebook writes them to its results zip; the scripts read them from that zip,
-  unpacked into the notebook's folder under `results/` (for example `results/run_2026-11-13_n28/`).
+  unpacked into the notebook's folder under `results/` (for example `results/run_2026-11-13_n28/`). The scores of the three tests are
+  also published as [a Kaggle dataset](https://www.kaggle.com/datasets/mohammedtaleb1/machine-sound-anomaly-detection-saved-scores).
 - Inside the notebooks and the records, the rules are named `results/mimii_beats/RULES_…`; here they are in `records/`.
 - The records are working documents, kept as they were written. Where one says "the user", it means the author.
 
