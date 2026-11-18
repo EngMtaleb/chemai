@@ -1,0 +1,56 @@
+{
+ "draws": 2000,
+ "seed": 2811,
+ "kept_interval": [
+  0.6917,
+  0.7209
+ ],
+ "frozen_interval": [
+  0.6698,
+  0.7034
+ ],
+ "view_interval": [
+  0.5956,
+  0.6317
+ ],
+ "kept_sd": 0.0075,
+ "words": {
+  "above the first team": 720,
+  "with the leading teams": 1280,
+  "in the upper half": 0,
+  "lower": 0
+ },
+ "places": {
+  "1": 733,
+  "2": 1265,
+  "3": 2
+ },
+ "kept_less_frozen_interval": [
+  0.0041,
+  0.0347
+ ],
+ "kept_above_frozen": 1986,
+ "fusion_words": {
+  "helps": 1793,
+  "costs": 0,
+  "no clear difference": 207
+ },
+ "per_type_kept_less_better_part": {
+  "ToyCar": -0.0819,
+  "ToyTrain": 0.0182,
+  "bearing": 0.0386,
+  "fan": 0.0397,
+  "gearbox": -0.0142,
+  "slider": 0.0054,
+  "valve": 0.006
+ },
+ "per_type_kept_less_frozen": {
+  "ToyCar": -0.0819,
+  "ToyTrain": 0.0182,
+  "bearing": 0.0386,
+  "fan": 0.0508,
+  "gearbox": -0.0142,
+  "slider": 0.028,
+  "valve": 0.006
+ }
+}

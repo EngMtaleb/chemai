@@ -1,0 +1,55 @@
+ok   the types are the run's seven and eight
+ok   every type has section 00 only: a development type with labelled test clips, an evaluation type with unlabelled ones
+ok   σ_F of both sets of trainings, per type: recomputed from every training clip after the first 600 by name (the other source clips and the target clips)
+ok   σ_P per type: recomputed from the view's held-out clips, as many as were held out · 12750 calibration scores in all
+ok   every spread rests on at least 30 clips
+ok   the development score files: one per development type
+ok   development: every value of 10 systems recomputed from 1400 clips · largest difference 1.1e-16
+ok   development: both systems are log(frozen)/σ_F + log(view)/σ_P on every clip, each with its own frozen recipe and σ_F · 0.0e+00, 0.0e+00
+ok   development: the frozen recipe as it is is the mean of its two encoder parts on every clip
+ok   gate G-DEV recomputed: the system as it is passed; its two parts' source-domain lines are reported · {'ZP': 0.6604, 'frozen': 0.5433, 'view_paper': 0.6079}
+ok   the choice by the rules: as it is 0.5712, attribute classes 0.5787, difference +0.0075 → the result is the system as it is
+ok   the fusion on the development set, as it is: no clear difference (+0.0027)
+ok   the evaluation set was scored once, the scores before the results, with the choice the development set made
+ok   the lock lists five score sets of one score file and one decision file per evaluation type
+ok   the saved ground-truth files (labels, domains, the evaluator's name table) carry the hash the run recorded · e54a474722f1fb5d
+ok   the decision files of the kept scores hold a 0 for every clip
+ok   the decision files of the frozen scores hold a 0 for every clip
+ok   the decision files of the view scores hold a 0 for every clip
+ok   the decision files of the kept_AT scores hold a 0 for every clip
+ok   the decision files of the frozen_AT scores hold a 0 for every clip
+ok   evaluation: every value of the five score sets recomputed from 8000 scores and the saved ground truth (joined by file name) · largest difference 1.1e-16
+ok   evaluation: each system's score files are log(frozen)/σ_F + log(view)/σ_P of its parts' files · 0.0e+00, 0.0e+00
+ok   official_evaluator_check.json in the zip is what the main file reports
+ok   the official evaluator's result file of the kept scores gives this check's numbers (official score 0.531415) · largest difference 0.0e+00
+ok   the official evaluator's result file of the frozen scores gives this check's numbers (official score 0.592175) · largest difference 0.0e+00
+ok   the official evaluator's result file of the view scores gives this check's numbers (official score 0.447417) · largest difference 0.0e+00
+ok   the official evaluator's result file of the kept_AT scores gives this check's numbers (official score 0.544220) · largest difference 0.0e+00
+ok   the official evaluator's result file of the frozen_AT scores gives this check's numbers (official score 0.622793) · largest difference 0.0e+00
+ok   the final numbers of the kept scores come from the notebook
+ok   the final numbers of the frozen scores come from the notebook
+ok   the final numbers of the view scores come from the notebook
+ok   the final numbers of the kept_AT scores come from the notebook
+ok   the final numbers of the frozen_AT scores come from the notebook
+ok   the result (kept): official score 53.14 % → below the baselines, place 27 beside the 35 teams
+ok   the other (kept_AT): official score 54.42 % → below the baselines, place 26 beside the 35 teams
+ok   the fusion's word and the source and target lines of both systems on the evaluation set
+ok   the yardsticks saved in the results are the rules' table
+ok   as it is, both recipes were trained on one class per type: 15 classes
+ok   the frozen recipe's list: the first 600 training clips of every type, all of the source domain · 9000 clips
+ok   the attribute classes: every class is a type's with an attribute string; the types appear in order · 104 classes: {'ToyCar': 13, 'ToyTrain': 1, 'bearing': 1, 'fan': 2, 'gearbox': 4, 'slider': 1, 'valve': 2, 'AutoTrash': 1, 'BandSealer': 4, 'CoffeeGrinder': 60, 'HomeCamera': 8, 'Polisher': 1, 'ScrewFeeder': 1, 'ToyPet': 1, 'ToyRCCar': 4}
+ok   the view's list: every training clip, with its hold-out · 15000 clips, 750 held out
+ok   twelve trainings of the frozen recipe (six per class list), each with every epoch logged
+ok   three trainings of the view, each with every epoch logged; the saved model is the epoch with the lowest hold-out loss
+ok   every clip is at least 1 s; the clips shorter than the store (repeated to fill it) are the ones the run reports · {'AutoTrash': 1200, 'CoffeeGrinder': 1200, 'HomeCamera': 1200, 'ToyRCCar': 1200}
+ok   a real run
+ok   every gate passed
+ok   the 23 zips are the published ones (MD5)
+ok   the ground truth and the evaluator are the pinned ones
+ok   the counts are the documented ones: 990 source and 10 target training clips and 200 test clips per type · {}
+ok   the frozen recipe's settings are notebook 21's
+ok   the view's settings are notebook 25's
+ok   the sizes are the rules': 10 s kept, 313 frames, a last kernel of 8 × 20, 15 classes
+ok   the rules' bars: 30 clips per spread, a cap of 600, G-DEV at 0.55
+
+53 checks · 0 failed

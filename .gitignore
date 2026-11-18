@@ -16,3 +16,6 @@ projects/p02_control_loops/experiments/**/*.json
 # AI for RO: its saved results, and the inputs its studies read, are part of its record
 !projects/p03_ai_for_ro/**/*.csv
 !projects/p03_ai_for_ro/**/results*.json
+# Machine sound: each notebook's summary file and the challenge table are part of its record
+!projects/p04_machine_sound/**/*.csv
+!projects/p04_machine_sound/**/results*.json

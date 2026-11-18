@@ -1,0 +1,108 @@
+ok   the machine types are the run's seven · ToyCar, ToyTrain, bearing, fan, gearbox, slider, valve
+ok   the sections are the rules': 00 to 02 in the development set, 03 to 05 in the other two
+ok   σ_F of ToyCar recomputed from 1200 clips · 0.395585
+ok   σ_F of ToyCar rests on normal additional-training clips only
+ok   σ_F of ToyCar: per section, every clip after the first 600 by name (the remaining source clips and the target clips) · 1200 clips, 30 of the target domain
+ok   σ_P of ToyCar recomputed from 300 held-out clips · 2.135560
+ok   σ_P of ToyCar rests on training clips only, as many as were held out
+ok   both spreads of ToyCar rest on at least 30 clips
+ok   σ_F of ToyTrain recomputed from 1200 clips · 0.441053
+ok   σ_F of ToyTrain rests on normal additional-training clips only
+ok   σ_F of ToyTrain: per section, every clip after the first 600 by name (the remaining source clips and the target clips) · 1200 clips, 30 of the target domain
+ok   σ_P of ToyTrain recomputed from 313 held-out clips · 1.616859
+ok   σ_P of ToyTrain rests on training clips only, as many as were held out
+ok   both spreads of ToyTrain rest on at least 30 clips
+ok   σ_F of bearing recomputed from 1200 clips · 0.205828
+ok   σ_F of bearing rests on normal additional-training clips only
+ok   σ_F of bearing: per section, every clip after the first 600 by name (the remaining source clips and the target clips) · 1200 clips, 30 of the target domain
+ok   σ_P of bearing recomputed from 268 held-out clips · 0.353396
+ok   σ_P of bearing rests on training clips only, as many as were held out
+ok   both spreads of bearing rest on at least 30 clips
+ok   σ_F of fan recomputed from 1200 clips · 0.209754
+ok   σ_F of fan rests on normal additional-training clips only
+ok   σ_F of fan: per section, every clip after the first 600 by name (the remaining source clips and the target clips) · 1200 clips, 30 of the target domain
+ok   σ_P of fan recomputed from 310 held-out clips · 0.720832
+ok   σ_P of fan rests on training clips only, as many as were held out
+ok   both spreads of fan rest on at least 30 clips
+ok   σ_F of gearbox recomputed from 1200 clips · 0.178449
+ok   σ_F of gearbox rests on normal additional-training clips only
+ok   σ_F of gearbox: per section, every clip after the first 600 by name (the remaining source clips and the target clips) · 1200 clips, 30 of the target domain
+ok   σ_P of gearbox recomputed from 297 held-out clips · 0.491464
+ok   σ_P of gearbox rests on training clips only, as many as were held out
+ok   both spreads of gearbox rest on at least 30 clips
+ok   σ_F of slider recomputed from 1200 clips · 0.196381
+ok   σ_F of slider rests on normal additional-training clips only
+ok   σ_F of slider: per section, every clip after the first 600 by name (the remaining source clips and the target clips) · 1200 clips, 30 of the target domain
+ok   σ_P of slider recomputed from 312 held-out clips · 0.430291
+ok   σ_P of slider rests on training clips only, as many as were held out
+ok   both spreads of slider rest on at least 30 clips
+ok   σ_F of valve recomputed from 1200 clips · 0.184561
+ok   σ_F of valve rests on normal additional-training clips only
+ok   σ_F of valve: per section, every clip after the first 600 by name (the remaining source clips and the target clips) · 1200 clips, 30 of the target domain
+ok   σ_P of valve recomputed from 300 held-out clips · 0.422037
+ok   σ_P of valve rests on training clips only, as many as were held out
+ok   both spreads of valve rest on at least 30 clips
+ok   the development systems are the rules'
+ok   development score files of ToyCar: one per development section
+ok   development score files of ToyTrain: one per development section
+ok   development score files of bearing: one per development section
+ok   development score files of fan: one per development section
+ok   development score files of gearbox: one per development section
+ok   development score files of slider: one per development section
+ok   development score files of valve: one per development section
+ok   development: 928 values (sections, types, Ω) recomputed from 4200 clips × 8 systems · largest difference 2.2e-16
+ok   development: form ZP is log(frozen)/σ_F + log(view)/σ_P on every clip · largest relative difference 0.0e+00
+ok   development: the frozen recipe is the mean of its two encoder parts on every clip · largest relative difference 0.0e+00
+ok   gate G-DEV recomputed (the source-domain line of the development set) · {'ZP': 0.7694, 'frozen': 0.6887, 'view_paper': 0.6101}
+ok   gate G-DEV passed (or the evaluation set would not have been scored)
+ok   the fusion on the development set: helps (+0.0234)
+ok   the shift on the development set: source and target lines of the three systems · {'ZP': (0.7694, 0.689), 'frozen': (0.6887, 0.7111), 'view_paper': (0.6101, 0.5715)}
+ok   the kept system with each seed of the view alone is reported
+ok   the baselines' published development lines are the rules'
+ok   the evaluation set was scored, and the kept system's scores are the result
+ok   results.json in the zip is what the main file reports
+ok   the scores were written before the results (and never after)
+ok   the lock lists three score sets of one score file and one decision file per evaluation section
+ok   the written kept system is form ZP with the spreads above
+ok   the saved ground-truth files: one label file and one domain file per evaluation section
+ok   the saved ground-truth files carry the hash the run recorded · d61ad20294be2e12
+ok   official_evaluator_check.json in the zip is what the main file reports
+ok   the decision files of the kept scores hold a 0 for every clip (no threshold is set)
+ok   the decision files of the frozen scores hold a 0 for every clip (no threshold is set)
+ok   the decision files of the view scores hold a 0 for every clip (no threshold is set)
+ok   evaluation: 348 values of the three score sets recomputed from 12600 scores and the saved ground truth · largest difference 1.1e-16
+ok   evaluation: the kept system's score files are log(frozen)/σ_F + log(view)/σ_P of the other two sets' files · largest relative difference 0.0e+00
+ok   the official evaluator's result file of the kept scores gives this check's numbers (official score 0.706310) · largest difference 1.1e-16
+ok   the notebook recorded that the official evaluator agrees on the kept scores
+ok   the official evaluator's result file of the frozen scores gives this check's numbers (official score 0.688615) · largest difference 0.0e+00
+ok   the notebook recorded that the official evaluator agrees on the frozen scores
+ok   the official evaluator's result file of the view scores gives this check's numbers (official score 0.616072) · largest difference 1.1e-16
+ok   the notebook recorded that the official evaluator agrees on the view scores
+ok   the final numbers of the kept scores come from the notebook
+ok   the final numbers of the frozen scores come from the notebook
+ok   the final numbers of the view scores come from the notebook
+ok   question 1: the official score 70.63 % → with the leading teams, place 2 among the 31 teams
+ok   question 2: the source and target lines of the three systems on the evaluation set · {'ZP': (0.8294, 0.7, 0.1294), 'frozen': (0.7055, 0.7291, -0.0236), 'view_paper': (0.7742, 0.5497, 0.2245)}
+ok   question 3: the fusion on the evaluation set: helps (+0.0177)
+ok   the yardsticks saved in the results are the rules' table
+ok   both recipes were trained on one class per section: 42 classes
+ok   the frozen recipe's training list: every development training clip and the first 600 additional clips of a section · 33599 clips
+ok   the frozen recipe's clips of the evaluation sections are source-domain clips · {'source': 12600}
+ok   the view's training list: every training clip of the two sets, 5 % held out · 41999 clips, 2100 held out
+ok   six trainings of the frozen recipe, each with every epoch logged and a falling loss
+ok   three trainings of the view, each with every epoch logged; the saved model is the epoch with the lowest hold-out loss
+ok   the kept clips are the first seconds of each clip: no clip was shorter than the store
+ok   no archive metadata entry was skipped · {'ToyCar': 0, 'ToyTrain': 0, 'bearing': 0, 'fan': 0, 'gearbox': 0, 'slider': 0, 'valve': 0}
+ok   a real run
+ok   every gate passed
+ok   the 21 zips are the published ones (MD5)
+ok   the ground truth and the evaluator are the pinned ones
+FAIL the counts are the documented ones: per section 990 source and 10 target training clips, and 200 test clips · 41999 training clips
+ok   every evaluation section: 100 anomalous clips, and 50 normal clips of each domain
+ok   the frozen recipe's settings are notebook 21's
+ok   the view's settings are notebook 25's
+ok   the sizes are the rules': 10 s kept, 313 frames, a last kernel of 8 × 20, 42 classes
+ok   the spreads rest on at least 30 clips
+ok   gate G-DEV used the rules' bar
+
+106 checks · 1 failed: the counts are the documented ones: per section 990 source and 10 target training clips, and 200 test clips

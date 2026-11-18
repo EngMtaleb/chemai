@@ -1,0 +1,97 @@
+{
+ "rules": "results/mimii_beats/RULES_per_type_choice_2022_written_before_running.md",
+ "choice": {
+  "ToyCar": "expert",
+  "ToyTrain": "fusion",
+  "bearing": "fusion",
+  "fan": "fusion",
+  "gearbox": "expert",
+  "slider": "fusion",
+  "valve": "expert"
+ },
+ "development_type_scores": {
+  "ToyCar": {
+   "expert": 0.7309429584899776,
+   "trainee": 0.4344137939391459,
+   "fusion": 0.7180994500249083
+  },
+  "ToyTrain": {
+   "expert": 0.569061919625248,
+   "trainee": 0.5386785419235729,
+   "fusion": 0.5787757010693813
+  },
+  "bearing": {
+   "expert": 0.6216542687213922,
+   "trainee": 0.6250198927152845,
+   "fusion": 0.6657572118986378
+  },
+  "fan": {
+   "expert": 0.5819334373542354,
+   "trainee": 0.5585989124611116,
+   "fusion": 0.6765177449592122
+  },
+  "gearbox": {
+   "expert": 0.7031605179405757,
+   "trainee": 0.6428439479548158,
+   "fusion": 0.6894946747604824
+  },
+  "slider": {
+   "expert": 0.7791775155217501,
+   "trainee": 0.6973706354323238,
+   "fusion": 0.8326087373383727
+  },
+  "valve": {
+   "expert": 0.8012548194143462,
+   "trainee": 0.7195599228531906,
+   "fusion": 0.7666540824267101
+  }
+ },
+ "evaluation": {
+  "as_it_is_fusion_everywhere": 0.7063102161237648,
+  "with_the_choice": 0.714979341180917,
+  "AUC_source": 0.836678392826181,
+  "AUC_target": 0.7064332078981654,
+  "pAUC": 0.6308507206041235,
+  "per_type": {
+   "ToyCar": {
+    "chosen": "expert",
+    "score": 0.9114600979105456,
+    "fusion": 0.8296100760350779
+   },
+   "ToyTrain": {
+    "chosen": "fusion",
+    "score": 0.6200272718850245,
+    "fusion": 0.6200272718850245
+   },
+   "bearing": {
+    "chosen": "fusion",
+    "score": 0.6877571891412756,
+    "fusion": 0.6877571891412756
+   },
+   "fan": {
+    "chosen": "fusion",
+    "score": 0.5621980687409459,
+    "fusion": 0.5621980687409459
+   },
+   "gearbox": {
+    "chosen": "expert",
+    "score": 0.8414201234753885,
+    "fusion": 0.8272472593298319
+   },
+   "slider": {
+    "chosen": "fusion",
+    "score": 0.6816164856945544,
+    "fusion": 0.6816164856945544
+   },
+   "valve": {
+    "chosen": "expert",
+    "score": 0.8387727853543048,
+    "fusion": 0.844752674583482
+   }
+  },
+  "expert_everywhere": 0.6886145495022338,
+  "first_team": 0.7097,
+  "difference_to_first_team": 0.0052793411809169966,
+  "difference_to_as_it_is": 0.008669125057152227
+ }
+}

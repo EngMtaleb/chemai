@@ -1,0 +1,60 @@
+{
+ "rules": "results/mimii_beats/RULES_two_experts_2025_written_before_running.md",
+ "development": {
+  "expert": 0.5685,
+  "expert_AT": 0.5528,
+  "two_experts": 0.5603
+ },
+ "evaluation": {
+  "expert": 0.5921747512830055,
+  "expert_AT": 0.6227928839638507,
+  "two_experts": 0.6144297165730392,
+  "AUC_source": 0.7234733313580165,
+  "AUC_target": 0.5708461908266136,
+  "pAUC": 0.5718958826701664,
+  "per_type": {
+   "AutoTrash": {
+    "expert": 0.7296238025438198,
+    "expert_AT": 0.8183937361676793,
+    "two_experts": 0.7931705634120271
+   },
+   "BandSealer": {
+    "expert": 0.6241113277403748,
+    "expert_AT": 0.633484788243525,
+    "two_experts": 0.6453988989163453
+   },
+   "CoffeeGrinder": {
+    "expert": 0.5852975541405122,
+    "expert_AT": 0.6134565427820878,
+    "two_experts": 0.6026853028707514
+   },
+   "HomeCamera": {
+    "expert": 0.5622709336463844,
+    "expert_AT": 0.5477036721088767,
+    "two_experts": 0.5622445292683006
+   },
+   "Polisher": {
+    "expert": 0.5074280173042088,
+    "expert_AT": 0.553815856324816,
+    "two_experts": 0.5309097579562512
+   },
+   "ScrewFeeder": {
+    "expert": 0.7067351964084432,
+    "expert_AT": 0.7509658657892037,
+    "two_experts": 0.7447627339612314
+   },
+   "ToyPet": {
+    "expert": 0.597944996051428,
+    "expert_AT": 0.6447037802057861,
+    "two_experts": 0.625940473862662
+   },
+   "ToyRCCar": {
+    "expert": 0.5021167334096492,
+    "expert_AT": 0.5261492316983386,
+    "two_experts": 0.5132626326313425
+   }
+  },
+  "first_team": 0.6163,
+  "fusion_with_trainee": 0.5314
+ }
+}

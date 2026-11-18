@@ -1,0 +1,480 @@
+{
+ "note": "The numbers quoted on the project page. Made by the assembly script from the files named in 'sources'; figures/make_figures.py draws from this file.",
+ "sources": {
+  "test1": [
+   "results/run_2026-11-12_n25/second_view.json",
+   "results/run_2026-11-12_n27/toy_types.json",
+   "results/external/dcase2020_task2_eval_auc_all_systems.csv"
+  ],
+  "test2": [
+   "results/run_2026-11-13_n28/domain_shift.json",
+   "results/run_2026-11-13_n29/domain_backends.json",
+   "results/per_type_choice_2022_result.json",
+   "records/N28_outputs_2026-11-13.md"
+  ],
+  "test3": [
+   "results/run_2026-11-14_n30/first_shot.json",
+   "results/two_experts_2025_result.json",
+   "results/run_2026-11-17_n35/analysis_n35.json",
+   "records/N30_outputs_2026-11-14.md"
+  ],
+  "families": [
+   "results/run_2026-11-16_n31_33/simple_families_20xx.json",
+   "results/run_2026-11-17_n34/array_simple.json"
+  ],
+  "noise": [
+   "results/run_2026-11-11_n23/external_judgement.json",
+   "results/run_2026-11-17_n34/array_simple.json",
+   "results/run_2026-11-08_n11/array_noise.json"
+  ]
+ },
+ "test1": {
+  "measure": "AUC in %, DCASE 2020 Task 2 evaluation set, mean over the machines of a type",
+  "types": {
+   "fan": {
+    "auc": 99.8,
+    "pauc": 98.94,
+    "best_submission": 99.87
+   },
+   "pump": {
+    "auc": 98.12,
+    "pauc": 92.02,
+    "best_submission": 97.76
+   },
+   "slider": {
+    "auc": 99.92,
+    "pauc": 99.6,
+    "best_submission": 99.84
+   },
+   "valve": {
+    "auc": 99.19,
+    "pauc": 96.52,
+    "best_submission": 98.02
+   },
+   "ToyCar": {
+    "auc": 98.6,
+    "pauc": 95.79,
+    "best_submission": 96.21
+   },
+   "ToyConveyor": {
+    "auc": 89.17,
+    "pauc": 77,
+    "best_submission": 93.08
+   }
+  },
+  "mean_ours": 97.47,
+  "n_submissions": 116,
+  "best_mean": {
+   "system": "Vinayavekhin_IBM_task2_1",
+   "mean": 94.69,
+   "official_rank": 8
+  },
+  "official_rank_1": {
+   "system": "Giri_Amazon_task2_2",
+   "mean": 94.58
+  },
+  "baseline_mean": 77.91,
+  "highest_on_types": 4
+ },
+ "test2": {
+  "measure": "official score in %, DCASE 2022 Task 2 evaluation set",
+  "fusion_as_it_is": 70.63,
+  "expert_alone": 68.86,
+  "trainee_alone": 61.61,
+  "per_type_choice": 71.5,
+  "choice": {
+   "ToyCar": "expert",
+   "ToyTrain": "fusion",
+   "bearing": "fusion",
+   "fan": "fusion",
+   "gearbox": "expert",
+   "slider": "fusion",
+   "valve": "expert"
+  },
+  "teams": [
+   70.97,
+   68.22,
+   68.04,
+   67.62,
+   67.57,
+   67.12,
+   66.83,
+   63.95,
+   63.83,
+   63.72,
+   63.35,
+   63.3,
+   62.5,
+   62.39,
+   60.6,
+   59.77,
+   59.17,
+   58.47,
+   58.13,
+   56.76,
+   55.07,
+   54.47,
+   53.85,
+   52.96,
+   51.34,
+   51.03,
+   50.59,
+   49.9,
+   49.27,
+   48.94,
+   43.17
+  ],
+  "baselines": [
+   54.02,
+   52.94
+  ],
+  "best_team": 70.97,
+  "development": {
+   "as_it_is": 69.61,
+   "ideas": [
+    {
+     "n": 1,
+     "what": "Scale each condition apart",
+     "change_points": 0.11
+    },
+    {
+     "n": 2,
+     "what": "Summarise the known condition in 16 points",
+     "change_points": -0.78
+    },
+    {
+     "n": 3,
+     "what": "Nearest clip, no scaling",
+     "change_points": -1.98
+    },
+    {
+     "n": 4,
+     "what": "Idea 2, expert only",
+     "change_points": -1.42
+    },
+    {
+     "n": 5,
+     "what": "Idea 3, expert only",
+     "change_points": -1.69
+    },
+    {
+     "n": 6,
+     "what": "Idea 1, expert only",
+     "change_points": -2.42
+    }
+   ],
+   "per_type_choice_change_points": 0.76
+  },
+  "three_lines": {
+   "kept": {
+    "AUC_source": 0.8294,
+    "AUC_target": 0.7,
+    "pAUC": 0.6199
+   },
+   "frozen": {
+    "AUC_source": 0.7055,
+    "AUC_target": 0.7291,
+    "pAUC": 0.6379
+   }
+  },
+  "per_type": {
+   "ToyCar": {
+    "expert": 0.9115,
+    "fusion": 0.8296
+   },
+   "ToyTrain": {
+    "expert": 0.62,
+    "fusion": 0.62
+   },
+   "bearing": {
+    "expert": 0.6878,
+    "fusion": 0.6878
+   },
+   "fan": {
+    "expert": 0.5622,
+    "fusion": 0.5622
+   },
+   "gearbox": {
+    "expert": 0.8414,
+    "fusion": 0.8272
+   },
+   "slider": {
+    "expert": 0.6816,
+    "fusion": 0.6816
+   },
+   "valve": {
+    "expert": 0.8388,
+    "fusion": 0.8448
+   }
+  }
+ },
+ "test3": {
+  "measure": "official score in %, DCASE 2025 Task 2 evaluation set",
+  "steps": [
+   {
+    "what": "Expert + trainee (the system as it is)",
+    "score": 53.14
+   },
+   {
+    "what": "Expert alone",
+    "score": 59.22
+   },
+   {
+    "what": "Expert, with the machine settings as classes",
+    "score": 62.28
+   },
+   {
+    "what": "Plus two pre-trained models, equal votes over 33 listeners",
+    "score": 63.27
+   }
+  ],
+  "teams": [
+   61.63,
+   61.57,
+   61.2,
+   59.99,
+   59.79,
+   59.5,
+   58.25,
+   58.23,
+   58.19,
+   58.14,
+   58.14,
+   58.02,
+   57.95,
+   57.87,
+   57.75,
+   57.56,
+   57.44,
+   57.23,
+   56.87,
+   56.57,
+   56.38,
+   56.06,
+   55.76,
+   55.42,
+   54.78,
+   53.47,
+   52.91,
+   52.53,
+   51.42,
+   50.13,
+   49.91,
+   48.97,
+   48.72,
+   47.9,
+   45.15
+  ],
+  "baselines": [
+   56.51,
+   54.43
+  ],
+  "best_team": 61.63,
+  "not_kept": {
+   "two_experts_together": 61.44,
+   "self_weighted_fusion": 62.71,
+   "published_training_free_recipe_on_our_files": 59.23,
+   "pooling_chosen_on_development": 61.22
+  },
+  "published": {
+   "arXiv_2603.04605": 62.4,
+   "arXiv_2609.27362": 63.95
+  },
+  "development": {
+   "A0": 55.28,
+   "A1": 58.75,
+   "A2": 59.3,
+   "A3": 59.46,
+   "A4": 54.42,
+   "A5": 56.33
+  },
+  "attribute_classes_choice_on_development": {
+   "as_it_is": 0.5712,
+   "attribute_classes": 0.5787,
+   "bar": 0.01,
+   "frozen_as_it_is": 0.5685,
+   "frozen_attribute_classes": 0.5528,
+   "attribute_classes_less_as_it_is": 0.0075,
+   "adopted": false
+  },
+  "per_type_best": {
+   "AutoTrash": 0.7931,
+   "BandSealer": 0.6516,
+   "CoffeeGrinder": 0.6122,
+   "HomeCamera": 0.5518,
+   "Polisher": 0.5739,
+   "ScrewFeeder": 0.8648,
+   "ToyPet": 0.6369,
+   "ToyRCCar": 0.5172
+  }
+ },
+ "families": {
+  "names": {
+   "F1": "A limit on one number (loudness)",
+   "F2": "Distance from the normal cloud (128 statistics, PCA, T² + SPE)",
+   "F3": "Isolation Forest (the same 128 statistics)",
+   "F4": "Autoencoder (reconstruction error)",
+   "F5": "Pre-trained audio model, fine-tuned (the kept system)"
+  },
+  "test1_mean_auc": {
+   "F1": 56.61,
+   "F2": 79.52,
+   "F3": 67.86,
+   "F4": 72.7,
+   "F5": 97.47
+  },
+  "test2_official": {
+   "F1": 49.32,
+   "F2": 53.13,
+   "F3": 49.44,
+   "F4": 50.29,
+   "F5": 71.5
+  },
+  "test3_official": {
+   "F1": 44.37,
+   "F2": 54.26,
+   "F3": 47.39,
+   "F4": 48.68,
+   "F5": 63.27
+  },
+  "four_pumps_6dB_one_microphone_auc": {
+   "F1": 0.7098,
+   "F2": 0.9664,
+   "F3": 0.9524,
+   "F4": 0.7908,
+   "F5": 0.9875
+  }
+ },
+ "noise": {
+  "measure": "average AUC over four machines of a type, MIMII, the 2020 challenge's split of each machine ('Split A')",
+  "family5_fine_tuned": {
+   "MIC": {
+    "6dB": {
+     "pump": 0.9875,
+     "fan": 0.9968,
+     "valve": 0.9951,
+     "slider": 0.999
+    },
+    "0dB": {
+     "pump": 0.9679,
+     "fan": 0.9675,
+     "valve": 0.9902,
+     "slider": 0.9929
+    },
+    "-6dB": {
+     "pump": 0.9485,
+     "fan": 0.8911,
+     "valve": 0.983,
+     "slider": 0.9706
+    }
+   },
+   "ARR": {
+    "6dB": {
+     "pump": 0.9914,
+     "fan": 1,
+     "valve": 0.9858,
+     "slider": 1
+    },
+    "0dB": {
+     "pump": 0.9927,
+     "fan": 0.9995,
+     "valve": 0.985,
+     "slider": 0.9995
+    },
+    "-6dB": {
+     "pump": 0.982,
+     "fan": 0.9934,
+     "valve": 0.9744,
+     "slider": 0.9966
+    }
+   }
+  },
+  "families_1_to_4_pumps": {
+   "F1": {
+    "6dB": {
+     "CH0": 0.7098,
+     "AVG": 0.725,
+     "BF": 0.7411
+    },
+    "0dB": {
+     "CH0": 0.7304,
+     "AVG": 0.7364,
+     "BF": 0.7581
+    },
+    "-6dB": {
+     "CH0": 0.6698,
+     "AVG": 0.6696,
+     "BF": 0.6955
+    }
+   },
+   "F2": {
+    "6dB": {
+     "CH0": 0.9664,
+     "AVG": 0.9482,
+     "BF": 0.9504
+    },
+    "0dB": {
+     "CH0": 0.9067,
+     "AVG": 0.9045,
+     "BF": 0.9328
+    },
+    "-6dB": {
+     "CH0": 0.7535,
+     "AVG": 0.7659,
+     "BF": 0.8209
+    }
+   },
+   "F3": {
+    "6dB": {
+     "CH0": 0.9524,
+     "AVG": 0.958,
+     "BF": 0.9248
+    },
+    "0dB": {
+     "CH0": 0.8624,
+     "AVG": 0.8741,
+     "BF": 0.8674
+    },
+    "-6dB": {
+     "CH0": 0.7178,
+     "AVG": 0.7207,
+     "BF": 0.7658
+    }
+   },
+   "F4": {
+    "6dB": {
+     "CH0": 0.7908,
+     "AVG": 0.7716,
+     "BF": 0.8108
+    },
+    "0dB": {
+     "CH0": 0.6992,
+     "AVG": 0.7023,
+     "BF": 0.7539
+    },
+    "-6dB": {
+     "CH0": 0.6757,
+     "AVG": 0.6456,
+     "BF": 0.6603
+    }
+   }
+  },
+  "family5_pretrained_only_pumps": {
+   "6dB": {
+    "CH0": 0.9904,
+    "AVG": 0.9898,
+    "BF": 0.9909
+   },
+   "0dB": {
+    "CH0": 0.9525,
+    "AVG": 0.9616,
+    "BF": 0.9739
+   },
+   "-6dB": {
+    "CH0": 0.8234,
+    "AVG": 0.8495,
+    "BF": 0.8795
+   }
+  }
+ }
+}

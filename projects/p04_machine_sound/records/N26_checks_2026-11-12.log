@@ -1,0 +1,9 @@
+### check_n26_results.py run_2026-11-12_n26 --real
+35985 calibration rows at 3 level(s): the spreads and the look at the held-out clips recomputed
+19800 test-clip rows at 3 level(s) recomputed from the saved scores · largest difference 0.0e+00
+reading 3: 11 of 12 cells reached · targets [False, True] · lost [] → answered in part
+decision: {'level': '-6dB', 'split': 'A', 'current': [0.9198, 0.9768], 'keep_at': [0.9298, 0.9668], 'form': 'ZP', 'scores': [0.966, 0.9992], 'kept': True, 'passes_development': True, 'passes_confirmation': True, 'test_forced': False}
+no mismatches []
+
+### check_n26_record.py
+289 checks of the record against the saved files; 0 failed
