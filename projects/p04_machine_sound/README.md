@@ -13,6 +13,8 @@
 <p align="center">
   <a href="https://engmtaleb.github.io/chemai/machine-sound/"><b>▶&nbsp; Open the deck</b></a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="https://youtu.be/VDpuYnyDXvE"><b>🎬&nbsp; Watch the episode (Arabic)</b></a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="#notebooks"><b>📓&nbsp; Notebooks</b></a>
   &nbsp;&nbsp;·&nbsp;&nbsp;
   <a href="https://www.kaggle.com/code/mohammedtaleb1/machine-sound-can-ai-hear-a-pump-going-wrong"><b>⚡&nbsp; Run it on Kaggle</b></a>
